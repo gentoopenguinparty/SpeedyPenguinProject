@@ -3,4 +3,4 @@
 *.map
 *bundle.js
 config.js
-node_modules/
+node_modules
