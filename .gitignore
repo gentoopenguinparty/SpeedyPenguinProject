@@ -1,6 +1,6 @@
-.env
+.config
 *.DS_Store
 *.map
-public/bundle.js
+bundle.js
 config.js
 node_modules
