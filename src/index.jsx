@@ -1,15 +1,17 @@
-import { createRoot } from "react-dom/client";
+import { createRoot } from 'react-dom/client';
 import React from 'react';
-const root = createRoot(document.getElementById("root"));
+import { BrowserRouter as Router } from 'react-router-dom';
 
-import ProductDetail from './ProductDetail/ProductDetail.jsx'
-import QuestionsAnswers from './QuestionsAnswers/QuestionsAnswers.jsx'
-import RatingsReviews from './RatingsReviews/RatingsReviews.jsx'
-import RelatedItemsOutfits from './RelatedItemsOutfits/RelatedItemsOutfits.jsx'
+
+import ProductDetail from './ProductDetail/ProductDetail.jsx';
+import QuestionsAnswers from './QuestionsAnswers/QuestionsAnswers.jsx';
+import RatingsReviews from './RatingsReviews/RatingsReviews.jsx';
+import RelatedItemsOutfits from './RelatedItemsOutfits/RelatedItemsOutfits.jsx';
+
+const root = createRoot(document.getElementById('root'));
 
 // Huzzah for jsx!
-const App = () => {
-
+function App() {
   return (
     <div>
       <ProductDetail />
@@ -17,7 +19,7 @@ const App = () => {
       <RatingsReviews />
       <RelatedItemsOutfits />
     </div>
-  )
+  );
 }
 
-root.render(<App />);
+root.render(<Router><App /></Router>);
