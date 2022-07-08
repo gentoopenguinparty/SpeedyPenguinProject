@@ -18,6 +18,8 @@ module.exports = {
     'react',
   ],
   rules: {
-    "import/extensions": [ "never"]
+    "import/extensions": [ "never"],
+    'import/prefer-default-export': 'off',
+    'eol-last': 'off',
   },
 };
