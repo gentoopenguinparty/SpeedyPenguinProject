@@ -8,10 +8,10 @@ export function axiosGet(url) {
     },
   });
 }
-export function axiosPost(url) {
+export function axiosPost(url, data) {
   return axios.post(url, {
     headers: {
       Authorization: API_KEY,
     },
-  });
+  }, data);
 }
