@@ -19,7 +19,7 @@ export default function Review() {
     <Container>
         {stateData.map((review) => (
           <div key={review.review_id}>
-            <Rating> {review.rating} </Rating>
+            <Rating rating={review.rating}>  </Rating>
             <div> {review.reviewer_name} </div>
             <div> {review.summary} </div>
             <div> {review.body} </div>
