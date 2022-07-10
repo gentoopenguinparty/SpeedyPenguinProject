@@ -1,5 +1,8 @@
 import React from 'react';
+import bigList from './bigList.jsx';
 
 export default function RatingsReviews() {
-  return (<p>Hello Worlds</p>);
+  return (
+    <bigList/>
+  );
 }
