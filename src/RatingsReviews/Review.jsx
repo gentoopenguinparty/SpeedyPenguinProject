@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { axiosGet } from '../../util.js'
-
+import {Container} from './styles/Container.styled.js'
+import {Rating} from './styles/Rating.styled.js'
 
 export default function Review() {
 
@@ -15,16 +16,16 @@ export default function Review() {
   }, [])
 
   return (
-    <div>
-      {stateData.map((review) => (
-        <div key={review.review_id}>
-          <div> {review.rating} </div>
-          <div> {review.reviewer_name} </div>
-          <div> {review.summary} </div>
-          <div> {review.body} </div>
-          <div> {review.recommend} </div>
-        </div>
-      ))}
-    </div>
+    <Container>
+        {stateData.map((review) => (
+          <div key={review.review_id}>
+            <Rating> {review.rating} </Rating>
+            <div> {review.reviewer_name} </div>
+            <div> {review.summary} </div>
+            <div> {review.body} </div>
+            <div> {review.recommend} </div>
+          </div>
+        ))}
+    </Container>
   );
 }
