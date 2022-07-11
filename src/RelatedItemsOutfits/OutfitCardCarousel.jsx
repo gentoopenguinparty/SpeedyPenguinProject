@@ -1,11 +1,13 @@
 import React from 'react';
 
-import OutfitCard from './OutfitCard';
+// import OutfitCard from './OutfitCard';
+import AddToOutfitsButton from './Buttons/AddToOutfitsButton.jsx';
 
 export default function OutfitCardCarousel() {
   return (
     <div id="outfitCardCarousel">
-      <OutfitCard />
+      <AddToOutfitsButton />
+      {/* <OutfitCard /> */}
     </div>
   );
 }
