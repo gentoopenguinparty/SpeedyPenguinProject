@@ -27,7 +27,7 @@ export default function Review({count, setDataLength}) {
 
   return (
     <div>
-      <Grid>
+      <Grid color={'#FAEBD7'}>
         {stateData.slice(0,count).map((review) => (
           <div key={review.review_id}>
             <Row>
