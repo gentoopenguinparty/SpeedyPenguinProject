@@ -26,12 +26,12 @@ export default function SeeMore({ count, setCount, dataLength }) {
               <Button onClick={handleClick}> MORE REVIEWS </Button>}
           </Col>
           <Col>
-            <Button onClick={handleClickAdd}> ADD REVIEWS </Button>
+            <Button onClick={handleClickAdd}> ADD A REVIEW </Button>
           </Col>
         </Row>
       </Grid>
-      <Popup trigger={trigger}>
-        <h3>TEST</h3>
+      <Popup trigger={trigger} changeTrigger={changeTrigger}>
+        <h3>ADD A NEW REVIEW</h3>
       </Popup>
     </div>
   )
