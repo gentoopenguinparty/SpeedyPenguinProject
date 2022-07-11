@@ -26,16 +26,24 @@ export default function Review() {
   return (
     <div>
       <Grid>
-      {stateData.map((review) => (
-        <div key={review.review_id}>
-          <Rating rating={review.rating}>  </Rating>
-          <div> {review.reviewer_name} </div>
-          <div> {review.date} </div>
-          <div> {review.summary} </div>
-          <div> {review.body} </div>
-          <div> {review.recommend.toString()} </div>
-        </div>
-      ))}
+        {stateData.map((review) => (
+          <div key={review.review_id}>
+            <Row>
+              <Col> <Rating rating={review.rating}> </Rating> </Col>
+              <Col> {review.reviewer_name} </Col>
+              <Col> {review.date} </Col>
+            </Row>
+            <Row>
+              <Col> {review.summary} </Col>
+            </Row>
+            <Row>
+              <Col> {review.body} </Col>
+            </Row>
+            <Row>
+              <Col> {review.recommend.toString()} </Col>
+            </Row>
+          </div>
+        ))}
       </Grid>
     </div>
   );
