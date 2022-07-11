@@ -4,7 +4,7 @@ import { Grid } from './styles/Grid.styled.js'
 import { Row } from './styles/Row.styled.js'
 import { Col } from './styles/Col.styled.js'
 import Popup from './Popup.jsx'
-
+import AddReview from './AddReview.jsx'
 
 export default function SeeMore({ count, setCount, dataLength }) {
   function handleClick(event) {
@@ -31,7 +31,7 @@ export default function SeeMore({ count, setCount, dataLength }) {
         </Row>
       </Grid>
       <Popup trigger={trigger} changeTrigger={changeTrigger}>
-        <h3>ADD A NEW REVIEW</h3>
+        <AddReview/>
       </Popup>
     </div>
   )
