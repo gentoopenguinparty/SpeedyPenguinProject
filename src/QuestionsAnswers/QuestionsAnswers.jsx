@@ -1,31 +1,37 @@
-import React from 'react'
-import {axiosGet, axiiosPost} from '../../util';
-
+import React, { useEffect, useState } from 'react';
+import { axiosGet, axiosPost } from '../../util';
+import QAcard from '../QuestionsAnswers/QAcard.jsx';
 export default function QuestionsAnswers() {
-  // const [data, setdata] = useState(null);
+  const [data, setData] = useState('');
   // const [error, setError] = useState("");
   // const [loaded, setLoaded] = useState(false); //hr-rfe
 
-    let param = 37315;
-    axiosGet(`https://app-hrsei-api.herokuapp.com/api/fec2/:hr-rfe/qa/questions/?product_id=${param}`).then((data)=> {
-      console.log(data);
-    });
+  useEffect(() => {
+    getQAs();
+  }, []);
 
+  const param = 37316;
 
+  const getQAs = () => axiosGet(`https://app-hrsei-api.herokuapp.com/api/fec2/:hr-rfe/qa/questions/?product_id=${param}`).then((response) => {
+    // console.log(response.data.results);
+    const allData = response.data.results;
+    setData(allData);
+  }).catch((error) => { console.error(`Error, ${error}`); });
+
+  console.log('data:', data);
+  // only four questions with two answers per question will be rendered
+  //
   return (
 
-  <div>
-     <p>Questions and Answers</p>
+    <div>
+      <p>Questions and Answers</p>
 
-     <input placeholder="Have A Question? Search For Answers..." />
-     <button type="submit">Search</button>
-     <br></br>
+      <input placeholder="Have A Question? Search For Answers..." />
+      <button type="submit">Search</button>
+      <br />
 
-     <textarea>
+      <QAcard qaCards={data} />
 
-     </textarea>
-  </div>
-)
-
-
-};
+    </div>
+  );
+}
