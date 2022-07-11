@@ -9,7 +9,10 @@ import { ThemeProvider } from 'styled-components'
 
 export default function Review() {
 
-  const [stateData, modData] = useState([{ rating: 'filler', recommend: 'bool' }]);
+  const [stateData, modData] = useState([{
+    rating: 'filler', recommend: 'bool',
+    date: 'filler'
+  }]);
 
   useEffect(() => {
     axiosGet('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/?product_id=37315')
@@ -30,8 +33,7 @@ export default function Review() {
           <div key={review.review_id}>
             <Row>
               <Col> <Rating rating={review.rating}> </Rating> </Col>
-              <Col> {review.reviewer_name} </Col>
-              <Col> {review.date} </Col>
+              <Col> {review.reviewer_name} {review.date.slice(0, 10)} </Col>
             </Row>
             <Row>
               <Col> {review.summary} </Col>
@@ -40,7 +42,7 @@ export default function Review() {
               <Col> {review.body} </Col>
             </Row>
             <Row>
-              <Col> {review.recommend.toString()} </Col>
+              <Col> {'recommended? ' + review.recommend.toString()} </Col>
             </Row>
           </div>
         ))}
