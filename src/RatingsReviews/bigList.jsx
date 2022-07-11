@@ -1,23 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import { axiosGet } from '../../util.js'
 import Review from './Review.jsx'
+import SeeMore from './SeeMore.jsx'
 let axios = require('axios');
 
+// This component is made up of the individual reviews and also contains the add a review button and also the see more review button
+
 export default function BigList() {
-
-  // const [stateData, modData] = useState(null);
-
-  // useEffect(() => {
-  //   axiosGet('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/?product_id=37315')
-  //     .then((data) => {
-  //       // console.log(data.data);
-  //       modData(data.data);
-  //     })
-  // }, [])
-
   return (
     <div>
       <Review/>
+      <SeeMore/>
     </div>
   );
 }

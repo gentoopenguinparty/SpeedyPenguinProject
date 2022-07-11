@@ -11,25 +11,25 @@ export default function Review() {
 
   const [stateData, modData] = useState([{
     rating: 'filler', recommend: 'bool',
-    date: 'filler'
+    date: 'filler', renderIndex: 2
   }]);
 
   useEffect(() => {
     axiosGet('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/?product_id=37315')
       .then((data) => {
         console.log(data.data.results);
+        data.data.results.unshift(3);
+        console.log('apiInfo', data.data.results);
         modData(data.data.results);
       })
   }, [])
 
   // let number = (Math.round(value * 4) / 4).toFixed(2);
 
-
-
   return (
     <div>
       <Grid>
-        {stateData.map((review) => (
+        {stateData.slice(1,stateData[0]).map((review) => (
           <div key={review.review_id}>
             <Row>
               <Col> <Rating rating={review.rating}> </Rating> </Col>
