@@ -7,20 +7,19 @@ import { Row } from './styles/Row.styled.js'
 import { Col } from './styles/Col.styled.js'
 import { ThemeProvider } from 'styled-components'
 
-export default function Review() {
+export default function Review({count, setDataLength}) {
 
   const [stateData, modData] = useState([{
     rating: 'filler', recommend: 'bool',
-    date: 'filler', renderIndex: 2
+    date: 'filler'
   }]);
 
   useEffect(() => {
     axiosGet('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/?product_id=37315')
       .then((data) => {
-        console.log(data.data.results);
-        data.data.results.unshift(3);
         console.log('apiInfo', data.data.results);
         modData(data.data.results);
+        setDataLength(data.data.results.length);
       })
   }, [])
 
@@ -29,7 +28,7 @@ export default function Review() {
   return (
     <div>
       <Grid>
-        {stateData.slice(1,stateData[0]).map((review) => (
+        {stateData.slice(0,count).map((review) => (
           <div key={review.review_id}>
             <Row>
               <Col> <Rating rating={review.rating}> </Rating> </Col>
