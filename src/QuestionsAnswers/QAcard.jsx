@@ -18,10 +18,11 @@ export default function QAcard(props) {
                 {' '}
                 {qaCard.question_body}
               </h3>
-              <small>
-                Helpful?  Yes(
+              <small><pre>
+              Helpful?  Yes(
                 {qaCard.question_helpfulness}
                 )  |  Add Answer
+              </pre>
               </small>
               <AnswerCard answers={qaCard.answers} />
             </div>

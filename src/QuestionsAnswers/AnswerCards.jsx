@@ -12,10 +12,9 @@ export default function Answers(props) {
           console.log('map answer', answer);
           return (
             <div className="answer" key={answer[0]}>
-              <p>
-                A: {answer[1].body}
-              </p>
-              <small>by {answer[1].answerer_name}, {answer[1].date}</small>
+              <h3> A: <small>{answer[1].body}</small></h3>
+              <small><pre>by {answer[1].answerer_name}, {answer[1].date} | Helpful? Yes({answer[1].helpfulness}) | Report
+                </pre></small>
             </div>
           );
         })

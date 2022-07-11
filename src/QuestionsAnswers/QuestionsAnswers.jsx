@@ -24,7 +24,7 @@ export default function QuestionsAnswers() {
   return (
 
     <div>
-      <p>Questions and Answers</p>
+      <h2>Questions and Answers</h2>
 
       <input placeholder="Have A Question? Search For Answers..." />
       <button type="submit">Search</button>
