@@ -28,11 +28,14 @@ export default function RelatedItemsOutfitsModule() {
   });
 
   useEffect(() => {
-    let promiseArray = getRelatedIDs()
+    getRelatedIDs()
       .then((res) => res.data.map((id) => getProductDetails(id)))
+      .then((promiseArr) => Promise.all(promiseArr))
+      .then((res) => res.map((resObj) => resObj.data))
+      .then((data) => console.log('data:', data))
       .catch((err) => console.log(err));
-    console.log('promises:', promiseArray);
-    Promise.all(promiseArray).then((products) => console.log('products:', products));
+
+  // Promise.all(promiseArray).then((products) => console.log('products:', products));
   });
 
   return (
