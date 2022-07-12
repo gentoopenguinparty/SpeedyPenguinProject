@@ -9,7 +9,7 @@ export default function Popup(props) {
     <PopupOuter>
       <PopupInner>
         {props.children}
-        <button onClick={() => {props.changeTrigger(false);}}>Close!</button>
+        <button onClick={() => {props.changeTrigger(false); props.incCount();}}>Close!</button>
       </PopupInner>
     </PopupOuter>
   ) : null

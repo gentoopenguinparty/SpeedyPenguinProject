@@ -5,38 +5,42 @@ import { Row } from './styles/Row.styled.js'
 import { Col } from './styles/Col.styled.js'
 import Popup from './Popup.jsx'
 import AddReview from './AddReview.jsx'
+import Tracker from './Tracker.jsx'
 
 export default function SeeMore({ countReviews, setCountReviews, dataLength, count, incCount }) {
 
 
 
   function handleClick(event) {
-    console.log('clicked');
     setCountReviews(countReviews + 2);
   }
   function handleClickAdd() {
-    console.log('clickeds')
     changeTrigger(!trigger)
   }
   const [trigger, changeTrigger] = useState(false);
 
   return (
     <div>
-      <h1>{count}</h1>
       <Grid color={'#ffffcc'}>
         <Row>
           <Col>
             {countReviews >= dataLength ? null :
-              <Button onClick={(event) => {handleClick(); incCount();}}> MORE REVIEWS </Button>}
+              <Button onClick={(event) => { handleClick(); incCount(); }}> MORE REVIEWS </Button>}
           </Col>
           <Col>
-            <Button onClick={(event) => {handleClickAdd(); }}> ADD A REVIEW </Button>
+            <Button onClick={(event) => { handleClickAdd(); incCount(); }}> ADD A REVIEW </Button>
           </Col>
         </Row>
       </Grid>
-      <Popup trigger={trigger} changeTrigger={changeTrigger}>
-        <AddReview/>
-      </Popup>
+      <Tracker render={(count, incCount) => {
+        return (
+          <Popup trigger={trigger} changeTrigger={changeTrigger} count={count} incCount={incCount}>
+            <AddReview />
+          </Popup>
+        )
+      }} />
+
+
     </div>
   )
 }

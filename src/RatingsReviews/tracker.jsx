@@ -1,20 +1,25 @@
 import React from 'react'
 
 class Tracker extends React.Component {
-  state = {
-    count: 0
-  };
+  constructor(props) {
+    super(props)
+    this.state = {
+      count: 0
+    };
+  }
+
   incCount = () => {
     this.setState({
-      count: this.state.count + 1
-    })
+    count: this.state.count + 1
+  })
+  console.log('clicked', this.state.count);
   }
   render () {
     return (
-      <div>
-        {this.props.render(this.state.count, this.incCount)}
-      </div>
-    );
+    <div>
+      {this.props.render(this.state.count, this.incCount)}
+    </div>
+      );
   }
 }
 
