@@ -20,6 +20,7 @@ module.exports = {
   rules: {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     "import/extensions": [ "never"],
     'import/prefer-default-export': 'off',
     'eol-last': 'off',
@@ -29,5 +30,8 @@ module.exports = {
 =======
     "import/extensions": 0
 >>>>>>> 34e00e5 (Added fullscreen functionality to gallery)
+=======
+    "import/extensions": 0
+>>>>>>> b7430b7aa63d3e65abdd89933aa2534c435bf359
   },
 };

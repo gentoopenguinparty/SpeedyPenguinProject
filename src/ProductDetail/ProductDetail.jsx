@@ -18,6 +18,7 @@ grid-template: 1fr / 1.5fr 1fr;
 
 export default function ProductDetail() {
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 const [productData, setProductData] = React.useState(null)
 const [styles, setStyles] = React.useState([])
@@ -50,6 +51,22 @@ React.useEffect (() => {
   }, []);
 >>>>>>> 34e00e5 (Added fullscreen functionality to gallery)
 
+=======
+  const [productData, setProductData] = React.useState(null);
+  const [styles, setStyles] = React.useState([]);
+  const [currentStyle, setCurrrentStyle] = React.useState(0);
+  React.useEffect(() => {
+    axiosGet('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/37311')
+      .then((data) => {
+        setProductData(data.data);
+        axiosGet('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/37311/styles')
+          .then((data) => setStyles(data.data.results))
+          .catch((err) => console.log(err));
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
+>>>>>>> b7430b7aa63d3e65abdd89933aa2534c435bf359
   return (
     <div>
       {!styles.length ? <div>Loading</div> : (
