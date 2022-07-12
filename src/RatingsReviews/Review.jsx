@@ -7,21 +7,7 @@ import { Row } from './styles/Row.styled.js'
 import { Col } from './styles/Col.styled.js'
 import { ThemeProvider } from 'styled-components'
 
-export default function Review({countReviews, setDataLength}) {
-
-  const [stateData, modData] = useState([{
-    rating: 'filler', recommend: 'bool',
-    date: 'filler', review_id: 'filler'
-  }]);
-
-  useEffect(() => {
-    axiosGet('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/?product_id=37315')
-      .then((data) => {
-        console.log('apiInfo', data.data.results);
-        modData(data.data.results);
-        setDataLength(data.data.results.length);
-      })
-  }, [])
+export default function Review({countReviews, setDataLength, apiData}) {
 
   function number (rating) {
     return (Math.round(rating * 4) / 4).toFixed(2);
@@ -30,7 +16,7 @@ export default function Review({countReviews, setDataLength}) {
   return (
     <div key='reviews'>
       <Grid color={'#FAEBD7'}>
-        {stateData.slice(0,countReviews).map((review, index) => (
+        {apiData.slice(0,countReviews).map((review, index) => (
           <div key={review.review_id} data-testid='testRender'>
             <Row>
               <Col > <Rating rating={number(review.rating)}> </Rating> </Col>

@@ -9,8 +9,6 @@ import Tracker from './Tracker.jsx'
 
 export default function SeeMore({ countReviews, setCountReviews, dataLength, count, incCount }) {
 
-
-
   function handleClick(event) {
     setCountReviews(countReviews + 2);
   }
