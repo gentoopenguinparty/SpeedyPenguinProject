@@ -14,11 +14,14 @@ export default function BigList() {
   const [dataLength, setDataLength] = useState(0);
   return (
     <div>
-      <Review count={count}
+      <Review
+        count={count}
         setDataLength={setDataLength} />
-      <SeeMore count={count}
+      <SeeMore
+        count={count}
         setCount={setCount}
-        dataLength={dataLength} />
+        dataLength={dataLength}
+        children />
     </div>
   );
 }
