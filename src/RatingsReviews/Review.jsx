@@ -23,7 +23,9 @@ export default function Review({countReviews, setDataLength}) {
       })
   }, [])
 
-  // let number = (Math.round(value * 4) / 4).toFixed(2);
+  function number (rating) {
+    return (Math.round(rating * 4) / 4).toFixed(2);
+  }
 
   return (
     <div key='reviews'>
@@ -31,7 +33,7 @@ export default function Review({countReviews, setDataLength}) {
         {stateData.slice(0,countReviews).map((review, index) => (
           <div key={review.review_id} data-testid='testRender'>
             <Row>
-              <Col > <Rating rating={review.rating}> </Rating> </Col>
+              <Col > <Rating rating={number(review.rating)}> </Rating> </Col>
               <Col > {review.reviewer_name} {review.date.slice(0, 10)} </Col>
             </Row>
             <Row >
