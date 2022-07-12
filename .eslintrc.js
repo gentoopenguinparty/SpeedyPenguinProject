@@ -18,6 +18,6 @@ module.exports = {
     'react',
   ],
   rules: {
-    "import/extensions": [ "never"]
+    'import/extensions': 0,
   },
 };
