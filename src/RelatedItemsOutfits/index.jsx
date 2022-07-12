@@ -5,10 +5,13 @@ import { axiosGet } from '../../util.js';
 import RelatedProductCardCarousel from './RelatedProductCardCarousel.jsx';
 import OutfitCardCarousel from './OutfitCardCarousel.jsx';
 
+// example id: 37313
 // network request methods
-function getRelatedIDs() {
-  const relatedURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/37313/related';
-  return axiosGet(relatedURL);
+async function getRelatedIDs(productID) {
+  const relatedURL = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${productID}/related`;
+  const result = await axiosGet(relatedURL);
+  // console.log('result:', result.data);
+  return result.data;
 }
 
 function getProductDetails(productID) {
@@ -22,18 +25,31 @@ export default function RelatedItemsOutfitsModule() {
     name: '',
     price: '',
     salePrice: '',
-    rating: 5,
     images: [],
     thumbnails: [],
+    rating: 5, // need to retrieve from meta endpoint
   });
 
   useEffect(() => {
-    getRelatedIDs()
-      .then((res) => res.data.map((id) => getProductDetails(id)))
-      .then((promiseArr) => Promise.all(promiseArr))
-      .then((res) => res.map((resObj) => resObj.data))
-      .then((data) => console.log('data:', data))
-      .catch((err) => console.log(err));
+    const relatedIDs = getRelatedIDs('37313');
+    // console.log('relatedIDs:', relatedIDs);
+    relatedIDs.then((data) => data.map((id) => getProductDetails(id)))
+      .then((prod) => Promise.all(prod))
+      .then((arr) => console.log(arr));
+
+      //   setProductInfo((prevState) => {
+      //     const newValues = { category: prod.category, name: prod.name };
+      //     return { ...prevState, ...newValues };
+      //   });
+      // })
+      // .catch((err) => console.log(err));
+
+    // getRelatedIDs()
+    //   .then((res) => res.data.map((id) => getProductDetails(id)))
+    //   .then((promiseArr) => Promise.all(promiseArr))
+    //   .then((res) => res.map((resObj) => resObj.data))
+    //   .then((data) => console.log('data:', data))
+    //   .catch((err) => console.log(err));
 
   // Promise.all(promiseArray).then((products) => console.log('products:', products));
   });
