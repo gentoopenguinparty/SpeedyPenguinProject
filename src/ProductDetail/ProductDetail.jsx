@@ -9,11 +9,11 @@ import ProductCheckmarks from './ProductCheckmarks.jsx';
 
 const Grid1 = styled.div`
 display:grid;
-grid-template: 2fr 1fr / 1.5fr 1fr;
+grid-template: 1fr / 1.5fr 1fr;
 `;
 const Grid2 = styled.div`
 display:grid;
-grid-template: 2fr 1fr / 1.5fr 1fr;
+grid-template: 1fr / 1.5fr 1fr;
 `;
 
 export default function ProductDetail() {
