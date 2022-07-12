@@ -1,6 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react';
+import BigList from './BigList.jsx';
 
+
+// Main component
 export default function RatingsReviews() {
-  return (<p>Hello World</p>)
+
+  return (
+    <div>
+      <BigList />
+    </div>
+  );
 
 }
