@@ -12,13 +12,16 @@ const root = createRoot(document.getElementById('root'));
 
 // creates Zustand store with valid initial ID
 // maybe should be in a util file?
-const useID = create((set) => ({
+const useIDStore = create((set) => ({
   currentProductID: 37313,
   changeID: (newID) => set({ currentProductID: newID }),
 }));
-export default useID;
+export default useIDStore;
+// inside components that need to know ID:
+// const currentProductID = useIDStore((state) => state.currentProductID)
 
-// on page load invoke changeID with id from URL provided by react-router
+// REACT-ROUTER:
+// on page load invoke changeID with id from URL
 
 function App() {
   return (
