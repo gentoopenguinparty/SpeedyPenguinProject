@@ -10,12 +10,7 @@ import RelatedItemsOutfits from './RelatedItemsOutfits/index.jsx';
 const root = createRoot(document.getElementById('root'));
 
 // Huzzah for jsx!
-<<<<<<< HEAD
-export function App() {
-
-=======
 function App() {
->>>>>>> c11d293c1e7cbbfa79c70515e2163ede972f6f87
   return (
     <div>
       <ProductDetail />
