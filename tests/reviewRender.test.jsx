@@ -1,20 +1,21 @@
 import React from 'react';
-import {render, screen, cleanup} from '@testing-library/react';
-import Review from '../src/RatingsReviews/Review.jsx';
+import { render, screen, cleanup } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 
-test('should render a review div', () => {
-  render(<Review/>);
-  const reviewElement = screen.getByTestId('testRender');
-  expect(reviewElement).toBeInTheDocument();
+import BigList from '../src/RatingsReviews/BigList.jsx';
+import Review from '../src/RatingsReviews/Review.jsx';
+
+afterEach(cleanup)
+
+test('should render bigList component', () => {
+  render(<BigList />);
 })
 
-function sum(a, b) {
-  return a + b;
-}
-
-test('adds 1 + 2 to equal 3', () => {
-  expect(sum(1, 2)).toBe(3);
-});
-
-›
+test('should render main review component', () => {
+  render(
+    <Review apiData={[{
+      rating: 'filler', recommend: 'bool',
+      date: 'filler', review_id: 'filler'
+    }]}
+      countReviews={2} />);
+})

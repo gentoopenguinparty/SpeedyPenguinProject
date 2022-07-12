@@ -20,7 +20,7 @@ export default function SeeMore({ countReviews, setCountReviews, dataLength, cou
   return (
     <div>
       <Grid color={'#ffffcc'}>
-        <Row>
+        <Row space={'space-between'}>
           <Col>
             {countReviews >= dataLength ? null :
               <Button onClick={(event) => { handleClick(); incCount('More Reviews'); }}> MORE REVIEWS </Button>}
@@ -28,7 +28,7 @@ export default function SeeMore({ countReviews, setCountReviews, dataLength, cou
           <Col>
             <Button onClick={(event) => { handleClickAdd(); incCount('Add a Review'); }}> ADD A REVIEW </Button>
           </Col>
-        </Row>
+        </Row >
       </Grid>
       <Tracker render={(count, incCount) => {
         return (

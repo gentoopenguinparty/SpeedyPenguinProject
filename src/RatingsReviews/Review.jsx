@@ -18,17 +18,17 @@ export default function Review({countReviews, setDataLength, apiData}) {
       <Grid color={'#FAEBD7'}>
         {apiData.slice(0,countReviews).map((review, index) => (
           <div key={review.review_id} data-testid='testRender'>
-            <Row>
+            <Row space={'space-between'}>
               <Col > <Rating rating={number(review.rating)}> </Rating> </Col>
               <Col > {review.reviewer_name} {review.date.slice(0, 10)} </Col>
             </Row>
-            <Row >
+            <Row space={'space-between'} >
               <Col> {review.summary} </Col>
             </Row>
             <Row >
               <Col> {review.body} </Col>
             </Row>
-            <Row >
+            <Row space={'space-between'} >
               <Col > {'recommended? ' + review.recommend.toString()} </Col>
             </Row>
           </div>
