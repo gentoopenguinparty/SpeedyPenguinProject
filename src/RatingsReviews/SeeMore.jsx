@@ -11,7 +11,7 @@ import { useStore } from './tracker.jsx'
 export default function SeeMore({ count, setCount, dataLength, children }) {
 
 
-  const increase =  useStore((state) => state.increaseCount)
+  const tracker =  useStore((state) => state.increaseCount)
   const currentCount = useStore((state) => state.count)
 
   function handleClick(event) {
@@ -31,10 +31,10 @@ export default function SeeMore({ count, setCount, dataLength, children }) {
         <Row>
           <Col>
             {count >= dataLength ? null :
-              <Button onClick={increase}> MORE REVIEWS </Button>}
+              <Button onClick={(event) => {handleClick(); tracker();}}> MORE REVIEWS </Button>}
           </Col>
           <Col>
-            <Button onClick={handleClickAdd}> ADD A REVIEW </Button>
+            <Button onClick={(event) => {handleClickAdd(); tracker();}}> ADD A REVIEW </Button>
           </Col>
         </Row>
       </Grid>
