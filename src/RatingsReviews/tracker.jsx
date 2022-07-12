@@ -1,6 +1,21 @@
-import create from 'zustand';
+import React from 'react'
 
-export const useStore = create((set) => ({
-  count: 0,
-  increaseCount: () => set((state) => ({count: state.count + 1}))
-}))
+class Tracker extends React.Component {
+  state = {
+    count: 0
+  };
+  incCount = () => {
+    this.setState({
+      count: this.state.count + 1
+    })
+  }
+  render () {
+    return (
+      <div>
+        {this.props.render(this.state.count, this.incCount)}
+      </div>
+    );
+  }
+}
+
+export default Tracker;

@@ -5,18 +5,14 @@ import { Row } from './styles/Row.styled.js'
 import { Col } from './styles/Col.styled.js'
 import Popup from './Popup.jsx'
 import AddReview from './AddReview.jsx'
-import { useStore } from './tracker.jsx'
+
+export default function SeeMore({ countReviews, setCountReviews, dataLength, count, incCount }) {
 
 
-export default function SeeMore({ count, setCount, dataLength, children }) {
-
-
-  const tracker =  useStore((state) => state.increaseCount)
-  const currentCount = useStore((state) => state.count)
 
   function handleClick(event) {
     console.log('clicked');
-    setCount(count + 2);
+    setCountReviews(countReviews + 2);
   }
   function handleClickAdd() {
     console.log('clickeds')
@@ -26,15 +22,15 @@ export default function SeeMore({ count, setCount, dataLength, children }) {
 
   return (
     <div>
-      <h1>{currentCount}</h1>
+      <h1>{count}</h1>
       <Grid color={'#ffffcc'}>
         <Row>
           <Col>
-            {count >= dataLength ? null :
-              <Button onClick={(event) => {handleClick(); tracker();}}> MORE REVIEWS </Button>}
+            {countReviews >= dataLength ? null :
+              <Button onClick={(event) => {handleClick(); incCount();}}> MORE REVIEWS </Button>}
           </Col>
           <Col>
-            <Button onClick={(event) => {handleClickAdd(); tracker();}}> ADD A REVIEW </Button>
+            <Button onClick={(event) => {handleClickAdd(); }}> ADD A REVIEW </Button>
           </Col>
         </Row>
       </Grid>

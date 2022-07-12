@@ -7,7 +7,7 @@ import { Row } from './styles/Row.styled.js'
 import { Col } from './styles/Col.styled.js'
 import { ThemeProvider } from 'styled-components'
 
-export default function Review({count, setDataLength}) {
+export default function Review({countReviews, setDataLength}) {
 
   const [stateData, modData] = useState([{
     rating: 'filler', recommend: 'bool',
@@ -28,7 +28,7 @@ export default function Review({count, setDataLength}) {
   return (
     <div>
       <Grid color={'#FAEBD7'}>
-        {stateData.slice(0,count).map((review) => (
+        {stateData.slice(0,countReviews).map((review) => (
           <div key={review.review_id}>
             <Row>
               <Col> <Rating rating={review.rating}> </Rating> </Col>
