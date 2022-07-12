@@ -10,7 +10,7 @@ import RelatedItemsOutfits from './RelatedItemsOutfits/RelatedItemsOutfits.jsx';
 const root = createRoot(document.getElementById('root'));
 
 // Huzzah for jsx!
-function App() {
+export function App() {
 
   return (
     <div>
@@ -22,4 +22,4 @@ function App() {
   );
 }
 
-root.render(<Router><App /></Router>);
+root.render(<Router><App/></Router>);

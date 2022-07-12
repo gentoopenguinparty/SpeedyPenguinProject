@@ -11,7 +11,7 @@ export default function Review({countReviews, setDataLength}) {
 
   const [stateData, modData] = useState([{
     rating: 'filler', recommend: 'bool',
-    date: 'filler'
+    date: 'filler', review_id: 'filler'
   }]);
 
   useEffect(() => {
@@ -26,22 +26,22 @@ export default function Review({countReviews, setDataLength}) {
   // let number = (Math.round(value * 4) / 4).toFixed(2);
 
   return (
-    <div>
+    <div key='reviews'>
       <Grid color={'#FAEBD7'}>
-        {stateData.slice(0,countReviews).map((review) => (
-          <div key={review.review_id}>
+        {stateData.slice(0,countReviews).map((review, index) => (
+          <div key={review.review_id} data-testid='testRender'>
             <Row>
-              <Col> <Rating rating={review.rating}> </Rating> </Col>
-              <Col> {review.reviewer_name} {review.date.slice(0, 10)} </Col>
+              <Col > <Rating rating={review.rating}> </Rating> </Col>
+              <Col > {review.reviewer_name} {review.date.slice(0, 10)} </Col>
             </Row>
-            <Row>
+            <Row >
               <Col> {review.summary} </Col>
             </Row>
-            <Row>
+            <Row >
               <Col> {review.body} </Col>
             </Row>
-            <Row>
-              <Col> {'recommended? ' + review.recommend.toString()} </Col>
+            <Row >
+              <Col > {'recommended? ' + review.recommend.toString()} </Col>
             </Row>
           </div>
         ))}

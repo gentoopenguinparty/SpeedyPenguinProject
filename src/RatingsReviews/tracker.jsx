@@ -8,11 +8,12 @@ class Tracker extends React.Component {
     };
   }
 
-  incCount = () => {
+  incCount = (className) => {
     this.setState({
     count: this.state.count + 1
   })
   console.log('clicked', this.state.count);
+  console.log('className', className)
   }
   render () {
     return (

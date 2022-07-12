@@ -25,10 +25,10 @@ export default function SeeMore({ countReviews, setCountReviews, dataLength, cou
         <Row>
           <Col>
             {countReviews >= dataLength ? null :
-              <Button onClick={(event) => { handleClick(); incCount(); }}> MORE REVIEWS </Button>}
+              <Button onClick={(event) => { handleClick(); incCount('More Reviews'); }}> MORE REVIEWS </Button>}
           </Col>
           <Col>
-            <Button onClick={(event) => { handleClickAdd(); incCount(); }}> ADD A REVIEW </Button>
+            <Button onClick={(event) => { handleClickAdd(); incCount('Add a Review'); }}> ADD A REVIEW </Button>
           </Col>
         </Row>
       </Grid>
