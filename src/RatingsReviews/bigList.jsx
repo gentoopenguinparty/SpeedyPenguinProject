@@ -14,6 +14,7 @@ export default function BigList() {
     rating: 'filler', recommend: 'bool',
     date: 'filler', review_id: 'filler'
   }]);
+
   useEffect(() => {
     axiosGet('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/?product_id=37315')
       .then((data) => {
@@ -21,7 +22,6 @@ export default function BigList() {
         setDataLength(data.data.results.length);
       })
   }, [])
-
 
   // count state
   const [countReviews, setCountReviews] = useState(2);
@@ -32,8 +32,7 @@ export default function BigList() {
       <Graphical apiData={stateData}/>
       <Review
         apiData={stateData}
-        countReviews={countReviews}
-        setDataLength={setDataLength} />
+        countReviews={countReviews} />
       <Tracker render={(count, incCount) => {
         return <SeeMore
           count={count}
