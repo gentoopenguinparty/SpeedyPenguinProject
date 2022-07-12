@@ -10,7 +10,7 @@ background-position: center;
 width: ${(props) => props.size};
 color: white;
 position:relative;
-z-index: 10;
+transition: width 2s;
 `;
 const Side = styled.div`
 display: flex;
@@ -31,16 +31,19 @@ border: 0.5px solid black;
 const FullScreen = styled.div`
 width: 20px;
 height: 20px;
-background-color: red;
+background-image: url(https://cdn0.iconfinder.com/data/icons/bold-multimedia-player-button/512/media_player_button_24-512.png);
+background-size: contain;
 position: absolute;
 right: 10px;
 top:10px;
+cursor: pointer;
 `;
 export default function PhotoGallery({ images }) {
   const [isFullScreen, setIsFullScreen] = React.useState(false)
 
   return (
     <Main
+      className="test"
       size={isFullScreen ? '100vw' : 'auto'}
       image={images.photos[4].url}
     >
