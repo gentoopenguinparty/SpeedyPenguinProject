@@ -9,7 +9,7 @@ export default function QAcard(props) {
 
     if (qaCards.length > 0) {
       return (
-        qaCards.sort((a, b) => a.question_helpfulness > b.question_helpfulness ? 1 : -1).map((qaCard, index) => {
+        qaCards.sort((a, b) => a.question_helpfulness > b.question_helpfulness ? -1 : 1).map((qaCard, index) => {
           console.log(qaCard);
           return (
             <div className="QAcard" key={qaCard.question_id}>

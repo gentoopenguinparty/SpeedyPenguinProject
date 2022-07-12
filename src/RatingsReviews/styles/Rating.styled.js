@@ -1,0 +1,15 @@
+import styled from 'styled-components';
+
+export const Rating = styled.div
+`
+--star-size: 60px;
+--star-color: #fff;
+--star-background: #fc0;
+
+&:before {
+  content: "★★★★★";
+  letter-spacing: 3px;
+  background: linear-gradient(90deg, var(--star-background) calc(${props => props.rating} / 5 * 100%), var(--star-color) calc(${props => props.rating} / 5 * 100%));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}`
