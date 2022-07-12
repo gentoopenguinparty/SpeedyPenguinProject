@@ -9,7 +9,7 @@ export default function QAcard(props) {
 
     if (qaCards.length > 0) {
       return (
-        qaCards.map((qaCard, index) => {
+        qaCards.sort((a, b) => a.question_helpfulness > b.question_helpfulness ? 1 : -1).map((qaCard, index) => {
           console.log(qaCard);
           return (
             <div className="QAcard" key={qaCard.question_id}>
@@ -18,11 +18,12 @@ export default function QAcard(props) {
                 {' '}
                 {qaCard.question_body}
               </h3>
-              <small><pre>
-              Helpful?  Yes(
-                {qaCard.question_helpfulness}
-                )  |  Add Answer
-              </pre>
+              <small>
+                <pre>
+                  Helpful?  Yes(
+                  {qaCard.question_helpfulness}
+                  )  |  Add Answer
+                </pre>
               </small>
               <AnswerCard answers={qaCard.answers} />
             </div>

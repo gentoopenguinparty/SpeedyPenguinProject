@@ -8,7 +8,7 @@ export default function Answers(props) {
 
     if (answers.length > 0) {
       return (
-        answers.map((answer, index) => {
+        answers.sort((a, b) => a.helpfulness > b.helpfulness ? 1 : -1)map((answer, index) => {
           console.log('map answer', answer);
           return (
             <div className="answer" key={answer[0]}>

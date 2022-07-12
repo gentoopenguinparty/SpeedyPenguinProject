@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { axiosGet, axiosPost } from '../../util';
 import QAcard from '../QuestionsAnswers/QAcard.jsx';
+
 export default function QuestionsAnswers() {
   const [data, setData] = useState('');
   // const [error, setError] = useState("");
@@ -10,7 +11,7 @@ export default function QuestionsAnswers() {
     getQAs();
   }, []);
 
-  const param = 37316;
+  const param = 37318;
 
   const getQAs = () => axiosGet(`https://app-hrsei-api.herokuapp.com/api/fec2/:hr-rfe/qa/questions/?product_id=${param}`).then((response) => {
     // console.log(response.data.results);
@@ -23,7 +24,7 @@ export default function QuestionsAnswers() {
   //
   return (
 
-    <div>
+    <div data-testid={'QA'}>
       <h2>Questions and Answers</h2>
 
       <input placeholder="Have A Question? Search For Answers..." />
