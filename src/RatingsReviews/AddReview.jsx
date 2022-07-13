@@ -3,7 +3,9 @@ import StarRating from './StarRating.jsx'
 import Size from './Size.jsx'
 import Comfort from './Comfort.jsx'
 import ReviewSummary from './ReviewSummary.jsx'
+import ReviewBody from './ReviewBody.jsx'
 import { axiosGet } from '../../util.js'
+import Photo from './Photo.jsx'
 
 export default function AddReview() {
 
@@ -28,6 +30,8 @@ export default function AddReview() {
       <h5>How do you rate the comfort?*</h5>
       <Comfort />
       <ReviewSummary/>
+      <ReviewBody/>
+      <Photo/>
     </div>
   );
 }
