@@ -20,7 +20,7 @@ export default function SeeMore({ countReviews, setCountReviews, dataLength, cou
   return (
     <div>
       <Grid color={'#ffffcc'}>
-        <Row space={'space-between'}>
+        <Row space={'space-between'} padding={10}>
           <Col>
             {countReviews >= dataLength ? null :
               <Button onClick={(event) => { handleClick(); incCount('More Reviews'); }}> MORE REVIEWS </Button>}

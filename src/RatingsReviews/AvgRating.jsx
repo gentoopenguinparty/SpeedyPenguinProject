@@ -26,7 +26,7 @@ export default function AvgRating({ apiData }) {
   return (
     <div>
       <Grid color={'#FF7F50'}>
-        <Row> <Col>
+        <Row padding={10}> <Col>
           <Rating rating={quarter(avgRating(apiData))}> </Rating>
           <div>Average Rating: {displayRating(avgRating(apiData))} </div>
         </Col> </Row>
