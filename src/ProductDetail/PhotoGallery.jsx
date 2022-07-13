@@ -1,22 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 const Main = styled.div`
 width: ${(props) => props.size};
 color: white;
 position:relative;
+overflow: auto;
+background-color:red;
+`;
+const CurrentImage = styled.div.attrs((props) => ({
+  style: {
+    backgroundPosition: props.pos,
+  },
+}))`
+  background-image: url(${(props) => props.image});
+  background-color:grey;
+  background-repeat: no-repeat;
+  background-size: cover ;
+  transition: all 2s;
+  width:100%;
+  `;
 
-background-color:red;
-`;
-const CurrentImage = styled.div`
-background-image: url(${(props) => props.image});
-background-color:red;
-background-repeat: no-repeat;
-background-size: contain ;
-background-position: center;
-transition: all 2s;
-width:100%;
-`;
 const Side = styled.div`
 display: flex;
 flex-direction: column;
@@ -44,14 +48,17 @@ top:10px;
 cursor: pointer;
 `;
 export default function PhotoGallery({ images }) {
-  const [isFullScreen, setIsFullScreen] = React.useState(false)
-
+  const [isFullScreen, setIsFullScreen] = useState(false);
+  const [imagePos, setImagePos] = useState('center');
+  const handleImageMove = (e) => {
+    setImagePos(`center -${e.nativeEvent.offsetY}px`);
+  };
   return (
     <Main
       className="test"
       size={isFullScreen ? '100vw' : 'auto'}
     >
-      <CurrentImage image={images.photos[4].url}>
+      <CurrentImage pos={imagePos} onMouseMove={handleImageMove} image={images.photos[4].url}>
         <Side>
           {images.photos.map((photo, i) => <Thumbnail key={i} image={photo.thumbnail_url} />)}
         </Side>

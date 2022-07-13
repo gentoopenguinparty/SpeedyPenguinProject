@@ -2,20 +2,22 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 
 const Main = styled.div`
+display:flex;
+flex-direction:column;
+justify-content: space-around;
 background-color: white;
 position:sticky;
 color: #525252;
 padding:10px;
 grid-column: 2/3;
 grid-row: 1/2;
-z-index:1;
 border: 2px solid blue;
 `;
 const Rating = styled.div`
 --star-size: 60px;
 --star-color: #fff;
---star-background: #fc0;
-
+--star-background: black;
+-webkit-text-stroke: 0.7px black;
 &:before {
   content: "★★★★★";
   letter-spacing: 3px;
@@ -66,13 +68,22 @@ background-color: white;
 background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjj2DOSD1yUrkY0TbTbWhy0okIcvxHGhfP2bxtbDhkNQ4r1NLLGbKGzgLmIeqcM3arMHM&usqp=CAU);
 background-size:contain;
 `;
+const InputGrid = styled.div`
+height: auto;
+width: 100%;
+background-color:red;
+`;
+const Dropdown = styled.input``;
 
 export default function ProductInterface({ data, styles }) {
   console.log(data);
   const [id, setId] = useState(0);
   return (
     <Main>
-      <Rating rating={5} />
+      <span>
+        <Rating rating={2.5} />
+        Read All Reviews
+      </span>
       <Category>{data.category}</Category>
       <Name>{data.name}</Name>
       <Price>$123</Price>
@@ -89,6 +100,9 @@ export default function ProductInterface({ data, styles }) {
         ))
           }
       </StyleGrid>
+      <InputGrid>
+        dwf
+      </InputGrid>
     </Main>
   );
 }
