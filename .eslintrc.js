@@ -19,5 +19,6 @@ module.exports = {
   ],
   rules: {
     'import/extensions': 0,
+    'react/prop-types': 0,
   },
 };

@@ -1,5 +1,4 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
 import RelatedProductCard from './RelatedProductCard.jsx';
 
 // eslint-disable-next-line react/prop-types

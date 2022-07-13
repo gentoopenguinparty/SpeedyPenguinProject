@@ -21,4 +21,4 @@ function App() {
   );
 }
 
-root.render(<Router><App /></Router>);
+root.render(<Router><App/></Router>);
