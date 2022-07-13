@@ -5,7 +5,7 @@ export const Rating = styled.div
 --star-size: 60px;
 --star-color: #fff;
 --star-background: #fc0;
-
+-webkit-text-stroke: 1px black;
 &:before {
   content: "★★★★★";
   letter-spacing: 3px;

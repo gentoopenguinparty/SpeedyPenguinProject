@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import StarRating from './StarRating.jsx'
 import { axiosGet } from '../../util.js'
 
 export default function AddReview() {
@@ -17,6 +18,9 @@ export default function AddReview() {
     <div>
       <h3>ADD A NEW REVIEW</h3>
       <h5>Thank you for sharing details on {apiData.name}!</h5>
+      <h5>How do you rate this product?*</h5>
+      <StarRating/>
+
     </div>
   );
 }
