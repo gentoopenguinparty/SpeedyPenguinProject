@@ -21,7 +21,7 @@ function getProductDetails(productID) {
 
 export default function RelatedItemsOutfitsModule() {
   // eslint-disable-next-line no-unused-vars
-  const [relatedProductInfo, setRelatedProductInfo] = useState([]);
+  const [relatedProducts, setRelatedProducts] = useState([]);
 
   // {
   //   category: '',
@@ -44,15 +44,15 @@ export default function RelatedItemsOutfitsModule() {
           name: obj.data.name,
         }
       )))
-      .then((data) => setRelatedProductInfo(data))
+      .then((data) => setRelatedProducts(data))
       .catch((err) => console.log(err));
   }, []);
-  // the empty array tells useEffect it has no dependencies
-  // preventing infitine loop
+  // the empty array tells useEffect it has no dependencies,
+  // therefore preventing infitine rerender loop
 
   return (
     <div id="relatedProductsOutfitsModule">
-      <RelatedProductCardCarousel />
+      <RelatedProductCardCarousel relatedProducts={relatedProducts} />
       <OutfitCardCarousel />
     </div>
   );
