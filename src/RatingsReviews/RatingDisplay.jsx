@@ -22,18 +22,15 @@ export default function RatingDisplay({ apiData, modData, cache}) {
   }
 
   function calcPercent(ratings, num) {
-    if (typeof apiData[0].rating === 'number') {
       return (ratings[num].length / apiData.length) * 100;
-    }
   }
 
-  function filterApi(dataBackup, ratingVal) {
-    console.log('storage',dataBackup)
+  function filterApi(cache, ratingVal) {
     let filter = [];
-    for (var i = 0; i < dataBackup.length; i++) {
-      let rating = dataBackup[i].rating
+    for (var i = 0; i < cache.length; i++) {
+      let rating = cache[i].rating
       if (Math.floor(rating) === ratingVal) {
-        filter.push(dataBackup[i])
+        filter.push(cache[i])
       }
     }
     if (filter.length === 0) {
@@ -45,6 +42,7 @@ export default function RatingDisplay({ apiData, modData, cache}) {
     } else {
       modData(filter);
     }
+    console.log('cache', cache);
   }
 
 
@@ -53,21 +51,21 @@ export default function RatingDisplay({ apiData, modData, cache}) {
       <Grid>
         <Row align={'center'}>
           <Col>
-            <Star onClick={() => { filterApi(apiData, 1) }}>1 Star</Star>
+            <Star onClick={() => { filterApi(cache, 1) }}>1 Star</Star>
           </Col>
           <Col>
             <BarContainer border={'solid'} height={24} color={'rgb(136,136,136)'}>
-              <BarGraph percent={calcPercent(numOrganizer(apiData), 1)}></BarGraph>
+              <BarGraph percent={calcPercent(numOrganizer(cache), 1)}></BarGraph>
             </BarContainer>
           </Col>
         </Row>
         <Row align={'center'}>
           <Col>
-            <Star>2 Star</Star>
+            <Star onClick={() => { filterApi(cache, 2) }}>2 Star</Star>
           </Col>
           <Col>
             <BarContainer border={'solid'} height={24} color={'rgb(136,136,136)'}>
-              <BarGraph percent={calcPercent(numOrganizer(apiData), 2)}></BarGraph>
+              <BarGraph percent={calcPercent(numOrganizer(cache), 2)}></BarGraph>
             </BarContainer>
           </Col>
         </Row>
@@ -77,27 +75,27 @@ export default function RatingDisplay({ apiData, modData, cache}) {
           </Col>
           <Col>
             <BarContainer border={'solid'} height={24} color={'rgb(136,136,136)'}>
-              <BarGraph percent={calcPercent(numOrganizer(apiData), 3)}></BarGraph>
+              <BarGraph percent={calcPercent(numOrganizer(cache), 3)}></BarGraph>
             </BarContainer>
           </Col>
         </Row>
         <Row align={'center'}>
           <Col>
-            <Star>4 Star</Star>
+            <Star onClick={() => { filterApi(cache, 4) }}>4 Star</Star>
           </Col>
           <Col>
             <BarContainer border={'solid'} height={24} color={'rgb(136,136,136)'}>
-              <BarGraph percent={calcPercent(numOrganizer(apiData), 4)}></BarGraph>
+              <BarGraph percent={calcPercent(numOrganizer(cache), 4)}></BarGraph>
             </BarContainer>
           </Col>
         </Row>
         <Row align={'center'}>
           <Col>
-            <Star>5 Star</Star>
+            <Star onClick={() => { filterApi(cache, 5) }} >5 Star</Star>
           </Col>
           <Col>
             <BarContainer border={'solid'} height={24} color={'rgb(136,136,136)'}>
-              <BarGraph percent={calcPercent(numOrganizer(apiData), 5)}></BarGraph>
+              <BarGraph percent={calcPercent(numOrganizer(cache), 5)}></BarGraph>
             </BarContainer>
           </Col>
         </Row>
@@ -107,45 +105,3 @@ export default function RatingDisplay({ apiData, modData, cache}) {
   )
 }
 
-{/* <Grid>
-<BarContainer>  <BarGraph percent={calcPercent(numOrganizer(apiData), 1)}>
-</BarGraph> </BarContainer>
-<BarContainer>  <BarGraph percent={calcPercent(numOrganizer(apiData), 2)}>
-</BarGraph> </BarContainer>
-<BarContainer>  <BarGraph percent={calcPercent(numOrganizer(apiData), 3)}>
-</BarGraph> </BarContainer>
-<BarContainer>  <BarGraph percent={calcPercent(numOrganizer(apiData), 4)}>
-</BarGraph> </BarContainer>
-<BarContainer>  <BarGraph percent={calcPercent(numOrganizer(apiData), 5)}>
-</BarGraph> </BarContainer>
-</Grid> */}
-
-
-{/* <div>
-<Grid>
-  <Col>
-    <Row>1</Row>
-    <Row>2</Row>
-    <Row>3</Row>
-    <Row>4</Row>
-    <Row>5</Row>
-  </Col>
-  <Col>
-    <Row border={'solid'} height={24} color={'rgb(136,136,136)'}>
-      <BarGraph percent={calcPercent(numOrganizer(apiData), 1)}></BarGraph>
-    </Row>
-    <Row border={'solid'} height={24} color={'rgb(136,136,136)'}>
-      <BarGraph percent={calcPercent(numOrganizer(apiData), 2)}></BarGraph>
-    </Row>
-    <Row border={'solid'} height={24} color={'rgb(136,136,136)'}>
-      <BarGraph percent={calcPercent(numOrganizer(apiData), 3)}></BarGraph>
-    </Row>
-    <Row border={'solid'} height={24} color={'rgb(136,136,136)'}>
-      <BarGraph percent={calcPercent(numOrganizer(apiData), 4)}></BarGraph>
-    </Row>
-    <Row border={'solid'} height={24} color={'rgb(136,136,136)'}>
-      <BarGraph percent={calcPercent(numOrganizer(apiData), 5)}></BarGraph>
-    </Row>
-  </Col>
-</Grid>
-</div> */}

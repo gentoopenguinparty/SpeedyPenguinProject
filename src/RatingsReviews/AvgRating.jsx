@@ -22,13 +22,13 @@ function displayRating(avgRating) {
 }
 
 
-export default function AvgRating({ apiData }) {
+export default function AvgRating({ cache }) {
   return (
     <div>
       <Grid color={'#FF7F50'}>
         <Row padding={10}> <Col>
-          <Rating rating={quarter(avgRating(apiData))}> </Rating>
-          <div>Average Rating: {displayRating(avgRating(apiData))} </div>
+          <Rating rating={quarter(avgRating(cache))}> </Rating>
+          <div>Average Rating: {displayRating(avgRating(cache))} </div>
         </Col> </Row>
       </Grid>
     </div>
