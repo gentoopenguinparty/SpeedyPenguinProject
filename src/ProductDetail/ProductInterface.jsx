@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 const Main = styled.div`
@@ -32,6 +32,7 @@ const Price = styled.p`
 
 `;
 const StyleGrid = styled.div`
+width: 300px;
 height: 50%;
 display: grid;
 grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -47,6 +48,13 @@ border-radius: 50%;
 background-color: grey;
 background-image: url(${(props) => props.image});
 background-size: contain;
+cursor: pointer;
+&:hover{
+  transform: scale(1.05)
+}
+&:active{
+  transform: scale(1)
+}
 `;
 const StyleCheck = styled.div`
 width:15px;
@@ -60,19 +68,23 @@ background-size:contain;
 `;
 
 export default function ProductInterface({ data, styles }) {
-  console.log(styles);
-  const currentId = 0;
+  console.log(data);
+  const [id, setId] = useState(0);
   return (
     <Main>
       <Rating rating={5} />
-      <Category>Filler</Category>
+      <Category>{data.category}</Category>
       <Name>{data.name}</Name>
       <Price>$123</Price>
       <StyleGrid>
         {
         styles.map((style, i) => (
-          <StyleThumbnail key={style.style_id} image={style.photos[0].thumbnail_url}>
-            {currentId === i ? <StyleCheck /> : ''}
+          <StyleThumbnail
+            onClick={() => setId(i)}
+            key={style.style_id}
+            image={style.photos[0].thumbnail_url}
+          >
+            {id === i ? <StyleCheck /> : ''}
           </StyleThumbnail>
         ))
           }
