@@ -35,7 +35,7 @@ export default function BigList() {
       <Grid>
         <Row space={'center'} padding={10}>
           <Col>
-            <Graphical apiData={stateData} />
+            <Graphical apiData={stateData} modData={modData}/>
           </Col>
           <Col>
             <Review

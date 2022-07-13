@@ -7,7 +7,7 @@ import { BarContainer } from './styles/BarContainer.styled.js'
 import { Star } from './styles/Star.styled.js'
 import styled, { css } from 'styled-components';
 
-export default function RatingDisplay({ apiData }) {
+export default function RatingDisplay({ apiData, modData }) {
 
   function numOrganizer(apiData) {
     let ratings = { 1: [], 2: [], 3: [], 4: [], 5: [] }
