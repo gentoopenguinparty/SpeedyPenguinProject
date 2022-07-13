@@ -1,8 +1,5 @@
-import React from 'react'
+import React from 'react';
 
 export default function QuestionsAnswers() {
-
-  return (<p>Questions and Answers</p>)
-
-
+  return (<p>Questions and Answers</p>);
 }
