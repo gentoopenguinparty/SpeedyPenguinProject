@@ -26,6 +26,17 @@ export default function RatingDisplay({ apiData, modData }) {
     }
   }
 
+  function filterApi (apiData, ratingVal) {
+    let filter = [];
+    for (var i = 0; i < apiData.length; i++) {
+      let rating = apiData[i].rating
+      if (Math.floor(rating) === ratingVal) {
+        filter.push(apiData[i])
+      }
+    }
+    modData(filter);
+  }
+
 
   return (
     <div>
@@ -52,7 +63,7 @@ export default function RatingDisplay({ apiData, modData }) {
         </Row>
         <Row align={'center'}>
           <Col>
-            <Star>3 Star</Star>
+            <Star onClick={() => {filterApi(apiData, 3)}}>3 Star</Star>
           </Col>
           <Col>
             <BarContainer border={'solid'} height={24} color={'rgb(136,136,136)'}>

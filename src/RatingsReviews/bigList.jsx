@@ -13,10 +13,6 @@ let axios = require('axios');
 
 export default function BigList() {
 
-  const [stateData, modData] = useState([{
-    rating: 'filler', recommend: 'bool',
-    date: 'filler', review_id: 'filler'
-  }]);
 
   useEffect(() => {
     axiosGet('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/?product_id=37315')
@@ -30,6 +26,12 @@ export default function BigList() {
   const [countReviews, setCountReviews] = useState(2);
   // total data state
   const [dataLength, setDataLength] = useState(0);
+  // API state data
+  const [stateData, modData] = useState([{
+    rating: 'filler', recommend: 'bool',
+    date: 'filler', review_id: 'filler'
+  }]);
+
   return (
     <div>
       <Grid>
