@@ -6,8 +6,9 @@ import { BarGraph } from './styles/BarGraph.styled.js'
 import { BarContainer } from './styles/BarContainer.styled.js'
 import { Star } from './styles/Star.styled.js'
 import styled, { css } from 'styled-components';
+import { axiosGet } from '../../util';
 
-export default function RatingDisplay({ apiData, modData }) {
+export default function RatingDisplay({ apiData, modData, cache}) {
 
   function numOrganizer(apiData) {
     let ratings = { 1: [], 2: [], 3: [], 4: [], 5: [] }
@@ -26,15 +27,24 @@ export default function RatingDisplay({ apiData, modData }) {
     }
   }
 
-  function filterApi (apiData, ratingVal) {
+  function filterApi(dataBackup, ratingVal) {
+    console.log('storage',dataBackup)
     let filter = [];
-    for (var i = 0; i < apiData.length; i++) {
-      let rating = apiData[i].rating
+    for (var i = 0; i < dataBackup.length; i++) {
+      let rating = dataBackup[i].rating
       if (Math.floor(rating) === ratingVal) {
-        filter.push(apiData[i])
+        filter.push(dataBackup[i])
       }
     }
-    modData(filter);
+    if (filter.length === 0) {
+      modData([{
+        rating: '', recommend: '',
+        date: '', review_id: ''
+      }])
+
+    } else {
+      modData(filter);
+    }
   }
 
 
@@ -43,7 +53,7 @@ export default function RatingDisplay({ apiData, modData }) {
       <Grid>
         <Row align={'center'}>
           <Col>
-            <Star>1 Star</Star>
+            <Star onClick={() => { filterApi(apiData, 1) }}>1 Star</Star>
           </Col>
           <Col>
             <BarContainer border={'solid'} height={24} color={'rgb(136,136,136)'}>
@@ -63,7 +73,7 @@ export default function RatingDisplay({ apiData, modData }) {
         </Row>
         <Row align={'center'}>
           <Col>
-            <Star onClick={() => {filterApi(apiData, 3)}}>3 Star</Star>
+            <Star onClick={() => { filterApi(cache, 3) }}>3 Star</Star>
           </Col>
           <Col>
             <BarContainer border={'solid'} height={24} color={'rgb(136,136,136)'}>

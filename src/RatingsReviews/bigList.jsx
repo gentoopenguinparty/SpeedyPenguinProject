@@ -17,6 +17,7 @@ export default function BigList() {
   useEffect(() => {
     axiosGet('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/?product_id=37315')
       .then((data) => {
+        setCache(data.data.results);
         modData(data.data.results);
         setDataLength(data.data.results.length);
       })
@@ -31,13 +32,18 @@ export default function BigList() {
     rating: 'filler', recommend: 'bool',
     date: 'filler', review_id: 'filler'
   }]);
+  //API cache
+  const [cache, setCache] = useState([{
+    rating: '', recommend: '',
+    date: '', review_id: ''
+  }]);
 
   return (
     <div>
       <Grid>
         <Row space={'center'} padding={10}>
           <Col>
-            <Graphical apiData={stateData} modData={modData}/>
+            <Graphical apiData={stateData} modData={modData} cache={cache}/>
           </Col>
           <Col>
             <Review
