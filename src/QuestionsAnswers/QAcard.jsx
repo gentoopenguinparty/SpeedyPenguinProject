@@ -3,13 +3,14 @@ import AnswerCard from './AnswerCards.jsx';
 
 export default function QAcard(props) {
   console.log('props', props.qaCards);
+  console.log('props', props.search);
 
   const displayQAcards = (props) => {
     const { qaCards } = props;
 
     if (qaCards.length > 0) {
       return (
-        qaCards.sort((a, b) => a.question_helpfulness > b.question_helpfulness ? -1 : 1).map((qaCard, index) => {
+        qaCards.filter(qaCard => qaCard.question_body.toLowerCase().includes(props.search.toLowerCase())).sort((a, b) => a.question_helpfulness > b.question_helpfulness ? -1 : 1).map((qaCard, index) => {
           console.log(qaCard);
           return (
             <div className="QAcard" key={qaCard.question_id}>
@@ -29,6 +30,7 @@ export default function QAcard(props) {
             </div>
           );
         })
+
       );
     }
     return (

@@ -5,9 +5,10 @@ import QAcard from '../QuestionsAnswers/QAcard.jsx';
 
 export default function QuestionsAnswers() {
   const [data, setData] = useState('');
+  const [search, setSearch] = useState(``)
   // const [error, setError] = useState("");
   // const [loaded, setLoaded] = useState(false); //hr-rfe
-
+ console.log(search);
   useEffect(() => {
     getQAs();
   }, []);
@@ -28,11 +29,11 @@ export default function QuestionsAnswers() {
     <div data-testid={'QA'}>
       <h2>Questions and Answers</h2>
 
-      <input placeholder="Have A Question? Search For Answers..." />
-      <button type="submit">Search</button>
-      <br />
+      <input placeholder="Have A Question? Search For Answers..." onChange={e => setSearch(e.target.value)} />
+      <button type="submit" onChange={e => setSearch(e.target.value)}>Search</button>
+      <br/>
 
-      <QAcard qaCards={data} />
+      <QAcard qaCards={data} search={search} />
 
     </div>
   );

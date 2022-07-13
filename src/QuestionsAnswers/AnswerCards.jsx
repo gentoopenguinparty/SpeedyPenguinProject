@@ -5,11 +5,12 @@ export default function Answers(props) {
   // let answers = Object.entries(props.answers);
   const displayAnswers = (props) => {
     const answers = Object.entries(props.answers);
-
+    let count = 0;
     if (answers.length > 0) {
+
       return (
         answers.sort((a, b) => a.helpfulness > b.helpfulness ? -1 : 1).map((answer, index) => {
-          console.log('map answer', answer);
+
           return (
             <div className="answer" key={answer[0]}>
               <h3> A: <small>{answer[1].body}</small></h3>
