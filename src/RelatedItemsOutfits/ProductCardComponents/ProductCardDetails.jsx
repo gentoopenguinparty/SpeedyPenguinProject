@@ -7,11 +7,11 @@ import {
   ProductCardStarRating,
 } from './index.jsx';
 
-export default function ProductCardDetails() {
+export default function ProductCardDetails({ productDetails }) {
   return (
     <div className="productCardDetails">
-      <ProductCardCategory />
-      <ProductCardName />
+      <ProductCardCategory category={productDetails.category} />
+      <ProductCardName name={productDetails.name} />
       <ProductCardPrice />
       <ProductCardStarRating />
     </div>

@@ -1,10 +1,15 @@
 import React from 'react';
 import RelatedProductCard from './RelatedProductCard.jsx';
 
-export default function RelatedProductCardCarousel() {
+// eslint-disable-next-line react/prop-types
+export default function RelatedProductCardCarousel({ relatedProducts }) {
   return (
     <div id="RelatedProductCardCarousel">
-      <RelatedProductCard />
+      {relatedProducts.map((product) => <RelatedProductCard productDetails={product} />)}
     </div>
   );
 }
+
+// RelatedProductCardCarousel.propTypes = {
+//   relatedProducts: PropTypes.array.isRequired,
+// };

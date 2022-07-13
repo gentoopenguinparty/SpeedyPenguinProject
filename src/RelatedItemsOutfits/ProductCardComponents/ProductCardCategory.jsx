@@ -1,5 +1,5 @@
 import React from 'react';
 
-export default function ProductCardCategory() {
-  return <div>ProductCardCategory</div>;
+export default function ProductCardCategory({ category }) {
+  return <div>{category}</div>;
 }
