@@ -7,11 +7,7 @@ import ProductDescription from './ProductDescription.jsx';
 import ProductInterface from './ProductInterface.jsx';
 import ProductCheckmarks from './ProductCheckmarks.jsx';
 
-const Grid1 = styled.div`
-display:grid;
-grid-template: 2fr 1fr / 1.5fr 1fr;
-`;
-const Grid2 = styled.div`
+const Grid = styled.div`
 display:grid;
 grid-template: 2fr 1fr / 1.5fr 1fr;
 `;
@@ -35,15 +31,15 @@ export default function ProductDetail() {
     <div>
       {!styles.length ? <div>Loading</div> : (
         <>
-          <Grid1>
+          <Grid>
             <PhotoGallery images={styles[currentStyle]} />
             <ProductInterface data={productData} styles={styles} />
-          </Grid1>
+          </Grid>
 
-          <Grid2>
+          <Grid>
             <ProductDescription />
             <ProductCheckmarks />
-          </Grid2>
+          </Grid>
         </>
       )}
     </div>

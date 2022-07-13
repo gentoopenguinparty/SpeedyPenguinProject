@@ -2,15 +2,20 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Main = styled.div`
-background-image: url(${(props) => props.image});
-background-color:#EBEBEB;
-background-repeat: no-repeat;
-background-size: contain ;
-background-position: center;
 width: ${(props) => props.size};
 color: white;
 position:relative;
-transition: width 2s;
+
+background-color:red;
+`;
+const CurrentImage = styled.div`
+background-image: url(${(props) => props.image});
+background-color:red;
+background-repeat: no-repeat;
+background-size: contain ;
+background-position: center;
+transition: all 2s;
+width:100%;
 `;
 const Side = styled.div`
 display: flex;
@@ -45,12 +50,13 @@ export default function PhotoGallery({ images }) {
     <Main
       className="test"
       size={isFullScreen ? '100vw' : 'auto'}
-      image={images.photos[4].url}
     >
-      <Side>
-        {images.photos.map((photo, i) => <Thumbnail key={i} image={photo.thumbnail_url} />)}
-      </Side>
-      <FullScreen onClick={() => setIsFullScreen((prev) => !prev)} />
+      <CurrentImage image={images.photos[4].url}>
+        <Side>
+          {images.photos.map((photo, i) => <Thumbnail key={i} image={photo.thumbnail_url} />)}
+        </Side>
+        <FullScreen onClick={() => setIsFullScreen((prev) => !prev)} />
+      </CurrentImage>
     </Main>
   );
 }
