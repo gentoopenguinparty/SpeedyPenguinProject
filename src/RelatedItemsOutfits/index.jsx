@@ -20,39 +20,35 @@ function getProductDetails(productID) {
 }
 
 export default function RelatedItemsOutfitsModule() {
-  const [productInfo, setProductInfo] = useState({
-    category: '',
-    name: '',
-    price: '',
-    salePrice: '',
-    images: [],
-    thumbnails: [],
-    rating: 5, // need to retrieve from meta endpoint
-  });
+  // eslint-disable-next-line no-unused-vars
+  const [relatedProductInfo, setRelatedProductInfo] = useState([]);
+
+  // {
+  //   category: '',
+  //   name: '',
+  //   price: '',
+  //   salePrice: '',
+  //   images: [],
+  //   thumbnails: [],
+  //   rating: 5, // need to retrieve from meta endpoint
+  // }
 
   useEffect(() => {
     const relatedIDs = getRelatedIDs('37313');
     // console.log('relatedIDs:', relatedIDs);
     relatedIDs.then((data) => data.map((id) => getProductDetails(id)))
       .then((prod) => Promise.all(prod))
-      .then((arr) => console.log(arr));
-
-      //   setProductInfo((prevState) => {
-      //     const newValues = { category: prod.category, name: prod.name };
-      //     return { ...prevState, ...newValues };
-      //   });
-      // })
-      // .catch((err) => console.log(err));
-
-    // getRelatedIDs()
-    //   .then((res) => res.data.map((id) => getProductDetails(id)))
-    //   .then((promiseArr) => Promise.all(promiseArr))
-    //   .then((res) => res.map((resObj) => resObj.data))
-    //   .then((data) => console.log('data:', data))
-    //   .catch((err) => console.log(err));
-
-  // Promise.all(promiseArray).then((products) => console.log('products:', products));
-  });
+      .then((arr) => arr.map((obj) => (
+        {
+          category: obj.data.category,
+          name: obj.data.name,
+        }
+      )))
+      .then((data) => setRelatedProductInfo(data))
+      .catch((err) => console.log(err));
+  }, []);
+  // the empty array tells useEffect it has no dependencies
+  // preventing infitine loop
 
   return (
     <div id="relatedProductsOutfitsModule">
