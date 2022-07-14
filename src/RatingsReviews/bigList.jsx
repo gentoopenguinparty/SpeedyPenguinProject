@@ -12,7 +12,13 @@ let axios = require('axios');
 // This component is made up of the biglist of reviews and buttons that change the render properties of the biglist
 
 export default function BigList() {
-
+  useEffect(() => {
+    axiosGet('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/meta/?product_id=37315')
+      .then((data) => {
+        console.log('metaData', data.data);
+        setMeta(data.data);
+      })
+  }, [])
 
   useEffect(() => {
     axiosGet('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/?product_id=37315')
@@ -37,13 +43,15 @@ export default function BigList() {
     rating: '', recommend: '',
     date: '', review_id: ''
   }]);
+  const [meta, setMeta] = useState()
+  const [metaCache, setMetaCache] = useState()
 
   return (
     <div>
       <Grid>
         <Row space={'center'} padding={10}>
           <Col>
-            <Graphical apiData={stateData} modData={modData} cache={cache}/>
+            <Graphical apiData={stateData} modData={modData} cache={cache} />
           </Col>
           <Col>
             <Review
