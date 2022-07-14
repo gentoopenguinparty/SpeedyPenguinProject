@@ -6,6 +6,8 @@ import ReviewSummary from './ReviewSummary.jsx'
 import ReviewBody from './ReviewBody.jsx'
 import { axiosGet } from '../../util.js'
 import Photo from './Photo.jsx'
+import Email from './Email.jsx'
+import NickName from './NickName.jsx'
 
 export default function AddReview() {
 
@@ -32,6 +34,8 @@ export default function AddReview() {
       <ReviewSummary/>
       <ReviewBody/>
       <Photo/>
+      <NickName/>
+      <Email/>
     </div>
   );
 }
