@@ -12,7 +12,7 @@ export default function Graphical({ apiData, modData, cache, meta}) {
     <div>
       <AvgRating meta={meta}/>
       <RatingDisplay apiData={apiData} modData={modData} cache={cache} meta={meta} />
-      <ComfortSize />
+      <ComfortSize meta={meta}/>
     </div>
   )
 }
