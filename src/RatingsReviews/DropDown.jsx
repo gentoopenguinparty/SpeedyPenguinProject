@@ -29,7 +29,7 @@ export default function DropDown({modData, apiData}) {
     // if counter = 0
     if (count === 0) {
       // then return the sorted array
-      modData(array);
+      modData([...array]);
       return;
     }
     // if counter > 0
