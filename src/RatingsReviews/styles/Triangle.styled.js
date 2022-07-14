@@ -7,7 +7,5 @@ height: 0;
 border-left: 6px solid transparent;
 border-right: 6px solid transparent;
 border-top: 12px solid red;
-
-margin-left: 47%;
-
+margin-left: 97%;
 `
