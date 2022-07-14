@@ -66,6 +66,6 @@ export default function DropDown({ modData, apiData }) {
 const DropList = styled.div`
 display: flex;
 flex-direction: column;
-margin-left: 70px;
 align-items: flex-end;
+
 `;
