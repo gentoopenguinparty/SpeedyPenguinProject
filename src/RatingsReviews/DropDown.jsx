@@ -25,6 +25,26 @@ export default function DropDown({ modData, apiData }) {
         // increment a counter
         count++;
       }
+      if ((parseInt(array[i + 1].date.slice(0, 4)) === parseInt(array[i].date.slice(0, 4))) &&
+      (parseInt(array[i + 1].date.slice(5, 7)) > parseInt(array[i].date.slice(5, 7)))) {
+        // swap the values around
+        var currentVal = array[i];
+        array[i] = array[i + 1];
+        array[i + 1] = currentVal;
+        // increment a counter
+        count++;
+      }
+      if ((parseInt(array[i + 1].date.slice(0, 4)) === parseInt(array[i].date.slice(0, 4))) &&
+      (parseInt(array[i + 1].date.slice(5, 7)) === parseInt(array[i].date.slice(5, 7))) &&
+      (parseInt(array[i + 1].date.slice(8, 10)) > parseInt(array[i].date.slice(8, 10)))) {
+        // swap the values around
+        var currentVal = array[i];
+        array[i] = array[i + 1];
+        array[i + 1] = currentVal;
+        // increment a counter
+        count++;
+      }
+
     }
     // if counter = 0
     if (count === 0) {
