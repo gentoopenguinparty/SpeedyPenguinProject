@@ -4,31 +4,37 @@ import { Grid } from './styles/Grid.styled.js'
 import { Row } from './styles/Row.styled.js'
 import { Col } from './styles/Col.styled.js'
 
-function quarter(rating) {
-  return (Math.round(rating * 4) / 4).toFixed(2);
+function quarter(avgRating) {
+  return (Math.round(avgRating * 4) / 4).toFixed(2);
 }
 
-function avgRating(apiData) {
-  let ratings = [];
-  for (var i = 0; i < apiData.length; i++) {
-    ratings.push(apiData[i].rating);
+function avgRating(meta) {
+
+  let ratings = meta.ratings;
+  let sum = 0;
+  let count = 0;
+
+  for (var key in ratings) {
+    sum += (key * ratings[key]);
+    count += parseInt(ratings[key]);
   }
-  let average = ratings.reduce((acc, c) => acc + c) / ratings.length;
-  return average;
+  return sum/count;
 }
 
 function displayRating(avgRating) {
-  return (Math.round(avgRating * 4) / 4).toFixed(1);
+  return (Math.round(avgRating * 10) / 10).toFixed(1);
 }
 
 
-export default function AvgRating({ cache }) {
+export default function AvgRating({ cache, meta }) {
   return (
+
     <div>
+      {avgRating(meta)}
       <Grid color={'#FF7F50'}>
         <Row padding={10}> <Col>
-          <Rating rating={quarter(avgRating(cache))}> </Rating>
-          <div>Average Rating: {displayRating(avgRating(cache))} </div>
+          <Rating rating={quarter(avgRating(meta))}> </Rating>
+          <div>Average Rating: {displayRating(avgRating(meta))} </div>
         </Col> </Row>
       </Grid>
     </div>

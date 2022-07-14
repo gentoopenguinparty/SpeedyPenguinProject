@@ -43,7 +43,9 @@ export default function BigList() {
     rating: '', recommend: '',
     date: '', review_id: ''
   }]);
-  const [meta, setMeta] = useState()
+  const [meta, setMeta] = useState(
+    {ratings: {}}
+  )
   const [metaCache, setMetaCache] = useState()
 
   return (
@@ -51,7 +53,7 @@ export default function BigList() {
       <Grid>
         <Row space={'center'} padding={10}>
           <Col>
-            <Graphical apiData={stateData} modData={modData} cache={cache} />
+            <Graphical apiData={stateData} modData={modData} cache={cache} meta={meta}/>
           </Col>
           <Col>
             <Review
