@@ -4,6 +4,7 @@ import Review from './Review.jsx'
 import SeeMore from './SeeMore.jsx'
 import Tracker from './Tracker.jsx'
 import Graphical from './Graphical.jsx'
+import SortBy from './SortBy.jsx'
 import { Grid } from './styles/Grid.styled.js'
 import { Row } from './styles/Row.styled.js'
 import { Col } from './styles/Col.styled.js'
@@ -62,6 +63,7 @@ export default function BigList() {
             <Graphical apiData={stateData} modData={modData} cache={cache} meta={meta} />
           </Col>
           <Col>
+          <SortBy cache={cache}/>
             <Review
               apiData={stateData}
               countReviews={countReviews} />
