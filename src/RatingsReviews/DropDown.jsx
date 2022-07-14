@@ -5,24 +5,24 @@ import { Grid } from './styles/Grid.styled.js'
 import { Row } from './styles/Row.styled.js'
 import { Col } from './styles/Col.styled.js'
 
-export default function DropDown({modData, apiData}) {
+export default function DropDown({ modData, apiData }) {
   const [active, setActive] = useState(false);
   const [filter, setFilter] = useState('relevence')
 
 
-  var sortNew = function(array) {
+  var sortNew = function (array) {
     // set a counter = 0
     var count = 0;
     console.log('inside Function', array[0].date);
     // Create a for loop that goes through the entire array
     for (var i = 0; i < array.length - 1; i++) {
-      console.log('for', array[i + 1].date.slice(0,4), array[i].date.slice(0,4) )
-      if (parseInt(array[i + 1].date.slice(0,4)) > parseInt(array[i].date.slice(0,4))) {
+      console.log('for', array[i + 1].date.slice(0, 4), array[i].date.slice(0, 4))
+      if (parseInt(array[i + 1].date.slice(0, 4)) > parseInt(array[i].date.slice(0, 4))) {
         // swap the values around
         var currentVal = array[i];
         array[i] = array[i + 1];
         array[i + 1] = currentVal;
-         // increment a counter
+        // increment a counter
         count++;
       }
     }
@@ -36,12 +36,12 @@ export default function DropDown({modData, apiData}) {
     if (count > 0) {
       // run sortNew again with the current array
       sortNew(array);
-  }
-  return;
+    }
+    return;
   }
 
 
-  function test(data){
+  function test(data) {
     console.log(data)
     // let date = data.date.slice(0, 10).split('-');
     // console.log()
@@ -50,22 +50,24 @@ export default function DropDown({modData, apiData}) {
   return (
     <div >
       {test(apiData)}
-      <Row align={'align-center'}>
-        <div onClick={() => { setActive(a => !a) }} > sorted by {filter}</div>
-        <Triangle marginTop={3} onClick={() => { setActive(a => !a) }} ></Triangle>
-      </Row>
-      {active ?
-        <div>
-          <div onClick={ () => {setFilter('relevence')}}>
-            relevence
-          </div>
-          <div onClick={ () => {setFilter('newest'); sortNew(apiData)}}>
-            newest
-          </div>
-          <div onClick={ () => {setFilter('helpful')}}>
-            helpful
-          </div>
-        </div> : null}
+      <Col align={'center'} direction={'column'}>
+        <Row align={'align-center'}>
+          <div onClick={() => { setActive(a => !a) }} > sorted by {filter}</div>
+          <Triangle marginTop={3} onClick={() => { setActive(a => !a) }} ></Triangle>
+        </Row>
+        {active ?
+          <div>
+            <div onClick={() => { setFilter('relevence') }}>
+              relevence
+            </div>
+            <div onClick={() => { setFilter('newest'); sortNew(apiData) }}>
+              newest
+            </div>
+            <div onClick={() => { setFilter('helpful') }}>
+              helpful
+            </div>
+          </div> : null}
+      </Col>
     </div>
   )
 }
