@@ -8,4 +8,5 @@ border-style: ${props => props.border};
 height: ${props => props.height}px;
 background-color: ${props => props.color};
 margin: 5px 5px 5px 5px;
+overflow: hidden;
 `
