@@ -8,21 +8,14 @@ import { Star } from './styles/Star.styled.js'
 import styled, { css } from 'styled-components';
 import { axiosGet } from '../../util';
 
-export default function RatingDisplay({ apiData, modData, cache}) {
-
-  function numOrganizer(apiData) {
-    let ratings = { 1: [], 2: [], 3: [], 4: [], 5: [] }
-    for (var i = 0; i < apiData.length; i++) {
-      let num = Math.floor(apiData[i].rating);
-      if (ratings[num] !== undefined) {
-        ratings[num].push(num);
-      }
-    }
-    return ratings;
-  }
+export default function RatingDisplay({ apiData, modData, cache, meta }) {
 
   function calcPercent(ratings, num) {
-      return (ratings[num].length / apiData.length) * 100;
+    let count = 0;
+    for (var key in ratings) {
+      count += parseInt(ratings[key]);
+    }
+    return (ratings[num] / count) * 100;
   }
 
   function filterApi(cache, ratingVal) {
@@ -45,37 +38,16 @@ export default function RatingDisplay({ apiData, modData, cache}) {
     console.log('cache', cache);
   }
 
-
   return (
     <div>
       <Grid>
         <Row align={'center'}>
           <Col>
-            <Star onClick={() => { filterApi(cache, 1) }}>1 Star</Star>
+            <Star onClick={() => { filterApi(cache, 5) }} >5 Star</Star>
           </Col>
           <Col>
             <BarContainer border={'solid'} height={24} color={'rgb(136,136,136)'}>
-              <BarGraph percent={calcPercent(numOrganizer(cache), 1)}></BarGraph>
-            </BarContainer>
-          </Col>
-        </Row>
-        <Row align={'center'}>
-          <Col>
-            <Star onClick={() => { filterApi(cache, 2) }}>2 Star</Star>
-          </Col>
-          <Col>
-            <BarContainer border={'solid'} height={24} color={'rgb(136,136,136)'}>
-              <BarGraph percent={calcPercent(numOrganizer(cache), 2)}></BarGraph>
-            </BarContainer>
-          </Col>
-        </Row>
-        <Row align={'center'}>
-          <Col>
-            <Star onClick={() => { filterApi(cache, 3) }}>3 Star</Star>
-          </Col>
-          <Col>
-            <BarContainer border={'solid'} height={24} color={'rgb(136,136,136)'}>
-              <BarGraph percent={calcPercent(numOrganizer(cache), 3)}></BarGraph>
+              <BarGraph percent={calcPercent(meta.ratings, 5)}></BarGraph>
             </BarContainer>
           </Col>
         </Row>
@@ -85,22 +57,41 @@ export default function RatingDisplay({ apiData, modData, cache}) {
           </Col>
           <Col>
             <BarContainer border={'solid'} height={24} color={'rgb(136,136,136)'}>
-              <BarGraph percent={calcPercent(numOrganizer(cache), 4)}></BarGraph>
+              <BarGraph percent={calcPercent(meta.ratings, 4)}></BarGraph>
             </BarContainer>
           </Col>
         </Row>
         <Row align={'center'}>
           <Col>
-            <Star onClick={() => { filterApi(cache, 5) }} >5 Star</Star>
+            <Star onClick={() => { filterApi(cache, 3) }}>3 Star</Star>
           </Col>
           <Col>
             <BarContainer border={'solid'} height={24} color={'rgb(136,136,136)'}>
-              <BarGraph percent={calcPercent(numOrganizer(cache), 5)}></BarGraph>
+              <BarGraph percent={calcPercent(meta.ratings, 3)}></BarGraph>
+            </BarContainer>
+          </Col>
+        </Row>
+        <Row align={'center'}>
+          <Col>
+            <Star onClick={() => { filterApi(cache, 2) }}>2 Star</Star>
+          </Col>
+          <Col>
+            <BarContainer border={'solid'} height={24} color={'rgb(136,136,136)'}>
+              <BarGraph percent={calcPercent(meta.ratings, 2)}></BarGraph>
+            </BarContainer>
+          </Col>
+        </Row>
+        <Row align={'center'}>
+          <Col>
+            <Star onClick={() => { filterApi(cache, 1) }}>1 Star</Star>
+          </Col>
+          <Col>
+            <BarContainer border={'solid'} height={24} color={'rgb(136,136,136)'}>
+              <BarGraph percent={calcPercent(meta.ratings, 1)}></BarGraph>
             </BarContainer>
           </Col>
         </Row>
       </Grid>
-
     </div>
   )
 }

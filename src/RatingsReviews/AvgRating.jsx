@@ -26,7 +26,7 @@ function displayRating(avgRating) {
 }
 
 
-export default function AvgRating({ cache, meta }) {
+export default function AvgRating({ meta }) {
   return (
 
     <div>

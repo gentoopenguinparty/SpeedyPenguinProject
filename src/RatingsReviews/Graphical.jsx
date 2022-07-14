@@ -10,8 +10,8 @@ export default function Graphical({ apiData, modData, cache, meta}) {
 
   return (
     <div>
-      <AvgRating cache={cache} meta={meta}/>
-      <RatingDisplay apiData={apiData} modData={modData} cache={cache} />
+      <AvgRating meta={meta}/>
+      <RatingDisplay apiData={apiData} modData={modData} cache={cache} meta={meta} />
       {/* <Comfort /> */}
     </div>
   )

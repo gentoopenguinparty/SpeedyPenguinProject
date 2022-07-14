@@ -44,7 +44,7 @@ export default function BigList() {
     date: '', review_id: ''
   }]);
   const [meta, setMeta] = useState(
-    {ratings: {}}
+    {ratings: {1: [1], 2: [1], 3: [1], 4: [1], 5:[1]}}
   )
   const [metaCache, setMetaCache] = useState()
 
