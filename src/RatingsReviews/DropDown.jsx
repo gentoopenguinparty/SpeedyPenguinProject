@@ -41,6 +41,22 @@ export default function DropDown({ modData, apiData }) {
     return;
   }
 
+  var sortRelevent = function (array) {
+    let currentIndex = array.length,  randomIndex;
+
+    while (currentIndex != 0) {
+
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+
+      [array[currentIndex], array[randomIndex]] = [
+        array[randomIndex], array[currentIndex]];
+    }
+
+    return modData([...array]);
+  }
+
+
   var sortNew = function (array) {
     // set a counter = 0
     var count = 0;
@@ -99,7 +115,7 @@ export default function DropDown({ modData, apiData }) {
       </Row>
       {active ?
         <DropList>
-          <div onClick={() => { setFilter('relevence') }}>
+          <div onClick={() => { setFilter('relevence'); sortRelevent(apiData) }}>
             relevence
           </div>
           <div onClick={() => { setFilter('newest'); sortNew(apiData) }}>
