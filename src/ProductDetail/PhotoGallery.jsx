@@ -8,7 +8,7 @@ export default function PhotoGallery({ images }) {
   const [imagePos, setImagePos] = useState('center');
   const [sideBarOffset, setSideBarOffset] = useState(0);
   const handleImageMove = (e) => {
-    setImagePos(`-${e.nativeEvent.offsetX * 2.3}px -${e.nativeEvent.offsetY * 4}px`);
+    setImagePos(`-${e.nativeEvent.offsetX * 2.3}px -${e.nativeEvent.offsetY * 2.3}px`);
   };
   const handleFullScreen = (e) => {
     if (e.target.id === 'current-image') {
@@ -31,7 +31,7 @@ export default function PhotoGallery({ images }) {
       >
         { !isFullScreen ? (
           <Side>
-            {sideBarOffset !== 0
+            {(sideBarOffset !== 0 && images.photos.length >= 7)
               ? (
                 <SideBarArrow
                   onClick={() => setSideBarOffset((prev) => prev - 1)}
@@ -46,7 +46,7 @@ export default function PhotoGallery({ images }) {
                 className={currentPicInd === i ? 'border-b-4 border-indigo-500' : ''}
               />
             )).slice(sideBarOffset, sideBarOffset + 7)}
-            {!(sideBarOffset + 7 === images.photos.length)
+            {!(sideBarOffset + 7 === images.photos.length ) && images.photos.length >= 7
               ? (
                 <SideBarArrow
                   onClick={() => setSideBarOffset((prev) => prev + 1)}
