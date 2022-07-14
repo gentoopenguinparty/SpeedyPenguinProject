@@ -3,9 +3,12 @@ import React, { useEffect, useState } from 'react';
 import { axiosGet, axiosPost } from '../../util';
 import QAcard from '../QuestionsAnswers/QAcard.jsx';
 
+
+
 export default function QuestionsAnswers() {
   const [data, setData] = useState('');
   const [search, setSearch] = useState(``)
+  const [loadMoreQs, setLoadMoreQs] = useState(false);
   //const [dataLength, setDataLength] = useState()
   // const [error, setError] = useState("");
   // const [loaded, setLoaded] = useState(false); //hr-rfe
@@ -23,7 +26,7 @@ export default function QuestionsAnswers() {
   }).catch((error) => { console.error(`Error, ${error}`); });
 
   console.log('data:', data);
-  // only four questions with two answers per question will be rendered
+  // only four questions with two answers per question will be rendered  onChange={e => setSearch(e.target.value)}
   //
   return (
 
@@ -31,10 +34,13 @@ export default function QuestionsAnswers() {
       <h2 onClick={() => {console.log('h2 test')}}>Questions and Answers</h2>
 
       <input placeholder="Have A Question? Search For Answers..." onChange={e => setSearch(e.target.value)} />
-      <button type="submit" onChange={e => setSearch(e.target.value)} onClick={() => {console.log('search test')}}>Search</button>
+      <button type="submit" onClick={e => setSearch(e.target.value)}>Search</button>
       <br/>
 
-      <QAcard qaCards={data} search={search} />
+      <QAcard qaCards={data} search={search} loadMoreQs={loadMoreQs} />
+      <br></br>
+      <br></br>
+      <button onClick={() =>{setLoadMoreQs(true)}}>Load More Questions</button>
 
     </div>
   );
