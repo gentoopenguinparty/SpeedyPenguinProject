@@ -7,9 +7,9 @@ import { Row } from './styles/Row.styled.js'
 import { Col } from './styles/Col.styled.js'
 import { ThemeProvider } from 'styled-components'
 
-export default function Review({countReviews, setDataLength, apiData}) {
+export default function Review({ countReviews, setDataLength, apiData }) {
 
-  function number (rating) {
+  function number(rating) {
     return (Math.round(rating * 4) / 4).toFixed(2);
   }
 
@@ -27,7 +27,7 @@ export default function Review({countReviews, setDataLength, apiData}) {
     <div key='reviews'>
 
       <Grid color={'#FAEBD7'}>
-        {apiData.slice(0,countReviews).map((review, index) => (
+        {apiData.slice(0, countReviews).map((review, index) => (
           <div key={review.review_id} data-testid='testRender'>
             <Row space={'space-between'} padding={10}>
               <Col > <Rating rating={number(review.rating)}> </Rating> </Col>
@@ -38,6 +38,16 @@ export default function Review({countReviews, setDataLength, apiData}) {
             </Row>
             <Row padding={10}>
               <Col> {review.body} </Col>
+            </Row>
+            <Row>
+              <Col>
+                {review.photos.length > 0 ?
+                  review.photos.map((photo, i) => {
+                    return (
+                      <img key={i} style={{ height: '100px', width: '100px' }}
+                        src={photo.url} />)
+                  }) : null}
+              </Col>
             </Row>
             <Row space={'space-between'} padding={10}>
               <Col > {'recommended? ' + review.recommend.toString()} </Col>
