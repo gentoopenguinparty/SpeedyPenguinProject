@@ -24,6 +24,8 @@ const Side = styled.div`
 display: flex;
 flex-direction: column;
 justify-content: space-around;
+align-items: center;
+width: 80px;
 `;
 const Thumbnail = styled.div`
 background-image: url(${(props) => props.image});
@@ -60,13 +62,20 @@ background-repeat: no-repeat;
 transform: scaleX(${(props) => props.flip});
 cursor: pointer;
 `;
+const SideBarArrow = styled.div`
+height:20px;
+width:20px;
+background-color:red;
+`;
 export default function PhotoGallery({ images }) {
   const [currentPicInd, setCurrentPicInd] = useState(0);// CHANGE TO PARENT LATER
   const [isFullScreen, setIsFullScreen] = useState(false);
   const [imagePos, setImagePos] = useState('center');
+  const [sideBarOffset, setSideBarOffset] = useState(0);
   const handleImageMove = (e) => {
     setImagePos(`center -${e.nativeEvent.offsetY * (isFullScreen ? 3 : 1)}px`);
   };
+
   return (
     <Main
       className="test"
@@ -74,17 +83,50 @@ export default function PhotoGallery({ images }) {
     >
       <CurrentImage
         pos={imagePos}
-        onMouseMove={handleImageMove}
         image={images.photos[currentPicInd].url}
       >
         <Side>
-          {images.photos.map((photo, i) => <Thumbnail key={i} image={photo.thumbnail_url} />)}
+          {sideBarOffset !== 0
+            ? (
+              <SideBarArrow
+                onClick={() => setSideBarOffset((prev) => prev - 1)}
+                flip={1}
+              />
+            ) : ''}
+          {images.photos.map((photo, i) => (
+            <Thumbnail
+              onClick={() => setCurrentPicInd(i)}
+              key={i}
+              image={photo.thumbnail_url}
+            />
+          )).slice(sideBarOffset, sideBarOffset + 7)}
+          {!(sideBarOffset + 7 === images.photos.length)
+            ? (
+              <SideBarArrow
+                onClick={() => setSideBarOffset((prev) => prev + 1)}
+                flip={1}
+              />
+            ) : ''}
         </Side>
         <FullScreen onClick={() => setIsFullScreen((prev) => !prev)} />
+
         {!((currentPicInd + 1) === images.photos.length)
-          ? <Arrow onClick={() => setCurrentPicInd((prev) => prev + 1)} right="10px" flip={1} /> : ''}
+          ? (
+            <Arrow
+              onClick={() => setCurrentPicInd((prev) => prev + 1)}
+              right="10px"
+              flip={1}
+            />
+          ) : ''}
+
         {!(currentPicInd === 0)
-          ? <Arrow onClick={() => setCurrentPicInd((prev) => prev - 1)} left="80px" flip={-1} /> : ''}
+          ? (
+            <Arrow
+              onClick={() => setCurrentPicInd((prev) => prev - 1)}
+              left="80px"
+              flip={-1}
+            />
+          ) : ''}
 
       </CurrentImage>
     </Main>
