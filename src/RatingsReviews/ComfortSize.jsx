@@ -21,12 +21,23 @@ export default function ComfortSize({ meta }) {
       {/* {'size: ' + (calcPercent(size) + 3)}
       {'comfort: ' + (calcPercent(comfort) + 3)} */}
       <Grid>
-        <TriangleContainer border={'solid'} height={24} color={'rgb(136,136,136)'}>
-          <Triangle margin={calcPercent(size)}></Triangle>
-        </TriangleContainer>
-        <TriangleContainer border={'solid'} height={24} color={'rgb(136,136,136)'}>
-          <Triangle margin={calcPercent(comfort)}></Triangle>
-        </TriangleContainer>
+        <h5 style={{ margin: '0px 0px 0px 0px' }}>Size</h5>
+          <TriangleContainer border={'solid'} height={24} color={'rgb(136,136,136)'}>
+            <Triangle margin={calcPercent(size)}></Triangle>
+          </TriangleContainer>
+          <Row space={'space-between'}>
+            <div>Too small</div>
+            <div>Perfect</div>
+            <div>Too large</div>
+          </Row>
+          <h5 style={{ margin: '5px 0px 0px 0px' }}>Comfort</h5>
+          <TriangleContainer border={'solid'} height={24} color={'rgb(136,136,136)'}>
+            <Triangle margin={calcPercent(comfort)}></Triangle>
+          </TriangleContainer>
+          <Row space={'space-between'}>
+            <div>Poor</div>
+            <div>Perfect</div>
+          </Row>
       </Grid>
     </div>
   )
