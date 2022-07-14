@@ -5,8 +5,7 @@ const Main = styled.div`
 width: ${(props) => props.size};
 color: white;
 position:relative;
-overflow: auto;
-background-color:red;
+background-color:none;
 `;
 const CurrentImage = styled.div.attrs((props) => ({
   style: {
@@ -17,7 +16,7 @@ const CurrentImage = styled.div.attrs((props) => ({
   background-color:grey;
   background-repeat: no-repeat;
   background-size: cover ;
-  transition: all 2s;
+  transition: all 1s;
   width:100%;
   `;
 
@@ -47,22 +46,46 @@ right: 10px;
 top:10px;
 cursor: pointer;
 `;
+const Arrow = styled.div`
+position: absolute;
+background-image: url(https://freepngimg.com/thumb/arrow/5-2-arrow-transparent.png);
+right: ${(props) => props.right};
+left: ${(props) => props.left};
+bottom:50%;
+height:20px;
+width:20px;
+background-size:contain;
+background-position: center;
+background-repeat: no-repeat;
+transform: scaleX(${(props) => props.flip});
+cursor: pointer;
+`;
 export default function PhotoGallery({ images }) {
+  const [currentPicInd, setCurrentPicInd] = useState(0);// CHANGE TO PARENT LATER
   const [isFullScreen, setIsFullScreen] = useState(false);
   const [imagePos, setImagePos] = useState('center');
   const handleImageMove = (e) => {
-    setImagePos(`center -${e.nativeEvent.offsetY}px`);
+    setImagePos(`center -${e.nativeEvent.offsetY * (isFullScreen ? 3 : 1)}px`);
   };
   return (
     <Main
       className="test"
       size={isFullScreen ? '100vw' : 'auto'}
     >
-      <CurrentImage pos={imagePos} onMouseMove={handleImageMove} image={images.photos[4].url}>
+      <CurrentImage
+        pos={imagePos}
+        onMouseMove={handleImageMove}
+        image={images.photos[currentPicInd].url}
+      >
         <Side>
           {images.photos.map((photo, i) => <Thumbnail key={i} image={photo.thumbnail_url} />)}
         </Side>
         <FullScreen onClick={() => setIsFullScreen((prev) => !prev)} />
+        {!((currentPicInd + 1) === images.photos.length)
+          ? <Arrow onClick={() => setCurrentPicInd((prev) => prev + 1)} right="10px" flip={1} /> : ''}
+        {!(currentPicInd === 0)
+          ? <Arrow onClick={() => setCurrentPicInd((prev) => prev - 1)} left="80px" flip={-1} /> : ''}
+
       </CurrentImage>
     </Main>
   );
