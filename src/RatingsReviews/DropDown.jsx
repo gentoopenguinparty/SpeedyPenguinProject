@@ -40,34 +40,32 @@ export default function DropDown({ modData, apiData }) {
     return;
   }
 
-
-  function test(data) {
-    console.log(data)
-    // let date = data.date.slice(0, 10).split('-');
-    // console.log()
-  }
-
   return (
     <div >
-      {test(apiData)}
-      <Col align={'center'} direction={'column'}>
-        <Row align={'align-center'}>
-          <div onClick={() => { setActive(a => !a) }} > sorted by {filter}</div>
-          <Triangle marginTop={3} onClick={() => { setActive(a => !a) }} ></Triangle>
-        </Row>
-        {active ?
-          <div>
-            <div onClick={() => { setFilter('relevence') }}>
-              relevence
-            </div>
-            <div onClick={() => { setFilter('newest'); sortNew(apiData) }}>
-              newest
-            </div>
-            <div onClick={() => { setFilter('helpful') }}>
-              helpful
-            </div>
-          </div> : null}
-      </Col>
+      <Row align={'align-center'} >
+        <div onClick={() => { setActive(a => !a) }} > sorted by {filter}</div>
+        <Triangle marginTop={3} onClick={() => { setActive(a => !a) }} ></Triangle>
+      </Row>
+      {active ?
+        <DropList>
+          <div onClick={() => { setFilter('relevence') }}>
+            relevence
+          </div>
+          <div onClick={() => { setFilter('newest'); sortNew(apiData) }}>
+            newest
+          </div>
+          <div onClick={() => { setFilter('helpful') }}>
+            helpful
+          </div>
+        </DropList>
+        : null}
     </div>
   )
 }
+
+const DropList = styled.div`
+display: flex;
+flex-direction: column;
+margin-left: 70px;
+align-items: flex-end;
+`;

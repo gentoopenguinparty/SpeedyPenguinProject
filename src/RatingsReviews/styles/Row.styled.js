@@ -9,4 +9,5 @@ border-style: ${props => props.border};
 height: ${props => props.height}px;
 background-color: ${props => props.color};
 align-items: ${props => props.align};
+flex-direction: ${(props) => props.direction}
 `;
