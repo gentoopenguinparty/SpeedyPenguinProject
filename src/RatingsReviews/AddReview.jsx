@@ -8,6 +8,7 @@ import { axiosGet } from '../../util.js'
 import Photo from './Photo.jsx'
 import Email from './Email.jsx'
 import NickName from './NickName.jsx'
+import { Button } from './styles/Button.styled.js'
 
 export default function AddReview() {
 
@@ -36,6 +37,7 @@ export default function AddReview() {
       <Photo/>
       <NickName/>
       <Email/>
+      <Button> submit! </Button>
     </div>
   );
 }
