@@ -14,7 +14,7 @@ let axios = require('axios');
 
 export default function BigList() {
   useEffect(() => {
-    axiosGet('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/meta/?product_id=37315')
+    axiosGet('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/meta/?product_id=37316')
       .then((data) => {
         console.log('metaData', data.data);
         setMeta(data.data);
@@ -22,7 +22,7 @@ export default function BigList() {
   }, [])
 
   useEffect(() => {
-    axiosGet('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/?product_id=37315')
+    axiosGet('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/?product_id=37316')
       .then((data) => {
         setCache(data.data.results);
         modData(data.data.results);
@@ -42,7 +42,7 @@ export default function BigList() {
   //API cache
   const [cache, setCache] = useState([{
     rating: '', recommend: '',
-    date: '', review_id: ''
+    date: '', review_id: '', date: 'test'
   }]);
   const [meta, setMeta] = useState(
     {
@@ -63,7 +63,7 @@ export default function BigList() {
             <Graphical apiData={stateData} modData={modData} cache={cache} meta={meta} />
           </Col>
           <Col>
-          <SortBy cache={cache}/>
+          <SortBy cache={cache} modData={modData} apiData={stateData}/>
             <Review
               apiData={stateData}
               countReviews={countReviews} />

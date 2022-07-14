@@ -2,7 +2,7 @@ import React from 'react'
 import { Grid } from './styles/Grid.styled.js';
 import { Row } from './styles/Row.styled.js';
 import DropDown from './DropDown.jsx'
-function SortBy({cache}) {
+function SortBy({cache, modData, apiData}) {
 
   function test(cache){
     console.log('cache', cache)
@@ -13,7 +13,7 @@ function SortBy({cache}) {
       {test(cache)}
       <Row space={'flex-start'}>
         <div>{cache.length} reviews, &nbsp; </div>
-        <DropDown/>
+        <DropDown modData={modData} apiData={apiData}/>
       </Row>
     </Grid>
   )

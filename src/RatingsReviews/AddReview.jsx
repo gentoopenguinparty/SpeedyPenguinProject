@@ -15,7 +15,7 @@ export default function AddReview() {
   const [apiData, modData] = useState({ name: 'filler' });
 
   useEffect(() => {
-    axiosGet('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/37315')
+    axiosGet('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/37316')
       .then((data) => {
         console.log('apiInfo', data.data);
         modData(data.data);

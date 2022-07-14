@@ -5,24 +5,31 @@ import { Grid } from './styles/Grid.styled.js'
 import { Row } from './styles/Row.styled.js'
 import { Col } from './styles/Col.styled.js'
 
-export default function DropDown() {
+export default function DropDown({modData, apiData}) {
   const [active, setActive] = useState(false);
+  const [filter, setFilter] = useState('relevence')
+
+  function test(data){
+    console.log(data)
+  }
+
   return (
     <div >
+      {test(apiData)}
       <Row align={'align-center'}>
-        <div onClick={() => { setActive(a => !a) }} > sorted by  </div>
-        <Triangle marginTop={5} onClick={() => { setActive(a => !a) }} ></Triangle>
+        <div onClick={() => { setActive(a => !a) }} > sorted by {filter}</div>
+        <Triangle marginTop={3} onClick={() => { setActive(a => !a) }} ></Triangle>
       </Row>
       {active ?
         <div>
-          <div className='item1'>
-            Relevence
+          <div onClick={ () => {setFilter('relevence')}}>
+            relevence
           </div>
-          <div className='item2'>
-            Newest
+          <div onClick={ () => {setFilter('newest')}}>
+            newest
           </div>
-          <div className='item2'>
-            Helpful
+          <div onClick={ () => {setFilter('helpful')}}>
+            helpful
           </div>
         </div> : null}
     </div>

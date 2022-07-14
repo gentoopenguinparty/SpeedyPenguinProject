@@ -13,14 +13,25 @@ export default function Review({countReviews, setDataLength, apiData}) {
     return (Math.round(rating * 4) / 4).toFixed(2);
   }
 
+  function formatDate(date) {
+    let newDate = date.slice(0, 10);
+    newDate = newDate.split('-');
+    let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    let month = months[parseInt(newDate[1]) - 1];
+    let day = parseInt(newDate[2]);
+    console.log(`${month} ${day}, ${newDate[0]}`)
+    return (`${month} ${day}, ${newDate[0]}`);
+  }
+
   return (
     <div key='reviews'>
+
       <Grid color={'#FAEBD7'}>
         {apiData.slice(0,countReviews).map((review, index) => (
           <div key={review.review_id} data-testid='testRender'>
             <Row space={'space-between'} padding={10}>
               <Col > <Rating rating={number(review.rating)}> </Rating> </Col>
-              <Col > {review.reviewer_name} {review.date.slice(0, 10)} </Col>
+              <Col > {`${review.reviewer_name},`} &nbsp; {formatDate(review.date)} </Col>
             </Row>
             <Row space={'space-between'} padding={10}>
               <Col> {review.summary} </Col>
