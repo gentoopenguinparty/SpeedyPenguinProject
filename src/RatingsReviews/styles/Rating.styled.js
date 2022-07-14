@@ -5,7 +5,7 @@ export const Rating = styled.div
 --rating: ${props=>props.rating};
 --percent: calc(var(--rating) / 5 * 100%);
 
---star-size: 60px;
+--star-size: ${props=>props.size}px;
 --star-color: #fff;
 --star-background: #000000;
 -webkit-text-stroke: 1px black;

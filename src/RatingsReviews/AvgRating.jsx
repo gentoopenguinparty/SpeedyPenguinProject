@@ -30,10 +30,9 @@ export default function AvgRating({ meta }) {
   return (
 
     <div>
-      {avgRating(meta)}
       <Grid color={'#FF7F50'}>
         <Row padding={10}> <Col>
-          <Rating rating={quarter(avgRating(meta))}> </Rating>
+          <Rating size={40} rating={quarter(avgRating(meta))}> </Rating>
           <div>Average Rating: {displayRating(avgRating(meta))} </div>
         </Col> </Row>
       </Grid>
