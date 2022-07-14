@@ -11,8 +11,8 @@ function SortBy({cache}) {
   return (
     <Grid color={'#ffb3b3'}>
       {test(cache)}
-      <Row space={'space-between'}>
-        <div>counter: {cache.length}</div>
+      <Row space={'flex-start'}>
+        <div>{cache.length} reviews, &nbsp; </div>
         <DropDown/>
       </Row>
     </Grid>

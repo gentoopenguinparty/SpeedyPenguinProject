@@ -8,4 +8,5 @@ border-left: 6px solid transparent;
 border-right: 6px solid transparent;
 border-top: 12px solid red;
 margin-left: ${props => props.margin}%;
+margin-top: ${props => props.marginTop}%;
 `
