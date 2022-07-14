@@ -10,11 +10,16 @@ export default function Answers(props) {
 
       return (
         answers.sort((a, b) => a.helpfulness > b.helpfulness ? -1 : 1).map((answer, index) => {
+          let person = answer[1].answerer_name;
+          if (answer[1].answerer_name === 'seller') {
+             person = <b>{answer[1].answerer_name}</b>
+            console.log('this is a seller', answer[1].answerer_name)
+          }
 
           return (
             <div className="answer" key={answer[0]}>
               <h3> A: <small>{answer[1].body}</small></h3>
-              <small><pre>by {answer[1].answerer_name}, {answer[1].date} | Helpful? Yes({answer[1].helpfulness}) | Report
+              <small><pre>by {person}, {answer[1].date} | Helpful? <span onClick={() =>{console.log('yes answer test')}}>Yes({answer[1].helpfulness}) |</span> <span onClick={() =>{console.log('report test')}}>Report</span>
                 </pre></small>
             </div>
           );

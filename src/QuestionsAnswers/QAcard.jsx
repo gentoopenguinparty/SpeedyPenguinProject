@@ -21,9 +21,9 @@ export default function QAcard(props) {
               </h3>
               <small>
                 <pre>
-                  Helpful?  Yes(
+                  Helpful? <span onClick={() =>{console.log('yes question test')}}>Yes(
                   {qaCard.question_helpfulness}
-                  )  |  Add Answer
+                  ) |</span>  <span onClick={() =>{console.log('Add answer test')}}>Add Answer</span>
                 </pre>
               </small>
               <AnswerCard answers={qaCard.answers} />

@@ -6,6 +6,7 @@ import QAcard from '../QuestionsAnswers/QAcard.jsx';
 export default function QuestionsAnswers() {
   const [data, setData] = useState('');
   const [search, setSearch] = useState(``)
+  //const [dataLength, setDataLength] = useState()
   // const [error, setError] = useState("");
   // const [loaded, setLoaded] = useState(false); //hr-rfe
  console.log(search);
@@ -27,10 +28,10 @@ export default function QuestionsAnswers() {
   return (
 
     <div data-testid={'QA'}>
-      <h2>Questions and Answers</h2>
+      <h2 onClick={() => {console.log('h2 test')}}>Questions and Answers</h2>
 
       <input placeholder="Have A Question? Search For Answers..." onChange={e => setSearch(e.target.value)} />
-      <button type="submit" onChange={e => setSearch(e.target.value)}>Search</button>
+      <button type="submit" onChange={e => setSearch(e.target.value)} onClick={() => {console.log('search test')}}>Search</button>
       <br/>
 
       <QAcard qaCards={data} search={search} />
