@@ -3,9 +3,10 @@ import React, { useEffect, useState } from 'react';
 import { axiosGet, axiosPost } from '../../util';
 import QAcard from '../QuestionsAnswers/QAcard.jsx';
 import { ThemeProvider } from 'styled-components'
-import {Container} from './styles/Main.styled.js'
-
-
+import {ScrollContainer} from './styles/Scroll.styled.js'
+import {MainContainer} from './styles/Main.styled.js'
+import {Button} from './styles/Button.styled.js'
+import {SearchBar} from './styles/SearchBar.styled.js'
 
 
 export default function QuestionsAnswers() {
@@ -48,23 +49,31 @@ export default function QuestionsAnswers() {
   //
 
   return (
+   <MainContainer>
+   <h2 onClick={() => {console.log('h2 test')}}>Questions and Answers</h2>
+   <br></br>
+   <SearchBar placeholder="Have A Question? Search For Answers..." onChange={e => setSearch(e.target.value)} />
+   <br></br>
+   <br></br>
+    <ScrollContainer data-testid={'QA'}>
 
-    <Container data-testid={'QA'}>
-      <h2 onClick={() => {console.log('h2 test')}}>Questions and Answers</h2>
 
-      <input placeholder="Have A Question? Search For Answers..." onChange={e => setSearch(e.target.value)} />
 
-      <br/>
+
+
 
       <QAcard qaCards={data} search={search} noMoreQs={noMoreQs} qListLength={qListLength} />
       <br></br>
       <br></br>
       <>
       {/* <button onClick={() =>{setLoadMoreQs(true)}}>Load More Questions</button> */}
-      {!noMoreQs && <button  onClick={incrementQList}>Load More Questions</button>}
-      </>
 
-    </Container>
+      </>
+    </ScrollContainer>
+    <br></br>
+    {!noMoreQs && <Button  onClick={incrementQList}>Load More Questions</Button>}<Button>Ask A Question</Button>
+
+    </MainContainer>
   );
 }
 
