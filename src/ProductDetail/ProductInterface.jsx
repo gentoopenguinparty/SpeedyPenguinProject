@@ -1,6 +1,41 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
+
+
+export default function ProductInterface({ data, styles, styleChange }) {
+  console.log(data);
+  const [id, setId] = useState(0);
+  return (
+    <Main>
+      <span>
+        <Rating rating={2.5} />
+        Read All Reviews
+      </span>
+      <Category>{data.category}</Category>
+      <Name>{data.name}</Name>
+      <Price>$123</Price>
+      <StyleGrid>
+        {
+        styles.map((style, i) => (
+          <StyleThumbnail
+            onClick={() =>{
+              styleChange(i)
+              setId(i)}}
+            key={style.style_id}
+            image={style.photos[0].thumbnail_url}
+          >
+            {id === i ? <StyleCheck /> : ''}
+          </StyleThumbnail>
+        ))
+          }
+      </StyleGrid>
+      <InputGrid>
+        dwf
+      </InputGrid>
+    </Main>
+  );
+}
 const Main = styled.div`
 display:flex;
 flex-direction:column;
@@ -74,35 +109,3 @@ width: 100%;
 background-color:red;
 `;
 const Dropdown = styled.input``;
-
-export default function ProductInterface({ data, styles }) {
-  console.log(data);
-  const [id, setId] = useState(0);
-  return (
-    <Main>
-      <span>
-        <Rating rating={2.5} />
-        Read All Reviews
-      </span>
-      <Category>{data.category}</Category>
-      <Name>{data.name}</Name>
-      <Price>$123</Price>
-      <StyleGrid>
-        {
-        styles.map((style, i) => (
-          <StyleThumbnail
-            onClick={() => setId(i)}
-            key={style.style_id}
-            image={style.photos[0].thumbnail_url}
-          >
-            {id === i ? <StyleCheck /> : ''}
-          </StyleThumbnail>
-        ))
-          }
-      </StyleGrid>
-      <InputGrid>
-        dwf
-      </InputGrid>
-    </Main>
-  );
-}

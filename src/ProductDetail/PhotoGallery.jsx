@@ -8,7 +8,7 @@ export default function PhotoGallery({ images }) {
   const [imagePos, setImagePos] = useState('center');
   const [sideBarOffset, setSideBarOffset] = useState(0);
   const handleImageMove = (e) => {
-    setImagePos(`-${e.nativeEvent.offsetX * 2.3}px -${e.nativeEvent.offsetY * 2.3}px`);
+    setImagePos(`${(e.nativeEvent.offsetX / e.target.clientWidth) * 100}% ${(e.nativeEvent.offsetY / e.target.clientHeight) * 100}%`);
   };
   const handleFullScreen = (e) => {
     if (e.target.id === 'current-image') {
@@ -110,7 +110,7 @@ const CurrentImage = styled.div.attrs((props) => ({
   background-color:grey;
   background-repeat: no-repeat;
   background-size: ${(props) => (!props.zoomed ? 'cover' : '250%')} ;
-  transition: all 0s;
+  transition: all 0.1s;
   width:100%;
   cursor: ${(props) => {
     if (!props.fullScreen) {

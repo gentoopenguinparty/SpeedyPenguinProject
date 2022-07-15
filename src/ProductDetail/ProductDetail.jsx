@@ -9,13 +9,13 @@ import ProductCheckmarks from './ProductCheckmarks.jsx';
 
 const Grid = styled.div`
 display:grid;
-grid-template: 2fr 1fr / 1.5fr 1fr;
+grid-template-columns:1.5fr 1fr;
 `;
 
 export default function ProductDetail() {
   const [productData, setProductData] = React.useState(null);
   const [styles, setStyles] = React.useState([]);
-  const [currentStyle, setCurrrentStyle] = React.useState(0);
+  const [currentStyle, setCurrrentStyle] = React.useState(2);
   const id = 37315;
   React.useEffect(() => {
     axiosGet(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${id}`)
@@ -28,13 +28,16 @@ export default function ProductDetail() {
       .catch((err) => console.log(err));
   }, []);
 
+  const handleStyleChange = (newStyleInd) => {
+    setCurrrentStyle(newStyleInd);
+  };
   return (
     <div>
       {!styles.length ? <div>Loading</div> : (
         <>
           <Grid>
             <PhotoGallery images={styles[currentStyle]} />
-            <ProductInterface data={productData} styles={styles} />
+            <ProductInterface styleChange={handleStyleChange} data={productData} styles={styles} />
           </Grid>
 
           <Grid>
