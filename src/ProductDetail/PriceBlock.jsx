@@ -3,7 +3,6 @@ import styled from 'styled-components';
 
 
 export default function PriceBlock({styles,id}) {
-  console.log(styles)
   return (
 
     <Main>

@@ -3,9 +3,8 @@ import styled from 'styled-components';
 import InputGrid from './InputGrid.jsx';
 import PriceBlock from './PriceBlock.jsx';
 
-export default function ProductInterface({ data, styles, styleChange }) {
-  console.log({ data, styles, styleChange });
-  const [id, setId] = useState(0);
+export default function ProductInterface({ data, styles, styleChange, id }) {
+
   return (
     <Main>
       <span>
@@ -16,14 +15,13 @@ export default function ProductInterface({ data, styles, styleChange }) {
       <Name>{data.name}</Name>
 
       <PriceBlock styles={styles} id={id} />
-
+      <p><strong>STYLE></strong>{styles[id].name}</p>
       <StyleGrid>
         {
         styles.map((style, i) => (
           <StyleThumbnail
             onClick={() => {
               styleChange(i);
-              setId(i);
             }}
             key={style.style_id}
             image={style.photos[0].thumbnail_url}

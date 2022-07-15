@@ -15,7 +15,7 @@ grid-template-columns:1.5fr 1fr;
 export default function ProductDetail() {
   const [productData, setProductData] = React.useState(null);
   const [styles, setStyles] = React.useState([]);
-  const [currentStyle, setCurrrentStyle] = React.useState(2);
+  const [currentStyle, setCurrrentStyle] = React.useState(0);
   const id = 37311;
   React.useEffect(() => {
     axiosGet(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${id}`)
@@ -37,7 +37,12 @@ export default function ProductDetail() {
         <>
           <Grid>
             <PhotoGallery images={styles[currentStyle]} />
-            <ProductInterface styleChange={handleStyleChange} data={productData} styles={styles} />
+            <ProductInterface
+              styleChange={handleStyleChange}
+              data={productData}
+              styles={styles}
+              id={currentStyle}
+            />
           </Grid>
 
           <Grid>
