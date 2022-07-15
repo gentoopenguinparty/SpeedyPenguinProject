@@ -11,7 +11,6 @@ export default function PhotoGallery({ images }) {
     if (e.target.id === 'current-image') {
       setImagePos(`${(e.nativeEvent.offsetX / e.target.clientWidth) * 100}% ${(e.nativeEvent.offsetY / e.target.clientHeight) * 100}%`);
     }
-
   };
   const handleFullScreen = (e) => {
     if (e.target.id === 'current-image') {
@@ -46,10 +45,10 @@ export default function PhotoGallery({ images }) {
                 onClick={() => setCurrentPicInd(i)}
                 key={i}
                 image={photo.thumbnail_url}
-                className={currentPicInd === i ? 'border-b-4 border-indigo-500' : ''}
+                boxShadow={currentPicInd === i ? '0px 3px 0px red' : ''}
               />
             )).slice(sideBarOffset, sideBarOffset + 7)}
-            {!(sideBarOffset + 7 === images.photos.length ) && images.photos.length >= 7
+            {!(sideBarOffset + 7 === images.photos.length) && images.photos.length >= 7
               ? (
                 <SideBarArrow
                   onClick={() => setSideBarOffset((prev) => prev + 1)}
@@ -72,7 +71,9 @@ export default function PhotoGallery({ images }) {
                 if (currentPicInd <= sideBarOffset) {
                   setSideBarOffset((prev) => prev - 1);
                 }
-                setZoomed(true);
+                if (isFullScreen || !zoomed) {
+                  setZoomed(true);
+                }
                 setCurrentPicInd((prev) => prev - 1);
               }}
               left="80px"
@@ -87,7 +88,9 @@ export default function PhotoGallery({ images }) {
                 if (currentPicInd >= sideBarOffset + 6) {
                   setSideBarOffset((prev) => prev + 1);
                 }
-                setZoomed(true);
+                if (isFullScreen) {
+                  setZoomed(true);
+                }
                 setCurrentPicInd((prev) => prev + 1);
               }}
               right="25px"
@@ -114,7 +117,7 @@ const CurrentImage = styled.div.attrs((props) => ({
   background-image: url(${(props) => props.image});
   background-color:grey;
   background-repeat: no-repeat;
-  background-size: ${(props) => (!props.zoomed ? 'cover' : '250%')} ;
+  background-size: ${(props) => (props.zoomed ? '250%' : 'cover')} ;
   transition: all 0.1s;
   width:100%;
   cursor: ${(props) => {
@@ -145,6 +148,7 @@ width: 50px;
 margin:5px;
 border: 0.2px solid rgba(0,0,0,0.5);
 cursor: pointer;
+box-shadow: ${(props) => props.boxShadow};
 `;
 const FullScreen = styled.div`
 width: 20px;
