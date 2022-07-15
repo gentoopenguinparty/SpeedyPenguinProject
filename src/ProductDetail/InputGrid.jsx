@@ -3,7 +3,19 @@ import styled from 'styled-components';
 
 export default function InputGrid(props) {
   return (
-    <Main>123</Main>
+    <Main>
+      <select>
+        <option>
+          Fruit
+        </option>
+        <option>
+          Fruit
+        </option>
+        <option>
+          Fruit
+        </option>
+      </select>
+    </Main>
   );
 }
 const Main = styled.div`

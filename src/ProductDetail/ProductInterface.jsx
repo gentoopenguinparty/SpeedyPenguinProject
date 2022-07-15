@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import InputGrid from './InputGrid.jsx';
+import PriceBlock from './PriceBlock.jsx';
 
 export default function ProductInterface({ data, styles, styleChange }) {
-  console.log(data);
+  console.log({ data, styles, styleChange });
   const [id, setId] = useState(0);
   return (
     <Main>
@@ -13,14 +14,17 @@ export default function ProductInterface({ data, styles, styleChange }) {
       </span>
       <Category>{data.category}</Category>
       <Name>{data.name}</Name>
-      <Price>$123</Price>
+
+      <PriceBlock styles={styles} id={id} />
+
       <StyleGrid>
         {
         styles.map((style, i) => (
           <StyleThumbnail
-            onClick={() =>{
-              styleChange(i)
-              setId(i)}}
+            onClick={() => {
+              styleChange(i);
+              setId(i);
+            }}
             key={style.style_id}
             image={style.photos[0].thumbnail_url}
           >
@@ -63,8 +67,10 @@ const Name = styled.h2`
 
 `;
 const Price = styled.p`
-
+color: ${(props) => props.color};
+text-decoration:${(props) => props.color === 'red' && 'line-through'};
 `;
+
 const StyleGrid = styled.div`
 width: 300px;
 height: auto;
