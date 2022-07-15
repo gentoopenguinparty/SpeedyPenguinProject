@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import InputGrid from './InputGrid.jsx';
 import PriceBlock from './PriceBlock.jsx';
+import Styles from './Styles.jsx'
 
 export default function ProductInterface({ data, styles, styleChange, id }) {
 
@@ -16,21 +17,7 @@ export default function ProductInterface({ data, styles, styleChange, id }) {
 
       <PriceBlock styles={styles} id={id} />
       <p><strong>STYLE></strong>{styles[id].name}</p>
-      <StyleGrid>
-        {
-        styles.map((style, i) => (
-          <StyleThumbnail
-            onClick={() => {
-              styleChange(i);
-            }}
-            key={style.style_id}
-            image={style.photos[0].thumbnail_url}
-          >
-            {id === i ? <StyleCheck /> : ''}
-          </StyleThumbnail>
-        ))
-          }
-      </StyleGrid>
+      <Styles styles={styles} id={id} styleChange={styleChange} />
       <InputGrid />
     </Main>
   );
