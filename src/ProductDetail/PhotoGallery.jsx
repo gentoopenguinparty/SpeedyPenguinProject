@@ -103,6 +103,7 @@ export default function PhotoGallery({ images }) {
   );
 }
 const Main = styled.div`
+height: 100%;
 width: ${(props) => props.size};
 color: white;
 position:relative;
@@ -113,6 +114,7 @@ const CurrentImage = styled.div.attrs((props) => ({
     backgroundPosition: props.zoomed ? props.pos : 'center',
   },
 }))`
+  height: 100%;
   min-height: 460px;
   background-image: url(${(props) => props.image});
   background-color:grey;

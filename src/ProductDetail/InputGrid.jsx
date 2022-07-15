@@ -13,7 +13,7 @@ export default function InputGrid({ style }) {
 
   const handleSizeChange = (e) => {
     setCurrentSku(e.target.value);
-    setCurrentQty(null);
+    setCurrentQty(1);
   };
   const handleQtyChange = (e) => {
     setCurrentQty(e.target.value);
@@ -32,17 +32,18 @@ export default function InputGrid({ style }) {
         <option value="default" disabled hidden>{sizeOptions.length ? 'SELECT SIZE' : 'Out of Stock'}</option>
         {sizeOptions}
       </Dropdown>
-      <Dropdown value={style.skus[currentSku] || 'default'} onChange={handleQtyChange}>
+      <Dropdown value={style.skus[currentSku] ? (currentQty) : 'default'} onChange={handleQtyChange}>
         <option value="default" disabled hidden>Select QTY</option>
         {q && q.map((x, i) => <option key={i}>{i + 1}</option>).slice(0, 15)}
       </Dropdown>
-      {(currentQty)
+      {(style.skus[currentSku])
         ? <Add onClick={addToCart}>ADD TO CART</Add>
         : <Add disabled>ADD TO CART</Add>}
     </Main>
   );
 }
 const Dropdown = styled.select`
+height: 40px;
 `;
 const Add = styled.button`
 grid-column: 1/3;
