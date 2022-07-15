@@ -8,7 +8,10 @@ export default function PhotoGallery({ images }) {
   const [imagePos, setImagePos] = useState('center');
   const [sideBarOffset, setSideBarOffset] = useState(0);
   const handleImageMove = (e) => {
-    setImagePos(`${(e.nativeEvent.offsetX / e.target.clientWidth) * 100}% ${(e.nativeEvent.offsetY / e.target.clientHeight) * 100}%`);
+    if (e.target.id === 'current-image') {
+      setImagePos(`${(e.nativeEvent.offsetX / e.target.clientWidth) * 100}% ${(e.nativeEvent.offsetY / e.target.clientHeight) * 100}%`);
+    }
+
   };
   const handleFullScreen = (e) => {
     if (e.target.id === 'current-image') {
