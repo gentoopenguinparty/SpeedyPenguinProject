@@ -39,14 +39,14 @@ export default function AddReview() {
 
   function handleSubmit(event) {
     let state = {
-      "product_id": 37316,
+      "product_id": 40000,
       "rating": ratingSR,
       "summary": wordsRS,
       "body": wordsRB,
       "recommend": reco,
       "name": wordsNick,
       "email": wordsEmail,
-      "photos": [""],
+      "photos": files,
       "characteristics": {}
     }
     console.log('state', state)
