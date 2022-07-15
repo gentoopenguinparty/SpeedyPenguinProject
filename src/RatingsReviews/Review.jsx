@@ -27,32 +27,37 @@ export default function Review({ countReviews, setDataLength, apiData }) {
     <div key='reviews'>
 
       <Grid color={'#FAEBD7'}>
+
         {apiData.slice(0, countReviews).map((review, index) => (
-          <div key={review.review_id} data-testid='testRender'>
-            <Row space={'space-between'} padding={10}>
-              <Col > <Rating rating={number(review.rating)}> </Rating> </Col>
-              <Col > {`${review.reviewer_name},`} &nbsp; {formatDate(review.date)} </Col>
-            </Row>
-            <Row space={'space-between'} padding={10}>
-              <Col> {review.summary} </Col>
-            </Row>
-            <Row padding={10}>
-              <Col> {review.body} </Col>
-            </Row>
-            <Row>
-              <Col>
-                {review.photos.length > 0 ?
-                  review.photos.map((photo, i) => {
-                    return (
-                      <img key={i} style={{ height: '100px', width: '100px' }}
-                        src={photo.url} />)
-                  }) : null}
-              </Col>
-            </Row>
-            <Row space={'space-between'} padding={10}>
-              <Col > {'recommended? ' + review.recommend.toString()} </Col>
-            </Row>
-          </div>
+          (review.noReview ?
+            <div>no review for this rating</div> :
+            <div key={review.review_id} >
+              <Row space={'space-between'} padding={10}>
+                <Col > <Rating rating={number(review.rating)}> </Rating> </Col>
+                <Col > {`${review.reviewer_name},`} &nbsp; {formatDate(review.date)} </Col>
+              </Row>
+              <Row space={'space-between'} padding={10}>
+                <Col> {review.summary} </Col>
+              </Row>
+              <Row padding={10}>
+                <Col> {review.body} </Col>
+              </Row>
+              <Row>
+                <Col>
+                  {console.log('photos', review.photos)}
+                  {review.photos.length > 0 ?
+                    review.photos.map((photo, i) => {
+                      return (
+                        <img key={i} style={{ height: '100px', width: '100px' }}
+                          src={photo.url} />)
+                    }) : null}
+                </Col>
+              </Row>
+              <Row space={'space-between'} padding={10}>
+                <Col > {'recommended? ' + review.recommend.toString()} </Col>
+              </Row>
+            </div>)
+
         ))}
       </Grid>
     </div>

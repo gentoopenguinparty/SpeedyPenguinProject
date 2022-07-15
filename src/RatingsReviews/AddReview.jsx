@@ -9,6 +9,7 @@ import Photo from './Photo.jsx'
 import Email from './Email.jsx'
 import NickName from './NickName.jsx'
 import { Button } from './styles/Button.styled.js'
+import { axiosPost } from '../../util';
 
 export default function AddReview() {
 
@@ -21,6 +22,40 @@ export default function AddReview() {
         modData(data.data);
       })
   }, [])
+
+  let testData = {
+    "product_id": 37316,
+    "rating": 1,
+    "summary": "I like",
+    "recommend": true,
+    "body": "gems are outrageous, TRULY TRULY TRULY outrageous",
+    'email': '',
+    "name": "Mom",
+    "photos": [''],
+    'characteristics': {}
+}
+
+// let testData2 = {
+//     "review_id": 1115596,
+//     "rating": 4,
+//     "summary": "Okay",
+//     "recommend": false,
+//     "response": null,
+//     "body": "Was good, not for me. Nice quality and everything but not my style.",
+//     "date": "2022-06-03T00:00:00.000Z",
+//     "reviewer_name": "Test",
+//     "helpfulness": 9,
+//     "photos": []
+// }
+
+
+
+  function handleSubmit(event, data) {
+    console.log('data', data)
+    axiosPost('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/', data)
+    .then(()=>{console.log('suc')})
+    .catch((err) => console.log('err', err))
+  }
 
   return (
     <div>
@@ -37,7 +72,7 @@ export default function AddReview() {
       <Photo/>
       <NickName/>
       <Email/>
-      <Button> submit! </Button>
+      <Button onClick={(e)=>{handleSubmit(e, testData);}}> submit! </Button>
     </div>
   );
 }

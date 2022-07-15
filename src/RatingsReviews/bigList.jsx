@@ -38,7 +38,7 @@ export default function BigList() {
   const [stateData, modData] = useState([{
     rating: 'filler', recommend: 'bool',
     date: 'filler', review_id: 'filler',
-    photos: []
+    photos: [1], noReview: false
   }]);
   //API cache
   const [cache, setCache] = useState([{

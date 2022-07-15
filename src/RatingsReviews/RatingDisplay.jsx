@@ -29,7 +29,8 @@ export default function RatingDisplay({ apiData, modData, cache, meta }) {
     if (filter.length === 0) {
       modData([{
         rating: '', recommend: '',
-        date: '', review_id: ''
+        date: '', review_id: '', photos: [],
+        noReview: true
       }])
 
     } else {

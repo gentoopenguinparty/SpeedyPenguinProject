@@ -9,9 +9,9 @@ export function axiosGet(url) {
   });
 }
 export function axiosPost(url, data) {
-  return axios.post(url, {
+  return axios.post(url, data, {
     headers: {
       Authorization: API_KEY,
-    },
-  }, data);
+    }
+  });
 }
