@@ -72,6 +72,7 @@ export default function PhotoGallery({ images }) {
                 if (currentPicInd <= sideBarOffset) {
                   setSideBarOffset((prev) => prev - 1);
                 }
+                setZoomed(true);
                 setCurrentPicInd((prev) => prev - 1);
               }}
               left="80px"
@@ -86,6 +87,7 @@ export default function PhotoGallery({ images }) {
                 if (currentPicInd >= sideBarOffset + 6) {
                   setSideBarOffset((prev) => prev + 1);
                 }
+                setZoomed(true);
                 setCurrentPicInd((prev) => prev + 1);
               }}
               right="25px"
