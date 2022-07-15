@@ -23,32 +23,18 @@ export default function AddReview() {
       })
   }, [])
 
-  let testData = {
+  let testData =
+  {
     "product_id": 37316,
     "rating": 1,
     "summary": "I like",
-    "recommend": true,
     "body": "gems are outrageous, TRULY TRULY TRULY outrageous",
-    'email': '',
+    "recommend": true,
     "name": "Mom",
-    "photos": [''],
-    'characteristics': {}
+    "email": "ad@email.com",
+    "photos": [""],
+    "characteristics": {}
 }
-
-// let testData2 = {
-//     "review_id": 1115596,
-//     "rating": 4,
-//     "summary": "Okay",
-//     "recommend": false,
-//     "response": null,
-//     "body": "Was good, not for me. Nice quality and everything but not my style.",
-//     "date": "2022-06-03T00:00:00.000Z",
-//     "reviewer_name": "Test",
-//     "helpfulness": 9,
-//     "photos": []
-// }
-
-
 
   function handleSubmit(event, data) {
     console.log('data', data)
@@ -57,21 +43,30 @@ export default function AddReview() {
     .catch((err) => console.log('err', err))
   }
 
+  const [ratingSR, setRatingSR] = useState(null);
+  const [ratingSize, setRatingSize] = useState(null);
+  const [ratingComfort, setRatingComfort] = useState(null);
+  const [wordsRS, setWordsRS] = React.useState('');
+  const [wordsRB, setWordsRB] = React.useState('');
+  const [files, setFile] = useState('');
+  const [wordsNick, setWordsNick] = React.useState('');
+  const [wordsEmail, setWordsEmail] = React.useState('');
+
   return (
     <div>
       <h3>ADD A NEW REVIEW</h3>
       <h5>Thank you for sharing details on {apiData.name}!</h5>
       <h5>How do you rate this product?*</h5>
-      <StarRating />
+      <StarRating rating={ratingSR} setRating={setRatingSR}/>
       <h5>How do you rate the sizing?*</h5>
-      <Size />
+      <Size rating={ratingSize} setRating={setRatingSize}/>
       <h5>How do you rate the comfort?*</h5>
-      <Comfort />
-      <ReviewSummary/>
-      <ReviewBody/>
-      <Photo/>
-      <NickName/>
-      <Email/>
+      <Comfort rating={ratingComfort} setRating={setRatingComfort}/>
+      <ReviewSummary words={wordsRS} setWords={setWordsRS}/>
+      <ReviewBody words={wordsRB} setWords={setWordsRB}/>
+      <Photo files={files} setFile={setFile}/>
+      <NickName words={wordsNick} setWords={setWordsNick}/>
+      <Email words={wordsEmail} setWords={setWordsEmail}/>
       <Button onClick={(e)=>{handleSubmit(e, testData);}}> submit! </Button>
     </div>
   );

@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react'
 
-export default function NickName() {
+export default function NickName({words, setWords}) {
   const [count, setCount] = React.useState(0);
-  const [words, setWords] = React.useState('');
 
   function handleChange() {
     setWords(event.target.value.slice(0,59));

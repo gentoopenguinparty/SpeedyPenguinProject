@@ -1,8 +1,6 @@
 import React, { useState } from 'react'
 
-export default function Photo() {
-
-  const [files, setFile] = useState('');
+export default function Photo({files, setFile}) {
 
   function handleFile(event) {
     console.log(event.target.files[0]);

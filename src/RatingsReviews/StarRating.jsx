@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { FaStar } from 'react-icons/fa'
-export default function StarRating(props) {
-  const [rating, setRating] = useState(null);
+export default function StarRating({rating, setRating}) {
+
 
   return (
     <div>

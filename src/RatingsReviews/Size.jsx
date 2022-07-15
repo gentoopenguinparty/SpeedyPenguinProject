@@ -1,8 +1,6 @@
 import React, {useState} from 'react'
 import { FaRegCircle } from 'react-icons/fa'
-export default function Size() {
-
-  const [rating, setRating] = useState(null);
+export default function Size({rating, setRating}) {
 
   return (
     <div>
