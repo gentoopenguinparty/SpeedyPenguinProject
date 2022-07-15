@@ -6,11 +6,18 @@ import { Grid } from './styles/Grid.styled.js'
 import { Row } from './styles/Row.styled.js'
 import { Col } from './styles/Col.styled.js'
 import { ThemeProvider } from 'styled-components'
+import Popup from './Popup.jsx'
 
 export default function Review({ countReviews, setDataLength, apiData }) {
 
   function number(rating) {
     return (Math.round(rating * 4) / 4).toFixed(2);
+  }
+
+  const [trigger, changeTrigger] = useState(false);
+
+  function handleClickAdd() {
+    changeTrigger(!trigger)
   }
 
   function formatDate(date) {
@@ -48,8 +55,13 @@ export default function Review({ countReviews, setDataLength, apiData }) {
                   {review.photos.length > 0 ?
                     review.photos.map((photo, i) => {
                       return (
-                        <img key={i} style={{ height: '100px', width: '100px' }}
-                          src={photo.url} />)
+                        <div>
+                          <img onClick={(event) => { handleClickAdd(); }} key={i} style={{ height: '100px', width: '100px' }}
+                            src={photo.url} />
+                          <Popup trigger={trigger} changeTrigger={changeTrigger}>
+                            <img style={{ height: '70%', width: '70%' }} src={photo.url} />
+                          </Popup>
+                        </div>)
                     }) : null}
                 </Col>
               </Row>
