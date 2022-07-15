@@ -57,7 +57,6 @@ export default function Review({ countReviews, setDataLength, apiData }) {
                 <Col > {'recommended? ' + review.recommend.toString()} </Col>
               </Row>
             </div>)
-
         ))}
       </Grid>
     </div>

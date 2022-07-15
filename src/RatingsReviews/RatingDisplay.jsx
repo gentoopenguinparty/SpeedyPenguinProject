@@ -18,6 +18,8 @@ export default function RatingDisplay({ apiData, modData, cache, meta }) {
     return (ratings[num] / count) * 100;
   }
 
+  const [tracker, setTracker] = useState(null);
+
   function filterApi(cache, ratingVal) {
     let filter = [];
     for (var i = 0; i < cache.length; i++) {
@@ -26,16 +28,22 @@ export default function RatingDisplay({ apiData, modData, cache, meta }) {
         filter.push(cache[i])
       }
     }
-    if (filter.length === 0) {
+    if(tracker === ratingVal) {
+      console.log('track!', tracker);
+      modData([...cache]);
+      setTracker(0);
+    }
+    if (tracker !== ratingVal && filter.length === 0 ) {
       modData([{
-        rating: '', recommend: '',
-        date: '', review_id: '', photos: [],
         noReview: true
       }])
-
-    } else {
-      modData(filter);
+      setTracker(ratingVal);
     }
+    if (tracker !== ratingVal && filter.length !== 0){
+      modData(filter);
+      setTracker(ratingVal);
+    }
+
     console.log('cache', cache);
   }
 
