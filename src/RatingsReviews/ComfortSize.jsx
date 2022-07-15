@@ -8,8 +8,8 @@ import { Triangle } from './styles/Triangle.styled.js'
 import { TriangleContainer } from './styles/TriangleContainer.styled.js'
 
 export default function ComfortSize({ meta }) {
-
-  let size = meta.characteristics.Size.value;
+  // console.log('META', meta.characteristics.Size.value);
+  let size =  meta.characteristics.Quality.value;
   let comfort = meta.characteristics.Comfort.value;
   function calcPercent(value) {
     console.log('metaBro', value)

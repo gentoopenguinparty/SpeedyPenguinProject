@@ -8,21 +8,45 @@ import SortBy from './SortBy.jsx'
 import { Grid } from './styles/Grid.styled.js'
 import { Row } from './styles/Row.styled.js'
 import { Col } from './styles/Col.styled.js'
+import { useSearchParams } from "react-router-dom";
 let axios = require('axios');
 
 // This component is made up of the biglist of reviews and buttons that change the render properties of the biglist
 
 export default function BigList() {
   useEffect(() => {
-    axiosGet('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/meta/?product_id=37316')
+    let id = window.location.href.slice(22,27) || 38000;
+    console.log('ID', id)
+    console.log('searchParams', window.location.href.slice(22,27));
+    axiosGet('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/meta/?product_id=' + id)
       .then((data) => {
         console.log('metaData', data.data);
+        if (data.data.Quality === undefined) {
+          data.data['Quality'] = 0;
+        }
+        if (data.data.characteristics.Size === undefined) {
+          data.data.characteristics['Size'] = {value: 0};
+        }
+        if (data.data.characteristics.Comfort === undefined) {
+          data.data.characteristics['Comfort'] = {value: 0};
+        }
+        if (data.data.characteristics.Width === undefined) {
+          data.data.characteristics['Width'] = {value: 0};
+        }
+        if (data.data.characteristics.Length === undefined) {
+          data.data.characteristics['Length'] = {value: 0};
+        }
+        if (data.data.characteristics.Fit === undefined) {
+          data.data.characteristics['Fit'] = {value: 0};
+        }
+        console.log('postmetaData', data.data);
         setMeta(data.data);
       })
   }, [])
 
   useEffect(() => {
-    axiosGet('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/?product_id=37316')
+    let id = window.location.href.slice(22,27) || 38000;
+    axiosGet('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/?product_id=' + id)
       .then((data) => {
         setCache(data.data.results);
         modData(data.data.results);
@@ -50,7 +74,8 @@ export default function BigList() {
       ratings: { 1: [1], 2: [1], 3: [1], 4: [1], 5: [1] },
       characteristics: {
         Comfort: { value: 1 },
-        Size: { value: 1 }
+        Size: { value: 1 },
+        Quality: { value: 1 }
       }
     }
   )
