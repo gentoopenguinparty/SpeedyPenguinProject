@@ -10,6 +10,7 @@ import Email from './Email.jsx'
 import NickName from './NickName.jsx'
 import { Button } from './styles/Button.styled.js'
 import { axiosPost } from '../../util';
+import Recommend from './Recommend.jsx'
 
 export default function AddReview() {
 
@@ -36,12 +37,24 @@ export default function AddReview() {
     "characteristics": {}
 }
 
-  function handleSubmit(event, data) {
-    console.log('data', data)
-    axiosPost('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/', data)
+  function handleSubmit(event) {
+    let state = {
+      "product_id": 37316,
+      "rating": ratingSR,
+      "summary": wordsRS,
+      "body": wordsRB,
+      "recommend": reco,
+      "name": wordsNick,
+      "email": wordsEmail,
+      "photos": [""],
+      "characteristics": {}
+    }
+    console.log('state', state)
+    axiosPost('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/', state)
     .then(()=>{console.log('suc')})
     .catch((err) => console.log('err', err))
   }
+
 
   const [ratingSR, setRatingSR] = useState(null);
   const [ratingSize, setRatingSize] = useState(null);
@@ -51,6 +64,7 @@ export default function AddReview() {
   const [files, setFile] = useState('');
   const [wordsNick, setWordsNick] = React.useState('');
   const [wordsEmail, setWordsEmail] = React.useState('');
+  const [reco, setReco] = React.useState('');
 
   return (
     <div>
@@ -58,6 +72,7 @@ export default function AddReview() {
       <h5>Thank you for sharing details on {apiData.name}!</h5>
       <h5>How do you rate this product?*</h5>
       <StarRating rating={ratingSR} setRating={setRatingSR}/>
+      <Recommend reco={reco} setReco={setReco}/>
       <h5>How do you rate the sizing?*</h5>
       <Size rating={ratingSize} setRating={setRatingSize}/>
       <h5>How do you rate the comfort?*</h5>
@@ -67,7 +82,7 @@ export default function AddReview() {
       <Photo files={files} setFile={setFile}/>
       <NickName words={wordsNick} setWords={setWordsNick}/>
       <Email words={wordsEmail} setWords={setWordsEmail}/>
-      <Button onClick={(e)=>{handleSubmit(e, testData);}}> submit! </Button>
+      <Button onClick={(e)=>{handleSubmit(e);}}> submit! </Button>
     </div>
   );
 }
