@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-
-
+import InputGrid from './InputGrid.jsx';
 
 export default function ProductInterface({ data, styles, styleChange }) {
   console.log(data);
@@ -30,9 +29,7 @@ export default function ProductInterface({ data, styles, styleChange }) {
         ))
           }
       </StyleGrid>
-      <InputGrid>
-        dwf
-      </InputGrid>
+      <InputGrid />
     </Main>
   );
 }
@@ -70,11 +67,12 @@ const Price = styled.p`
 `;
 const StyleGrid = styled.div`
 width: 300px;
-height: 50%;
+height: auto;
 display: grid;
 grid-template-columns: 1fr 1fr 1fr 1fr;
+grid-auto-rows: 70px;
 justify-items: center;
-align-items: center;
+align-items: top;
 `;
 
 const StyleThumbnail = styled.div`
@@ -103,9 +101,3 @@ background-color: white;
 background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjj2DOSD1yUrkY0TbTbWhy0okIcvxHGhfP2bxtbDhkNQ4r1NLLGbKGzgLmIeqcM3arMHM&usqp=CAU);
 background-size:contain;
 `;
-const InputGrid = styled.div`
-height: auto;
-width: 100%;
-background-color:red;
-`;
-const Dropdown = styled.input``;
