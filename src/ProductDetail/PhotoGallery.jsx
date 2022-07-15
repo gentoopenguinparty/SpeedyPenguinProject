@@ -29,9 +29,9 @@ export default function PhotoGallery({ images }) {
         onClick={isFullScreen ? () => setZoomed((prev) => !prev) : handleFullScreen}
         fullScreen={isFullScreen}
         zoomed={zoomed}
-        onMouseMove={zoomed ? handleImageMove : () => ''}
+        onMouseMove={zoomed ? handleImageMove : undefined}
       >
-        { !isFullScreen ? (
+        { !isFullScreen && (
           <Side>
             {(sideBarOffset !== 0 && images.photos.length >= 7)
               ? (
@@ -49,14 +49,14 @@ export default function PhotoGallery({ images }) {
               />
             )).slice(sideBarOffset, sideBarOffset + 7)}
             {!(sideBarOffset + 7 === images.photos.length) && images.photos.length >= 7
-              ? (
+              && (
                 <SideBarArrow
                   onClick={() => setSideBarOffset((prev) => prev + 1)}
                   direction={90}
                 />
-              ) : ''}
+              )}
           </Side>
-        ) : ''}
+        )}
         {isFullScreen ? (
           <FullScreen onClick={() => {
             setZoomed(true);

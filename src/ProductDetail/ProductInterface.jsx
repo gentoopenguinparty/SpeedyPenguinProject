@@ -2,10 +2,9 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import InputGrid from './InputGrid.jsx';
 import PriceBlock from './PriceBlock.jsx';
-import Styles from './Styles.jsx'
+import Styles from './Styles.jsx';
 
-export default function ProductInterface({ data, styles, styleChange, id }) {
-
+export default function ProductInterface({data, styles, styleChange, id}) {
   return (
     <Main>
       <span>
@@ -16,9 +15,15 @@ export default function ProductInterface({ data, styles, styleChange, id }) {
       <Name>{data.name}</Name>
 
       <PriceBlock styles={styles} id={id} />
-      <p><strong>STYLE></strong>{styles[id].name}</p>
+      <p>
+        <strong>
+          STYLE
+          {'>'}
+        </strong>
+        {styles[id].name}
+      </p>
       <Styles styles={styles} id={id} styleChange={styleChange} />
-      <InputGrid />
+      <InputGrid style={styles[id]} />
     </Main>
   );
 }
