@@ -84,6 +84,10 @@ export default function BigList() {
                 countReviews={countReviews}
                 setCountReviews={setCountReviews}
                 dataLength={dataLength}
+                setCache={setCache}
+                modData={modData}
+                setDataLength={setDataLength}
+                setMeta={setMeta}
               />
             }} />
           </Col>

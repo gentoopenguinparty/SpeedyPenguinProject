@@ -12,16 +12,17 @@ import { Button } from './styles/Button.styled.js'
 import { axiosPost } from '../../util';
 import Recommend from './Recommend.jsx'
 
-export default function AddReview({ changeTrigger }) {
+export default function AddReview({ changeTrigger, setCache,
+  setMeta, setDataLength, modData }) {
 
-  const [apiData, modData] = useState({ name: 'filler' });
+  const [product, setProduct] = useState({ name: 'filler' });
 
   useEffect(() => {
     let id = window.location.href.slice(22, 27) || 38000;
     axiosGet('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/' + id)
       .then((data) => {
         console.log('apiInfo', data.data);
-        modData(data.data);
+        setProduct(data.data);
       })
   }, [])
   // email and nickname
@@ -105,8 +106,10 @@ export default function AddReview({ changeTrigger }) {
   }
 
   function handleRefresh() {
+    let id = window.location.href.slice(22, 27) || 38000;
     axiosGet('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/?product_id=' + id)
       .then((data) => {
+        console.log(data.data.results);
         setCache(data.data.results);
         modData(data.data.results);
         setDataLength(data.data.results.length);
@@ -127,7 +130,7 @@ export default function AddReview({ changeTrigger }) {
   return (
     <div>
       <h3>ADD A NEW REVIEW</h3>
-      <h5>Thank you for sharing details on {apiData.name}!</h5>
+      <h5>Thank you for sharing details on {product.name}!</h5>
       <h5>How do you rate this product?*</h5>
       <StarRating rating={ratingSR} setRating={setRatingSR} />
       <Recommend reco={reco} setReco={setReco} />

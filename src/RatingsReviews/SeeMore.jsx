@@ -7,7 +7,8 @@ import Popup from './Popup.jsx'
 import AddReview from './AddReview.jsx'
 import Tracker from './Tracker.jsx'
 
-export default function SeeMore({ countReviews, setCountReviews, dataLength, count, incCount }) {
+export default function SeeMore({ countReviews, setCountReviews, dataLength, count, incCount, setCache,
+  setMeta, setDataLength, modData }) {
 
   function handleClick(event) {
     setCountReviews(countReviews + 2);
@@ -33,7 +34,8 @@ export default function SeeMore({ countReviews, setCountReviews, dataLength, cou
       <Tracker render={(count, incCount) => {
         return (
           <Popup trigger={trigger} changeTrigger={changeTrigger} count={count} incCount={incCount}>
-            <AddReview changeTrigger={changeTrigger}/>
+            <AddReview changeTrigger={changeTrigger} setCache={setCache} modData={modData}
+              setDataLength={setDataLength} setMeta={setMeta} />
           </Popup>
         )
       }} />
