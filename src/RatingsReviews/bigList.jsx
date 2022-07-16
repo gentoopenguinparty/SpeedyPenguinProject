@@ -20,26 +20,6 @@ export default function BigList() {
     console.log('searchParams', window.location.href.slice(22,27));
     axiosGet('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/meta/?product_id=' + id)
       .then((data) => {
-        console.log('metaData', data.data);
-        if (data.data.Quality === undefined) {
-          data.data['Quality'] = 0;
-        }
-        if (data.data.characteristics.Size === undefined) {
-          data.data.characteristics['Size'] = {value: 0};
-        }
-        if (data.data.characteristics.Comfort === undefined) {
-          data.data.characteristics['Comfort'] = {value: 0};
-        }
-        if (data.data.characteristics.Width === undefined) {
-          data.data.characteristics['Width'] = {value: 0};
-        }
-        if (data.data.characteristics.Length === undefined) {
-          data.data.characteristics['Length'] = {value: 0};
-        }
-        if (data.data.characteristics.Fit === undefined) {
-          data.data.characteristics['Fit'] = {value: 0};
-        }
-        console.log('postmetaData', data.data);
         setMeta(data.data);
       })
   }, [])
@@ -88,7 +68,7 @@ export default function BigList() {
           <Col>
             <Graphical apiData={stateData} modData={modData} cache={cache} meta={meta} />
           </Col>
-          <Col>
+          <Col width={'800'}>
           <SortBy cache={cache} modData={modData} apiData={stateData}/>
             <Review
               apiData={stateData}

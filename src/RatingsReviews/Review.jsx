@@ -46,7 +46,7 @@ export default function Review({ countReviews, setDataLength, apiData }) {
                 <Col >
                   <StarRatings rating={number(review.rating)} starDimension="15px"
                     starSpacing="3px" starRatedColor="black"
-                    style={{'border-styles': 'solid'}}/>
+                    style={{WebkitTextStroke: '1px black'}}/>
                 </Col>
                 <Col > {`✅ ${review.reviewer_name},`} &nbsp; {formatDate(review.date)} </Col>
               </Row>

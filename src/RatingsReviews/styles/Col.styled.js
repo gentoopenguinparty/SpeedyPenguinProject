@@ -7,4 +7,5 @@ flex-direction: ${(props) => props.direction};
 justify-content: ${props => props.space};
 font-weight: ${props => props.weight};
 background-color: ${props => props.color};
+min-width: ${props => props.width}px;
 `;
