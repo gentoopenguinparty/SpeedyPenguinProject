@@ -12,12 +12,12 @@ import { Button } from './styles/Button.styled.js'
 import { axiosPost } from '../../util';
 import Recommend from './Recommend.jsx'
 
-export default function AddReview() {
+export default function AddReview({ changeTrigger }) {
 
   const [apiData, modData] = useState({ name: 'filler' });
 
   useEffect(() => {
-    let id = window.location.href.slice(22,27) || 38000;
+    let id = window.location.href.slice(22, 27) || 38000;
     axiosGet('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/' + id)
       .then((data) => {
         console.log('apiInfo', data.data);
@@ -25,29 +25,40 @@ export default function AddReview() {
       })
   }, [])
 
+  const [starWarn, setStarWarn] = useState(false);
+
   function handleSubmit(event) {
-    let id = window.location.href.slice(22,27) || 38000;
-    let state = {
-      "product_id": id,
-      "rating": ratingSR,
-      "summary": wordsRS,
-      "body": wordsRB,
-      "recommend": reco,
-      "name": wordsNick,
-      "email": wordsEmail,
-      "photos": files || [''],
-      "characteristics": {}
+    let err = false;
+    console.log('ratingSR', ratingSR);
+    if (ratingSR === 0) {
+      setStarWarn(!starWarn);
+      err = true;
     }
-    console.log('state', state)
-    axiosPost('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/', state)
-    .then(()=>{console.log('suc')})
-    .catch((err) => console.log('err', err))
+    if (!err) {
+      let id = window.location.href.slice(22, 27) || 38000;
+      let state = {
+        "product_id": id,
+        "rating": ratingSR,
+        "summary": wordsRS,
+        "body": wordsRB,
+        "recommend": reco,
+        "name": wordsNick,
+        "email": wordsEmail,
+        "photos": files || [''],
+        "characteristics": {}
+      }
+      console.log('state', state)
+      axiosPost('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/', state)
+        .then(() => { console.log('suc') })
+        .then(() => { changeTrigger(false) })
+        .catch((err) => console.log('err', err))
+    }
   }
 
 
-  const [ratingSR, setRatingSR] = useState(null);
-  const [ratingSize, setRatingSize] = useState(null);
-  const [ratingComfort, setRatingComfort] = useState(null);
+  const [ratingSR, setRatingSR] = useState(0);
+  const [ratingSize, setRatingSize] = useState(0);
+  const [ratingComfort, setRatingComfort] = useState(0);
   const [wordsRS, setWordsRS] = React.useState('');
   const [wordsRB, setWordsRB] = React.useState('');
   const [files, setFile] = useState('');
@@ -60,18 +71,22 @@ export default function AddReview() {
       <h3>ADD A NEW REVIEW</h3>
       <h5>Thank you for sharing details on {apiData.name}!</h5>
       <h5>How do you rate this product?*</h5>
-      <StarRating rating={ratingSR} setRating={setRatingSR}/>
-      <Recommend reco={reco} setReco={setReco}/>
+      <StarRating rating={ratingSR} setRating={setRatingSR} />
+      <Recommend reco={reco} setReco={setReco} />
       <h5>How do you rate the sizing?*</h5>
-      <Size rating={ratingSize} setRating={setRatingSize}/>
+      <Size rating={ratingSize} setRating={setRatingSize} />
       <h5>How do you rate the comfort?*</h5>
-      <Comfort rating={ratingComfort} setRating={setRatingComfort}/>
-      <ReviewSummary words={wordsRS} setWords={setWordsRS}/>
-      <ReviewBody words={wordsRB} setWords={setWordsRB}/>
-      <Photo files={files} setFile={setFile}/>
-      <NickName words={wordsNick} setWords={setWordsNick}/>
-      <Email words={wordsEmail} setWords={setWordsEmail}/>
-      <Button onClick={(e)=>{handleSubmit(e);}}> submit! </Button>
+      <Comfort rating={ratingComfort} setRating={setRatingComfort} />
+      <ReviewSummary words={wordsRS} setWords={setWordsRS} />
+      <ReviewBody words={wordsRB} setWords={setWordsRB} />
+      <Photo files={files} setFile={setFile} />
+      <NickName words={wordsNick} setWords={setWordsNick} />
+      <Email words={wordsEmail} setWords={setWordsEmail} />
+      <Button onClick={(e) => { handleSubmit(e); }}> submit! </Button>
+      {starWarn ?
+        <div>
+          <div>error: product has to have a star rating</div>
+        </div> : null}
     </div>
   );
 }

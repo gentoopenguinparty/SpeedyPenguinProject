@@ -33,7 +33,7 @@ export default function SeeMore({ countReviews, setCountReviews, dataLength, cou
       <Tracker render={(count, incCount) => {
         return (
           <Popup trigger={trigger} changeTrigger={changeTrigger} count={count} incCount={incCount}>
-            <AddReview />
+            <AddReview changeTrigger={changeTrigger}/>
           </Popup>
         )
       }} />
