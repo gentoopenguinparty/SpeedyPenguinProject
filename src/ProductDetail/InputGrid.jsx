@@ -28,22 +28,28 @@ export default function InputGrid({ style }) {
   return (
     <Main>
 
-      <Dropdown onChange={handleSizeChange} value={style.skus[currentSku] || 'default'}>
+      <Dropdown onChange={handleSizeChange} defaultValue={style.skus[currentSku] || 'default'}>
         <option value="default" disabled hidden>{sizeOptions.length ? 'SELECT SIZE' : 'Out of Stock'}</option>
         {sizeOptions}
       </Dropdown>
+
       <Dropdown value={style.skus[currentSku] ? (currentQty) : 'default'} onChange={handleQtyChange}>
         <option value="default" disabled hidden>Select QTY</option>
         {q && q.map((x, i) => <option key={i}>{i + 1}</option>).slice(0, 15)}
       </Dropdown>
+
       {(style.skus[currentSku])
-        ? <Add onClick={addToCart}>ADD TO CART</Add>
+        ? <Add act onClick={addToCart}>ADD TO CART</Add>
         : <Add disabled>ADD TO CART</Add>}
+
     </Main>
   );
 }
 const Dropdown = styled.select`
 height: 40px;
+`;
+const Option = styled.select`
+background-color:white;
 `;
 const Add = styled.button`
 grid-column: 1/3;
@@ -52,11 +58,14 @@ border: 1px solid black;
 height: 40px;
 font-size:16px;
 font-weigth: bold;
+&:hover{
+  transform:${(prop)=> prop.act && 'scale(1.02)'};
+}
 `;
 const Main = styled.div`
 height: auto;
 width: 100%;
 display: grid;
 grid-template-columns: 3fr 1fr;
-grid-gap: 3px;
+grid-gap: 8px;
 `;
