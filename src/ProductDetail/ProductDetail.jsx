@@ -16,7 +16,7 @@ export default function ProductDetail() {
   const [productData, setProductData] = React.useState(null);
   const [styles, setStyles] = React.useState([]);
   const [currentStyle, setCurrrentStyle] = React.useState(0);
-  const id = 37311;
+  const id = 37315;
   React.useEffect(() => {
     axiosGet(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${id}`)
       .then((data) => {
@@ -46,7 +46,11 @@ export default function ProductDetail() {
           </Grid>
 
           <Grid>
-            <ProductDescription />
+            <ProductDescription
+              styleChange={handleStyleChange}
+              data={productData}
+              styles={styles}
+            />
             <ProductCheckmarks />
           </Grid>
         </>

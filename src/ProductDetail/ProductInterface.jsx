@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import InputGrid from './InputGrid.jsx';
 import PriceBlock from './PriceBlock.jsx';
 import Styles from './Styles.jsx';
+import ShareRow from './ShareRow.jsx';
 
 export default function ProductInterface({data, styles, styleChange, id}) {
   return (
@@ -13,7 +14,7 @@ export default function ProductInterface({data, styles, styleChange, id}) {
       </span>
       <Category>{data.category}</Category>
       <Name>{data.name}</Name>
-
+      <ShareRow />
       <PriceBlock styles={styles} id={id} />
       <p>
         <strong>
