@@ -17,36 +17,25 @@ export default function AddReview() {
   const [apiData, modData] = useState({ name: 'filler' });
 
   useEffect(() => {
-    axiosGet('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/37316')
+    let id = window.location.href.slice(22,27) || 38000;
+    axiosGet('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/' + id)
       .then((data) => {
         console.log('apiInfo', data.data);
         modData(data.data);
       })
   }, [])
 
-  let testData =
-  {
-    "product_id": 37316,
-    "rating": 1,
-    "summary": "I like",
-    "body": "gems are outrageous, TRULY TRULY TRULY outrageous",
-    "recommend": true,
-    "name": "Mom",
-    "email": "ad@email.com",
-    "photos": [""],
-    "characteristics": {}
-}
-
   function handleSubmit(event) {
+    let id = window.location.href.slice(22,27) || 38000;
     let state = {
-      "product_id": 40000,
+      "product_id": id,
       "rating": ratingSR,
       "summary": wordsRS,
       "body": wordsRB,
       "recommend": reco,
       "name": wordsNick,
       "email": wordsEmail,
-      "photos": files,
+      "photos": files || [''],
       "characteristics": {}
     }
     console.log('state', state)

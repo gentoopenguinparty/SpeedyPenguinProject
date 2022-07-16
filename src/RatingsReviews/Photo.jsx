@@ -3,9 +3,9 @@ import React, { useState } from 'react'
 export default function Photo({files, setFile}) {
 
   function handleFile(event) {
-    console.log(event.target.files[0]);
-    let concatFile = [...files, event.target.files[0]];
+    let concatFile = [...files, URL.createObjectURL(event.target.files[0])];
     setFile(concatFile);
+    console.log('file', files);
   }
 
   return (
@@ -13,7 +13,7 @@ export default function Photo({files, setFile}) {
       <input type='file' onChange={handleFile} />
       {files.length !== 0 ? (files.map((file) => {
         return (
-          <img width='100' height='100' src={URL.createObjectURL(file)} />
+          <img width='100' height='100' src={file} />
         )
       })) : null}
     </div>
