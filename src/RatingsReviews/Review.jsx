@@ -15,8 +15,11 @@ export default function Review({ countReviews, setDataLength, apiData }) {
   }
 
   const [trigger, changeTrigger] = useState(false);
+  const [url, setUrl] = useState('');
 
-  function handleClickAdd() {
+  function handleClickAdd(event) {
+    console.log('photosadad', event.target.src)
+    setUrl(event.target.src)
     changeTrigger(!trigger)
   }
 
@@ -49,21 +52,19 @@ export default function Review({ countReviews, setDataLength, apiData }) {
               <Row padding={10}>
                 <Col> {review.body} </Col>
               </Row>
-              <Row>
-                <Col>
-                  {console.log('photos', review.photos)}
-                  {review.photos.length > 0 ?
-                    review.photos.map((photo, i) => {
-                      return (
-                        <div>
-                          <img onClick={(event) => { handleClickAdd(); }} key={i} style={{ height: '100px', width: '100px' }}
+              <Row space={'flex-start'}>
+                {console.log('photos', review.photos)}
+                {review.photos.length > 0 ?
+                  review.photos.map((photo, i) => {
+                    return (
+                      <Col >
+                        <div style={{margin: '0 0 0 10px'}}>
+                          <img onClick={(event) => { handleClickAdd(event); }} key={i} style={{ height: '100px', width: '100px' }}
                             src={photo.url} />
-                          <Popup trigger={trigger} changeTrigger={changeTrigger}>
-                            <img style={{ height: '70%', width: '70%' }} src={photo.url} />
-                          </Popup>
-                        </div>)
-                    }) : null}
-                </Col>
+                        </div>
+                      </Col>
+                    )
+                  }) : null}
               </Row>
               <Row space={'space-between'} padding={10}>
                 <Col > {'recommended? ' + review.recommend.toString()} </Col>
@@ -71,6 +72,9 @@ export default function Review({ countReviews, setDataLength, apiData }) {
             </div>)
         ))}
       </Grid>
+      <Popup trigger={trigger} changeTrigger={changeTrigger} url={url}>
+        <img style={{ height: '70%', width: '70%' }} src={url} />
+      </Popup>
     </div>
   );
 }
