@@ -11,7 +11,7 @@ export default function ReviewBody({words, setWords}) {
     <div>
       <h4>Please give a brief review of the product, 50 characters min:</h4>
       <form>
-        <input value={words}type='text' placeholder='Best Product Ever!' size='80' style={{height: '50px'}} onChange={event => {setCount(event.target.value.length); handleChange();}}/>
+        <input value={words}type='text' placeholder='Why did you like the or not?' size='80' style={{height: '50px'}} onChange={event => {setCount(event.target.value.length); handleChange();}}/>
       </form>
       <p>min required char left: {Math.abs(count-50)}</p>
     </div>

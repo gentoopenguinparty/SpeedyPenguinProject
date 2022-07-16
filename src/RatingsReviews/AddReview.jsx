@@ -24,17 +24,63 @@ export default function AddReview({ changeTrigger }) {
         modData(data.data);
       })
   }, [])
-
+  // email and nickname
   const [starWarn, setStarWarn] = useState(false);
+  const [recoWarn, setRecoWarn] = useState(false);
+  const [sizeWarn, setSizeWarn] = useState(false);
+  const [comfortWarn, setComfortWarn] = useState(false);
+  const [bodyWarn, setBodyWarn] = useState(false);
+  const [nickWarn, setNickWarn] = useState(false);
+  const [emailWarn, setEmailWarn] = useState(false);
 
   function handleSubmit(event) {
     let err = false;
     console.log('ratingSR', ratingSR);
     if (ratingSR === 0) {
-      setStarWarn(!starWarn);
+      setStarWarn(true);
       err = true;
+    } else {
+      setStarWarn(false);
+    }
+    if (reco === '') {
+      setRecoWarn(true)
+      err = true;
+    } else {
+      setRecoWarn(false);
+    }
+    if (ratingSize === 0) {
+      setSizeWarn(true)
+      err = true;
+    } else {
+      setSizeWarn(false)
+    }
+    if (ratingComfort === 0) {
+      setComfortWarn(true)
+      err = true;
+    } else {
+      setComfortWarn(false)
+    }
+    if (wordsRB < 50) {
+      setBodyWarn(true)
+      err = true;
+    } else {
+      setBodyWarn(false);
+    }
+    if (wordsNick === '') {
+      setNickWarn(true);
+      err = true;
+    } else {
+      setNickWarn(false);
+    }
+    if (wordsEmail.indexOf('@') === -1 || wordsEmail.indexOf('.com') === -1) {
+      console.log('emai', wordsEmail)
+      setEmailWarn(true);
+      err = true;
+    } else {
+      setEmailWarn(false);
     }
     if (!err) {
+
       let id = window.location.href.slice(22, 27) || 38000;
       let state = {
         "product_id": id,
@@ -83,10 +129,20 @@ export default function AddReview({ changeTrigger }) {
       <NickName words={wordsNick} setWords={setWordsNick} />
       <Email words={wordsEmail} setWords={setWordsEmail} />
       <Button onClick={(e) => { handleSubmit(e); }}> submit! </Button>
-      {starWarn ?
-        <div>
-          <div>error: product has to have a star rating</div>
-        </div> : null}
+      {starWarn ? <div style={{ color: 'red', fontSize: '13px' }}>
+        error: review has to have a star rating</div> : null}
+      {recoWarn ? <div style={{ color: 'red', fontSize: '13px' }}>
+        error: review has to have a 'would you recommend' field complete</div> : null}
+      {sizeWarn ? <div style={{ color: 'red', fontSize: '13px' }}>
+        error: review has to have a size characteristic</div> : null}
+      {comfortWarn ? <div style={{ color: 'red', fontSize: '13px' }}>
+        error: review has to have a 'comfort' characteristic</div> : null}
+      {bodyWarn ? <div style={{ color: 'red', fontSize: '13px' }}>
+        error: review body does not meet length requirement</div> : null}
+      {nickWarn ? <div style={{ color: 'red', fontSize: '13px' }}>
+        error: nickname has not met set requirements</div> : null}
+      {emailWarn ? <div style={{ color: 'red', fontSize: '13px' }}>
+        error: email must be in proper format</div> : null}
     </div>
   );
 }
