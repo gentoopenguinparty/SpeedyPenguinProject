@@ -7,11 +7,6 @@ import ProductDescription from './ProductDescription.jsx';
 import ProductInterface from './ProductInterface.jsx';
 import ProductCheckmarks from './ProductCheckmarks.jsx';
 
-const Grid = styled.div`
-display:grid;
-grid-template: 2fr 1fr / 1.5fr 1fr;
-`;
-
 export default function ProductDetail() {
   const [productData, setProductData] = React.useState(null);
   const [styles, setStyles] = React.useState([]);
@@ -28,21 +23,38 @@ export default function ProductDetail() {
       .catch((err) => console.log(err));
   }, []);
 
+  const handleStyleChange = (newStyleInd) => {
+    setCurrrentStyle(newStyleInd);
+  };
   return (
     <div>
       {!styles.length ? <div>Loading</div> : (
         <>
           <Grid>
             <PhotoGallery images={styles[currentStyle]} />
-            <ProductInterface data={productData} styles={styles} />
+            <ProductInterface
+              styleChange={handleStyleChange}
+              data={productData}
+              styles={styles}
+              id={currentStyle}
+            />
           </Grid>
 
-          <Grid>
-            <ProductDescription />
-            <ProductCheckmarks />
+          <Grid margin={10}>
+            <ProductDescription
+              styleChange={handleStyleChange}
+              data={productData}
+              styles={styles}
+            />
+            <ProductCheckmarks features={productData.features} />
           </Grid>
         </>
       )}
     </div>
   );
 }
+const Grid = styled.div`
+display:grid;
+grid-template-columns:1.5fr 1fr;
+background-color: #ebebeb;
+`;
