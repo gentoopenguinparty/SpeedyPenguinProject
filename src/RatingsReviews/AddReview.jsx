@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import StarRating from './StarRating.jsx'
 import Size from './Size.jsx'
+import Fit from './Fit.jsx'
 import Comfort from './Comfort.jsx'
+import Quality from './Quality.jsx'
+import Length from './Length.jsx'
+import Width from './Width.jsx'
 import ReviewSummary from './ReviewSummary.jsx'
 import ReviewBody from './ReviewBody.jsx'
 import { axiosGet } from '../../util.js'
@@ -49,18 +53,18 @@ export default function AddReview({ changeTrigger, setCache,
     } else {
       setRecoWarn(false);
     }
-    if (ratingSize === 0) {
-      setSizeWarn(true)
-      err = true;
-    } else {
-      setSizeWarn(false)
-    }
-    if (ratingComfort === 0) {
-      setComfortWarn(true)
-      err = true;
-    } else {
-      setComfortWarn(false)
-    }
+    // if (ratingSize === 0) {
+    //   setSizeWarn(true)
+    //   err = true;
+    // } else {
+    //   setSizeWarn(false)
+    // }
+    // if (ratingComfort === 0) {
+    //   setComfortWarn(true)
+    //   err = true;
+    // } else {
+    //   setComfortWarn(false)
+    // }
     console.log('words', wordsRB)
     if (wordsRB.length < 50) {
       console.log('words', wordsRB)
@@ -120,6 +124,12 @@ export default function AddReview({ changeTrigger, setCache,
   const [ratingSR, setRatingSR] = useState(0);
   const [ratingSize, setRatingSize] = useState(0);
   const [ratingComfort, setRatingComfort] = useState(0);
+  const [ratingFit, setRatingFit] = useState(0);
+  const [ratingQuality, setRatingQuality] = useState(0);
+  const [ratingLength, setRatingLength] = useState(0);
+  const [ratingWidth, setRatingWidth] = useState(0);
+
+
   const [wordsRS, setWordsRS] = React.useState('');
   const [wordsRB, setWordsRB] = React.useState('');
   const [files, setFile] = useState('');
@@ -134,10 +144,14 @@ export default function AddReview({ changeTrigger, setCache,
       <h5>How do you rate this product?*</h5>
       <StarRating rating={ratingSR} setRating={setRatingSR} />
       <Recommend reco={reco} setReco={setReco} />
-      <h5>How do you rate the sizing?*</h5>
+      <h5>How do you rate the sizing?</h5>
       <Size rating={ratingSize} setRating={setRatingSize} />
-      <h5>How do you rate the comfort?*</h5>
+      <h5>How do you rate the comfort?</h5>
       <Comfort rating={ratingComfort} setRating={setRatingComfort} />
+      <Fit rating={ratingFit} setRating={setRatingFit} />
+      <Quality rating={ratingQuality} setRating={setRatingQuality} />
+      <Length rating={ratingLength} setRating={setRatingLength} />
+      <Width rating={ratingWidth} setRating={setRatingWidth} />
       <ReviewSummary words={wordsRS} setWords={setWordsRS} />
       <ReviewBody words={wordsRB} setWords={setWordsRB} />
       <Photo files={files} setFile={setFile} />

@@ -13,7 +13,7 @@ export default function ReviewBody({words, setWords}) {
       <form>
         <input value={words}type='text' placeholder='Why did you like the or not?' size='80' style={{height: '50px'}} onChange={event => {setCount(event.target.value.length); handleChange();}}/>
       </form>
-      <p>char count: {count}</p>
+      <p>current count: {count}</p>
     </div>
   )
 }
