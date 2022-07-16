@@ -6,4 +6,5 @@ align-items: ${(props) => props.align};
 flex-direction: ${(props) => props.direction};
 justify-content: ${props => props.space};
 font-weight: ${props => props.weight};
+background-color: ${props => props.color};
 `;

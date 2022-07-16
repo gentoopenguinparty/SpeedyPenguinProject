@@ -65,14 +65,14 @@ export default function Review({ countReviews, setDataLength, apiData }) {
                     )
                   }) : null}
               </Row>
-              <Row space={'space-between'} padding={10}>
-                <Col > {'recommended? ' + review.recommend.toString()} </Col>
+              <Row space={'space-between'} padding={10} >
+                {review.recommend ? <Col color={'#f2f2f2'}> ☑️ Reviewer recommends this product </Col> : null}
               </Row>
             </Grid >)
         ))}
       </Grid>
       <Popup trigger={trigger} changeTrigger={changeTrigger} url={url}>
-        <img style={{ height: '96%', width: '96%', margin: '0 0 0 10px'}} src={url} />
+        <img style={{ height: '96%', width: '96%', margin: '0 0 0 10px' }} src={url} />
       </Popup>
     </div>
   );
