@@ -20,7 +20,9 @@ export default function BigList() {
     console.log('searchParams', window.location.href.slice(22,27));
     axiosGet('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/meta/?product_id=' + id)
       .then((data) => {
-        setMeta(data.data);
+        if (Object.keys(data.data.ratings).length > 0) {
+          setMeta(data.data);
+        }
       })
   }, [])
 
@@ -28,9 +30,11 @@ export default function BigList() {
     let id = window.location.href.slice(22,27) || 38000;
     axiosGet('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/?product_id=' + id)
       .then((data) => {
-        setCache(data.data.results);
-        modData(data.data.results);
-        setDataLength(data.data.results.length);
+        if (data.data.results !== undefined) {
+          setCache(data.data.results);
+          modData(data.data.results);
+          setDataLength(data.data.results.length);
+        }
       })
   }, [])
 

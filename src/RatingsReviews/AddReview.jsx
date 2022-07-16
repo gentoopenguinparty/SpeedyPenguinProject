@@ -60,7 +60,9 @@ export default function AddReview({ changeTrigger }) {
     } else {
       setComfortWarn(false)
     }
-    if (wordsRB < 50) {
+    console.log('words', wordsRB)
+    if (wordsRB.length < 50) {
+      console.log('words', wordsRB)
       setBodyWarn(true)
       err = true;
     } else {
@@ -83,7 +85,7 @@ export default function AddReview({ changeTrigger }) {
 
       let id = window.location.href.slice(22, 27) || 38000;
       let state = {
-        "product_id": id,
+        "product_id": parseInt(id),
         "rating": ratingSR,
         "summary": wordsRS,
         "body": wordsRB,
@@ -97,8 +99,18 @@ export default function AddReview({ changeTrigger }) {
       axiosPost('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/', state)
         .then(() => { console.log('suc') })
         .then(() => { changeTrigger(false) })
+        .then(() => { handleRefresh() })
         .catch((err) => console.log('err', err))
     }
+  }
+
+  function handleRefresh() {
+    axiosGet('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/?product_id=' + id)
+      .then((data) => {
+        setCache(data.data.results);
+        modData(data.data.results);
+        setDataLength(data.data.results.length);
+      })
   }
 
 

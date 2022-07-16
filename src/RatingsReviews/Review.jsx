@@ -12,6 +12,7 @@ import StarRatings from 'react-star-ratings';
 export default function Review({ countReviews, setDataLength, apiData }) {
 
   function number(rating) {
+    console.log('numberr', rating);
     return parseInt((Math.round(rating * 4) / 4).toFixed(2));
   }
 
