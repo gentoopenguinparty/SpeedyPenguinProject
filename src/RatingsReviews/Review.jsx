@@ -47,7 +47,7 @@ export default function Review({ countReviews, setDataLength, apiData }) {
                 <Col >
                   <StarRatings rating={number(review.rating)} starDimension="15px"
                     starSpacing="3px" starRatedColor="black"
-                    style={{WebkitTextStroke: '1px black'}}/>
+                    style={{ WebkitTextStroke: '1px black' }} />
                 </Col>
                 <Col > {`✅ ${review.reviewer_name},`} &nbsp; {formatDate(review.date)} </Col>
               </Row>
@@ -73,6 +73,13 @@ export default function Review({ countReviews, setDataLength, apiData }) {
               </Row>
               <Row space={'space-between'} padding={10} >
                 {review.recommend ? <Col color={'#f2f2f2'}> ☑️ Reviewer recommends this product </Col> : null}
+              </Row>
+              <Row align={'center'} padding={10} >
+                <Col style={{ fontSize: '13px' }}>Was this review helpful?</Col>
+                <Col style={{ marginLeft: '10px', fontSize: '13px' }} >Yes</Col>
+                <Col style={{ marginLeft: '10px', fontSize: '13px' }} >|</Col>
+                <Col style={{ marginLeft: '10px', fontSize: '13px' }}>No</Col>
+                <Col style={{ marginLeft: '10px', fontSize: '13px' }}>{review.helpfulness} People found this helpful</Col>
               </Row>
             </Grid >)
         ))}
