@@ -7,11 +7,12 @@ import { Row } from './styles/Row.styled.js'
 import { Col } from './styles/Col.styled.js'
 import { ThemeProvider } from 'styled-components'
 import Popup from './Popup.jsx'
+import StarRatings from 'react-star-ratings';
 
 export default function Review({ countReviews, setDataLength, apiData }) {
 
   function number(rating) {
-    return (Math.round(rating * 4) / 4).toFixed(2);
+    return parseInt((Math.round(rating * 4) / 4).toFixed(2));
   }
 
   const [trigger, changeTrigger] = useState(false);
@@ -42,7 +43,11 @@ export default function Review({ countReviews, setDataLength, apiData }) {
             <div>no review for this rating</div> :
             <Grid color={'#FAEBD7'} key={review.review_id} border={'solid'} padding={'10'} bottom={'5'}>
               <Row space={'space-between'} padding={10}>
-                <Col > <Rating rating={number(review.rating)}> </Rating> </Col>
+                <Col >
+                  <StarRatings rating={number(review.rating)} starDimension="15px"
+                    starSpacing="3px" starRatedColor="black"
+                    style={{'border-styles': 'solid'}}/>
+                </Col>
                 <Col > {`✅ ${review.reviewer_name},`} &nbsp; {formatDate(review.date)} </Col>
               </Row>
               <Row space={'space-between'} padding={10}>

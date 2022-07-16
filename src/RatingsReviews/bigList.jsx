@@ -60,13 +60,13 @@ export default function BigList() {
   const [dataLength, setDataLength] = useState(0);
   // API state data
   const [stateData, modData] = useState([{
-    rating: 'filler', recommend: 'bool',
+    rating: 1, recommend: 'bool',
     date: 'filler', review_id: 'filler',
     photos: [1], noReview: false
   }]);
   //API cache
   const [cache, setCache] = useState([{
-    rating: '', recommend: '',
+    rating: 1, recommend: '',
     date: '', review_id: '', date: 'test'
   }]);
   const [meta, setMeta] = useState(
