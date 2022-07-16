@@ -8,7 +8,7 @@ export default function ReviewSummary({ words, setWords}) {
 
   return (
     <div>
-      <h4>Please give a brief review of the product, 60 characters max:</h4>
+      <h4>Review summary, 60 characters max:</h4>
       <form>
         <input value={words}type='text' placeholder='Best Product Ever!' size='80' style={{height: '50px'}} onChange={event => {setCount(event.target.value.length); handleChange();}}/>
       </form>
