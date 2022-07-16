@@ -9,7 +9,7 @@ function SortBy({cache, modData, apiData}) {
   }
 
   return (
-    <Grid color={'#ffb3b3'}>
+    <Grid color={'#ffb3b3'} padding={'30'}>
       {test(cache)}
       <Row space={'flex-start'}>
         <div>{cache.length} reviews, &nbsp; </div>

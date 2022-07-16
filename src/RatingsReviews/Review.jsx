@@ -36,20 +36,19 @@ export default function Review({ countReviews, setDataLength, apiData }) {
   return (
     <div key='reviews'>
 
-      <Grid color={'#FAEBD7'}>
-
+      <Grid color={'#FAEBD7'} padding={'5'}>
         {apiData.slice(0, countReviews).map((review, index) => (
           (review.noReview ?
             <div>no review for this rating</div> :
-            <div key={review.review_id} >
+            <Grid color={'#FAEBD7'} key={review.review_id} border={'solid'} padding={'10'} bottom={'5'}>
               <Row space={'space-between'} padding={10}>
                 <Col > <Rating rating={number(review.rating)}> </Rating> </Col>
-                <Col > {`${review.reviewer_name},`} &nbsp; {formatDate(review.date)} </Col>
+                <Col > {`✅ ${review.reviewer_name},`} &nbsp; {formatDate(review.date)} </Col>
               </Row>
               <Row space={'space-between'} padding={10}>
-                <Col> {review.summary} </Col>
+                <Col weight={'bold'}> {review.summary} </Col>
               </Row>
-              <Row padding={10}>
+              <Row padding={10} color={'#f2f2f2'} border={'solid'}>
                 <Col> {review.body} </Col>
               </Row>
               <Row space={'flex-start'}>
@@ -57,19 +56,19 @@ export default function Review({ countReviews, setDataLength, apiData }) {
                 {review.photos.length > 0 ?
                   review.photos.map((photo, i) => {
                     return (
-                      <Col >
-                        <div style={{margin: '0 0 0 10px'}}>
+                      <div style={{ padding: '5px 0 0 0' }}>
+                        <div style={{ margin: '0 0 0 10px' }}>
                           <img onClick={(event) => { handleClickAdd(event); }} key={i} style={{ height: '100px', width: '100px' }}
                             src={photo.url} />
                         </div>
-                      </Col>
+                      </div>
                     )
                   }) : null}
               </Row>
               <Row space={'space-between'} padding={10}>
                 <Col > {'recommended? ' + review.recommend.toString()} </Col>
               </Row>
-            </div>)
+            </Grid >)
         ))}
       </Grid>
       <Popup trigger={trigger} changeTrigger={changeTrigger} url={url}>

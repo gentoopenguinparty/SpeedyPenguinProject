@@ -20,7 +20,7 @@ export default function ComfortSize({ meta }) {
     <div>
       {/* {'size: ' + (calcPercent(size) + 3)}
       {'comfort: ' + (calcPercent(comfort) + 3)} */}
-      <Grid>
+      <Grid padding={'30'}>
         <h5 style={{ margin: '0px 0px 0px 0px' }}>Size</h5>
           <TriangleContainer border={'solid'} height={24} color={'rgb(136,136,136)'}>
             <Triangle margin={calcPercent(size)}></Triangle>

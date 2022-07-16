@@ -83,7 +83,7 @@ export default function BigList() {
 
   return (
     <div>
-      <Grid >
+      <Grid padding={'30'}>
         <Row space={'center'} padding={10} >
           <Col>
             <Graphical apiData={stateData} modData={modData} cache={cache} meta={meta} />

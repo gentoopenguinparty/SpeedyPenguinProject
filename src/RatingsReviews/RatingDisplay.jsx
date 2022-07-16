@@ -49,7 +49,7 @@ export default function RatingDisplay({ apiData, modData, cache, meta }) {
 
   return (
     <div>
-      <Grid>
+      <Grid padding={'30'}>
         <Row align={'center'}>
           <Col>
             <Star onClick={() => { filterApi(cache, 5) }} >5 Star</Star>
