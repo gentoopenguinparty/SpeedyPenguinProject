@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { axiosGet } from '../../util.js'
+import { axiosGet, axiosPut } from '../../util.js'
 import { Container } from './styles/Container.styled.js'
 import { Rating } from './styles/Rating.styled.js'
 import { Grid } from './styles/Grid.styled.js'
@@ -9,7 +9,25 @@ import { ThemeProvider } from 'styled-components'
 import Popup from './Popup.jsx'
 import StarRatings from 'react-star-ratings';
 
-export default function Review({ countReviews, setDataLength, apiData }) {
+export default function Review({ countReviews, setDataLength, apiData , setCache,
+  setMeta, modData }) {
+
+  function handlePut(id) {
+    console.log('putID', id)
+    axiosPut('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/' + id + '/helpful')
+      .then(() => { handleRefresh() })
+  }
+
+  function handleRefresh() {
+    let id = window.location.href.slice(22, 27) || 38000;
+    axiosGet('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/?product_id=' + id)
+      .then((data) => {
+        console.log(data.data.results);
+        setCache(data.data.results);
+        modData(data.data.results);
+        setDataLength(data.data.results.length);
+      })
+  }
 
   function number(rating) {
     console.log('numberr', rating);
@@ -76,7 +94,7 @@ export default function Review({ countReviews, setDataLength, apiData }) {
               </Row>
               <Row align={'center'} padding={10} >
                 <Col style={{ fontSize: '13px' }}>Was this review helpful?</Col>
-                <Col style={{ marginLeft: '10px', fontSize: '13px' }} >Yes</Col>
+                <Col style={{ marginLeft: '10px', fontSize: '13px' }} onClick={() => { handlePut(review.review_id); }}>Yes</Col>
                 <Col style={{ marginLeft: '10px', fontSize: '13px' }} >|</Col>
                 <Col style={{ marginLeft: '10px', fontSize: '13px' }}>No</Col>
                 <Col style={{ marginLeft: '10px', fontSize: '13px' }}>{review.helpfulness} People found this helpful</Col>

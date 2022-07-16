@@ -76,7 +76,11 @@ export default function BigList() {
           <SortBy cache={cache} modData={modData} apiData={stateData}/>
             <Review
               apiData={stateData}
-              countReviews={countReviews} />
+              countReviews={countReviews}
+              setCache={setCache}
+              modData={modData}
+              setDataLength={setDataLength}
+              setMeta={setMeta}/>
             <Tracker render={(count, incCount) => {
               return <SeeMore
                 count={count}
