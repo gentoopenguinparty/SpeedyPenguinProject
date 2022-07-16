@@ -1,5 +1,5 @@
 
-import AnswerCard from './AnswerCards.jsx';
+import AnswerCards from './AnswerCards.jsx';
 import React, { useEffect, useState } from 'react';
 import {Container} from './styles/Main.styled.js'
 // import {qListLength, setQListLength} from '../QuestionsAnswers/QuestionsAnswers.jsx'
@@ -36,7 +36,7 @@ export default function QAcard(props) {
                     ) |</span>  <span onClick={() => { console.log('Add answer test') }}>Add Answer</span>
                 </pre>
               </small>
-              <AnswerCard answers={qaCard.answers} />
+              <AnswerCards answers={qaCard.answers} />
             </div>
           );
         })
