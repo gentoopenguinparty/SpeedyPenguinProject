@@ -12,12 +12,8 @@ export function axiosPost(url, data) {
   return axios.post(url, data, {
     headers: {
       Authorization: API_KEY,
-<<<<<<< HEAD
-    }
-=======
       'Content-Type': 'application/json',
     },
->>>>>>> dev
   });
 }
 export function axiosPut(url) {
