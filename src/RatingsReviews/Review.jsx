@@ -72,7 +72,7 @@ export default function Review({ countReviews, setDataLength, apiData }) {
         ))}
       </Grid>
       <Popup trigger={trigger} changeTrigger={changeTrigger} url={url}>
-        <img style={{ height: '70%', width: '70%' }} src={url} />
+        <img style={{ height: '96%', width: '96%', margin: '0 0 0 10px'}} src={url} />
       </Popup>
     </div>
   );
