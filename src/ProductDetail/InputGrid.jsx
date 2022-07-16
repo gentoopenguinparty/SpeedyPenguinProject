@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
+import { axiosPost, axiosGet } from '../../util';
 
 export default function InputGrid({ style }) {
   // create an array of skus options
@@ -12,7 +14,6 @@ export default function InputGrid({ style }) {
   const [currentQty, setCurrentQty] = useState(null);
 
   const handleSizeChange = (e) => {
-    console.log(e)
     setCurrentSku(e.target.value);
     setCurrentQty(1);
   };
@@ -22,7 +23,10 @@ export default function InputGrid({ style }) {
   };
 
   const addToCart = () => {
-    console.log(currentSku, currentQty);
+    const url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/cart';
+    for (let i = 0; i < currentQty; i++) {
+      axiosPost(url, JSON.stringify({ sku_id: currentSku }));
+    }
   };
 
   const q = (style.skus[currentSku]
@@ -41,7 +45,7 @@ export default function InputGrid({ style }) {
       </Dropdown>
 
       <Dropdown value={style.skus[currentSku] ? (currentQty) : 'default'} onChange={handleQtyChange}>
-        <option value="default" disabled hidden>Select QTY</option>
+        <option value="default" disabled hidden>-</option>
         {q && q.map((x, i) => <option key={i}>{i + 1}</option>).slice(0, 15)}
       </Dropdown>
 

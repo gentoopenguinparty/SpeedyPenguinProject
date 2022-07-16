@@ -6,6 +6,7 @@ import Styles from './Styles.jsx';
 import ShareRow from './ShareRow.jsx';
 
 export default function ProductInterface({data, styles, styleChange, id}) {
+  console.log(data)
   return (
     <Main>
       <span>
@@ -32,13 +33,11 @@ const Main = styled.div`
 display:flex;
 flex-direction:column;
 justify-content: space-around;
-background-color: white;
 position:sticky;
 color: #525252;
 padding:10px;
 grid-column: 2/3;
 grid-row: 1/2;
-border: 2px solid blue;
 `;
 const Rating = styled.div`
 --star-size: 60px;

@@ -107,7 +107,6 @@ height: 100%;
 width: ${(props) => props.size};
 color: white;
 position:relative;
-background-color:none;
 `;
 const CurrentImage = styled.div.attrs((props) => ({
   style: {
@@ -117,7 +116,6 @@ const CurrentImage = styled.div.attrs((props) => ({
   height: 100%;
   min-height: 460px;
   background-image: url(${(props) => props.image});
-  background-color:grey;
   background-repeat: no-repeat;
   background-size: ${(props) => (props.zoomed ? '250%' : 'cover')} ;
   transition: all 0.1s;

@@ -1,15 +1,22 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Main = styled.div`
-background-color: green;
-color: white;
-`
-export default function ProductDescription({currentStyle , styles, data}) {
-  console.log(data)
-
-
+export default function ProductDescription({ currentStyle, styles, data }) {
   return (
-    <Main> Desc here </Main>
-  )
+    <Main>
+      <Slogan>{data.slogan}</Slogan>
+      <Description>{data.description}</Description>
+    </Main>
+  );
 }
+const Main = styled.div`
+
+color: black;
+`;
+const Slogan = styled.h1`
+margin-left: 20px;
+`;
+const Description = styled.p`
+margin-left: 40px;
+margin-right: 40px;
+`;
