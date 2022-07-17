@@ -15,13 +15,19 @@ export default function RelatedProductCard({ productDetails }) {
 }
 
 const ProductCard = styled.div`
-  position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
-  border: 2px solid orange;
+  justify-content: space-between;
+  flex: 0 0 auto;
+
+  position: relative;
+  border: 2px solid black;
   height: 400px;
   width: 275px;
   margin: 10px;
-  flex: 0 0 auto;
+
+  &:hover {
+    box-shadow: 5px 5px 3px purple;
+  }
+
 `;

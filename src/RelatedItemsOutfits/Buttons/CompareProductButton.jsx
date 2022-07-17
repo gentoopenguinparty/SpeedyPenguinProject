@@ -14,5 +14,8 @@ const CompareButton = styled.div`
   right: 0;
 
   font-size: 25px;
-  color: orange;
+  color: purple;
+  &:hover {
+    color: darkorange;
+  }
 `;
