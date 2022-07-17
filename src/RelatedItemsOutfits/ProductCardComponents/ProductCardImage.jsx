@@ -12,10 +12,11 @@ export default function ProductCardImage() {
 const CardImageContainer = styled.div`
   height: 275px;
   text-align: center;
+  border-bottom: 1px solid black;
 `;
 
 const CardImage = styled.img`
   width: auto;
   height:100%;
-
+  z-index: -1;
 `;
