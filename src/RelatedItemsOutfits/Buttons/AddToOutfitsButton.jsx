@@ -21,8 +21,12 @@ const AddOutFitButton = styled.div`
 
   font-size: 30px;
 
-  border: 2px solid black;
+  border: 1px solid black;
   height: 400px;
   width: 275px;
   margin: 10px;
+
+  &:hover {
+    box-shadow: 5px 5px 3px purple;
+  }
 `;

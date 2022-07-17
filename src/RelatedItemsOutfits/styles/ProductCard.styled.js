@@ -7,7 +7,7 @@ const ProductCard = styled.div`
   flex: 0 0 auto;
 
   position: relative;
-  border: 2px solid black;
+  border: 1px solid black;
   height: 400px;
   width: 275px;
   margin: 10px;
