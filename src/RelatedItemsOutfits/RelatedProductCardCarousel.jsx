@@ -1,7 +1,7 @@
 import React from 'react';
-import styled from 'styled-components';
 
 import RelatedProductCard from './RelatedProductCard.jsx';
+import { FlexContainer, CardCarousel } from './styles/CardCarousel.styled.js';
 
 // eslint-disable-next-line react/prop-types
 export default function RelatedProductCardCarousel({ relatedProducts }) {
@@ -17,17 +17,17 @@ export default function RelatedProductCardCarousel({ relatedProducts }) {
   );
 }
 
-const FlexContainer = styled.div`
-  display: flex;
-`;
+// const FlexContainer = styled.div`
+//   display: flex;
+// `;
 
-const CardCarousel = styled.div`
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
+// const CardCarousel = styled.div`
+//   display: flex;
+//   justify-content: space-around;
+//   align-items: center;
 
-  margin-right: auto;
+//   margin-right: auto;
 
-  height: 400px;
-  padding: 10px;
-`;
+//   height: 400px;
+//   padding: 10px;
+// `;
