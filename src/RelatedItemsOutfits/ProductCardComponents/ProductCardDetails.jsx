@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 
 import {
   ProductCardCategory,
@@ -9,11 +10,16 @@ import {
 
 export default function ProductCardDetails({ productDetails }) {
   return (
-    <div className="productCardDetails">
+    <CardDetails className="cardDetails">
       <ProductCardCategory category={productDetails.category} />
       <ProductCardName name={productDetails.name} />
       <ProductCardPrice />
       <ProductCardStarRating />
-    </div>
+    </CardDetails>
   );
 }
+
+const CardDetails = styled.div`
+  padding-left: 12px;
+  padding-bottom: 10px;
+`;
