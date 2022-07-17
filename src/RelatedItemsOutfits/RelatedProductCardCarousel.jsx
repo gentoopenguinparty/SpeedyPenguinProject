@@ -10,13 +10,13 @@ export default function RelatedProductCardCarousel({ relatedProducts }) {
     <>
       <h3>Related Products</h3>
       <FlexContainer>
+        <ScrollButton direction="back" />
         <CardCarousel>
-          <ScrollButton direction="back" />
           {relatedProducts.map((product) => (
             <RelatedProductCard key={product.id} productDetails={product} />
           ))}
-          <ScrollButton direction="forward" />
         </CardCarousel>
+        <ScrollButton direction="forward" />
       </FlexContainer>
     </>
   );
