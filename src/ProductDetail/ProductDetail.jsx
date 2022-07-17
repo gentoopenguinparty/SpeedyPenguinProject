@@ -13,7 +13,7 @@ export default function ProductDetail() {
   const [currentStyle, setCurrrentStyle] = React.useState(0);
   const id = 37315;
   React.useEffect(() => {
-    axiosGet(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/producgit ts/${id}`)
+    axiosGet(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${id}`)
       .then((data) => {
         setProductData(data.data);
         axiosGet(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${id}/styles`)
