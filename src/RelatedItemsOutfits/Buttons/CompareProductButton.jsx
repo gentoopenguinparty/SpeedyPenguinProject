@@ -6,10 +6,13 @@ export default function CompareProductButton() {
 }
 
 const CompareButton = styled.div`
-  border: 2px solid purple;
-  height: 50px;
-  width: 50px;
+  /* border: 2px solid purple; */
+  height: 30px;
+  width: 30px;
   position: absolute;
   top: 0;
   right: 0;
+
+  font-size: 25px;
+  color: orange;
 `;
