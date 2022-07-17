@@ -7,7 +7,7 @@ import RelatedProductCard from './RelatedProductCard.jsx';
 export default function RelatedProductCardCarousel({ relatedProducts }) {
   return (
     <>
-      <div>Related Products</div>
+      <h3>Related Products</h3>
       <FlexContainer>
         <CardCarousel>
           {relatedProducts.map((product) => <RelatedProductCard productDetails={product} />)}
@@ -28,8 +28,6 @@ const CardCarousel = styled.div`
 
   margin-right: auto;
 
-
-  border: 2px solid orange;
   height: 400px;
   padding: 10px;
 `;
