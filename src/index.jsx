@@ -27,9 +27,9 @@ function App() {
   return (
     <div>
       <ProductDetail />
+      <RelatedItemsOutfits />
       <QuestionsAnswers />
       <RatingsReviews />
-      <RelatedItemsOutfits />
     </div>
   );
 }
