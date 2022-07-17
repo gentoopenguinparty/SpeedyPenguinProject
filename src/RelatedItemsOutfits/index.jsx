@@ -4,6 +4,7 @@ import { axiosGet } from '../../util.js';
 
 import RelatedProductCardCarousel from './RelatedProductCardCarousel.jsx';
 import OutfitCardCarousel from './OutfitCardCarousel.jsx';
+import ComparisonModal from './ComparisonModal.jsx';
 
 // example id: 37313
 // network request methods
@@ -53,6 +54,7 @@ export default function RelatedItemsOutfitsModule() {
 
   return (
     <div id="relatedProductsOutfitsModule">
+      <ComparisonModal />
       <RelatedProductCardCarousel relatedProducts={relatedProducts} />
       <OutfitCardCarousel />
     </div>
