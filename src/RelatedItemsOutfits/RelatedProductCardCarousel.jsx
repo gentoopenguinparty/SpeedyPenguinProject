@@ -10,7 +10,9 @@ export default function RelatedProductCardCarousel({ relatedProducts }) {
       <h3>Related Products</h3>
       <FlexContainer>
         <CardCarousel>
-          {relatedProducts.map((product) => <RelatedProductCard productDetails={product} />)}
+          {relatedProducts.map((product) => (
+            <RelatedProductCard key={product.id} productDetails={product} />
+          ))}
         </CardCarousel>
       </FlexContainer>
     </>

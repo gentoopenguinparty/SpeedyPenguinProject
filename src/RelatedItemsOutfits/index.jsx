@@ -40,6 +40,7 @@ export default function RelatedItemsOutfitsModule() {
       .then((prod) => Promise.all(prod))
       .then((arr) => arr.map((obj) => (
         {
+          id: obj.data.id,
           category: obj.data.category,
           name: obj.data.name,
         }
