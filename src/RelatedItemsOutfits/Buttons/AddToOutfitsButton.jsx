@@ -7,8 +7,8 @@ import styled from 'styled-components';
 export default function AddToOutfitsButton() {
   return (
     <AddOutFitButton>
-      <p style={{ 'font-size': '35px', 'margin-top': '75px' }}>Add To Outfits</p>
-      <p style={{ 'font-size': '200px', margin: 'auto' }}>+</p>
+      <p style={{ fontSize: '35px', marginTop: '75px' }}>Add To Outfits</p>
+      <p style={{ fontSize: '200px', margin: 'auto' }}>+</p>
     </AddOutFitButton>
   );
 }
