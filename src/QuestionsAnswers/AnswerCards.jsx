@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Container } from './styles/Main.styled.js';
 import PhotoCard from './PhotoCard.jsx';
+import axios from 'axios';
+import {API_KEY} from '../../config.js'
 
 export default function Answers(props) {
   const [listLength, setListLength] = useState(2);
@@ -15,8 +17,16 @@ export default function Answers(props) {
     setListLength(listLength + 2);
   };
 
-  const handleReportClick = (e) => {
-    console.log('report clicked lets make an axios req to update data', props);
+  const handleReportClick = (questionId) => {
+    console.log(questionId)
+    axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/${questionId}/report`,{reported: true}, {
+      headers: {
+        Authorization: API_KEY,
+        'Content-Type': 'application/json',
+      },
+    }).then((response) => {
+     console.log(response);
+    }).catch((error) => { console.log(error); });
   };
 
   const displayAnswers = (props) => {
@@ -25,6 +35,7 @@ export default function Answers(props) {
     // let photos = answers[1].photos;
     // setPhotos(photos);
     if (answers.length > 0) {
+      console.log(answers)
       return (
         answers.slice(0, listLength).sort((a, b) => (a.helpfulness > b.helpfulness ? -1 : 1)).map((answer, index) => {
           let person = answer[1].answerer_name;
@@ -70,7 +81,7 @@ export default function Answers(props) {
                     ) |
                   </span>
                   {' '}
-                  <span onClick={handleReportClick}>Report</span>
+                  <span onClick={() => handleReportClick(answer[0])}>Report</span>
                 </pre>
 
               </small>
