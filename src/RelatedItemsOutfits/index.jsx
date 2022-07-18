@@ -26,18 +26,24 @@ function getProductStyles(productID) {
 
 const relatedIDs = getRelatedIDs('37313');
 
-function setIDNameAndCategory() {
+function getIDNameAndCategory() {
   return relatedIDs.then((data) => data.map((id) => getProductDetails(id)))
-    .then((prod) => Promise.all(prod))
-    .then((arr) => arr.map((obj) => (
+    .then((detailsPromises) => Promise.all(detailsPromises))
+    .then((details) => details.map((dataObj) => (
       {
-        id: obj.data.id,
-        category: obj.data.category,
-        name: obj.data.name,
+        id: dataObj.data.id,
+        category: dataObj.data.category,
+        name: dataObj.data.name,
       }
     )))
     .catch((err) => console.log(err));
 }
+
+// function getPriceAndImage() {
+//   return relatedIDs.then((data) => data.map((id) => getProductStyles(id)))
+//     .then((styles) => Promise.all(styles))
+//     .then((arr) => arr.)
+// }
 
 export default function RelatedItemsOutfitsModule() {
   const [showModal, setShowModal] = useState(false);
@@ -45,15 +51,7 @@ export default function RelatedItemsOutfitsModule() {
 
   useEffect(() => {
     // console.log('relatedIDs:', relatedIDs);
-    relatedIDs.then((data) => data.map((id) => getProductDetails(id)))
-      .then((prod) => Promise.all(prod))
-      .then((arr) => arr.map((obj) => (
-        {
-          id: obj.data.id,
-          category: obj.data.category,
-          name: obj.data.name,
-        }
-      )))
+    getIDNameAndCategory()
       .then((data) => setRelatedProducts(data))
       .catch((err) => console.log(err));
   }, []);
