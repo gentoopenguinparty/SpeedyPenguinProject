@@ -2,21 +2,20 @@ import React from 'react';
 import styled from 'styled-components';
 
 export default function ComparisonModal({ show, setShowModal }) {
-  return !show ? null
-    : (
-      <Modal onClick={() => setShowModal(false)}>
-        <ModalContent onClick={(e) => e.stopPropagation()}>
-          <ModalHeader>
-            <div>CurrentProductName</div>
-            <div>ComparedProductName</div>
-          </ModalHeader>
-          <ModalGrid>
-            {/* map rows from characteristics metadata */}
-            <ModalRow />
-          </ModalGrid>
-        </ModalContent>
-      </Modal>
-    );
+  return (
+    <Modal className={`${show ? 'show' : ''}`} onClick={() => setShowModal(false)}>
+      <ModalContent onClick={(e) => e.stopPropagation()}>
+        <ModalHeader>
+          <div>CurrentProductName</div>
+          <div>ComparedProductName</div>
+        </ModalHeader>
+        <ModalGrid>
+          {/* map rows from characteristics metadata */}
+          <ModalRow />
+        </ModalGrid>
+      </ModalContent>
+    </Modal>
+  );
 }
 
 function ModalRow() {
@@ -40,6 +39,14 @@ const Modal = styled.div`
   align-items: center;
   justify-content: center;
   z-index: 1;
+
+  opacity: 0;
+  transition: all 0.3s ease-in-out;
+  pointer-events: none;
+  &.show {
+    opacity: 1;
+    pointer-events: visible;
+  }
 `;
 
 const ModalContent = styled.div`
@@ -50,14 +57,13 @@ const ModalContent = styled.div`
 `;
 
 const ModalHeader = styled.div`
-  position: sticky; // should make header work with scrolling?
+  position: sticky; // should make header fixed when scrolling?
   display: flex;
   justify-content: space-between;
   padding: 20px 10px;
 `;
 
 const ModalGrid = styled.div`
-  border: 1px solid red;
   display: grid;
   grid-template-columns: 125px 350px 125px;
   grid-template-areas: "currVal characteristic compVal";
