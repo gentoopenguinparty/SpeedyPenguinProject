@@ -1,14 +1,15 @@
 import React from 'react';
 
 import { ProductCardImage, ProductCardDetails } from './ProductCardComponents/index.jsx';
-import { AddToOutfitsButton } from './Buttons/index.jsx';
+import ProductCard from './styles/ProductCard.styled.js';
+import { RemoveOutfitButton } from './Buttons/index.jsx';
 
-export default function OutfitCard() {
+export default function OutfitCard({ outfitItem, removeOutfit }) {
   return (
-    <div className="outfitCard">
-      <AddToOutfitsButton />
-      <ProductCardImage />
-      <ProductCardDetails />
-    </div>
+    <ProductCard>
+      <RemoveOutfitButton handleClick={removeOutfit} currentID={outfitItem.id} />
+      <ProductCardImage imageURL={outfitItem} />
+      <ProductCardDetails productDetails={outfitItem} />
+    </ProductCard>
   );
 }
