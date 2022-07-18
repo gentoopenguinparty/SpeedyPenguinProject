@@ -15,10 +15,28 @@ async function getRelatedIDs(productID) {
   // console.log('result:', result.data);
   return result.data;
 }
-
 function getProductDetails(productID) {
   const requestURL = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${productID}`;
   return axiosGet(requestURL);
+}
+function getProductStyles(productID) {
+  const requestURL = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${productID}/styles`;
+  return axiosGet(requestURL);
+}
+
+const relatedIDs = getRelatedIDs('37313');
+
+function setIDNameAndCategory() {
+  return relatedIDs.then((data) => data.map((id) => getProductDetails(id)))
+    .then((prod) => Promise.all(prod))
+    .then((arr) => arr.map((obj) => (
+      {
+        id: obj.data.id,
+        category: obj.data.category,
+        name: obj.data.name,
+      }
+    )))
+    .catch((err) => console.log(err));
 }
 
 export default function RelatedItemsOutfitsModule() {
@@ -26,7 +44,6 @@ export default function RelatedItemsOutfitsModule() {
   const [relatedProducts, setRelatedProducts] = useState([]);
 
   useEffect(() => {
-    const relatedIDs = getRelatedIDs('37313');
     // console.log('relatedIDs:', relatedIDs);
     relatedIDs.then((data) => data.map((id) => getProductDetails(id)))
       .then((prod) => Promise.all(prod))
