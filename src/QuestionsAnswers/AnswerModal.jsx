@@ -1,10 +1,8 @@
-import React from 'react'
-import './Modal.css'
-import ReactDOM from "react-dom";
-import {MainContainer} from './styles/Main.styled.js'
+import React from 'react';
+import './Modal.css';
+import ReactDOM from 'react-dom';
+import { MainContainer } from './styles/Main.styled.js';
 import { API_KEY } from '../../config';
-
-
 
 // Your Question (mandatory)
 // This text input should be a large text window allowing up to 1000 characters.
@@ -24,7 +22,6 @@ import { API_KEY } from '../../config';
 // The email address provided is not in correct email format
 
 // const Modal = ({openModal}) => openModal ? ReactDOM.createPortal(
-
 
 //     <div className="modalBackground">
 //       <div className="modalContainer">
@@ -47,39 +44,67 @@ import { API_KEY } from '../../config';
 
 //   export default Modal
 
+function AnswerModal({
+  openAnswerModal, setOpenAnswerModal, productData, setAnswerData, answerData, handleAnswerSubmit, data,
+}) {
+  return (
+    <MainContainer>
+      <div className="modal">
+        <div className="modal-pop" role="dialog" aria-modal="true">
+          <header>
+            <h1 className="title">Submit Your Answer</h1>
+            <h2 className="title">
+              {productData.name}
+              :
+              {' '}
+              {data[0].question_body}
+            </h2>
+          </header>
 
+          <form>
+            <label>
+              {' '}
+              <strong>Your Answer</strong>
+            </label>
+            <br />
+            <textarea placeholder="Type your question here" required="required" rows="7" cols="50" maxLength="1000" onChange={(e) => setAnswerData({ ...answerData, body: e.target.value })} />
+            <br />
+            <br />
+            <label>What is your nickname?</label>
+            <br />
+            <input
+              type="text"
+              placeholder="Example: jackson11!"
+              required="required"
+              onChange={(e) => setAnswerData({ ...answerData, name: e.target.value })}
+            />
+            <br />
+            <small>*For privacy reasons, do not use your full name or email address</small>
+            <br />
+            <br />
+            <label>Your email</label>
+            <br />
+            <input
+              type="text"
+              placeholder="Why did you like the product or not?"
+              required="required"
+              onChange={(e) => setAnswerData({ ...answerData, email: e.target.value })}
+            />
+            <br />
+            <small>*For authentication reasons, you will not be emailed</small>
+            <br />
+            <br />
 
-const AnswerModal = ({ openAnswerModal, setOpenAnswerModal, productData, setAnswerData, answerData, handleAnswerSubmit, data }) =>   (
-  <MainContainer>
-  <div className="modal">
-    <div className="modal-pop" role="dialog" aria-modal="true">
-    <header>
-    <h1 className="title">Submit Your Answer</h1>
-      <h2 className="title">{productData.name}: {data[0].question_body}</h2>
-    </header>
-
-
-
-       <form>
-        <label> <strong>Your Answer</strong></label><br></br>
-        <textarea placeholder="Type your question here" required="required" rows="7" cols="50" maxLength="1000" onChange={(e)=> setAnswerData({...answerData, body: e.target.value, product_id: productData.id })}></textarea><br></br><br></br>
-        <label>What is your nickname?</label><br></br>
-        <input type="text" placeholder="Example: jackson11!"
-required="required" onChange={(e)=> setAnswerData({...answerData, name: e.target.value })}></input><br></br>
-         <small>*For privacy reasons, do not use your full name or email address</small><br></br><br></br>
-         <label>Your email</label><br></br>
-        <input type="text" placeholder="Why did you like the product or not?"
-required="required" onChange={(e)=> setAnswerData({...answerData, email: e.target.value })}></input><br></br>
-         <small>*For authentication reasons, you will not be emailed</small><br></br><br></br>
-
-       </form><br></br>
-      <button onClick={() =>{console.log('add photos here')}}>Upload Photos</button>
-      <button type="submit" onClick={handleAnswerSubmit}>Submit</button>
-      <button type="button" onClick={() => setOpenAnswerModal(false)}>Cancel</button>
-    </div>
-    <div className="modal-overlay"></div>
-  </div>
-  </MainContainer>
-)
+          </form>
+          <br />
+          <button onClick={() => { console.log('add photos here'); }}>Upload Photos</button>
+          <button type="submit" onClick={handleAnswerSubmit}>Submit</button>
+          <button type="button" onClick={() => setOpenAnswerModal(false)}>Cancel</button>
+        </div>
+        <div className="modal-overlay" />
+      </div>
+    </MainContainer>
+  );
+}
 
 export default AnswerModal;
