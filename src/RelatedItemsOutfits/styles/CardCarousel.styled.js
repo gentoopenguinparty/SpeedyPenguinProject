@@ -8,9 +8,11 @@ export const FlexContainer = styled.div`
 
 export const CardCarousel = styled.div`
   display: flex;
-  justify-content: space-around;
+  justify-content: flex-start;
   align-items: center;
+  flex-wrap: wrap;
+  overflow: hidden;
 
-  height: 400px;
+  height: 440px;
   padding: 10px;
 `;
