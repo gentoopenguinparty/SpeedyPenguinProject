@@ -20,6 +20,7 @@ export default function RelatedProductCardCarousel({
           {relatedProductDetails.map((product) => (
             <RelatedProductCard
               key={product.id}
+              productID={product.id}
               productDetails={product}
               setShowModal={setShowModal}
             />
