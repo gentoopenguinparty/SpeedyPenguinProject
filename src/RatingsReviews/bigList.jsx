@@ -4,25 +4,37 @@ import Review from './Review.jsx'
 import SeeMore from './SeeMore.jsx'
 import Tracker from './Tracker.jsx'
 import Graphical from './Graphical.jsx'
+import SortBy from './SortBy.jsx'
 import { Grid } from './styles/Grid.styled.js'
 import { Row } from './styles/Row.styled.js'
 import { Col } from './styles/Col.styled.js'
+import { useSearchParams } from "react-router-dom";
 let axios = require('axios');
 
 // This component is made up of the biglist of reviews and buttons that change the render properties of the biglist
 
 export default function BigList() {
-
-  const [stateData, modData] = useState([{
-    rating: 'filler', recommend: 'bool',
-    date: 'filler', review_id: 'filler'
-  }]);
+  useEffect(() => {
+    let id = window.location.href.slice(22,27) || 38000;
+    console.log('ID', id)
+    console.log('searchParams', window.location.href.slice(22,27));
+    axiosGet('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/meta/?product_id=' + id)
+      .then((data) => {
+        if (Object.keys(data.data.ratings).length > 0) {
+          setMeta(data.data);
+        }
+      })
+  }, [])
 
   useEffect(() => {
-    axiosGet('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/?product_id=37315')
+    let id = window.location.href.slice(22,27) || 38000;
+    axiosGet('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/?product_id=' + id)
       .then((data) => {
-        modData(data.data.results);
-        setDataLength(data.data.results.length);
+        if (data.data.results !== undefined) {
+          setCache(data.data.results);
+          modData(data.data.results);
+          setDataLength(data.data.results.length);
+        }
       })
   }, [])
 
@@ -30,17 +42,45 @@ export default function BigList() {
   const [countReviews, setCountReviews] = useState(2);
   // total data state
   const [dataLength, setDataLength] = useState(0);
+  // API state data
+  const [stateData, modData] = useState([{
+    rating: 1, recommend: 'bool',
+    date: 'filler', review_id: 'filler',
+    photos: [1], noReview: false
+  }]);
+  //API cache
+  const [cache, setCache] = useState([{
+    rating: 1, recommend: '',
+    date: '', review_id: '', date: 'test'
+  }]);
+  const [meta, setMeta] = useState(
+    {
+      ratings: { 1: [1], 2: [1], 3: [1], 4: [1], 5: [1] },
+      characteristics: {
+        Comfort: { value: 1 },
+        Size: { value: 1 },
+        Quality: { value: 1 }
+      }
+    }
+  )
+  const [metaCache, setMetaCache] = useState()
+
   return (
     <div>
-      <Grid>
-        <Row space={'center'}>
+      <Grid padding={'30'}>
+        <Row space={'center'} padding={10} >
           <Col>
-            <Graphical apiData={stateData} />
+            <Graphical apiData={stateData} modData={modData} cache={cache} meta={meta} />
           </Col>
-          <Col>
+          <Col width={'800'}>
+          <SortBy cache={cache} modData={modData} apiData={stateData}/>
             <Review
               apiData={stateData}
-              countReviews={countReviews} />
+              countReviews={countReviews}
+              setCache={setCache}
+              modData={modData}
+              setDataLength={setDataLength}
+              setMeta={setMeta}/>
             <Tracker render={(count, incCount) => {
               return <SeeMore
                 count={count}
@@ -48,6 +88,10 @@ export default function BigList() {
                 countReviews={countReviews}
                 setCountReviews={setCountReviews}
                 dataLength={dataLength}
+                setCache={setCache}
+                modData={modData}
+                setDataLength={setDataLength}
+                setMeta={setMeta}
               />
             }} />
           </Col>

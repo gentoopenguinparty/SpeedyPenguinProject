@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 
 import {
   ProductCardCategory,
@@ -7,13 +8,18 @@ import {
   ProductCardStarRating,
 } from './index.jsx';
 
-export default function ProductCardDetails() {
+export default function ProductCardDetails({ productDetails }) {
   return (
-    <div className="productCardDetails">
-      <ProductCardCategory />
-      <ProductCardName />
-      <ProductCardPrice />
+    <CardDetails className="cardDetails">
+      <ProductCardCategory category={productDetails.category} />
+      <ProductCardName name={productDetails.name} />
+      <ProductCardPrice price={productDetails.price} />
       <ProductCardStarRating />
-    </div>
+    </CardDetails>
   );
 }
+
+const CardDetails = styled.div`
+  padding-left: 12px;
+  padding-bottom: 10px;
+`;

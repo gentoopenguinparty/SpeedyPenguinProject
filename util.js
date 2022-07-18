@@ -9,9 +9,18 @@ export function axiosGet(url) {
   });
 }
 export function axiosPost(url, data) {
-  return axios.post(url, {
+  return axios.post(url, data, {
     headers: {
       Authorization: API_KEY,
+      'Content-Type': 'application/json',
     },
-  }, data);
+  });
 }
+export function axiosPut(url) {
+  return axios.put(url, null, {
+    headers: {
+      'Authorization': API_KEY,
+    }
+  });
+}
+
