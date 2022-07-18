@@ -72,7 +72,7 @@ export default function QuestionsAnswers() {
 
   const handleSubmit = () => {
     axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions`, askQuestionData, {headers: {
-      Authorization: API_KEY,
+      Authorization: API_KEY, 'Content-Type': 'application/json'
     }}).then((response) => {
       console.log(response)
       setOpenModal(false)
@@ -85,6 +85,10 @@ export default function QuestionsAnswers() {
 const handleAnswerSubmit = () => {
   console.log(answerData);
   setOpenAnswerModal(false)
+}
+
+const handleHelpfulSubmit = () => {
+  axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/:hr-rfe/qa/questions/:question_id=${param}/helpful`)
 }
 
 
