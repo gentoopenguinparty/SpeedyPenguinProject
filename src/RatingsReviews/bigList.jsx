@@ -13,46 +13,27 @@ let axios = require('axios');
 
 // This component is made up of the biglist of reviews and buttons that change the render properties of the biglist
 
-export default function BigList() {
-  useEffect(() => {
-    let id = window.location.href.slice(22,27) || 38000;
-    // console.log('ID', id)
-    // console.log('searchParams', window.location.href.slice(22,27));
-    axiosGet('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/meta/?product_id=' + id)
-      .then((data) => {
-        if (Object.keys(data.data.ratings).length > 0) {
-          setMeta(data.data);
-        }
-      })
-  }, [])
-
-  useEffect(() => {
-    let id = window.location.href.slice(22,27) || 38000;
-    axiosGet('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/?product_id=' + id)
-      .then((data) => {
-        if (data.data.results !== undefined) {
-          setCache(data.data.results);
-          modData(data.data.results);
-          setDataLength(data.data.results.length);
-        }
-      })
-  }, [])
+export default function BigList({ metaD, cacheD }) {
 
   // count state
   const [countReviews, setCountReviews] = useState(2);
+
   // total data state
   const [dataLength, setDataLength] = useState(0);
+
   // API state data
   const [stateData, modData] = useState([{
     rating: 1, recommend: 'bool',
     date: 'filler', review_id: 'filler',
     photos: [1], noReview: false
   }]);
+
   //API cache
   const [cache, setCache] = useState([{
     rating: 1, recommend: '',
     date: '', review_id: '', date: 'test'
   }]);
+
   const [meta, setMeta] = useState(
     {
       ratings: { 1: [1], 2: [1], 3: [1], 4: [1], 5: [1] },
@@ -63,7 +44,18 @@ export default function BigList() {
       }
     }
   )
-  const [metaCache, setMetaCache] = useState()
+
+  useEffect(() => {
+    let id = window.location.href.slice(22, 27) || 38000;
+    if (Object.keys(metaD.ratings).length > 0) {
+      setMeta(metaD);
+    }
+    if (cache !== undefined) {
+      setCache(cacheD);
+      modData(cacheD);
+      setDataLength(cacheD.length);
+    }
+  }, [])
 
   return (
     <div>
@@ -73,7 +65,7 @@ export default function BigList() {
             <Graphical apiData={stateData} modData={modData} cache={cache} meta={meta} />
           </Col>
           <Col width={'800'}>
-          <SortBy cache={cache} modData={modData} apiData={stateData}/>
+            <SortBy cache={cache} modData={modData} apiData={stateData} />
             <Review
               apiData={stateData}
               countReviews={countReviews}
@@ -81,7 +73,7 @@ export default function BigList() {
               setCache={setCache}
               modData={modData}
               setDataLength={setDataLength}
-              setMeta={setMeta}/>
+              setMeta={setMeta} />
             <Tracker render={(count, incCount) => {
               return <SeeMore
                 count={count}
