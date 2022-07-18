@@ -6,16 +6,16 @@ import OutfitCard from './OutfitCard.jsx';
 import useOutfitListStore from './stores.js';
 
 export default function OutfitCardCarousel() {
-  const outfits = useOutfitListStore((state) => state.outfits);
-  const removeOutfit = '';
+  const { outfits, addOutfit, removeOutfit } = useOutfitListStore();
+  console.log('outfitsStore:', outfits);
   return (
     <FlexContainer>
       <CardCarousel>
-        <AddToOutfitsButton />
-        {outfits.map((product) => (
+        <AddToOutfitsButton handleClick={addOutfit} />
+        {outfits.map((outfitItem) => (
           <OutfitCard
-            key={product.id}
-            outfit={product}
+            key={outfitItem.id}
+            outfitItem={outfitItem}
             removeOutfit={removeOutfit}
           />
         ))}

@@ -9,7 +9,11 @@ import { persist } from 'zustand/middleware';
 const useOutfitListStore = create(
   persist(
     (set) => ({
-      outfits: [],
+      outfits: [{
+        id: 12345,
+        category: 'TEST',
+        name: 'testName',
+      }],
       addOutfit: (newOutfit) => {
         set((state) => ({
           outfits: [
