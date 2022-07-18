@@ -77,6 +77,7 @@ export default function BigList() {
             <Review
               apiData={stateData}
               countReviews={countReviews}
+              dataLength={dataLength}
               setCache={setCache}
               modData={modData}
               setDataLength={setDataLength}
