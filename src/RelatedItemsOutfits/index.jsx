@@ -1,13 +1,30 @@
 /* eslint-disable no-console */
 import React, { useState, useEffect } from 'react';
+import create from 'zustand';
+import { persist } from 'zustand/middleware';
+
 import { axiosGet } from '../../util.js';
 
 import RelatedProductCardCarousel from './RelatedProductCardCarousel.jsx';
 import OutfitCardCarousel from './OutfitCardCarousel.jsx';
 import ComparisonModal from './ComparisonModal.jsx';
 
+// --- Zustand persistent store for outfit list ---
+export const useOutfitListStore = create(persist(
+  (set, get) => ({
+    outfits: [],
+    addOutfit: (newOutfit) => {
+      const currentState = get().outfits;
+      set({ outfits: currentState.concat(newOutfit) });
+    },
+  }),
+  {
+    name: 'user-outfits',
+  },
+));
+
+// ------ network request methods -------
 // example id: 37313
-// network request methods
 async function getRelatedIDs(productID) {
   const relatedURL = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${productID}/related`;
   const result = await axiosGet(relatedURL);
@@ -23,16 +40,6 @@ function getProductDetails(productID) {
 export default function RelatedItemsOutfitsModule() {
   const [showModal, setShowModal] = useState(false);
   const [relatedProducts, setRelatedProducts] = useState([]);
-
-  // {
-  //   category: '',
-  //   name: '',
-  //   price: '',
-  //   salePrice: '',
-  //   images: [],
-  //   thumbnails: [],
-  //   rating: 5, // need to retrieve from meta endpoint
-  // }
 
   useEffect(() => {
     const relatedIDs = getRelatedIDs('37313');
