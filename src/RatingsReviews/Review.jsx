@@ -49,7 +49,6 @@ export default function Review({ countReviews, setDataLength, apiData , setCache
     let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
     let month = months[parseInt(newDate[1]) - 1];
     let day = parseInt(newDate[2]);
-    // console.log(`${month} ${day}, ${newDate[0]}`)
     return (`${month} ${day}, ${newDate[0]}`);
   }
 
@@ -57,6 +56,7 @@ export default function Review({ countReviews, setDataLength, apiData , setCache
     <div key='reviews'>
 
       <Grid color={'#FAEBD7'} padding={'5'} height={'1000'} width={'1000'}>
+        {console.log(apiData)}
         {apiData.slice(0, countReviews).map((review, index) => (
           (review.noReview ?
             <div>no review for this rating</div> :

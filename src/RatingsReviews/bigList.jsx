@@ -50,7 +50,7 @@ export default function BigList({ metaD, cacheD }) {
     if (Object.keys(metaD.ratings).length > 0) {
       setMeta(metaD);
     }
-    if (cache !== undefined) {
+    if (cacheD !== undefined) {
       setCache(cacheD);
       modData(cacheD);
       setDataLength(cacheD.length);
