@@ -48,13 +48,13 @@ export default function QuestionsAnswers() {
   useEffect(() => {
     getQAs();
     getProductInfo();
-    const interval=setInterval(()=>{
-      getQAs()
-      getProductInfo();
-     },10000)
+    // const interval=setInterval(()=>{
+    //   getQAs()
+    //   getProductInfo();
+    //  },10000)
 
 
-     return()=>clearInterval(interval)
+    //  return()=>clearInterval(interval)
 
   }, []);
 
@@ -83,7 +83,8 @@ export default function QuestionsAnswers() {
   }
 
 const handleAnswerSubmit = () => {
-  console.log(answerData)
+  console.log(answerData);
+  setOpenAnswerModal(false)
 }
 
 
@@ -119,7 +120,7 @@ const handleAnswerSubmit = () => {
    <br></br>
    <br></br>
    {openModal && <Modal setOpenModal={setOpenModal} openModal={openModal} productData={productData} setAskQuestionData={setAskQuestionData} askQuestionData={askQuestionData} handleSubmit={handleSubmit}/>}
-   {openAnswerModal && <AnswerModal setOpenAnswerModal={setOpenAnswerModal} openAnswerModal={openAnswerModal} productData={productData} setAnswerData={setAnswerData} answerData={answerData} handleAnswerSubmit={handleAnswerSubmit} data={data}/>}
+   {openAnswerModal && <AnswerModal setOpenAnswerModal={setOpenAnswerModal} openAnswerModal={openAnswerModal} productData={productData} setAnswerData={setAnswerData} answerData={answerData} handleAnswerSubmit={handleAnswerSubmit} data={data} qListLength={qListLength}/>}
     <ScrollContainer data-testid={'QA'}>
 
 

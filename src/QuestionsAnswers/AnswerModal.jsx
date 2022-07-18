@@ -55,7 +55,7 @@ const AnswerModal = ({ openAnswerModal, setOpenAnswerModal, productData, setAnsw
     <div className="modal-pop" role="dialog" aria-modal="true">
     <header>
     <h1 className="title">Submit Your Answer</h1>
-      <h2 className="title">{productData.name}:</h2>
+      <h2 className="title">{productData.name}: {data[0].question_body}</h2>
     </header>
 
 
