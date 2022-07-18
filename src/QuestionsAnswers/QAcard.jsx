@@ -2,6 +2,7 @@
 import AnswerCards from './AnswerCards.jsx';
 import React, { useEffect, useState } from 'react';
 import {Container} from './styles/Main.styled.js'
+import AnswerModal from './AnswerModal.jsx'
 // import {qListLength, setQListLength} from '../QuestionsAnswers/QuestionsAnswers.jsx'
 
 export default function QAcard(props) {
@@ -10,7 +11,7 @@ export default function QAcard(props) {
 
 
   const displayQAcards = (props) => {
-    console.log(props)
+    console.log('props', props)
 
 
 
@@ -18,7 +19,7 @@ export default function QAcard(props) {
     const { qaCards } = props;
     if (qaCards.length > 0) {
 
-
+     console.log(qaCards)
       return (
         qaCards.slice(0, props.qListLength ).filter(qaCard => qaCard.question_body.toLowerCase().includes(props.search.toLowerCase())).sort((a, b) => a.question_helpfulness > b.question_helpfulness ? -1 : 1).map((qaCard, index) => {
 
@@ -33,10 +34,12 @@ export default function QAcard(props) {
                 <pre>
                   Helpful? <span onClick={() => { console.log('yes question test') }}>Yes(
                     {qaCard.question_helpfulness}
-                    ) |</span>  <span onClick={() => { console.log('Add answer test') }}>Add Answer</span>
+                    ) |</span>  <span onClick={() => props.setOpenAnswerModal(true)}>Add Answer</span>
                 </pre>
               </small>
+              <br></br>
               <AnswerCards answers={qaCard.answers} />
+              <br></br>
             </div>
           );
         })

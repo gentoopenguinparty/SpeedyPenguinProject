@@ -29,7 +29,7 @@ export default function Answers(props) {
       return (
         answers.slice(0, listLength).sort((a, b) => a.helpfulness > b.helpfulness ? -1 : 1).map((answer, index) => {
           let person = answer[1].answerer_name;
-          console.log('log from answercard map', answer[1].photos)
+
 
           // setPhotos(photos);
          // console.log(photos)
@@ -40,15 +40,21 @@ export default function Answers(props) {
             console.log('this is the', answer[1].answerer_name)
           }
 
-
-
+          let date = new Date(answer[1].date).toLocaleDateString(
+            'en-gb',
+            {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric'
+            }
+          );
           return (
-            <div className="answer" key={answer[0]}>
-              <h3> A: <small>{answer[1].body}</small></h3>
+            <div className="answer" key={answer[0]} >
+              <div><pre><strong>A:</strong> <small>{answer[1].body}</small></pre></div>
 
               <PhotoCard photos={answer[1].photos}/>
-              <small><pre>by {person}, {answer[1].date} | Helpful? <span onClick={() =>{console.log('yes answer test')}}>Yes({answer[1].helpfulness}) |</span> <span onClick={handleReportClick}>Report</span>
-                </pre></small>
+              <small><pre>by {person}, {date} | Helpful? <span onClick={() =>{console.log('yes answer test')}}>Yes({answer[1].helpfulness}) |</span> <span onClick={handleReportClick}>Report</span>
+                </pre></small><br></br>
             </div>
           );
         })
