@@ -29,21 +29,38 @@ const relatedIDs = getRelatedIDs('37313');
 function getIDNameAndCategory() {
   return relatedIDs.then((data) => data.map((id) => getProductDetails(id)))
     .then((detailsPromises) => Promise.all(detailsPromises))
-    .then((details) => details.map((dataObj) => (
-      {
-        id: dataObj.data.id,
-        category: dataObj.data.category,
-        name: dataObj.data.name,
-      }
-    )))
+    .then((res) => res.map((dataObj) => {
+      const product = dataObj.data;
+      // console.log('product:', product);
+      return {
+        id: product.id,
+        category: product.category,
+        name: product.name,
+        price: product.default_price,
+        features: product.features,
+      };
+    }))
     .catch((err) => console.log(err));
 }
 
-// function getPriceAndImage() {
-//   return relatedIDs.then((data) => data.map((id) => getProductStyles(id)))
-//     .then((styles) => Promise.all(styles))
-//     .then((arr) => arr.)
-// }
+function getPriceAndImage() {
+  return relatedIDs.then((data) => data.map((id) => getProductStyles(id)))
+    .then((stylesPromise) => Promise.all(stylesPromise))
+    .then((res) => res.map((dataObj) => {
+      const styles = dataObj.data.results;
+      console.log('styles:', styles);
+      const defaultStyle = styles.filter((obj) => obj['default?'] === true).pop();
+      console.log('defaultStyle:', defaultStyle);
+      // return {
+      //   price: defaultStyle.original_price,
+      //   salePrice: defaultStyle.sale_price,
+      //   images: defaultStyle.photos,
+      //   defaultThumbnail: defaultStyle.photos[0 || 1].thumbnail_url,
+      // };
+    }))
+    .then((obj) => console.log('priceImage:', obj))
+    .catch((err) => console.log(err));
+}
 
 export default function RelatedItemsOutfitsModule() {
   const [showModal, setShowModal] = useState(false);
@@ -53,6 +70,8 @@ export default function RelatedItemsOutfitsModule() {
     // console.log('relatedIDs:', relatedIDs);
     getIDNameAndCategory()
       .then((data) => setRelatedProducts(data))
+      .then(getPriceAndImage())
+      // .then((data) => console.log(data))
       .catch((err) => console.log(err));
   }, []);
   // the empty array tells useEffect it has no dependencies,

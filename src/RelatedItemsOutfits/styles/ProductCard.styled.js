@@ -17,5 +17,4 @@ const ProductCard = styled.div`
   }
 
 `;
-
 export default ProductCard;

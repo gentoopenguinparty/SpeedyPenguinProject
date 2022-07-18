@@ -13,7 +13,7 @@ export default function ProductCardDetails({ productDetails }) {
     <CardDetails className="cardDetails">
       <ProductCardCategory category={productDetails.category} />
       <ProductCardName name={productDetails.name} />
-      <ProductCardPrice />
+      <ProductCardPrice price={productDetails.price} />
       <ProductCardStarRating />
     </CardDetails>
   );
