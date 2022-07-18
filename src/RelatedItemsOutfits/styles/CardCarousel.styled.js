@@ -13,6 +13,6 @@ export const CardCarousel = styled.div`
   flex-wrap: wrap;
   overflow: hidden;
 
-  height: 440px;
+  height: 420px;
   padding: 10px;
 `;

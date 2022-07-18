@@ -4,7 +4,7 @@ import styled from 'styled-components';
 export default function AddToOutfitsButton({ handleClick }) {
   return (
     // TODO need to pass in the pages current outfit to click handler
-    <AddOutFitButton onClick={() => handleClick({ id: 12345, name: 'test outfit', category: 'test' })}>
+    <AddOutFitButton onClick={() => handleClick({ id: 1234, name: 'testAdd', category: 'testAddCategory' })}>
       <p className="text">Add To Outfits</p>
       <p className="symbol">+</p>
     </AddOutFitButton>
@@ -22,11 +22,14 @@ const AddOutFitButton = styled.div`
   height: 400px;
   width: 275px;
   margin: 10px;
+  &:hover {
+    background-color: lightgray;
+  }
 
   .text {
     font-size: 35px;
     color: purple;
-    margin-top: 100px;
+    //margin-top: 100px;
   }
   .symbol {
     font-size: 200px;

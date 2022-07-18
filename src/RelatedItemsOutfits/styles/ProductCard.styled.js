@@ -11,10 +11,9 @@ const ProductCard = styled.div`
   height: 400px;
   width: 275px;
   margin: 10px;
-  margin-bottom: 50px;
 
   &:hover {
-    box-shadow: 5px 5px 3px darkorange;
+    background-color: lightgray;
   }
 
 `;

@@ -22,9 +22,9 @@ const useOutfitListStore = create(
           ],
         }));
       },
-      removeOutfit: (outfit) => {
+      removeOutfit: (outfitID) => {
         set((state) => ({
-          outfits: state.outfits.filter((item) => item.id !== outfit.id),
+          outfits: state.outfits.filter((item) => item.id !== outfitID),
         }));
       },
     }),

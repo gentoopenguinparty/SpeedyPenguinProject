@@ -7,7 +7,7 @@ import { RemoveOutfitButton } from './Buttons/index.jsx';
 export default function OutfitCard({ outfitItem, removeOutfit }) {
   return (
     <ProductCard>
-      <RemoveOutfitButton handleClick={removeOutfit} />
+      <RemoveOutfitButton handleClick={removeOutfit} currentID={outfitItem.id} />
       <ProductCardImage imageURL={outfitItem} />
       <ProductCardDetails productDetails={outfitItem} />
     </ProductCard>
