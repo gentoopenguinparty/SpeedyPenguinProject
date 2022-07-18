@@ -7,10 +7,10 @@ export default function RatingsReviews() {
 
   return (
     <div>
-      <Routes>
-        <Route path="/" element={<BigList />} />
-        {/* <BigList /> */}
-      </Routes>
+      {/* <Routes> */}
+        {/* <Route path="/" element={<BigList />} /> */}
+        <BigList />
+      {/* </Routes> */}
     </div>
   );
 

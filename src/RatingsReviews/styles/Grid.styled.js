@@ -9,5 +9,6 @@ margin-bottom: ${props => props.bottom}px;
 margin-top: ${props => props.top}px;
 border-style: ${props => props.border};
 max-height: ${props => props.height}px;
+min-width: ${props => props.width}px;
 overflow-y: auto;
 `;

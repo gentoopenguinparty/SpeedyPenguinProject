@@ -56,7 +56,7 @@ export default function Review({ countReviews, setDataLength, apiData , setCache
   return (
     <div key='reviews'>
 
-      <Grid color={'#FAEBD7'} padding={'5'} height={'1000'}>
+      <Grid color={'#FAEBD7'} padding={'5'} height={'1000'} width={'1000'}>
         {apiData.slice(0, countReviews).map((review, index) => (
           (review.noReview ?
             <div>no review for this rating</div> :
@@ -80,7 +80,7 @@ export default function Review({ countReviews, setDataLength, apiData , setCache
                 {review.photos.length > 0 ?
                   review.photos.map((photo, i) => {
                     return (
-                      <div style={{ padding: '5px 0 0 0' }}>
+                      <div key={i} style={{ padding: '5px 0 0 0' }}>
                         <div style={{ margin: '0 0 0 10px' }}>
                           <img onClick={(event) => { handleClickAdd(event); }} key={i} style={{ height: '100px', width: '100px' }}
                             src={photo.url} />
