@@ -7,49 +7,33 @@ import ProductDescription from './ProductDescription.jsx';
 import ProductInterface from './ProductInterface.jsx';
 import ProductCheckmarks from './ProductCheckmarks.jsx';
 
-export default function ProductDetail() {
-  const [productData, setProductData] = React.useState(null);
-  const [styles, setStyles] = React.useState([]);
+export default function ProductDetail({ styles, productData }) {
   const [currentStyle, setCurrrentStyle] = React.useState(0);
-  const id = 37315;
-  React.useEffect(() => {
-    axiosGet(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${id}`)
-      .then((data) => {
-        setProductData(data.data);
-        axiosGet(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${id}/styles`)
-          .then((data) => setStyles(data.data.results))
-          .catch((err) => console.log(err));
-      })
-      .catch((err) =>  console.log(err));
-  }, []);
-
   const handleStyleChange = (newStyleInd) => {
     setCurrrentStyle(newStyleInd);
   };
   return (
     <div>
-      {!styles.length ? <div>Loading</div> : (
-        <>
-          <Grid>
-            <PhotoGallery images={styles[currentStyle]} />
-            <ProductInterface
-              styleChange={handleStyleChange}
-              data={productData}
-              styles={styles}
-              id={currentStyle}
-            />
-          </Grid>
 
-          <Grid margin={10}>
-            <ProductDescription
-              styleChange={handleStyleChange}
-              data={productData}
-              styles={styles}
-            />
-            <ProductCheckmarks features={productData.features} />
-          </Grid>
-        </>
-      )}
+      <Grid>
+        <PhotoGallery images={styles[currentStyle]} />
+        <ProductInterface
+          styleChange={handleStyleChange}
+          data={productData}
+          styles={styles}
+          id={currentStyle}
+        />
+      </Grid>
+
+      <Grid margin={10}>
+        <ProductDescription
+          styleChange={handleStyleChange}
+          data={productData}
+          styles={styles}
+        />
+        <ProductCheckmarks features={productData.features} />
+      </Grid>
+
     </div>
   );
 }
