@@ -78,11 +78,11 @@ export default function RelatedItemsOutfitsModule() {
     // // console.log('relatedIDs:', relatedIDs);
     getRelatedProductDetails()
       .then((data) => setRelatedProductDetails(data))
-      .catch((err) =>  console.log(err));
+      .catch((err) => console.log(err));
 
     getRelatedProductStyles()
       .then((data) => setRelatedProductStyles(data))
-      .catch((err) => console.log(err))
+      .catch((err) => console.log(err));
   }, []);
   // the empty array tells useEffect it has no dependencies,
   // therefore preventing infitine rerender loop
