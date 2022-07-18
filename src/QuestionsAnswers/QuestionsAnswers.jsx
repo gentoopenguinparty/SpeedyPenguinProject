@@ -112,7 +112,18 @@ export default function QuestionsAnswers({ productId }) {
     }).catch((error) => { console.log(error); });
   };
 
-  const param = 37321;
+  const handleHelpfulAnswerSubmit = (answerId, answerHelpfulness) => {
+    axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/answers/${answerId}/helpful`, { helpfulness: answerHelpfulness + 1 }, {
+      headers: {
+        Authorization: API_KEY,
+        'Content-Type': 'application/json',
+      },
+    }).then((response) => {
+      console.log(response);
+    }).catch((error) => { console.log(error); });
+  };
+
+
 
   const getQAs = () => axiosGet(`https://app-hrsei-api.herokuapp.com/api/fec2/:hr-rfe/qa/questions/?product_id=${productId}`).then((response) => {
     const allData = response.data.results;
@@ -148,7 +159,7 @@ export default function QuestionsAnswers({ productId }) {
       {openAnswerModal && <AnswerModal setOpenAnswerModal={setOpenAnswerModal} openAnswerModal={openAnswerModal} productData={productData} setAnswerData={setAnswerData} answerData={answerData} handleAnswerSubmit={handleAnswerSubmit} data={data} />}
       <ScrollContainer data-testid="QA">
 
-        <QAcard qaCards={data} search={search} noMoreQs={noMoreQs} qListLength={qListLength} setOpenAnswerModal={setOpenAnswerModal} setQuestionId={setQuestionId} handleAnswerSubmit={handleAnswerSubmit} handleQuestionId={handleQuestionId} handleHelpfulQuestionSubmit={handleHelpfulQuestionSubmit} />
+        <QAcard qaCards={data} search={search} noMoreQs={noMoreQs} qListLength={qListLength} setOpenAnswerModal={setOpenAnswerModal} setQuestionId={setQuestionId} handleAnswerSubmit={handleAnswerSubmit} handleQuestionId={handleQuestionId} handleHelpfulQuestionSubmit={handleHelpfulQuestionSubmit}  handleHelpfulAnswerSubmit={handleHelpfulAnswerSubmit}/>
         <br />
         <br />
         <>

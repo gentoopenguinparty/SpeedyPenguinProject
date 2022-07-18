@@ -23,7 +23,7 @@ export default function QAcard(props) {
               <pre>
                 Helpful?
                 {' '}
-                <span onClick={() => props.handleHelpfulQuestionSubmit(qaCard.question_id)}>
+                <span onClick={() => props.handleHelpfulQuestionSubmit(qaCard.question_id, qaCard.question)}>
                   Yes(
                   {qaCard.question_helpfulness}
                   ) |
@@ -34,7 +34,7 @@ export default function QAcard(props) {
               </pre>
             </small>
             <br />
-            <AnswerCards answers={qaCard.answers} />
+            <AnswerCards answers={qaCard.answers} handleHelpfulAnswerSubmit={props.handleHelpfulAnswerSubmit}/>
             <br />
           </div>
         ))

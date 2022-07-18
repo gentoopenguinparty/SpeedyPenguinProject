@@ -64,7 +64,7 @@ export default function Answers(props) {
                   {date}
                   {' '}
                   | Helpful?
-                  <span onClick={() => { console.log('yes answer test'); }}>
+                  <span onClick={() => props.handleHelpfulAnswerSubmit(answer[0], answer[1].helpfulness)}>
                     Yes(
                     {answer[1].helpfulness}
                     ) |
