@@ -1,5 +1,7 @@
 import React from 'react';
 
+import ActionButton from './ActionButton.styled.js';
+
 export default function RemoveOutfitButton() {
-  return <div className="removeOutfitButton">RemoveOutfitButton</div>;
+  return <ActionButton>X</ActionButton>;
 }

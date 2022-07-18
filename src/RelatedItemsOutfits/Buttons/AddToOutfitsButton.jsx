@@ -1,9 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 
-export default function AddToOutfitsButton() {
+export default function AddToOutfitsButton({ handleClick }) {
   return (
-    <AddOutFitButton>
+    // TODO need to pass in the pages current outfit to click handler
+    <AddOutFitButton onClick={() => handleClick({ id: 12345, name: 'test outfit', category: 'test' })}>
       <p className="text">Add To Outfits</p>
       <p className="symbol">+</p>
     </AddOutFitButton>

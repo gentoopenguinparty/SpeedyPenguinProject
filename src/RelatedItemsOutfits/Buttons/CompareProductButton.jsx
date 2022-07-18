@@ -1,21 +1,7 @@
 import React from 'react';
-import styled from 'styled-components';
+
+import ActionButton from './ActionButton.styled.js';
 
 export default function CompareProductButton({ handleClick }) {
-  return <CompareButton onClick={handleClick}>★</CompareButton>;
+  return <ActionButton onClick={handleClick}>★</ActionButton>;
 }
-
-const CompareButton = styled.div`
-  /* border: 2px solid purple; */
-  height: 30px;
-  width: 30px;
-  position: absolute;
-  top: 0;
-  right: 0;
-
-  font-size: 25px;
-  color: purple;
-  &:hover {
-    color: darkorange;
-  }
-`;
