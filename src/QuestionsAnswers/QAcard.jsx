@@ -11,7 +11,7 @@ export default function QAcard(props) {
 
 
   const displayQAcards = (props) => {
-    console.log('props', props)
+    // console.log('props', props)
 
 
 
@@ -19,7 +19,7 @@ export default function QAcard(props) {
     const { qaCards } = props;
     if (qaCards.length > 0) {
 
-     console.log(qaCards)
+     // console.log(qaCards)
       return (
         qaCards.slice(0, props.qListLength ).filter(qaCard => qaCard.question_body.toLowerCase().includes(props.search.toLowerCase())).sort((a, b) => a.question_helpfulness > b.question_helpfulness ? -1 : 1).map((qaCard, index) => {
 
@@ -32,7 +32,7 @@ export default function QAcard(props) {
               </h3>
               <small>
                 <pre>
-                  Helpful? <span onClick={() => { console.log('yes question test') }}>Yes(
+                  Helpful? <span onClick={() => {console.log('yes question test') }}>Yes(
                     {qaCard.question_helpfulness}
                     ) |</span>  <span onClick={() => props.setOpenAnswerModal(true)}>Add Answer</span>
                 </pre>
@@ -50,7 +50,7 @@ export default function QAcard(props) {
     return (
       <>
       <h3>No Questions Asked At This Time</h3>
-      <button onClick={() => { console.log('Add answer test') }}>Add Answer</button>
+      <button onClick={() => {  console.log('Add answer test') }}>Add Answer</button>
       </>
 
     );

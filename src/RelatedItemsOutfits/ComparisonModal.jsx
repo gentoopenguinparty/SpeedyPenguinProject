@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 export default function ComparisonModal({ show, setShowModal, currentProduct }) {
-  console.log('currentProductFeatures:', currentProduct);
+  // console.log('currentProductFeatures:', currentProduct);
   return (
     <Modal className={`${show ? 'show' : ''}`} onClick={() => setShowModal(false)}>
       <ModalContent onClick={(e) => e.stopPropagation()}>

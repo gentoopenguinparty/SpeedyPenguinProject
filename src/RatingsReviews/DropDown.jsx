@@ -12,11 +12,11 @@ export default function DropDown({ modData, apiData }) {
   var sortHelpful = function (array) {
     // set a counter = 0
     var count = 0;
-    console.log('array', array)
-    console.log('inside Function help', array[0].helpfulness);
+    // console.log('array', array)
+    // console.log('inside Function help', array[0].helpfulness);
     // Create a for loop that goes through the entire array
     for (var i = 0; i < array.length - 1; i++) {
-      console.log('for', array[i + 1].helpfulness, array[i].helpfulness)
+      // console.log('for', array[i + 1].helpfulness, array[i].helpfulness)
       if (array[i + 1].helpfulness > array[i].helpfulness) {
         // swap the values around
         var currentVal = array[i];
@@ -30,7 +30,7 @@ export default function DropDown({ modData, apiData }) {
     if (count === 0) {
       // then return the sorted array
       modData([...array]);
-      console.log('help')
+      // console.log('help')
       return;
     }
     // if counter > 0
@@ -60,10 +60,10 @@ export default function DropDown({ modData, apiData }) {
   var sortNew = function (array) {
     // set a counter = 0
     var count = 0;
-    console.log('inside Function', array[0].date);
+    // console.log('inside Function', array[0].date);
     // Create a for loop that goes through the entire array
     for (var i = 0; i < array.length - 1; i++) {
-      console.log('for', array[i + 1].date.slice(0, 4), array[i].date.slice(0, 4))
+      // console.log('for', array[i + 1].date.slice(0, 4), array[i].date.slice(0, 4))
       if (parseInt(array[i + 1].date.slice(0, 4)) > parseInt(array[i].date.slice(0, 4))) {
         // swap the values around
         var currentVal = array[i];

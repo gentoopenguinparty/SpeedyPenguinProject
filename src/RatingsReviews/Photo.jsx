@@ -5,7 +5,7 @@ export default function Photo({files, setFile}) {
   function handleFile(event) {
     let concatFile = [...files, URL.createObjectURL(event.target.files[0])];
     setFile(concatFile);
-    console.log('file', files);
+    // console.log('file', files);
   }
 
   return (

@@ -14,8 +14,8 @@ export default function ComfortSize({ meta }) {
   let fit = 0;
   let length = 0;
   let width = 0;
-  console.log('meta', meta);
-  console.log('metaKeys', Object.keys(meta.characteristics).length)
+  // console.log('meta', meta);
+  // console.log('metaKeys', Object.keys(meta.characteristics).length)
   if (Object.keys(meta.characteristics).length === 0) {
     return;
   }
@@ -41,7 +41,7 @@ export default function ComfortSize({ meta }) {
 
 
   function calcPercent(value) {
-    console.log('metaBro', value)
+    // console.log('metaBro', value)
     let percent = (value / 5) * 100;
     return percent - 3;
   }

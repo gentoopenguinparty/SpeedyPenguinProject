@@ -6,7 +6,7 @@ import Styles from './Styles.jsx';
 import ShareRow from './ShareRow.jsx';
 
 export default function ProductInterface({data, styles, styleChange, id}) {
-  // console.log(data)
+  // // console.log(data)
   return (
     <Main>
       <span>

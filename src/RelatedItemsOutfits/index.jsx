@@ -13,7 +13,7 @@ const currentID = '37315';
 async function getRelatedIDs(productID) {
   const relatedURL = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${productID}/related`;
   const result = await axiosGet(relatedURL);
-  // console.log('result:', result.data);
+  // // console.log('result:', result.data);
   return result.data;
 }
 function getProductDetails(productID) {
@@ -33,7 +33,7 @@ function getRelatedProductDetails() {
     .then((detailsPromises) => Promise.all(detailsPromises))
     .then((res) => res.map((dataObj) => {
       const product = dataObj.data;
-      // console.log('product:', product);
+      // // console.log('product:', product);
       return {
         id: product.id,
         category: product.category,
@@ -50,10 +50,10 @@ function getRelatedProductStyles() {
     .then((stylesPromise) => Promise.all(stylesPromise))
     .then((res) => res.map((dataObj) => {
       const styles = dataObj.data.results;
-      // console.log('styles:', styles);
+      // // console.log('styles:', styles);
       const defaultCheck = styles.filter((obj) => obj['default?'] === true).pop();
       const defaultStyle = defaultCheck || styles[0];
-      // console.log('defaultStyle:', defaultStyle);
+      // // console.log('defaultStyle:', defaultStyle);
       return {
         price: defaultStyle.original_price,
         salePrice: defaultStyle.sale_price,
@@ -61,7 +61,7 @@ function getRelatedProductStyles() {
         defaultThumbnail: defaultStyle.photos[0].thumbnail_url,
       };
     }))
-    // .then((obj) => console.log('priceImage:', obj))
+    // .then((obj) => // console.log('priceImage:', obj))
     .catch((err) => console.log(err));
 }
 
@@ -75,14 +75,14 @@ export default function RelatedItemsOutfitsModule() {
     getProductDetails(currentID)
       .then((res) => setcurrentProduct(res.data))
       .catch((err) => console.log(err));
-    // console.log('relatedIDs:', relatedIDs);
+    // // console.log('relatedIDs:', relatedIDs);
     getRelatedProductDetails()
       .then((data) => setRelatedProductDetails(data))
-      .catch((err) => console.log(err));
+      .catch((err) =>  console.log(err));
 
     getRelatedProductStyles()
       .then((data) => setRelatedProductStyles(data))
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err))
   }, []);
   // the empty array tells useEffect it has no dependencies,
   // therefore preventing infitine rerender loop

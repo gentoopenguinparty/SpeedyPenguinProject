@@ -8,7 +8,7 @@ import useOutfitListStore from './stores.js';
 
 export default function OutfitCardCarousel() {
   const { outfits, addOutfit, removeOutfit } = useOutfitListStore();
-  console.log('outfitsStore:', outfits);
+  // console.log('outfitsStore:', outfits);
   return (
     <>
       <Heading>Your Outfit</Heading>

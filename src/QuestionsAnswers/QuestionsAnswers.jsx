@@ -61,7 +61,7 @@ export default function QuestionsAnswers() {
 
 
   const incrementQList = () => {
-    console.log(data.length);
+    // console.log(data.length);
     if (qListLength >= data.length -2) {
       setNoMoreQs(true);
     }
@@ -74,16 +74,16 @@ export default function QuestionsAnswers() {
     axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions`, askQuestionData, {headers: {
       Authorization: API_KEY, 'Content-Type': 'application/json'
     }}).then((response) => {
-      console.log(response)
+      // console.log(response)
       setOpenModal(false)
       getQAs()
     }).catch(function (error) {
-      console.log('Error:', error);
+      // console.log('Error:', error);
     });
   }
 
 const handleAnswerSubmit = () => {
-  console.log(answerData);
+  // console.log(answerData);
   setOpenAnswerModal(false)
 }
 
@@ -97,13 +97,13 @@ const handleHelpfulSubmit = () => {
   const getQAs = () => axiosGet(`https://app-hrsei-api.herokuapp.com/api/fec2/:hr-rfe/qa/questions/?product_id=${param}`).then((response) => {
 
     const allData = response.data.results;
-    console.log('all data', allData)
+    // console.log('all data', allData)
 
     setData(allData);
   }).then((data) =>{if (data.length <= 4) {setNoMoreQs(true)}}).catch((error) => { console.error(`Error here, ${error}`); });
 
   const getProductInfo = () => axiosGet(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${param}`).then((response)=> {
-    console.log(response.data);
+    // console.log(response.data);
     const allProData = response.data;
     setProductData(allProData);
 

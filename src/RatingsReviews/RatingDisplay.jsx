@@ -29,7 +29,7 @@ export default function RatingDisplay({ apiData, modData, cache, meta }) {
       }
     }
     if(tracker === ratingVal) {
-      console.log('track!', tracker);
+      // console.log('track!', tracker);
       modData([...cache]);
       setTracker(0);
     }
@@ -44,7 +44,7 @@ export default function RatingDisplay({ apiData, modData, cache, meta }) {
       setTracker(ratingVal);
     }
 
-    console.log('cache', cache);
+    // console.log('cache', cache);
   }
 
   return (
