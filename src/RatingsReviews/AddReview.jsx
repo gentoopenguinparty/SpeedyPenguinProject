@@ -17,7 +17,42 @@ import { axiosPost } from '../../util';
 import Recommend from './Recommend.jsx'
 
 export default function AddReview({ changeTrigger, setCache,
-  setMeta, setDataLength, modData }) {
+  setMeta, setDataLength, modData, cache, meta }) {
+
+  const[size, setSize] = useState(false)
+  const[comfort, setComfort] = useState(false)
+  const[fit, setFit] = useState(false)
+  const[quality, setQuality] = useState(false)
+  const[width, setWidth] = useState(false)
+  const[length, setLength] = useState(false)
+
+  useEffect (()=> {
+    if (meta.characteristics.Size) {
+      setSize(true);
+      let sizeId = meta.characteristics.Size.id;
+    }
+    if (meta.characteristics.Comfort) {
+      setComfort(true);
+      let comfortId = meta.characteristics.Comfort.id;
+    }
+    if (meta.characteristics.Fit) {
+      setFit(true);
+      let fitId = meta.characteristics.Fit.id;
+    }
+    if (meta.characteristics.Quality) {
+      setQuality(true);
+      let qualityId = meta.characteristics.Quality.id;
+    }
+    if (meta.characteristics.Width) {
+      setWidth(true);
+      let widthId = meta.characteristics.Width.id;
+    }
+    if (meta.characteristics.Length) {
+      setLength(true);
+      let lengthId = meta.characteristics.Length.id;
+    }
+  }, [])
+
 
   const [product, setProduct] = useState({ name: 'filler' });
 

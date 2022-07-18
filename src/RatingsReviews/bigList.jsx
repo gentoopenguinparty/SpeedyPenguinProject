@@ -85,6 +85,8 @@ export default function BigList({ metaD, cacheD }) {
                 modData={modData}
                 setDataLength={setDataLength}
                 setMeta={setMeta}
+                cache={cache}
+                meta={meta}
               />
             }} />
           </Col>

@@ -8,7 +8,7 @@ import AddReview from './AddReview.jsx'
 import Tracker from './Tracker.jsx'
 
 export default function SeeMore({ countReviews, setCountReviews, dataLength, count, incCount, setCache,
-  setMeta, setDataLength, modData }) {
+  setMeta, setDataLength, modData, cache, meta }) {
 
   function handleClick(event) {
     setCountReviews(countReviews + 2);
@@ -35,7 +35,7 @@ export default function SeeMore({ countReviews, setCountReviews, dataLength, cou
         return (
           <Popup trigger={trigger} changeTrigger={changeTrigger} count={count} incCount={incCount}>
             <AddReview changeTrigger={changeTrigger} setCache={setCache} modData={modData}
-              setDataLength={setDataLength} setMeta={setMeta} />
+              setDataLength={setDataLength} setMeta={setMeta} cache={cache} meta={meta}/>
           </Popup>
         )
       }} />
