@@ -26,15 +26,16 @@ export default function ComparisonModal({ show, setShowModal, currentProduct }) 
   );
 }
 
+// maybe best to create a tuple like this to map:
 // [
-//   { characteristic: ['current', 'comparison'] }
+//   { feature: ['current', 'comparison'] }
 // ]
 
 function ModalRow({ currentItem }) {
   return (
     <>
       <CurrentProductValue>{currentItem.value}</CurrentProductValue>
-      <Characteristic>{currentItem.feature}</Characteristic>
+      <Feature>{currentItem.feature}</Feature>
       <ComparedProductValue>ComparedVal</ComparedProductValue>
     </>
   );
@@ -79,7 +80,7 @@ const ModalGrid = styled.div`
   display: grid;
   grid-gap: 5px;
   grid-template-columns: 125px 350px 125px;
-  grid-template-areas: "currVal characteristic compVal";
+  grid-template-areas: "currVal feature compVal";
   padding: 15px 0px;
 `;
 
@@ -87,8 +88,8 @@ const CurrentProductValue = styled.div`
   //grid-area: currVal;
   text-align: center;
 `;
-const Characteristic = styled.div`
-  //grid-area: characteristic;
+const Feature = styled.div`
+  //grid-area: feature;
   text-align: center;
 `;
 const ComparedProductValue = styled.div`

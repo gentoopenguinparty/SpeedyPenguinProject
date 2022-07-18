@@ -27,9 +27,10 @@ export default useIDStore;
 
 function App() {
   const url = window.location.href;
-  const id = +url.slice(url.length-6, url.length-1) || 38000;
+  const id = +url.slice(url.length - 6, url.length - 1) || 38000;
   const [currentProductData, setCurrentProductData] = useState([]);
   const [loaded, setLoaded] = useState(false);
+
   useEffect(() => {
     getAll(id)
       .then((responses) => setCurrentProductData(responses.map((response) => response.data)))
