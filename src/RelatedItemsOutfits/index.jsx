@@ -54,7 +54,7 @@ export default function RelatedItemsOutfitsModule() {
 
   return (
     <div id="relatedProductsOutfitsModule">
-      <ComparisonModal show={showModal} />
+      <ComparisonModal show={showModal} setShowModal={setShowModal} />
       <RelatedProductCardCarousel relatedProducts={relatedProducts} setShowModal={setShowModal} />
       <OutfitCardCarousel />
     </div>

@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 
-export default function ComparisonModal({ show }) {
+export default function ComparisonModal({ show, setShowModal }) {
   return !show ? null
     : (
-      <Modal>
-        <ModalContent>
+      <Modal onClick={() => setShowModal(false)}>
+        <ModalContent onClick={(e) => e.stopPropagation()}>
           <ModalHeader>
             <div>CurrentProductName</div>
             <div>ComparedProductName</div>
