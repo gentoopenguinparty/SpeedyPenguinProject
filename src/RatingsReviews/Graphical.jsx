@@ -1,12 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import AvgRating from './AvgRating.jsx'
-export default function Graphical({apiData}) {
+import RatingDisplay from './RatingDisplay.jsx'
+import ComfortSize from './ComfortSize.jsx';
+import styled from 'styled-components';
+
+export default function Graphical({ apiData, modData, cache, meta}) {
+
+
+
   return (
     <div>
-      <AvgRating apiData={apiData}/>
-      {/* <RatingDisplay />
-      <Comfort /> */}
+      <AvgRating meta={meta}/>
+      <RatingDisplay apiData={apiData} modData={modData} cache={cache} meta={meta} />
+      <ComfortSize meta={meta}/>
     </div>
   )
-
 }

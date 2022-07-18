@@ -16,3 +16,11 @@ export function axiosPost(url, data) {
     },
   });
 }
+export function axiosPut(url) {
+  return axios.put(url, null, {
+    headers: {
+      'Authorization': API_KEY,
+    }
+  });
+}
+
