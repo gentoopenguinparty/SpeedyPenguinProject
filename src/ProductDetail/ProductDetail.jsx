@@ -7,7 +7,7 @@ import ProductDescription from './ProductDescription.jsx';
 import ProductInterface from './ProductInterface.jsx';
 import ProductCheckmarks from './ProductCheckmarks.jsx';
 
-export default function ProductDetail({ styles, productData }) {
+export default function ProductDetail({ styles, productData, reviewData }) {
   const [currentStyle, setCurrrentStyle] = React.useState(0);
   const handleStyleChange = (newStyleInd) => {
     setCurrrentStyle(newStyleInd);
@@ -22,6 +22,7 @@ export default function ProductDetail({ styles, productData }) {
           data={productData}
           styles={styles}
           id={currentStyle}
+          reviews={reviewData}
         />
       </Grid>
 

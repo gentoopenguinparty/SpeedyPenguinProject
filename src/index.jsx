@@ -26,24 +26,32 @@ export default useIDStore;
 // on page load invoke changeID with id from URL
 
 function App() {
+  let x = useNavigate()
   const url = window.location.href;
-  const id = +url.slice(url.length-6, url.length-1) || 38000;
+  let path = +url.slice(url.length - 6, url.length - 1)
+  const [id, setId] = useState( path || 38000);
   const [currentProductData, setCurrentProductData] = useState([]);
+  // 0: product info 1:styles 2:reviews/meta 3:reviews
   const [loaded, setLoaded] = useState(false);
   useEffect(() => {
     getAll(id)
       .then((responses) => setCurrentProductData(responses.map((response) => response.data)))
       .then(() => setLoaded(true));
-  }, []);
+  }, [id]);
   return (
 
     <div>
       {loaded ? (
         <div>
+          <button onClick={() => {
+            x(`./${id + 1}`, {replace:true})
+             setId(prev =>prev +1)
 
+          }}></button>
           <ProductDetail
             productData={currentProductData[0]}
             styles={currentProductData[1].results}
+            reviewData={currentProductData[2]}
           />
           <RelatedItemsOutfitsModule />
           <QuestionsAnswers />

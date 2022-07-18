@@ -1,16 +1,40 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import StarRatings from 'react-star-ratings';
 import InputGrid from './InputGrid.jsx';
 import PriceBlock from './PriceBlock.jsx';
 import Styles from './Styles.jsx';
 import ShareRow from './ShareRow.jsx';
 
-export default function ProductInterface({data, styles, styleChange, id}) {
-  // // console.log(data)
+function number(rating) {
+  // console.log('numberr', rating);
+  return parseInt((Math.round(rating * 4) / 4).toFixed(2), 10);
+}
+function avgRating(meta) {
+  const { ratings } = meta;
+  let sum = 0;
+  let count = 0;
+
+  for (const key in ratings) {
+    sum += (key * ratings[key]);
+    count += parseInt(ratings[key]);
+  }
+  return sum / count;
+}
+
+export default function ProductInterface({
+  data, styles, styleChange, id, reviews,
+}) {
   return (
     <Main>
       <span>
-        <Rating rating={2.5} />
+        <StarRatings
+          rating={number(avgRating(reviews))}
+          starDimension="15px"
+          starSpacing="3px"
+          starRatedColor="black"
+          style={{ WebkitTextStroke: '1px black' }}
+        />
         Read All Reviews
       </span>
       <Category>{data.category}</Category>
