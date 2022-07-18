@@ -40,7 +40,7 @@ export default function InputGrid({ style }) {
         onChange={handleSizeChange}
         defaultValue="default"
       >
-        <option value="defa ult" disabled hidden>{sizeOptions.length ? 'SELECT SIZE' : 'Out of Stock'}</option>
+        <option value="default" disabled hidden>{sizeOptions.length ? 'SELECT SIZE' : 'Out of Stock'}</option>
         {sizeOptions}
       </Dropdown>
 
