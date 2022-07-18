@@ -13,7 +13,7 @@ export default function Review({ countReviews, setDataLength, apiData , setCache
   setMeta, modData }) {
 
   function handlePut(id) {
-    console.log('putID', id)
+    // console.log('putID', id)
     axiosPut('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/' + id + '/helpful')
       .then(() => { handleRefresh() })
   }
@@ -22,7 +22,7 @@ export default function Review({ countReviews, setDataLength, apiData , setCache
     let id = window.location.href.slice(22, 27) || 38000;
     axiosGet('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/?product_id=' + id)
       .then((data) => {
-        console.log(data.data.results);
+        // console.log(data.data.results);
         setCache(data.data.results);
         modData(data.data.results);
         setDataLength(data.data.results.length);
@@ -30,7 +30,7 @@ export default function Review({ countReviews, setDataLength, apiData , setCache
   }
 
   function number(rating) {
-    console.log('numberr', rating);
+    // console.log('numberr', rating);
     return parseInt((Math.round(rating * 4) / 4).toFixed(2));
   }
 
@@ -38,7 +38,7 @@ export default function Review({ countReviews, setDataLength, apiData , setCache
   const [url, setUrl] = useState('');
 
   function handleClickAdd(event) {
-    console.log('photosadad', event.target.src)
+    // console.log('photosadad', event.target.src)
     setUrl(event.target.src)
     changeTrigger(!trigger)
   }
@@ -49,7 +49,7 @@ export default function Review({ countReviews, setDataLength, apiData , setCache
     let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
     let month = months[parseInt(newDate[1]) - 1];
     let day = parseInt(newDate[2]);
-    console.log(`${month} ${day}, ${newDate[0]}`)
+    // console.log(`${month} ${day}, ${newDate[0]}`)
     return (`${month} ${day}, ${newDate[0]}`);
   }
 
@@ -76,7 +76,7 @@ export default function Review({ countReviews, setDataLength, apiData , setCache
                 <Col> {review.body} </Col>
               </Row>
               <Row space={'flex-start'}>
-                {console.log('photos', review.photos)}
+                {/*console.log('photos', review.photos)*/}
                 {review.photos.length > 0 ?
                   review.photos.map((photo, i) => {
                     return (

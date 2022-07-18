@@ -25,7 +25,7 @@ export default function AddReview({ changeTrigger, setCache,
     let id = window.location.href.slice(22, 27) || 38000;
     axiosGet('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/' + id)
       .then((data) => {
-        console.log('apiInfo', data.data);
+        // console.log('apiInfo', data.data);
         setProduct(data.data);
       })
   }, [])
@@ -40,7 +40,7 @@ export default function AddReview({ changeTrigger, setCache,
 
   function handleSubmit(event) {
     let err = false;
-    console.log('ratingSR', ratingSR);
+    // console.log('ratingSR', ratingSR);
     if (ratingSR === 0) {
       setStarWarn(true);
       err = true;
@@ -65,9 +65,9 @@ export default function AddReview({ changeTrigger, setCache,
     // } else {
     //   setComfortWarn(false)
     // }
-    console.log('words', wordsRB)
+    // console.log('words', wordsRB)
     if (wordsRB.length < 50) {
-      console.log('words', wordsRB)
+      // console.log('words', wordsRB)
       setBodyWarn(true)
       err = true;
     } else {
@@ -80,7 +80,7 @@ export default function AddReview({ changeTrigger, setCache,
       setNickWarn(false);
     }
     if (wordsEmail.indexOf('@') === -1 || wordsEmail.indexOf('.com') === -1) {
-      console.log('emai', wordsEmail)
+      // console.log('emai', wordsEmail)
       setEmailWarn(true);
       err = true;
     } else {
@@ -100,9 +100,9 @@ export default function AddReview({ changeTrigger, setCache,
         "photos": files || [''],
         "characteristics": {}
       }
-      console.log('state', state)
+      // console.log('state', state)
       axiosPost('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/', state)
-        .then(() => { console.log('suc') })
+    .then(() => { /*console.log('suc')*/ })
         .then(() => { changeTrigger(false) })
         .then(() => { handleRefresh() })
         .catch((err) => console.log('err', err))
@@ -113,7 +113,7 @@ export default function AddReview({ changeTrigger, setCache,
     let id = window.location.href.slice(22, 27) || 38000;
     axiosGet('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/?product_id=' + id)
       .then((data) => {
-        console.log(data.data.results);
+        // console.log(data.data.results);
         setCache(data.data.results);
         modData(data.data.results);
         setDataLength(data.data.results.length);

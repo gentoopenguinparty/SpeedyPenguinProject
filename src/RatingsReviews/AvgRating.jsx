@@ -6,7 +6,7 @@ import { Col } from './styles/Col.styled.js'
 import StarRatings from 'react-star-ratings';
 
 function quarter(avgRating) {
-  console.log('numTEst', ((Math.round(avgRating * 4) / 4).toFixed(2)));
+  // console.log('numTEst', ((Math.round(avgRating * 4) / 4).toFixed(2)));
   return parseFloat((Math.round(avgRating * 4) / 4).toFixed(2));
 }
 

@@ -20,7 +20,7 @@ export default function ProductDetail() {
           .then((data) => setStyles(data.data.results))
           .catch((err) => console.log(err));
       })
-      .catch((err) => console.log(err));
+      .catch((err) =>  console.log(err));
   }, []);
 
   const handleStyleChange = (newStyleInd) => {

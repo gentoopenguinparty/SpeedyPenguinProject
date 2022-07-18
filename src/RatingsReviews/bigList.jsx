@@ -16,8 +16,8 @@ let axios = require('axios');
 export default function BigList() {
   useEffect(() => {
     let id = window.location.href.slice(22,27) || 38000;
-    console.log('ID', id)
-    console.log('searchParams', window.location.href.slice(22,27));
+    // console.log('ID', id)
+    // console.log('searchParams', window.location.href.slice(22,27));
     axiosGet('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/meta/?product_id=' + id)
       .then((data) => {
         if (Object.keys(data.data.ratings).length > 0) {

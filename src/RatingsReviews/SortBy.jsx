@@ -5,7 +5,7 @@ import DropDown from './DropDown.jsx'
 function SortBy({cache, modData, apiData}) {
 
   function test(cache){
-    console.log('cache', cache)
+    // console.log('cache', cache)
   }
 
   return (
