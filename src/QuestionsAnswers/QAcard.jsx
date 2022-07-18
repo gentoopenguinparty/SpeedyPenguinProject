@@ -23,14 +23,14 @@ export default function QAcard(props) {
               <pre>
                 Helpful?
                 {' '}
-                <span onClick={() => { console.log('yes question test'); }}>
+                <span onClick={() => props.handleHelpfulQuestionSubmit(qaCard.question_id)}>
                   Yes(
                   {qaCard.question_helpfulness}
                   ) |
                 </span>
                 {' '}
                 <span onClick={() => props.handleQuestionId(qaCard.question_id)}>Add Answer</span>
-                <p>{qaCard.question_id}</p>
+
               </pre>
             </small>
             <br />

@@ -13,7 +13,7 @@ import Modal from './Modal.jsx';
 import { API_KEY } from '../../config.js';
 import AnswerModal from './AnswerModal.jsx';
 
-export default function QuestionsAnswers() {
+export default function QuestionsAnswers({ productId }) {
   const [data, setData] = useState('');
   const [search, setSearch] = useState('');
   const [noMoreQs, setNoMoreQs] = useState(false);
@@ -79,8 +79,6 @@ export default function QuestionsAnswers() {
   };
 
   const handleAnswerSubmit = () => {
-
-
     console.log(questionId);
     console.log(answerData);
     axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/${questionId}/answers`, answerData, {
@@ -103,21 +101,27 @@ export default function QuestionsAnswers() {
     console.log(questionID);
   };
 
-
-  const handleHelpfulSubmit = () => {
-    // axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/:hr-rfe/qa/questions/:question_id=${}/helpful`);
+  const handleHelpfulQuestionSubmit = (questionId, questionHelpfulness) => {
+    axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/${questionId}/helpful`, { question_helpfulness: questionHelpfulness + 1 }, {
+      headers: {
+        Authorization: API_KEY,
+        'Content-Type': 'application/json',
+      },
+    }).then((response) => {
+      console.log(response);
+    }).catch((error) => { console.log(error); });
   };
 
   const param = 37321;
 
-  const getQAs = () => axiosGet(`https://app-hrsei-api.herokuapp.com/api/fec2/:hr-rfe/qa/questions/?product_id=${param}`).then((response) => {
+  const getQAs = () => axiosGet(`https://app-hrsei-api.herokuapp.com/api/fec2/:hr-rfe/qa/questions/?product_id=${productId}`).then((response) => {
     const allData = response.data.results;
     // console.log('all data', allData)
 
     setData(allData);
   }).then((data) => { if (data.length <= 4) { setNoMoreQs(true); } }).catch((error) => { console.error(`Error here, ${error}`); });
 
-  const getProductInfo = () => axiosGet(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${param}`).then((response) => {
+  const getProductInfo = () => axiosGet(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${productId}`).then((response) => {
     // console.log(response.data);
     const allProData = response.data;
     setProductData(allProData);
@@ -129,7 +133,7 @@ export default function QuestionsAnswers() {
 
     <MainContainer>
 
-      <h2 onClick={() => { console.log('h2 test'); }}>Questions & Answers</h2>
+      <h2>Questions & Answers</h2>
       <br />
       <Wrapper>
         {' '}
@@ -141,10 +145,10 @@ export default function QuestionsAnswers() {
       <br />
       <br />
       {openModal && <Modal setOpenModal={setOpenModal} openModal={openModal} productData={productData} setAskQuestionData={setAskQuestionData} askQuestionData={askQuestionData} handleSubmit={handleSubmit} />}
-      {openAnswerModal && <AnswerModal setOpenAnswerModal={setOpenAnswerModal} openAnswerModal={openAnswerModal} productData={productData} setAnswerData={setAnswerData} answerData={answerData} handleAnswerSubmit={handleAnswerSubmit} data={data} qListLength={qListLength} />}
+      {openAnswerModal && <AnswerModal setOpenAnswerModal={setOpenAnswerModal} openAnswerModal={openAnswerModal} productData={productData} setAnswerData={setAnswerData} answerData={answerData} handleAnswerSubmit={handleAnswerSubmit} data={data} />}
       <ScrollContainer data-testid="QA">
 
-        <QAcard qaCards={data} search={search} noMoreQs={noMoreQs} qListLength={qListLength} setOpenAnswerModal={setOpenAnswerModal} setQuestionId={setQuestionId} handleAnswerSubmit={handleAnswerSubmit} handleQuestionId={handleQuestionId}/>
+        <QAcard qaCards={data} search={search} noMoreQs={noMoreQs} qListLength={qListLength} setOpenAnswerModal={setOpenAnswerModal} setQuestionId={setQuestionId} handleAnswerSubmit={handleAnswerSubmit} handleQuestionId={handleQuestionId} handleHelpfulQuestionSubmit={handleHelpfulQuestionSubmit} />
         <br />
         <br />
         <>

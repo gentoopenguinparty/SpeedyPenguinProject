@@ -46,7 +46,7 @@ function App() {
             styles={currentProductData[1].results}
           />
           <RelatedItemsOutfitsModule />
-          <QuestionsAnswers />
+          <QuestionsAnswers productId={id}/>
           <RatingsReviews />
         </div>
       ) : <p>Loading</p> }
