@@ -26,7 +26,7 @@ function getProductStyles(productID) {
 
 const relatedIDs = getRelatedIDs('37313');
 
-function getIDNameAndCategory() {
+function getRelatedProductDetails() {
   return relatedIDs.then((data) => data.map((id) => getProductDetails(id)))
     .then((detailsPromises) => Promise.all(detailsPromises))
     .then((res) => res.map((dataObj) => {
@@ -43,35 +43,39 @@ function getIDNameAndCategory() {
     .catch((err) => console.log(err));
 }
 
-function getPriceAndImage() {
+function getRelatedProductStyles() {
   return relatedIDs.then((data) => data.map((id) => getProductStyles(id)))
     .then((stylesPromise) => Promise.all(stylesPromise))
     .then((res) => res.map((dataObj) => {
       const styles = dataObj.data.results;
-      console.log('styles:', styles);
-      const defaultStyle = styles.filter((obj) => obj['default?'] === true).pop();
-      console.log('defaultStyle:', defaultStyle);
-      // return {
-      //   price: defaultStyle.original_price,
-      //   salePrice: defaultStyle.sale_price,
-      //   images: defaultStyle.photos,
-      //   defaultThumbnail: defaultStyle.photos[0 || 1].thumbnail_url,
-      // };
+      // console.log('styles:', styles);
+      const defaultCheck = styles.filter((obj) => obj['default?'] === true).pop();
+      const defaultStyle = defaultCheck || styles[0];
+      // console.log('defaultStyle:', defaultStyle);
+      return {
+        price: defaultStyle.original_price,
+        salePrice: defaultStyle.sale_price,
+        images: defaultStyle.photos,
+        defaultThumbnail: defaultStyle.photos[0].thumbnail_url,
+      };
     }))
-    .then((obj) => console.log('priceImage:', obj))
+    // .then((obj) => console.log('priceImage:', obj))
     .catch((err) => console.log(err));
 }
 
 export default function RelatedItemsOutfitsModule() {
   const [showModal, setShowModal] = useState(false);
-  const [relatedProducts, setRelatedProducts] = useState([]);
+  const [relatedProductDetails, setRelatedProductDetails] = useState([]);
+  const [relatedProductStyles, setRelatedProductStyles] = useState([]);
 
   useEffect(() => {
     // console.log('relatedIDs:', relatedIDs);
-    getIDNameAndCategory()
-      .then((data) => setRelatedProducts(data))
-      .then(getPriceAndImage())
-      // .then((data) => console.log(data))
+    getRelatedProductDetails()
+      .then((data) => setRelatedProductDetails(data))
+      .catch((err) => console.log(err));
+
+    getRelatedProductStyles()
+      .then((data) => setRelatedProductStyles(data))
       .catch((err) => console.log(err));
   }, []);
   // the empty array tells useEffect it has no dependencies,
@@ -80,7 +84,11 @@ export default function RelatedItemsOutfitsModule() {
   return (
     <div id="relatedProductsOutfitsModule">
       <ComparisonModal show={showModal} setShowModal={setShowModal} />
-      <RelatedProductCardCarousel relatedProducts={relatedProducts} setShowModal={setShowModal} />
+      <RelatedProductCardCarousel
+        relatedProductDetails={relatedProductDetails}
+        relatedProductStyles={relatedProductStyles}
+        setShowModal={setShowModal}
+      />
       <OutfitCardCarousel />
     </div>
   );

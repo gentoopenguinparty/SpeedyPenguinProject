@@ -7,7 +7,7 @@ import Heading from './styles/Heading.styled.js';
 
 // eslint-disable-next-line react/prop-types
 export default function RelatedProductCardCarousel({
-  relatedProducts,
+  relatedProductDetails,
   setShowModal,
 }) {
   return (
@@ -16,7 +16,7 @@ export default function RelatedProductCardCarousel({
       <FlexContainer>
         <ScrollButton direction="back" />
         <CardCarousel>
-          {relatedProducts.map((product) => (
+          {relatedProductDetails.map((product) => (
             <RelatedProductCard
               key={product.id}
               productDetails={product}
