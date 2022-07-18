@@ -3,6 +3,7 @@ import React from 'react';
 import RelatedProductCard from './RelatedProductCard.jsx';
 import { ScrollButton } from './Buttons/index.jsx';
 import { FlexContainer, CardCarousel } from './styles/CardCarousel.styled.js';
+import Heading from './styles/Heading.styled.js';
 
 // eslint-disable-next-line react/prop-types
 export default function RelatedProductCardCarousel({
@@ -11,7 +12,7 @@ export default function RelatedProductCardCarousel({
 }) {
   return (
     <>
-      <h3>Related Products</h3>
+      <Heading>Related Products</Heading>
       <FlexContainer>
         <ScrollButton direction="back" />
         <CardCarousel>
