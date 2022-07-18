@@ -1,8 +1,7 @@
 import { createRoot } from 'react-dom/client';
 import React from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { HashRouter as Router } from 'react-router-dom';
 import create from 'zustand';
-
 import ProductDetail from './ProductDetail/ProductDetail.jsx';
 import QuestionsAnswers from './QuestionsAnswers/QuestionsAnswers.jsx';
 import RatingsReviews from './RatingsReviews/RatingsReviews.jsx';

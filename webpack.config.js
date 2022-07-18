@@ -5,8 +5,10 @@ module.exports = {
   entry: "./src/index.jsx",
   output: {
     path: path.join(__dirname, 'public'),
-    filename: "bundle.js"
+    filename: "bundle.js",
+    publicPath: '/'
   },
+  cache: false,
   module: {
     rules: [
       {
@@ -25,6 +27,9 @@ module.exports = {
   devtool: "eval-cheap-module-source-map",
   // [devServer] configuration for the live server including port
   devServer: {
+    historyApiFallback:{
+      index:'/'
+  },
     // [static] config for how what to serve
     static: {
       directory: path.join(__dirname, 'public'),
