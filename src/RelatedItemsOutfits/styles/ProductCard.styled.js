@@ -13,7 +13,7 @@ const ProductCard = styled.div`
   margin: 10px;
 
   &:hover {
-    box-shadow: 5px 5px 3px purple;
+    box-shadow: 5px 5px 3px darkorange;
   }
 
 `;
