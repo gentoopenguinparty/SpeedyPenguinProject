@@ -8,6 +8,7 @@ import Heading from './styles/Heading.styled.js';
 // eslint-disable-next-line react/prop-types
 export default function RelatedProductCardCarousel({
   relatedProductDetails,
+  relatedProductStyles,
   setShowModal,
 }) {
   return (

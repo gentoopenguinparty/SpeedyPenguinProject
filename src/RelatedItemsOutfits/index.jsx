@@ -8,7 +8,8 @@ import OutfitCardCarousel from './OutfitCardCarousel.jsx';
 import ComparisonModal from './ComparisonModal.jsx';
 
 // ------ network request methods -------
-// example id: 37313
+const currentID = '37315';
+
 async function getRelatedIDs(productID) {
   const relatedURL = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${productID}/related`;
   const result = await axiosGet(relatedURL);
@@ -24,7 +25,8 @@ function getProductStyles(productID) {
   return axiosGet(requestURL);
 }
 
-const relatedIDs = getRelatedIDs('37313');
+const relatedIDs = getRelatedIDs(currentID)
+  .then((res) => [...new Set(res)]);
 
 function getRelatedProductDetails() {
   return relatedIDs.then((data) => data.map((id) => getProductDetails(id)))
@@ -65,10 +67,14 @@ function getRelatedProductStyles() {
 
 export default function RelatedItemsOutfitsModule() {
   const [showModal, setShowModal] = useState(false);
+  const [currentProduct, setcurrentProduct] = useState([]);
   const [relatedProductDetails, setRelatedProductDetails] = useState([]);
   const [relatedProductStyles, setRelatedProductStyles] = useState([]);
 
   useEffect(() => {
+    getProductDetails(currentID)
+      .then((res) => setcurrentProduct(res.data))
+      .catch((err) => console.log(err));
     // console.log('relatedIDs:', relatedIDs);
     getRelatedProductDetails()
       .then((data) => setRelatedProductDetails(data))
