@@ -6,7 +6,7 @@ import create from 'zustand';
 import ProductDetail from './ProductDetail/ProductDetail.jsx';
 import QuestionsAnswers from './QuestionsAnswers/QuestionsAnswers.jsx';
 import RatingsReviews from './RatingsReviews/RatingsReviews.jsx';
-import RelatedItemsOutfits from './RelatedItemsOutfits/index.jsx';
+import RelatedItemsOutfitsModule from './RelatedItemsOutfits/index.jsx';
 
 const root = createRoot(document.getElementById('root'));
 
@@ -27,11 +27,11 @@ function App() {
   return (
     <div>
       <ProductDetail />
-      <RelatedItemsOutfits />
+      <RelatedItemsOutfitsModule />
       <QuestionsAnswers />
       <RatingsReviews />
     </div>
   );
 }
 
-root.render(<Router><App/></Router>);
+root.render(<Router><App /></Router>);

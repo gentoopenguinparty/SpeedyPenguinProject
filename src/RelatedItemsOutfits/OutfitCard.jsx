@@ -1,14 +1,15 @@
 import React from 'react';
 
 import { ProductCardImage, ProductCardDetails } from './ProductCardComponents/index.jsx';
-import { AddToOutfitsButton } from './Buttons/index.jsx';
+import ProductCard from './styles/ProductCard.styled.js';
+import { RemoveOutfitButton } from './Buttons/index.jsx';
 
 export default function OutfitCard() {
   return (
-    <div className="outfitCard">
-      <AddToOutfitsButton />
+    <ProductCard>
+      <RemoveOutfitButton />
       <ProductCardImage />
       <ProductCardDetails />
-    </div>
+    </ProductCard>
   );
 }

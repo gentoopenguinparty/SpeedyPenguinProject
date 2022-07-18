@@ -1,8 +1,5 @@
 import React from 'react';
-
 import styled from 'styled-components';
-
-// import ProductCard from '../styles/ProductCard.styled.js';
 
 export default function AddToOutfitsButton() {
   return (
