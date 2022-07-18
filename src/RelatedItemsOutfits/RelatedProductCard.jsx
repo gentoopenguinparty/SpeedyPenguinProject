@@ -4,10 +4,10 @@ import { ProductCardImage, ProductCardDetails } from './ProductCardComponents/in
 import { CompareProductButton } from './Buttons/index.jsx';
 import ProductCard from './styles/ProductCard.styled.js';
 
-export default function RelatedProductCard({ productDetails }) {
+export default function RelatedProductCard({ productDetails, setShowModal }) {
   return (
     <ProductCard>
-      <CompareProductButton />
+      <CompareProductButton handleClick={setShowModal} />
       <ProductCardImage />
       <ProductCardDetails productDetails={productDetails} />
     </ProductCard>

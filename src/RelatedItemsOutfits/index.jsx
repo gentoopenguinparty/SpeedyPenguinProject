@@ -21,7 +21,7 @@ function getProductDetails(productID) {
 }
 
 export default function RelatedItemsOutfitsModule() {
-  // eslint-disable-next-line no-unused-vars
+  const [showModal, setShowModal] = useState(false);
   const [relatedProducts, setRelatedProducts] = useState([]);
 
   // {
@@ -54,8 +54,8 @@ export default function RelatedItemsOutfitsModule() {
 
   return (
     <div id="relatedProductsOutfitsModule">
-      <ComparisonModal />
-      <RelatedProductCardCarousel relatedProducts={relatedProducts} />
+      <ComparisonModal show={showModal} />
+      <RelatedProductCardCarousel relatedProducts={relatedProducts} setShowModal={setShowModal} />
       <OutfitCardCarousel />
     </div>
   );

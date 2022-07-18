@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
-export default function CompareProductButton() {
-  return <CompareButton>★</CompareButton>;
+export default function CompareProductButton({ handleClick }) {
+  return <CompareButton onClick={handleClick}>★</CompareButton>;
 }
 
 const CompareButton = styled.div`

@@ -5,7 +5,10 @@ import { ScrollButton } from './Buttons/index.jsx';
 import { FlexContainer, CardCarousel } from './styles/CardCarousel.styled.js';
 
 // eslint-disable-next-line react/prop-types
-export default function RelatedProductCardCarousel({ relatedProducts }) {
+export default function RelatedProductCardCarousel({
+  relatedProducts,
+  setShowModal,
+}) {
   return (
     <>
       <h3>Related Products</h3>
@@ -13,7 +16,11 @@ export default function RelatedProductCardCarousel({ relatedProducts }) {
         <ScrollButton direction="back" />
         <CardCarousel>
           {relatedProducts.map((product) => (
-            <RelatedProductCard key={product.id} productDetails={product} />
+            <RelatedProductCard
+              key={product.id}
+              productDetails={product}
+              setShowModal={setShowModal}
+            />
           ))}
         </CardCarousel>
         <ScrollButton direction="forward" />

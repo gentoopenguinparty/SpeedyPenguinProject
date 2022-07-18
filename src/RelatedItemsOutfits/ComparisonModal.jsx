@@ -1,20 +1,22 @@
 import React from 'react';
 import styled from 'styled-components';
 
-export default function ComparisonModal() {
-  return (
-    <Modal>
-      <ModalContent>
-        <ModalHeader>
-          <div>CurrentProductName</div>
-          <div>ComparedProductName</div>
-        </ModalHeader>
-        <ModalGrid>
-          <ModalRow />
-        </ModalGrid>
-      </ModalContent>
-    </Modal>
-  );
+export default function ComparisonModal({ show }) {
+  return !show ? null
+    : (
+      <Modal>
+        <ModalContent>
+          <ModalHeader>
+            <div>CurrentProductName</div>
+            <div>ComparedProductName</div>
+          </ModalHeader>
+          <ModalGrid>
+            {/* map rows from characteristics metadata */}
+            <ModalRow />
+          </ModalGrid>
+        </ModalContent>
+      </Modal>
+    );
 }
 
 function ModalRow() {
@@ -41,7 +43,6 @@ const Modal = styled.div`
 `;
 
 const ModalContent = styled.div`
-  border: 1px solid red;
   width: 600px;
   height: 400px;
 
@@ -49,11 +50,10 @@ const ModalContent = styled.div`
 `;
 
 const ModalHeader = styled.div`
-  border: 1px solid red;
   position: sticky; // should make header work with scrolling?
   display: flex;
   justify-content: space-between;
-  padding: 10px;
+  padding: 20px 10px;
 `;
 
 const ModalGrid = styled.div`
@@ -61,7 +61,7 @@ const ModalGrid = styled.div`
   display: grid;
   grid-template-columns: 125px 350px 125px;
   grid-template-areas: "currVal characteristic compVal";
-  padding: 10px 0px;
+  padding: 15px 0px;
 `;
 
 const CurrentProductValue = styled.div`
