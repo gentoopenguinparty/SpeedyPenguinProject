@@ -89,7 +89,11 @@ export default function RelatedItemsOutfitsModule() {
 
   return (
     <div id="relatedProductsOutfitsModule">
-      <ComparisonModal show={showModal} setShowModal={setShowModal} />
+      <ComparisonModal
+        currentProduct={currentProduct}
+        show={showModal}
+        setShowModal={setShowModal}
+      />
       <RelatedProductCardCarousel
         relatedProductDetails={relatedProductDetails}
         relatedProductStyles={relatedProductStyles}

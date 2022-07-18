@@ -1,28 +1,40 @@
 import React from 'react';
 import styled from 'styled-components';
 
-export default function ComparisonModal({ show, setShowModal }) {
+export default function ComparisonModal({ show, setShowModal, currentProduct }) {
+  console.log('currentProductFeatures:', currentProduct);
   return (
     <Modal className={`${show ? 'show' : ''}`} onClick={() => setShowModal(false)}>
       <ModalContent onClick={(e) => e.stopPropagation()}>
         <ModalHeader>
-          <div>CurrentProductName</div>
+          <div>{currentProduct.name}</div>
           <div>ComparedProductName</div>
         </ModalHeader>
         <ModalGrid>
-          {/* map rows from characteristics metadata */}
-          <ModalRow />
+          {currentProduct.features && currentProduct.features.map((item) => (
+            <ModalRow
+              key={item.feature}
+              currentItem={item}
+            />
+          ))}
+          {/* <ModalRow
+            currentItem={currentProductFeatures[0]}
+          /> */}
         </ModalGrid>
       </ModalContent>
     </Modal>
   );
 }
 
-function ModalRow() {
+// [
+//   { characteristic: ['current', 'comparison'] }
+// ]
+
+function ModalRow({ currentItem }) {
   return (
     <>
-      <CurrentProductValue>CurrentVal</CurrentProductValue>
-      <Characteristic>Characteristic</Characteristic>
+      <CurrentProductValue>{currentItem.value}</CurrentProductValue>
+      <Characteristic>{currentItem.feature}</Characteristic>
       <ComparedProductValue>ComparedVal</ComparedProductValue>
     </>
   );
@@ -65,20 +77,21 @@ const ModalHeader = styled.div`
 
 const ModalGrid = styled.div`
   display: grid;
+  grid-gap: 5px;
   grid-template-columns: 125px 350px 125px;
   grid-template-areas: "currVal characteristic compVal";
   padding: 15px 0px;
 `;
 
 const CurrentProductValue = styled.div`
-  grid-area: currVal;
+  //grid-area: currVal;
   text-align: center;
 `;
 const Characteristic = styled.div`
-  grid-area: characteristic;
+  //grid-area: characteristic;
   text-align: center;
 `;
 const ComparedProductValue = styled.div`
-  grid-area: compVal;
+  //grid-area: compVal;
   text-align: center;
 `;
