@@ -5,12 +5,8 @@ module.exports = {
   entry: './src/index.jsx',
   output: {
     path: path.join(__dirname, 'public'),
-<<<<<<< HEAD
-    filename: 'bundle.js',
-=======
     filename: "bundle.js",
     publicPath: '/'
->>>>>>> dev
   },
   cache: false,
   module: {
