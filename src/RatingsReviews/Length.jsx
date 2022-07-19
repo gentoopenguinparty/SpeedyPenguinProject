@@ -4,7 +4,7 @@ export default function Length({rating, setRating}) {
 
   return (
     <div>
-      <h5>How do you rate the length?</h5>
+      <h5>How do you rate the length?*</h5>
       {[...Array(5)].map((circle, i) => {
         const ratingValue = i + 1;
         return (
