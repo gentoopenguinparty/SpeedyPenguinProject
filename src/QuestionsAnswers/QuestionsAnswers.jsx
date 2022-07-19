@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ThemeProvider } from 'styled-components';
+
 import axios from 'axios';
 import { axiosGet, axiosPost } from '../../util';
 import QAcard from './QAcard.jsx';
@@ -130,7 +130,7 @@ export default function QuestionsAnswers({ productId }) {
     // console.log('all data', allData)
 
     setData(allData);
-  }).then((data) => { if (data.length <= 4) { setNoMoreQs(true); } }).catch((error) => { console.error(`Error here, ${error}`); });
+  }).then(() => { if (data.length <= 4) { setNoMoreQs(true); } }).catch((error) => { console.error(`Error in setNoMoreQs, ${error}`); });
 
   const getProductInfo = () => axiosGet(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${productId}`).then((response) => {
     // console.log(response.data);

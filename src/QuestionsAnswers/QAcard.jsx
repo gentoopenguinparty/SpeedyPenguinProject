@@ -9,9 +9,12 @@ import {API_KEY} from '../../config.js'
 export default function QAcard(props) {
   const displayQAcards = (props) => {
     // console.log('props', props)
+    const [reportedQ, setReportedQ] = useState('Report');
 
     const handleQuestionReport = (questionId) => {
+
       console.log(questionId);
+      setReportedQ('Reported');
       axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/${questionId}/report`,{reported: true}, {
         headers: {
           Authorization: API_KEY,
@@ -44,7 +47,7 @@ export default function QAcard(props) {
                 </span>
                 {' '}
 
-                <span onClick={() => props.handleQuestionId(qaCard.question_id)}>Add Answer</span> | <span onClick={() => handleQuestionReport(qaCard.question_id)}>Report</span>
+                <span onClick={() => props.handleQuestionId(qaCard.question_id)}>Add Answer</span> | <span onClick={() => handleQuestionReport(qaCard.question_id)}>{reportedQ}</span>
 
               </pre>
             </small>

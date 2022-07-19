@@ -27,7 +27,7 @@ export default useIDStore;
 
 function App() {
   const url = window.location.href;
-  const id = +url.slice(url.length-6, url.length-1) || 38000;
+  const id = +url.slice(url.length - 6, url.length - 1) || 38000;
   const [currentProductData, setCurrentProductData] = useState([]);
   const [loaded, setLoaded] = useState(false);
   useEffect(() => {
@@ -46,7 +46,7 @@ function App() {
             styles={currentProductData[1].results}
           />
           <RelatedItemsOutfitsModule />
-          <QuestionsAnswers productId={id}/>
+          <QuestionsAnswers productId={id} />
           <RatingsReviews />
         </div>
       ) : <p>Loading</p> }

@@ -2,12 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { Container } from './styles/Main.styled.js';
 import PhotoCard from './PhotoCard.jsx';
 import axios from 'axios';
-import {API_KEY} from '../../config.js'
+import {API_KEY} from '../../config.js';
+import Moment from 'react-moment';
 
 export default function Answers(props) {
   const [listLength, setListLength] = useState(2);
   const [noMoreAs, setNoMoreAs] = useState(false);
   const [photos, setPhotos] = useState([]);
+  const [reported, setReported] = useState('Report');
 
   const incrementListLength = () => {
     console.log(Object.keys(props.answers).length);
@@ -18,6 +20,8 @@ export default function Answers(props) {
   };
 
   const handleReportClick = (answerId) => {
+
+    setReported('Reported')
     console.log(answerId)
     axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/answers/${answerId}/report`, {reported: true}, {
       headers: {
@@ -48,14 +52,7 @@ export default function Answers(props) {
             // console.log('this is the', answer[1].answerer_name)
           }
 
-          const date = new Date(answer[1].date).toLocaleDateString(
-            'en-gb',
-            {
-              year: 'numeric',
-              month: 'long',
-              day: 'numeric',
-            },
-          );
+
           return (
             <div className="answer" key={answer[0]}>
               <div>
@@ -69,13 +66,13 @@ export default function Answers(props) {
               <PhotoCard photos={answer[1].photos} />
               <small>
                 <pre> by {person}
-                  , {date} {' '}
+                  , <Moment format="MMMM DD, YYYY" date={answer[1].date} /> {' '}
                   | Helpful?
                   <span onClick={() => props.handleHelpfulAnswerSubmit(answer[0], answer[1].helpfulness)}> Yes(
                     {answer[1].helpfulness}
                     ) |
                   </span>
-                  {' '}<span onClick={() => handleReportClick(answer[0])}>Report</span>
+                  {' '}<span onClick={() => handleReportClick(answer[0])}>{reported}</span>
                 </pre>
 
               </small>
@@ -94,7 +91,7 @@ export default function Answers(props) {
     <>
       {displayAnswers(props)}
 
-      {!noMoreAs && <button onClick={incrementListLength}>Load More Answers</button>}
+      {!noMoreAs && <button onClick={incrementListLength}>See More Answers</button>}
       {/* <button onClick={() =>{setLoadMoreAs(true)}}>Load More Answers</button> */}
     </>
   );
