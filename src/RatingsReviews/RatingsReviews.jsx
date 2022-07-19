@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 export default function RatingsReviews({metaD, cacheD}) {
 
   return (
-    <div>
+    <div id = 'reviews'>
       <BigList
         metaD={metaD}
         cacheD={cacheD} />
