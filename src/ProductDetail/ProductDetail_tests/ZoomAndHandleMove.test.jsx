@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, cleanup } from '@testing-library/react';
+import { render, screen, cleanup, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import { productData, styles } from './data.js';
 import ProductDetail from '../ProductDetail.jsx';
@@ -12,4 +12,10 @@ test('should render ProductDetail component', () => {
     styles={styles}
 
   />);
+  const bigPic = screen.getByTestId('current-image');
+  fireEvent.click(bigPic);
+  const fullscreen = screen.getByTestId('fullscreen-btn');
+  fireEvent.click(bigPic);
+  fireEvent.mouseMove(bigPic);
+  fireEvent.click(fullscreen);
 });

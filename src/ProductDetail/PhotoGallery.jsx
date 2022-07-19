@@ -24,6 +24,7 @@ export default function PhotoGallery({ images }) {
     >
       <CurrentImage
         id="current-image"
+        data-testid="current-image"
         pos={imagePos}
         image={images.photos[currentPicInd].url}
         onClick={isFullScreen ? () => setZoomed((prev) => !prev) : handleFullScreen}
@@ -36,6 +37,7 @@ export default function PhotoGallery({ images }) {
             {(sideBarOffset !== 0 && images.photos.length >= 7)
               ? (
                 <SideBarArrow
+                  data-testid="left-arrow"
                   onClick={() => setSideBarOffset((prev) => prev - 1)}
                   direction={-90}
                 />
@@ -51,6 +53,7 @@ export default function PhotoGallery({ images }) {
             {!(sideBarOffset + 7 === images.photos.length) && images.photos.length >= 7
               && (
                 <SideBarArrow
+                  data-testid="right-arrow"
                   onClick={() => setSideBarOffset((prev) => prev + 1)}
                   direction={90}
                 />
@@ -58,15 +61,18 @@ export default function PhotoGallery({ images }) {
           </Side>
         )}
         {isFullScreen ? (
-          <FullScreen onClick={() => {
-            setZoomed(true);
-            setIsFullScreen((prev) => !prev);
-          }}
+          <FullScreen
+            data-testid="fullscreen-btn"
+            onClick={() => {
+              setZoomed(true);
+              setIsFullScreen((prev) => !prev);
+            }}
           />
         ) : ''}
         {!(currentPicInd === 0)
           ? (
             <Arrow
+              data-testid="up-arrow"
               onClick={() => {
                 if (currentPicInd <= sideBarOffset) {
                   setSideBarOffset((prev) => prev - 1);
@@ -84,6 +90,7 @@ export default function PhotoGallery({ images }) {
         {!((currentPicInd + 1) === images.photos.length)
           ? (
             <Arrow
+              data-testid="down-arrow"
               onClick={() => {
                 if (currentPicInd >= sideBarOffset + 6) {
                   setSideBarOffset((prev) => prev + 1);

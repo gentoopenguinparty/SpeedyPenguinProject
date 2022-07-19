@@ -10,11 +10,9 @@ export default function ProductDetail({ styles, productData }) {
   const handleStyleChange = (newStyleInd) => {
     setCurrrentStyle(newStyleInd);
   };
-  const click = (event) => {
-    console.log(event.target, new Date())
-  }
+
   return (
-    <div onClick={click} >
+    <div>
 
       <Grid>
         <PhotoGallery images={styles[currentStyle]} />

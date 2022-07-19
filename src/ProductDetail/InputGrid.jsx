@@ -37,6 +37,7 @@ export default function InputGrid({ style }) {
     <Main>
 
       <Dropdown
+        data-testid="size-dropdown"
         onChange={handleSizeChange}
         defaultValue="default"
       >
