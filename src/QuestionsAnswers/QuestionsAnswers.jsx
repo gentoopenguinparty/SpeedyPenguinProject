@@ -39,6 +39,7 @@ export default function QuestionsAnswers({ productId }) {
 
   });
 
+
   // const [dataLength, setDataLength] = useState()
   // const [error, setError] = useState("");
   // const [loaded, setLoaded] = useState(false); //hr-rfe
@@ -49,6 +50,7 @@ export default function QuestionsAnswers({ productId }) {
     const interval = setInterval(() => {
       getQAs();
       getProductInfo();
+
     }, 5000);
 
     return () => clearInterval(interval);
@@ -122,6 +124,8 @@ export default function QuestionsAnswers({ productId }) {
       console.log(response);
     }).catch((error) => { console.log(error); });
   };
+
+
 
 
 

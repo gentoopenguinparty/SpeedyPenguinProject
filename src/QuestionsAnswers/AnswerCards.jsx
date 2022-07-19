@@ -5,11 +5,12 @@ import axios from 'axios';
 import {API_KEY} from '../../config.js';
 import Moment from 'react-moment';
 
+
 export default function Answers(props) {
   const [listLength, setListLength] = useState(2);
   const [noMoreAs, setNoMoreAs] = useState(false);
   const [photos, setPhotos] = useState([]);
-  const [reported, setReported] = useState('Report');
+
 
   const incrementListLength = () => {
     console.log(Object.keys(props.answers).length);
@@ -19,21 +20,24 @@ export default function Answers(props) {
     setListLength(listLength + 2);
   };
 
-  const handleReportClick = (answerId) => {
+  const handleReportClick = (e, answerId) => {
+     e.target.innerText = 'Reported';
 
-    setReported('Reported')
-    console.log(answerId)
+
+    console.log(answerId);
     axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/answers/${answerId}/report`, {reported: true}, {
       headers: {
         Authorization: API_KEY,
         'Content-Type': 'application/json',
       },
     }).then((response) => {
-     console.log(response);
+
+
+      console.log(response)
     }).catch((error) => { console.log(error); });
   };
 
-  const displayAnswers = (props) => {
+
     const answers = Object.entries(props.answers);
 
     // let photos = answers[1].photos;
@@ -44,10 +48,9 @@ export default function Answers(props) {
         answers.slice(0, listLength).sort((a, b) => (a[1].helpfulness > b[1].helpfulness ? -1 : 1)).map((answer, index) => {
           let person = answer[1].answerer_name;
 
-          // setPhotos(photos);
-          // console.log(photos)
 
-          if (answer[1].answerer_name.toLowerCase() === 'seller') {
+
+            if (answer[1].answerer_name.toLowerCase() === 'seller') {
             person = <b>{answer[1].answerer_name.charAt(0).toUpperCase() + answer[1].answerer_name.slice(1)}</b>;
             // console.log('this is the', answer[1].answerer_name)
           }
@@ -72,7 +75,8 @@ export default function Answers(props) {
                     {answer[1].helpfulness}
                     ) |
                   </span>
-                  {' '}<span onClick={() => handleReportClick(answer[0])}>{reported}</span>
+                  {' '} <span onClick={(e) => handleReportClick(e, answer[0])}>Report</span>
+
                 </pre>
 
               </small>
@@ -81,12 +85,11 @@ export default function Answers(props) {
           );
         })
       );
-    }
 
-    return (
-      <p>No Answers Posted At This Time.</p>
-    );
-  };
+
+
+
+
   return (
     <>
       {displayAnswers(props)}
@@ -95,4 +98,9 @@ export default function Answers(props) {
       {/* <button onClick={() =>{setLoadMoreAs(true)}}>Load More Answers</button> */}
     </>
   );
+  } else {
+    return (
+      <p>No Answers Posted At This Time.</p>
+    );
+  }
 }

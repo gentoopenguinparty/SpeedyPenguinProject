@@ -7,14 +7,18 @@ import {API_KEY} from '../../config.js'
 // import {qListLength, setQListLength} from '../QuestionsAnswers/QuestionsAnswers.jsx'
 
 export default function QAcard(props) {
-  const displayQAcards = (props) => {
+
+  // const [reportedQ, setReportedQ] = useState('Report');
+
+
+  // const displayQAcards = (props) => {
     // console.log('props', props)
-    const [reportedQ, setReportedQ] = useState('Report');
+    //const [reportedQ, setReportedQ] = useState(false);
 
-    const handleQuestionReport = (questionId) => {
+    const handleQuestionReport = (e, questionId) => {
+       e.target.innerText = 'Reported';
+      //console.log(questionId);
 
-      console.log(questionId);
-      setReportedQ('Reported');
       axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/${questionId}/report`,{reported: true}, {
         headers: {
           Authorization: API_KEY,
@@ -22,6 +26,8 @@ export default function QAcard(props) {
         },
       }).then((response) => {
        console.log(response);
+
+
       }).catch((error) => { console.log(error); });
     }
 
@@ -30,6 +36,7 @@ export default function QAcard(props) {
       // console.log(qaCards)
       return (
         qaCards.slice(0, props.qListLength).filter((qaCard) => qaCard.question_body.toLowerCase().includes(props.search.toLowerCase())).sort((a, b) => (a.question_helpfulness > b.question_helpfulness ? -1 : 1)).map((qaCard, index) => (
+          //console.log('test')
           <div className="QAcard" key={qaCard.question_id}>
             <h3>
               Q:
@@ -47,7 +54,7 @@ export default function QAcard(props) {
                 </span>
                 {' '}
 
-                <span onClick={() => props.handleQuestionId(qaCard.question_id)}>Add Answer</span> | <span onClick={() => handleQuestionReport(qaCard.question_id)}>{reportedQ}</span>
+                <span onClick={() => props.handleQuestionId(qaCard.question_id)}>Add Answer</span> | <span onClick={(e) => handleQuestionReport(e, qaCard.question_id)}>Report</span>
 
               </pre>
             </small>
@@ -65,11 +72,11 @@ export default function QAcard(props) {
 
     );
   };
-  return (
-    <>
+  // return (
+  //   <>
 
-      {displayQAcards(props)}
+  //     {displayQAcards(props)}
 
-    </>
-  );
-}
+  //   </>
+  // );
+
