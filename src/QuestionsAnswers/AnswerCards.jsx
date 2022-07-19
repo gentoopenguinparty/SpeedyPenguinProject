@@ -39,7 +39,6 @@ export default function Answers(props) {
     // let photos = answers[1].photos;
     // setPhotos(photos);
     if (answers.length > 0) {
-      console.log(answers)
       return (
         answers.slice(0, listLength).sort((a, b) => (a.helpfulness > b.helpfulness ? -1 : 1)).map((answer, index) => {
           let person = answer[1].answerer_name;
