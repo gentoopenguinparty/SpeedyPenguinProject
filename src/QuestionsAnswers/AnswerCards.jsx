@@ -71,8 +71,7 @@ export default function Answers(props) {
                 <pre> by {person}
                   , {date} {' '}
                   | Helpful?
-                  <span onClick={() => props.handleHelpfulAnswerSubmit(answer[0], answer[1].helpfulness)}>
-                    Yes(
+                  <span onClick={() => props.handleHelpfulAnswerSubmit(answer[0], answer[1].helpfulness)}> Yes(
                     {answer[1].helpfulness}
                     ) |
                   </span>

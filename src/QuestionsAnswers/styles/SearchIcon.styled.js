@@ -2,9 +2,9 @@ import styled from 'styled-components';
 
 
 export const SearchIcon = styled.img
-` position: absolute;
+`position: absolute;
 right: 16px !important;
 left: auto !important;
-width: 20px;
-padding: 14px;
+width: 25px;
+padding: 4px;
 `
