@@ -59,7 +59,6 @@ export default function AddReview({ changeTrigger, setCache,
       let lengthId = meta.characteristics.Length.id;
       charObj[lengthId] = ratingLength;
     }
-    console.log(charObj);
   }, [])
 
 
@@ -119,7 +118,6 @@ export default function AddReview({ changeTrigger, setCache,
     if (!err) {
 
       let id = window.location.href.slice(22, 27) || 38000;
-      console.log('charObj', charObj)
       let state = {
         "product_id": parseInt(id),
         "rating": ratingSR,
@@ -170,7 +168,7 @@ export default function AddReview({ changeTrigger, setCache,
 
   return (
     <div>
-      <h3>ADD A NEW REVIEW</h3>
+      <h3 data-testid='addReview'>ADD A NEW REVIEW</h3>
       <h5>Thank you for sharing details on {product.name}!</h5>
       <h5>How do you rate this product?*</h5>
       <StarRating rating={ratingSR} setRating={setRatingSR} />
