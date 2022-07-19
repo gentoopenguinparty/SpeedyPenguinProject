@@ -4,6 +4,7 @@ export default function Size({rating, setRating}) {
 
   return (
     <div>
+      <h5>How do you rate the sizing?*</h5>
       {[...Array(5)].map((circle, i) => {
         const ratingValue = i + 1;
         return (
