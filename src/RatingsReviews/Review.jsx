@@ -56,7 +56,6 @@ export default function Review({ countReviews, setDataLength, apiData , setCache
     <div key='reviews'>
 
       <Grid color={'#FAEBD7'} padding={'5'} height={'1000'} width={'1000'}>
-        {console.log(apiData)}
         {apiData.slice(0, countReviews).map((review, index) => (
           (review.noReview ?
             <div>no review for this rating</div> :
