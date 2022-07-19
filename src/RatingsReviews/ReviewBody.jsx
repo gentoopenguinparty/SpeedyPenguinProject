@@ -9,7 +9,7 @@ export default function ReviewBody({words, setWords}) {
 
   return (
     <div>
-      <h4>Review of the product, 50 characters min:</h4>
+      <h4>Review of the product, 50 characters min*:</h4>
       <form>
         <input value={words}type='text' placeholder='Why did you like the or not?' size='80' style={{height: '50px'}} onChange={event => {setCount(event.target.value.length); handleChange();}}/>
       </form>

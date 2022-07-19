@@ -46,10 +46,17 @@ function App() {
             styles={currentProductData[1].results}
           />
           <RelatedItemsOutfitsModule />
+<<<<<<< HEAD
           <QuestionsAnswers productId={id} />
           <RatingsReviews />
+=======
+          <QuestionsAnswers />
+          <RatingsReviews
+            metaD={currentProductData[2]}
+            cacheD={currentProductData[3].results} />
+>>>>>>> dev
         </div>
-      ) : <p>Loading</p> }
+      ) : <p>Loading</p>}
     </div>
   );
 }

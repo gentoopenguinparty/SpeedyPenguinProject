@@ -17,7 +17,51 @@ import { axiosPost } from '../../util';
 import Recommend from './Recommend.jsx'
 
 export default function AddReview({ changeTrigger, setCache,
-  setMeta, setDataLength, modData }) {
+  setMeta, setDataLength, modData, cache, meta }) {
+
+  const [size, setSize] = useState(false)
+  const [comfort, setComfort] = useState(false)
+  const [fit, setFit] = useState(false)
+  const [quality, setQuality] = useState(false)
+  const [width, setWidth] = useState(false)
+  const [length, setLength] = useState(false)
+
+
+  useEffect(() => {
+    let charObj = {};
+    if (meta.characteristics.Size) {
+      setSize(true);
+      let sizeId = meta.characteristics.Size.id;
+      charObj[sizeId] = ratingSize;
+    }
+    if (meta.characteristics.Comfort) {
+      setComfort(true);
+      let comfortId = meta.characteristics.Comfort.id;
+      charObj[comfortId] = ratingComfort;
+    }
+    if (meta.characteristics.Fit) {
+      setFit(true);
+      let fitId = meta.characteristics.Fit.id;
+      charObj[fitId] = ratingFit;
+    }
+    if (meta.characteristics.Quality) {
+      setQuality(true);
+      let qualityId = meta.characteristics.Quality.id;
+      charObj[qualityId] = ratingQuality;
+    }
+    if (meta.characteristics.Width) {
+      setWidth(true);
+      let widthId = meta.characteristics.Width.id;
+      charObj[widthId] = ratingWidth;
+    }
+    if (meta.characteristics.Length) {
+      setLength(true);
+      let lengthId = meta.characteristics.Length.id;
+      charObj[lengthId] = ratingLength;
+    }
+    console.log(charObj);
+  }, [])
+
 
   const [product, setProduct] = useState({ name: 'filler' });
 
@@ -28,6 +72,7 @@ export default function AddReview({ changeTrigger, setCache,
         // console.log('apiInfo', data.data);
         setProduct(data.data);
       })
+
   }, [])
   // email and nickname
   const [starWarn, setStarWarn] = useState(false);
@@ -53,21 +98,7 @@ export default function AddReview({ changeTrigger, setCache,
     } else {
       setRecoWarn(false);
     }
-    // if (ratingSize === 0) {
-    //   setSizeWarn(true)
-    //   err = true;
-    // } else {
-    //   setSizeWarn(false)
-    // }
-    // if (ratingComfort === 0) {
-    //   setComfortWarn(true)
-    //   err = true;
-    // } else {
-    //   setComfortWarn(false)
-    // }
-    // console.log('words', wordsRB)
     if (wordsRB.length < 50) {
-      // console.log('words', wordsRB)
       setBodyWarn(true)
       err = true;
     } else {
@@ -80,7 +111,6 @@ export default function AddReview({ changeTrigger, setCache,
       setNickWarn(false);
     }
     if (wordsEmail.indexOf('@') === -1 || wordsEmail.indexOf('.com') === -1) {
-      // console.log('emai', wordsEmail)
       setEmailWarn(true);
       err = true;
     } else {
@@ -89,6 +119,7 @@ export default function AddReview({ changeTrigger, setCache,
     if (!err) {
 
       let id = window.location.href.slice(22, 27) || 38000;
+      console.log('charObj', charObj)
       let state = {
         "product_id": parseInt(id),
         "rating": ratingSR,
@@ -102,7 +133,7 @@ export default function AddReview({ changeTrigger, setCache,
       }
       // console.log('state', state)
       axiosPost('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/', state)
-    .then(() => { /*console.log('suc')*/ })
+        .then(() => { /*console.log('suc')*/ })
         .then(() => { changeTrigger(false) })
         .then(() => { handleRefresh() })
         .catch((err) => console.log('err', err))
@@ -144,14 +175,12 @@ export default function AddReview({ changeTrigger, setCache,
       <h5>How do you rate this product?*</h5>
       <StarRating rating={ratingSR} setRating={setRatingSR} />
       <Recommend reco={reco} setReco={setReco} />
-      <h5>How do you rate the sizing?</h5>
-      <Size rating={ratingSize} setRating={setRatingSize} />
-      <h5>How do you rate the comfort?</h5>
-      <Comfort rating={ratingComfort} setRating={setRatingComfort} />
-      <Fit rating={ratingFit} setRating={setRatingFit} />
-      <Quality rating={ratingQuality} setRating={setRatingQuality} />
-      <Length rating={ratingLength} setRating={setRatingLength} />
-      <Width rating={ratingWidth} setRating={setRatingWidth} />
+      {size ? <Size rating={ratingSize} setRating={setRatingSize} /> : null}
+      {comfort ? <Comfort rating={ratingComfort} setRating={setRatingComfort} /> : null}
+      {fit ? <Fit rating={ratingFit} setRating={setRatingFit} /> : null}
+      {quality ? <Quality rating={ratingQuality} setRating={setRatingQuality} /> : null}
+      {length ? <Length rating={ratingLength} setRating={setRatingLength} /> : null}
+      {width ? <Width rating={ratingWidth} setRating={setRatingWidth} /> : null}
       <ReviewSummary words={wordsRS} setWords={setWordsRS} />
       <ReviewBody words={wordsRB} setWords={setWordsRB} />
       <Photo files={files} setFile={setFile} />
