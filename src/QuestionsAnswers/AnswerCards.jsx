@@ -17,9 +17,9 @@ export default function Answers(props) {
     setListLength(listLength + 2);
   };
 
-  const handleReportClick = (questionId) => {
-    console.log(questionId)
-    axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/${questionId}/report`,{reported: true}, {
+  const handleReportClick = (answerId) => {
+    console.log(answerId)
+    axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/answers/${answerId}/report`, {reported: true}, {
       headers: {
         Authorization: API_KEY,
         'Content-Type': 'application/json',
@@ -68,9 +68,7 @@ export default function Answers(props) {
 
               <PhotoCard photos={answer[1].photos} />
               <small>
-                <pre>
-                  by
-                  {person}
+                <pre> by {person}
                   ,
                   {date}
                   {' '}
@@ -80,8 +78,7 @@ export default function Answers(props) {
                     {answer[1].helpfulness}
                     ) |
                   </span>
-                  {' '}
-                  <span onClick={() => handleReportClick(answer[0])}>Report</span>
+                  {' '}<span onClick={() => handleReportClick(answer[0])}>Report</span>
                 </pre>
 
               </small>
