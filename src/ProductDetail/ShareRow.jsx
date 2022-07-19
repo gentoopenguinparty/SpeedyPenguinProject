@@ -4,15 +4,14 @@ import {
   FacebookShareButton,
   PinterestShareButton,
   TwitterShareButton,
-} from "react-share";
-import {
+
   FacebookIcon,
   PinterestIcon,
   TwitterIcon,
 
-} from "react-share";
+} from 'react-share';
 
-export default function ShareRow(props) {
+export default function ShareRow() {
   const iconSize = 30;
   const shareUrl = 'localhost:3000';
   return (

@@ -43,7 +43,7 @@ export default function PhotoGallery({ images }) {
             {images.photos.map((photo, i) => (
               <Thumbnail
                 onClick={() => setCurrentPicInd(i)}
-                key={i}
+                key={photo.thumbnail_url}
                 image={photo.thumbnail_url}
                 boxShadow={currentPicInd === i ? '0px 3px 0px red' : ''}
               />

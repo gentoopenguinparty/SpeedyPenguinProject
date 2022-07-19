@@ -35,6 +35,9 @@ function App() {
       .then((responses) => setCurrentProductData(responses.map((response) => response.data)))
       .then(() => setLoaded(true));
   }, []);
+  const click = (e) => {
+    console.log(e)
+  }
   return (
 
     <div>
@@ -42,6 +45,7 @@ function App() {
         <div>
 
           <ProductDetail
+            onClick ={() => console.log('123')}
             productData={currentProductData[0]}
             styles={currentProductData[1].results}
           />
