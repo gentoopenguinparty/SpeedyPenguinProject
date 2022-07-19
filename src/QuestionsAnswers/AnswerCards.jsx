@@ -69,9 +69,7 @@ export default function Answers(props) {
               <PhotoCard photos={answer[1].photos} />
               <small>
                 <pre> by {person}
-                  ,
-                  {date}
-                  {' '}
+                  , {date} {' '}
                   | Helpful?
                   <span onClick={() => props.handleHelpfulAnswerSubmit(answer[0], answer[1].helpfulness)}>
                     Yes(
