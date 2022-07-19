@@ -37,7 +37,7 @@ export default function Answers(props) {
     const answers = Object.entries(props.answers);
 
     // let photos = answers[1].photos;
-    // setPhotos(photos);
+    // setPhotos(photos);git s
     if (answers.length > 0) {
       return (
         answers.slice(0, listLength).sort((a, b) => (a.helpfulness > b.helpfulness ? -1 : 1)).map((answer, index) => {
