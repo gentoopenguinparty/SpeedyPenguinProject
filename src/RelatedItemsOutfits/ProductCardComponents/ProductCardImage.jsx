@@ -19,4 +19,5 @@ const CardImage = styled.img`
   width: auto;
   height:100%;
   z-index: -1;
+  margin-top: 0;
 `;
