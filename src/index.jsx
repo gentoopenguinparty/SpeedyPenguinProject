@@ -26,8 +26,8 @@ export default useIDStore;
 // on page load invoke changeID with id from URL
 
 function App() {
-  const url = window.location.href;
-  const id = +url.slice(url.length - 6, url.length - 1) || 38000;
+  const url = window.location.pathname;
+  const id = +url.split('/')[1] || 38000;
   const [currentProductData, setCurrentProductData] = useState([]);
   const [loaded, setLoaded] = useState(false);
 
@@ -47,10 +47,14 @@ function App() {
             styles={currentProductData[1].results}
           />
           <RelatedItemsOutfitsModule />
-          <QuestionsAnswers />
-          <RatingsReviews />
+          <QuestionsAnswers productId={id} />
+
+
+          <RatingsReviews
+            metaD={currentProductData[2]}
+            cacheD={currentProductData[3].results} />
         </div>
-      ) : <p>Loading</p> }
+      ) : <p>Loading</p>}
     </div>
   );
 }

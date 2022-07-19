@@ -3,14 +3,13 @@ import BigList from './BigList.jsx';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 // Main component
-export default function RatingsReviews() {
+export default function RatingsReviews({metaD, cacheD}) {
 
   return (
-    <div>
-      <Routes>
-        <Route path="/" element={<BigList />} />
-        {/* <BigList /> */}
-      </Routes>
+    <div id = 'reviews'>
+      <BigList
+        metaD={metaD}
+        cacheD={cacheD} />
     </div>
   );
 

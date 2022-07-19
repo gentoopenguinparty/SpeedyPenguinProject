@@ -49,14 +49,14 @@ export default function Review({ countReviews, setDataLength, apiData , setCache
     let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
     let month = months[parseInt(newDate[1]) - 1];
     let day = parseInt(newDate[2]);
-    // console.log(`${month} ${day}, ${newDate[0]}`)
     return (`${month} ${day}, ${newDate[0]}`);
   }
 
   return (
     <div key='reviews'>
 
-      <Grid color={'#FAEBD7'} padding={'5'}>
+      <Grid color={'#FAEBD7'} padding={'5'} height={'1000'} width={'1000'}>
+        {console.log(apiData)}
         {apiData.slice(0, countReviews).map((review, index) => (
           (review.noReview ?
             <div>no review for this rating</div> :
@@ -80,7 +80,7 @@ export default function Review({ countReviews, setDataLength, apiData , setCache
                 {review.photos.length > 0 ?
                   review.photos.map((photo, i) => {
                     return (
-                      <div style={{ padding: '5px 0 0 0' }}>
+                      <div key={i} style={{ padding: '5px 0 0 0' }}>
                         <div style={{ margin: '0 0 0 10px' }}>
                           <img onClick={(event) => { handleClickAdd(event); }} key={i} style={{ height: '100px', width: '100px' }}
                             src={photo.url} />
