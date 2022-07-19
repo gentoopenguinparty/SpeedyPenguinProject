@@ -46,7 +46,9 @@ function App() {
             styles={currentProductData[1].results}
           />
           <RelatedItemsOutfitsModule />
-          <QuestionsAnswers />
+          <QuestionsAnswers productId={id} />
+
+
           <RatingsReviews
             metaD={currentProductData[2]}
             cacheD={currentProductData[3].results} />
