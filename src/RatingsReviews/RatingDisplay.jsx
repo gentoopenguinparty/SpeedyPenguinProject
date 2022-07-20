@@ -52,7 +52,7 @@ export default function RatingDisplay({ apiData, modData, cache, meta }) {
       <Grid padding={'30'}>
         <Row align={'center'}>
           <Col>
-            <Star onClick={() => { filterApi(cache, 5) }} >5 Star</Star>
+            <Star data-testid="5" onClick={() => { filterApi(cache, 5) }} >5 Star</Star>
           </Col>
           <Col>
             <BarContainer border={'solid'} height={24} color={'rgb(136,136,136)'}>
@@ -62,7 +62,7 @@ export default function RatingDisplay({ apiData, modData, cache, meta }) {
         </Row>
         <Row align={'center'}>
           <Col>
-            <Star onClick={() => { filterApi(cache, 4) }}>4 Star</Star>
+            <Star data-testid="4" onClick={() => { filterApi(cache, 4) }}>4 Star</Star>
           </Col>
           <Col>
             <BarContainer border={'solid'} height={24} color={'rgb(136,136,136)'}>
@@ -72,7 +72,7 @@ export default function RatingDisplay({ apiData, modData, cache, meta }) {
         </Row>
         <Row align={'center'}>
           <Col>
-            <Star onClick={() => { filterApi(cache, 3) }}>3 Star</Star>
+            <Star data-testid="3" onClick={() => { filterApi(cache, 3) }}>3 Star</Star>
           </Col>
           <Col>
             <BarContainer border={'solid'} height={24} color={'rgb(136,136,136)'}>
@@ -82,7 +82,7 @@ export default function RatingDisplay({ apiData, modData, cache, meta }) {
         </Row>
         <Row align={'center'}>
           <Col>
-            <Star onClick={() => { filterApi(cache, 2) }}>2 Star</Star>
+            <Star data-testid="2" onClick={() => { filterApi(cache, 2) }}>2 Star</Star>
           </Col>
           <Col>
             <BarContainer border={'solid'} height={24} color={'rgb(136,136,136)'}>
@@ -92,7 +92,7 @@ export default function RatingDisplay({ apiData, modData, cache, meta }) {
         </Row>
         <Row align={'center'}>
           <Col>
-            <Star onClick={() => { filterApi(cache, 1) }}>1 Star</Star>
+            <Star data-testid="1" onClick={() => { filterApi(cache, 1) }}>1 Star</Star>
           </Col>
           <Col>
             <BarContainer border={'solid'} height={24} color={'rgb(136,136,136)'}>

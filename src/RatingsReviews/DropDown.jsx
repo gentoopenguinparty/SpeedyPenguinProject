@@ -111,17 +111,17 @@ export default function DropDown({ modData, apiData }) {
     <div >
       <Row align={'align-center'} >
         <div onClick={() => { setActive(a => !a) }} > sorted by {filter}</div>
-        <Triangle marginTop={3} onClick={() => { setActive(a => !a) }} ></Triangle>
+        <Triangle data-testid="triangle" marginTop={3} onClick={() => { setActive(a => !a) }} ></Triangle>
       </Row>
       {active ?
         <DropList>
-          <div onClick={() => { setFilter('relevence'); sortRelevent(apiData) }}>
+          <div data-testid="relevence" onClick={() => { setFilter('relevence'); sortRelevent(apiData) }}>
             relevence
           </div>
-          <div onClick={() => { setFilter('newest'); sortNew(apiData) }}>
+          <div data-testid="newest" onClick={() => { setFilter('newest'); sortNew(apiData) }}>
             newest
           </div>
-          <div onClick={() => { setFilter('helpful'); sortHelpful(apiData)}}>
+          <div data-testid="helpful" onClick={() => { setFilter('helpful'); sortHelpful(apiData)}}>
             helpful
           </div>
         </DropList>

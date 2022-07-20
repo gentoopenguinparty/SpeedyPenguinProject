@@ -1,7 +1,8 @@
 import { createRoot } from 'react-dom/client';
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, useNavigate } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 import create from 'zustand';
+import Tracker from './Tracker.jsx';
 import ProductDetail from './ProductDetail/ProductDetail.jsx';
 import QuestionsAnswers from './QuestionsAnswers/QuestionsAnswers.jsx';
 import RatingsReviews from './RatingsReviews/RatingsReviews.jsx';
@@ -26,32 +27,52 @@ export default useIDStore;
 // on page load invoke changeID with id from URL
 
 function App() {
-  const url = window.location.href;
-  const id = +url.slice(url.length - 6, url.length - 1) || 38000;
+  const url = window.location.pathname;
+  const id = +url.split('/')[1] || 38000;
   const [currentProductData, setCurrentProductData] = useState([]);
   const [loaded, setLoaded] = useState(false);
+
   useEffect(() => {
     getAll(id)
       .then((responses) => setCurrentProductData(responses.map((response) => response.data)))
       .then(() => setLoaded(true));
   }, []);
+
   return (
 
     <div>
       {loaded ? (
         <div>
-
-          <ProductDetail
-            productData={currentProductData[0]}
-            styles={currentProductData[1].results}
+          <Tracker render={(trackClick) => (
+            <ProductDetail
+              trackClick={trackClick}
+              productData={currentProductData[0]}
+              styles={currentProductData[1].results}
+            />
+          )}
           />
-          <RelatedItemsOutfitsModule />
-          <QuestionsAnswers productId={id} />
-
-
-          <RatingsReviews
-            metaD={currentProductData[2]}
-            cacheD={currentProductData[3].results} />
+          <Tracker render={(trackClick) => (
+            <RelatedItemsOutfitsModule
+              trackClick={trackClick}
+              currentProductData={currentProductData}
+            />
+          )}
+          />
+          <Tracker render={(trackClick) => (
+            <QuestionsAnswers
+              trackClick={trackClick}
+              productId={id}
+            />
+          )}
+          />
+          <Tracker render={(trackClick) => (
+            <RatingsReviews
+              trackClick={trackClick}
+              metaD={currentProductData[2]}
+              cacheD={currentProductData[3].results}
+            />
+          )}
+          />
         </div>
       ) : <p>Loading</p>}
     </div>

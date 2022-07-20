@@ -7,8 +7,8 @@ export default function ComparisonModal({ show, setShowModal, currentProduct }) 
     <Modal className={`${show ? 'show' : ''}`} onClick={() => setShowModal(false)}>
       <ModalContent onClick={(e) => e.stopPropagation()}>
         <ModalHeader>
-          <div>{currentProduct.name}</div>
-          <div>ComparedProductName</div>
+          <h4>{currentProduct.name}</h4>
+          <h4>ComparedProductName</h4>
         </ModalHeader>
         <ModalGrid>
           {currentProduct.features && currentProduct.features.map((item) => (
@@ -17,24 +17,17 @@ export default function ComparisonModal({ show, setShowModal, currentProduct }) 
               currentItem={item}
             />
           ))}
-          {/* <ModalRow
-            currentItem={currentProductFeatures[0]}
-          /> */}
         </ModalGrid>
       </ModalContent>
     </Modal>
   );
 }
 
-// [
-//   { characteristic: ['current', 'comparison'] }
-// ]
-
 function ModalRow({ currentItem }) {
   return (
     <>
       <CurrentProductValue>{currentItem.value}</CurrentProductValue>
-      <Characteristic>{currentItem.feature}</Characteristic>
+      <Feature>{currentItem.feature}</Feature>
       <ComparedProductValue>ComparedVal</ComparedProductValue>
     </>
   );
@@ -50,7 +43,7 @@ const Modal = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1;
+  z-index: 6;
 
   opacity: 0;
   transition: all 0.3s ease-in-out;
@@ -72,26 +65,29 @@ const ModalHeader = styled.div`
   position: sticky; // should make header fixed when scrolling?
   display: flex;
   justify-content: space-between;
-  padding: 20px 10px;
+  padding: 20px 30px;
 `;
 
 const ModalGrid = styled.div`
   display: grid;
   grid-gap: 5px;
-  grid-template-columns: 125px 350px 125px;
-  grid-template-areas: "currVal characteristic compVal";
-  padding: 15px 0px;
+  grid-template-columns: 125px 320px 125px;
+  grid-template-areas: "currVal feature compVal";
+  padding: 15px 10px;
 `;
 
 const CurrentProductValue = styled.div`
   //grid-area: currVal;
   text-align: center;
+  border: red solid 1px;
 `;
-const Characteristic = styled.div`
-  //grid-area: characteristic;
+const Feature = styled.div`
+  //grid-area: feature;
   text-align: center;
+  border: blue solid 1px;
 `;
 const ComparedProductValue = styled.div`
   //grid-area: compVal;
   text-align: center;
+  border: red solid 1px;
 `;

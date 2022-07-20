@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-export default function ProductDescription({ currentStyle, styles, data }) {
+export default function ProductDescription({ data }) {
   return (
     <Main>
       <Slogan>{data.slogan}</Slogan>

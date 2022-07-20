@@ -14,6 +14,7 @@ const ProductCard = styled.div`
 
   &:hover {
     background-color: lightgray;
+    cursor: pointer;
   }
 
 `;

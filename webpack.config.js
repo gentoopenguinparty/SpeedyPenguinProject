@@ -33,9 +33,9 @@ module.exports = {
   devtool: 'eval-cheap-module-source-map',
   // [devServer] configuration for the live server including port
   devServer: {
-    historyApiFallback:{
-      index:'/'
-  },
+    historyApiFallback: {
+      index: '/',
+    },
     // [static] config for how what to serve
     static: {
       directory: path.join(__dirname, 'public'),

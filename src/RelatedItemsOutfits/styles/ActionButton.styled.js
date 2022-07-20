@@ -9,9 +9,9 @@ const ActionButton = styled.div`
   right: 0;
 
   font-size: 25px;
-  color: purple;
+  color: darkorange;
   &:hover {
-    color: darkorange;
+    color: mediumorchid;
   }
 `;
 export default ActionButton;

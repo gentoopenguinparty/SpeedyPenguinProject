@@ -1,8 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-
-export default function PriceBlock({styles,id}) {
+export default function PriceBlock({ styles, id }) {
   return (
 
     <Main>
@@ -10,11 +9,22 @@ export default function PriceBlock({styles,id}) {
           styles[id].sale_price
             ? (
               <>
-                <Price color="red">${styles[id].original_price}</Price>
-                <Price color="black">${styles[id].sale_price}</Price>
+                <Price color="red">
+                  $
+                  {styles[id].original_price}
+                </Price>
+                <Price color="black">
+                  $
+                  {styles[id].sale_price}
+                </Price>
               </>
             )
-            : <Price color="black">${styles[id].original_price}</Price>
+            : (
+              <Price color="black">
+                $
+                {styles[id].original_price}
+              </Price>
+            )
         }
     </Main>
   );

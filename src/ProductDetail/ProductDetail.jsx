@@ -1,19 +1,18 @@
 import React from 'react';
-import { useSearchParams } from 'react-router-dom';
 import styled from 'styled-components';
-import { axiosGet } from '../../util';
 import PhotoGallery from './PhotoGallery.jsx';
 import ProductDescription from './ProductDescription.jsx';
 import ProductInterface from './ProductInterface.jsx';
 import ProductCheckmarks from './ProductCheckmarks.jsx';
 
-export default function ProductDetail({ styles, productData }) {
+export default function ProductDetail({ styles, productData,trackClick }) {
   const [currentStyle, setCurrrentStyle] = React.useState(0);
   const handleStyleChange = (newStyleInd) => {
     setCurrrentStyle(newStyleInd);
   };
+
   return (
-    <div>
+    <div onClick={(e) => trackClick(e, 'prod det')}>
 
       <Grid>
         <PhotoGallery images={styles[currentStyle]} />
