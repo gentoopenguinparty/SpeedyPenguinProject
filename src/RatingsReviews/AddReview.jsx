@@ -131,7 +131,7 @@ export default function AddReview({ changeTrigger, setCache,
       }
       // console.log('state', state)
       axiosPost('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/', state)
-        .then(() => { /*console.log('suc')*/ })
+        .then(() => { console.log('suc') })
         .then(() => { changeTrigger(false) })
         .then(() => { handleRefresh() })
         .catch((err) => console.log('err', err))
@@ -140,7 +140,7 @@ export default function AddReview({ changeTrigger, setCache,
 
   function handleRefresh() {
     let id = window.location.href.slice(22, 27) || 38000;
-    axiosGet('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/?product_id=' + id)
+    axiosGet(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/?product_id=${id}&count=1000`)
       .then((data) => {
         // console.log(data.data.results);
         setCache(data.data.results);
@@ -161,7 +161,7 @@ export default function AddReview({ changeTrigger, setCache,
 
   const [wordsRS, setWordsRS] = React.useState('');
   const [wordsRB, setWordsRB] = React.useState('');
-  const [files, setFile] = useState('');
+  const [files, setFile] = useState([]);
   const [wordsNick, setWordsNick] = React.useState('');
   const [wordsEmail, setWordsEmail] = React.useState('');
   const [reco, setReco] = React.useState('');
@@ -181,6 +181,7 @@ export default function AddReview({ changeTrigger, setCache,
       {width ? <Width rating={ratingWidth} setRating={setRatingWidth} /> : null}
       <ReviewSummary words={wordsRS} setWords={setWordsRS} />
       <ReviewBody words={wordsRB} setWords={setWordsRB} />
+      {console.log('files',files)}
       <Photo files={files} setFile={setFile} />
       <NickName words={wordsNick} setWords={setWordsNick} />
       <Email words={wordsEmail} setWords={setWordsEmail} />
