@@ -1,7 +1,7 @@
 import React from 'react';
 
 import RelatedProductCard from './RelatedProductCard.jsx';
-import { ScrollButton } from './Buttons/index.jsx';
+import { CardScrollButton } from './Buttons/index.jsx';
 import { FlexContainer, CardCarousel } from './styles/CardCarousel.styled.js';
 import Heading from './styles/Heading.styled.js';
 
@@ -14,7 +14,7 @@ export default function RelatedProductCardCarousel({
     <>
       <Heading>Related Products</Heading>
       <FlexContainer>
-        <ScrollButton direction="back" />
+        <CardScrollButton direction="back" />
         <CardCarousel>
           {relatedProductDetails.map((product) => (
             <RelatedProductCard
@@ -24,7 +24,7 @@ export default function RelatedProductCardCarousel({
             />
           ))}
         </CardCarousel>
-        <ScrollButton direction="forward" />
+        <CardScrollButton direction="forward" />
       </FlexContainer>
     </>
   );

@@ -74,8 +74,7 @@ function getRelatedProductStyles(relatedIDs) {
 
 export default function RelatedItemsOutfitsModule({ currentProductData }) {
   const [showModal, setShowModal] = useState(false);
-  const [currentProduct, setcurrentProduct] = useState([]);
-  // contains features
+  const [currentProduct, setcurrentProduct] = useState([]); // contains features
   const [relatedProductDetails, setRelatedProductDetails] = useState([]);
   const [relatedProductStyles, setRelatedProductStyles] = useState([]);
 
@@ -88,10 +87,7 @@ export default function RelatedItemsOutfitsModule({ currentProductData }) {
 
   useEffect(() => {
     setcurrentProduct(displayedProduct);
-    // getProductDetails(currentID)
-    //   .then((res) => setcurrentProduct(res.data))
-    //   .catch((err) => console.log(err));
-    // // console.log('relatedIDs:', relatedIDs);
+
     getRelatedProductDetails(relatedIDs)
       .then((data) => setRelatedProductDetails(data))
       .catch((err) => console.log(err));
@@ -103,7 +99,6 @@ export default function RelatedItemsOutfitsModule({ currentProductData }) {
 
   const combinedCardData = relatedProductDetails
     .map((detailObj, i) => ({ ...detailObj, ...relatedProductStyles[i] }));
-  // console.log('cardData:', combinedCardData);
 
   return (
     <div id="relatedProductsOutfitsModule">

@@ -1,5 +1,6 @@
 import React from 'react';
-import styled from 'styled-components';
+
+import ScrollButton from '../styles/ScrollButton.styled.js';
 
 export default function CardScrollButton() {
   return (
@@ -8,8 +9,3 @@ export default function CardScrollButton() {
     </ScrollButton>
   );
 }
-
-const ScrollButton = styled.div`
-  width: 60px;
-  background-image: url(../../assets/back-arrow.png);
-`;
