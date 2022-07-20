@@ -17,19 +17,11 @@ export default function ComparisonModal({ show, setShowModal, currentProduct }) 
               currentItem={item}
             />
           ))}
-          {/* <ModalRow
-            currentItem={currentProductFeatures[0]}
-          /> */}
         </ModalGrid>
       </ModalContent>
     </Modal>
   );
 }
-
-// maybe best to create a tuple like this to map:
-// [
-//   { feature: ['current', 'comparison'] }
-// ]
 
 function ModalRow({ currentItem }) {
   return (

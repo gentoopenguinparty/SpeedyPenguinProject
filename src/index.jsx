@@ -1,6 +1,6 @@
 import { createRoot } from 'react-dom/client';
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, useNavigate } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 import create from 'zustand';
 import Tracker from './Tracker.jsx';
 import ProductDetail from './ProductDetail/ProductDetail.jsx';
