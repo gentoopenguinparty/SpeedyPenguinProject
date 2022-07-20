@@ -11,11 +11,11 @@ export default function OutfitCardCarousel({ currentProduct, viewWidth }) {
   const { outfits, addOutfit, removeOutfit } = useOutfitListStore();
   const [outfitCarouselPosition, setOutfitCarouselPosition] = useState(0);
   const [outfitCarouselWidth, setOutfitCarouselWidth] = useState(0);
-  const relatedCarouselRef = useRef(null);
+  const outfitCarouselRef = useRef(null);
 
   useLayoutEffect(() => {
     setTimeout(() => {
-      setOutfitCarouselWidth(relatedCarouselRef.current.offsetWidth);
+      setOutfitCarouselWidth(outfitCarouselRef.current.offsetWidth);
     }, 1000);
   }, []);
   // console.log('outfitsStore:', outfits);
@@ -34,7 +34,7 @@ export default function OutfitCardCarousel({ currentProduct, viewWidth }) {
           )
             : null
         }
-        <CardCarousel position={`${outfitCarouselPosition}px`}>
+        <CardCarousel ref={outfitCarouselRef} position={`${outfitCarouselPosition}px`}>
           <AddToOutfitsButton currentProduct={currentProduct} handleClick={addOutfit} />
           {outfits.map((outfitItem) => (
             <OutfitCard
@@ -44,7 +44,7 @@ export default function OutfitCardCarousel({ currentProduct, viewWidth }) {
             />
           ))}
         </CardCarousel>
-        {viewWidth < outfitCarouselWidth ? (
+        {viewWidth < outfitCarouselWidth - outfitCarouselPosition ? (
           <CardScrollButton
             id="outfitScrollForward"
             direction="forward"
