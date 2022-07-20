@@ -1,9 +1,10 @@
 import React from 'react';
 
 import Heading from './styles/Heading.styled.js';
-import AddToOutfitsButton from './Buttons/AddToOutfitsButton.jsx';
 import { FlexContainer, CardCarousel } from './styles/CardCarousel.styled.js';
 import OutfitCard from './OutfitCard.jsx';
+import AddToOutfitsButton from './Buttons/AddToOutfitsButton.jsx';
+import { CardScrollButton } from './Buttons/index.jsx';
 import useOutfitListStore from './stores.js';
 
 export default function OutfitCardCarousel() {
@@ -13,6 +14,7 @@ export default function OutfitCardCarousel() {
     <>
       <Heading>Your Outfit</Heading>
       <FlexContainer>
+        <CardScrollButton direction="back" />
         <CardCarousel>
           <AddToOutfitsButton handleClick={addOutfit} />
           {outfits.map((outfitItem) => (
@@ -23,6 +25,7 @@ export default function OutfitCardCarousel() {
             />
           ))}
         </CardCarousel>
+        <CardScrollButton direction="forward" />
       </FlexContainer>
     </>
   );

@@ -11,7 +11,7 @@ const ActionButton = styled.div`
   font-size: 25px;
   color: darkorange;
   &:hover {
-    color: white;
+    color: mediumorchid;
   }
 `;
 export default ActionButton;
