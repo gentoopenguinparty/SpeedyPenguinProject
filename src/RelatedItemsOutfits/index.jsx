@@ -62,18 +62,8 @@ function getRelatedProductStyles(relatedIDs) {
     .catch((err) => console.log(err));
 }
 
-// function parseStylesData(stylesData) {
-//   const defaultCheck = stylesData.filter((obj) => obj['default?'] === true).pop();
-//   const defaultStyle = defaultCheck || stylesData[0];
-//   return {
-//     salePrice: defaultStyle.sale_price,
-//     images: defaultStyle.photos,
-//     defaultThumbnail: defaultStyle.photos[0].thumbnail_url,
-//   };
-// }
-
-export default function RelatedItemsOutfitsModule({ currentProductData }) {
-  const [currentProduct, setcurrentProduct] = useState([]); // contains features
+export default function RelatedItemsOutfitsModule({ currentProductData, trackClick }) {
+  const [currentProduct, setcurrentProduct] = useState([]);
   const [relatedProductDetails, setRelatedProductDetails] = useState([]);
   const [relatedProductStyles, setRelatedProductStyles] = useState([]);
   // const [relatedProductInfo, setRelatedProductInfo] = useState([]);
@@ -118,7 +108,7 @@ export default function RelatedItemsOutfitsModule({ currentProductData }) {
     .map((detailObj, i) => ({ ...detailObj, ...relatedProductStyles[i] }));
 
   return (
-    <div id="relatedProductsOutfitsModule">
+    <div id="relatedProductsOutfitsModule" onClick={(e) => trackClick(e, 'Related')}>
       <ComparisonModal
         currentProduct={currentProduct}
         show={showModal}

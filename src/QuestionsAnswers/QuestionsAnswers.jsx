@@ -13,7 +13,7 @@ import Modal from './Modal.jsx';
 import { API_KEY } from '../../config.js';
 import AnswerModal from './AnswerModal.jsx';
 
-export default function QuestionsAnswers({ productId }) {
+export default function QuestionsAnswers({ productId, trackClick }) {
   const [data, setData] = useState('');
   const [search, setSearch] = useState('');
   const [noMoreQs, setNoMoreQs] = useState(false);
@@ -142,7 +142,7 @@ export default function QuestionsAnswers({ productId }) {
 
   return (
 
-    <MainContainer>
+    <MainContainer onClick={(e) => trackClick(e, 'QA')}>
 
       <h2>Questions & Answers</h2>
       <br />
