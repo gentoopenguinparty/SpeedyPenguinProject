@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+/* eslint-disable react/no-array-index-key */
+import React, { useState } from 'react';
 import styled from 'styled-components';
-import axios from 'axios';
-import { axiosPost, axiosGet } from '../../util';
+import { axiosPost } from '../../util';
 
 export default function InputGrid({ style }) {
   // create an array of skus options
@@ -24,7 +24,7 @@ export default function InputGrid({ style }) {
 
   const addToCart = () => {
     const url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/cart';
-    for (let i = 0; i < currentQty; i++) {
+    for (let i = 0; i < currentQty; i += 1) {
       axiosPost(url, JSON.stringify({ sku_id: currentSku }));
     }
   };
@@ -37,6 +37,7 @@ export default function InputGrid({ style }) {
     <Main>
 
       <Dropdown
+        data-testid="size-dropdown"
         onChange={handleSizeChange}
         defaultValue="default"
       >
@@ -58,9 +59,6 @@ export default function InputGrid({ style }) {
 }
 const Dropdown = styled.select`
 height: 40px;
-`;
-const Option = styled.option`
-background-color:white;
 `;
 const Add = styled.button`
 grid-column: 1/3;

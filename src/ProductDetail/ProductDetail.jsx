@@ -1,7 +1,5 @@
 import React from 'react';
-import { useSearchParams } from 'react-router-dom';
 import styled from 'styled-components';
-import { axiosGet } from '../../util';
 import PhotoGallery from './PhotoGallery.jsx';
 import ProductDescription from './ProductDescription.jsx';
 import ProductInterface from './ProductInterface.jsx';
@@ -12,6 +10,7 @@ export default function ProductDetail({ styles, productData }) {
   const handleStyleChange = (newStyleInd) => {
     setCurrrentStyle(newStyleInd);
   };
+
   return (
     <div>
 

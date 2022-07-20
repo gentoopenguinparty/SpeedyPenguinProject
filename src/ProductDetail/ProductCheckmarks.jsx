@@ -5,7 +5,7 @@ export default function ProductCheckmarks({ features }) {
   return (
     <Main>
       <List>
-        {features.map(({feature, value}) => (
+        {features.map(({ feature, value }) => (
           <FeatureCard key={feature}>
             <Feature>
               {feature}
