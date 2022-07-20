@@ -65,7 +65,7 @@ function getRelatedProductStyles() {
     .catch((err) => console.log(err));
 }
 
-export default function RelatedItemsOutfitsModule() {
+export default function RelatedItemsOutfitsModule({trackClick}) {
   const [showModal, setShowModal] = useState(false);
   const [currentProduct, setcurrentProduct] = useState([]);
   const [relatedProductDetails, setRelatedProductDetails] = useState([]);
@@ -88,7 +88,7 @@ export default function RelatedItemsOutfitsModule() {
   // therefore preventing infitine rerender loop
 
   return (
-    <div id="relatedProductsOutfitsModule">
+    <div id="relatedProductsOutfitsModule" onClick={(e) => trackClick(e, 'Related')}>
       <ComparisonModal
         currentProduct={currentProduct}
         show={showModal}

@@ -2,6 +2,7 @@ import { createRoot } from 'react-dom/client';
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, useNavigate } from 'react-router-dom';
 import create from 'zustand';
+import Tracker from './Tracker.jsx';
 import ProductDetail from './ProductDetail/ProductDetail.jsx';
 import QuestionsAnswers from './QuestionsAnswers/QuestionsAnswers.jsx';
 import RatingsReviews from './RatingsReviews/RatingsReviews.jsx';
@@ -35,27 +36,40 @@ function App() {
       .then((responses) => setCurrentProductData(responses.map((response) => response.data)))
       .then(() => setLoaded(true));
   }, []);
-  const click = (e) => {
-    console.log(e)
-  }
+
   return (
 
     <div>
       {loaded ? (
         <div>
-
-          <ProductDetail
-            onClick ={() => console.log('123')}
-            productData={currentProductData[0]}
-            styles={currentProductData[1].results}
+          <Tracker render={(trackClick) => (
+            <ProductDetail
+              trackClick={trackClick}
+              productData={currentProductData[0]}
+              styles={currentProductData[1].results}
+            />
+          )}
           />
-          <RelatedItemsOutfitsModule />
-          <QuestionsAnswers productId={id} />
+          <Tracker render={(trackClick) => (
+            <RelatedItemsOutfitsModule trackClick={trackClick} />
+          )}
+          />
+          <Tracker render={(trackClick) => (
+            <QuestionsAnswers
+              trackClick={trackClick}
+              productId={id}
+            />
+          )}
+          />
+          <Tracker render={(trackClick) => (
+            <RatingsReviews
+              trackClick={trackClick}
+              metaD={currentProductData[2]}
+              cacheD={currentProductData[3].results}
+            />
+          )}
+          />
 
-
-          <RatingsReviews
-            metaD={currentProductData[2]}
-            cacheD={currentProductData[3].results} />
         </div>
       ) : <p>Loading</p>}
     </div>
