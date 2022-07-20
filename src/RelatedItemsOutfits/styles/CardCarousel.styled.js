@@ -14,6 +14,8 @@ export const CardCarousel = styled.div`
   height: 420px;
   padding: 10px;
   position: relative;
+  right: ${(props) => props.position};
+
   //overflow: hidden;
 
   /* ::-webkit-scrollbar {

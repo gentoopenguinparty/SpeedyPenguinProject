@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import RelatedProductCard from './RelatedProductCard.jsx';
 import { CardScrollButton } from './Buttons/index.jsx';
@@ -10,12 +10,23 @@ export default function RelatedProductCardCarousel({
   relatedProductDetails,
   setShowModal,
 }) {
+  const [relatedCarouselPosition, setRelatedCarouselPosition] = useState(0);
+
   return (
     <>
       <Heading>Related Products</Heading>
       <FlexContainer>
-        <CardScrollButton id="relatedScrollBack" direction="back" />
-        <CardCarousel>
+        {
+          relatedCarouselPosition !== 0 ? (
+            <CardScrollButton
+              id="outfitScrollBack"
+              direction="back"
+              stateHandler={setRelatedCarouselPosition}
+            />
+          )
+            : null
+        }
+        <CardCarousel position={`${relatedCarouselPosition}px`}>
           {relatedProductDetails.map((product) => (
             <RelatedProductCard
               key={product.id}
@@ -24,7 +35,11 @@ export default function RelatedProductCardCarousel({
             />
           ))}
         </CardCarousel>
-        <CardScrollButton id="relatedScrollBack" direction="forward" />
+        <CardScrollButton
+          id="relatedScrollBack"
+          direction="forward"
+          stateHandler={setRelatedCarouselPosition}
+        />
       </FlexContainer>
     </>
   );
