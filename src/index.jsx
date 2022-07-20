@@ -46,13 +46,13 @@ function App() {
             productData={currentProductData[0]}
             styles={currentProductData[1].results}
           />
-          <RelatedItemsOutfitsModule />
+          <RelatedItemsOutfitsModule currentProductData={currentProductData} />
           <QuestionsAnswers productId={id} />
-
 
           <RatingsReviews
             metaD={currentProductData[2]}
-            cacheD={currentProductData[3].results} />
+            cacheD={currentProductData[3].results}
+          />
         </div>
       ) : <p>Loading</p>}
     </div>
