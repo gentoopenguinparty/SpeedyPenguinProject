@@ -11,7 +11,6 @@ export default function RelatedProductCardCarousel({
   setShowModal,
 }) {
   const [relatedCarouselPosition, setRelatedCarouselPosition] = useState(0);
-
   return (
     <>
       <Heading>Related Products</Heading>

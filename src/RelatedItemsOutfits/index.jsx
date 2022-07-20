@@ -73,17 +73,22 @@ function getRelatedProductStyles(relatedIDs) {
 // }
 
 export default function RelatedItemsOutfitsModule({ currentProductData }) {
-  const [showModal, setShowModal] = useState(false);
   const [currentProduct, setcurrentProduct] = useState([]); // contains features
   const [relatedProductDetails, setRelatedProductDetails] = useState([]);
   const [relatedProductStyles, setRelatedProductStyles] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+  const [viewWidth, setViewWidth] = useState(0);
 
   // const displayedProductStyles = currentProductData[1].results;
   // const displayedProductMetadata= currentProductData[2];
   // const displayedProductReviews = currentProductData[3];
+
   const displayedProduct = currentProductData[0];
   const relatedIDs = getRelatedIDs(displayedProduct.id)
     .then((res) => [...new Set(res)]);
+  function handleWindowResize() {
+    setViewWidth(visualViewport.width);
+  }
 
   useEffect(() => {
     setcurrentProduct(displayedProduct);
@@ -95,6 +100,12 @@ export default function RelatedItemsOutfitsModule({ currentProductData }) {
     getRelatedProductStyles(relatedIDs)
       .then((data) => setRelatedProductStyles(data))
       .catch((err) => console.log(err));
+
+    handleWindowResize();
+    window.addEventListener('resize', handleWindowResize);
+    return () => {
+      window.removeEventListener('resize', handleWindowResize);
+    };
   }, []);
 
   const combinedCardData = relatedProductDetails
