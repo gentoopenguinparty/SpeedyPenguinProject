@@ -76,22 +76,28 @@ export default function RelatedItemsOutfitsModule({ currentProductData }) {
   const [currentProduct, setcurrentProduct] = useState([]); // contains features
   const [relatedProductDetails, setRelatedProductDetails] = useState([]);
   const [relatedProductStyles, setRelatedProductStyles] = useState([]);
+  // const [relatedProductInfo, setRelatedProductInfo] = useState([]);
+
   const [showModal, setShowModal] = useState(false);
   const [viewWidth, setViewWidth] = useState(0);
 
-  // const displayedProductStyles = currentProductData[1].results;
   // const displayedProductMetadata= currentProductData[2];
   // const displayedProductReviews = currentProductData[3];
 
-  const displayedProduct = currentProductData[0];
-  const relatedIDs = getRelatedIDs(displayedProduct.id)
+  const displayedProductDetails = currentProductData[0];
+  const displayedProductStyles = currentProductData[1].results;
+  const displayedDefaultStyle = displayedProductStyles.filter((obj) => obj['default?'] === true).pop() || displayedProductStyles[0];
+  const displayedProductInfo = { ...displayedProductDetails, ...displayedDefaultStyle };
+
+  const relatedIDs = getRelatedIDs(displayedProductDetails.id)
     .then((res) => [...new Set(res)]);
+
   function handleWindowResize() {
     setViewWidth(visualViewport.width);
   }
 
   useEffect(() => {
-    setcurrentProduct(displayedProduct);
+    setcurrentProduct(displayedProductInfo);
 
     getRelatedProductDetails(relatedIDs)
       .then((data) => setRelatedProductDetails(data))
