@@ -72,7 +72,7 @@ export default function Review({ countReviews, setDataLength, apiData, setCache,
               <Row space={'space-between'} padding={10}>
                 <Col weight={'bold'}> {review.summary} </Col>
               </Row>
-              <Row padding={10} color={'#f2f2f2'} border={'solid'}>
+              <Row padding={10} color={'rgb(230, 230, 230)'} >
                 <Col> {review.body} </Col>
               </Row>
               <Row space={'flex-start'}>
@@ -90,7 +90,7 @@ export default function Review({ countReviews, setDataLength, apiData, setCache,
                   }) : null}
               </Row>
               <Row space={'space-between'} padding={10} >
-                {review.recommend ? <Col color={'#f2f2f2'}> ☑️ Reviewer recommends this product </Col> : null}
+                {review.recommend ? <Col color={'rgb(240,240,240)'}> ☑️ Reviewer recommends this product </Col> : null}
               </Row>
               <Row align={'center'} padding={10} >
                 <Col style={{ fontSize: '13px' }}>Was this review helpful?</Col>

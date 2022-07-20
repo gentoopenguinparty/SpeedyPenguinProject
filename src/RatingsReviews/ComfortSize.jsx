@@ -55,9 +55,8 @@ export default function ComfortSize({ meta }) {
               <Triangle margin={calcPercent(size)}></Triangle>
             </TriangleContainer>
             <Row space={'space-between'}>
-              <div>Too small</div>
-              <div>Perfect</div>
-              <div>Too large</div>
+              <div style={{fontSize: '14px'}}>Too small</div>
+              <div style={{fontSize: '14px'}}>Too large</div>
             </Row>
           </div>
           : null}
@@ -68,8 +67,8 @@ export default function ComfortSize({ meta }) {
               <Triangle margin={calcPercent(comfort)}></Triangle>
             </TriangleContainer>
             <Row space={'space-between'}>
-              <div>Poor</div>
-              <div>Perfect</div>
+              <div style={{fontSize: '14px'}}>Poor</div>
+              <div style={{fontSize: '14px'}}>Perfect</div>
             </Row>
           </div>
           : null}
@@ -80,8 +79,8 @@ export default function ComfortSize({ meta }) {
               <Triangle margin={calcPercent(quality)}></Triangle>
             </TriangleContainer>
             <Row space={'space-between'}>
-              <div>Low</div>
-              <div>High</div>
+              <div style={{fontSize: '14px'}}>Low</div>
+              <div style={{fontSize: '14px'}}>High</div>
             </Row>
           </div>
           : null}
@@ -92,8 +91,8 @@ export default function ComfortSize({ meta }) {
               <Triangle margin={calcPercent(fit)}></Triangle>
             </TriangleContainer>
             <Row space={'space-between'}>
-              <div>Poor</div>
-              <div>Perfect</div>
+              <div style={{fontSize: '14px'}}>Poor</div>
+              <div style={{fontSize: '14px'}}>Perfect</div>
             </Row>
           </div>
           : null}
@@ -104,8 +103,8 @@ export default function ComfortSize({ meta }) {
               <Triangle margin={calcPercent(length)}></Triangle>
             </TriangleContainer>
             <Row space={'space-between'}>
-              <div>Poor</div>
-              <div>Perfect</div>
+              <div style={{fontSize: '14px'}}>Poor</div>
+              <div style={{fontSize: '14px'}}>Perfect</div>
             </Row>
           </div>
           : null}
@@ -116,8 +115,8 @@ export default function ComfortSize({ meta }) {
               <Triangle margin={calcPercent(width)}></Triangle>
             </TriangleContainer>
             <Row space={'space-between'}>
-              <div>Poor</div>
-              <div>Perfect</div>
+              <div style={{fontSize: '14px'}}>Poor</div>
+              <div style={{fontSize: '14px'}}>Perfect</div>
             </Row>
           </div>
           : null}
