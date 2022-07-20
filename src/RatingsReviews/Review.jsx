@@ -9,7 +9,7 @@ import { ThemeProvider } from 'styled-components'
 import Popup from './Popup.jsx'
 import StarRatings from 'react-star-ratings';
 
-export default function Review({ countReviews, setDataLength, apiData , setCache,
+export default function Review({ countReviews, setDataLength, apiData, setCache,
   setMeta, modData }) {
 
   function handlePut(id) {
@@ -55,11 +55,13 @@ export default function Review({ countReviews, setDataLength, apiData , setCache
   return (
     <div key='reviews'>
 
-      <Grid color={'#FAEBD7'} padding={'5'} height={'1000'} width={'1000'}>
+      <Grid color={'rgb(230,230,230)'} padding={'5'} height={'1000'}
+        width={'1000'} left={'20'} right={'20'}>
         {apiData.slice(0, countReviews).map((review, index) => (
           (review.noReview ?
             <div>no review for this rating</div> :
-            <Grid color={'#FAEBD7'} key={review.review_id} border={'solid'} padding={'10'} bottom={'5'}>
+            <Grid color={'rgb(250,250,250)'} key={review.review_id} bColor={'orange'}
+              border={'solid'} padding={'10'} bottom={'5'}>
               <Row space={'space-between'} padding={10}>
                 <Col >
                   <StarRatings rating={number(review.rating)} starDimension="15px"
@@ -71,7 +73,7 @@ export default function Review({ countReviews, setDataLength, apiData , setCache
               <Row space={'space-between'} padding={10}>
                 <Col weight={'bold'}> {review.summary} </Col>
               </Row>
-              <Row padding={10} color={'#f2f2f2'} border={'solid'}>
+              <Row padding={10} color={'rgb(230, 230, 230)'} >
                 <Col> {review.body} </Col>
               </Row>
               <Row space={'flex-start'}>
@@ -89,7 +91,7 @@ export default function Review({ countReviews, setDataLength, apiData , setCache
                   }) : null}
               </Row>
               <Row space={'space-between'} padding={10} >
-                {review.recommend ? <Col color={'#f2f2f2'}> ☑️ Reviewer recommends this product </Col> : null}
+                {review.recommend ? <Col color={'rgb(240,240,240)'}> ☑️ Reviewer recommends this product </Col> : null}
               </Row>
               <Row align={'center'} padding={10} >
                 <Col style={{ fontSize: '13px' }}>Was this review helpful?</Col>

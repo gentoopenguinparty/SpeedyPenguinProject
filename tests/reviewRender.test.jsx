@@ -12,7 +12,8 @@ afterEach(cleanup)
 
 test('should render RatingsReview', () => {
   render(
-    <RatingReviews metaD={{
+    <RatingReviews trackClick={() => ''}
+    metaD={{
       ratings: { 1: [1], 2: [1], 3: [1], 4: [1], 5: [1] },
       characteristics: {
         Comfort: { value: 1 },
@@ -29,7 +30,8 @@ test('should render RatingsReview', () => {
 
 test('should render AddReview', () => {
   render(
-    <RatingReviews metaD={{
+    <RatingReviews trackClick={() => ''}
+    metaD={{
       ratings: { 1: [1], 2: [1], 3: [1], 4: [1], 5: [1] },
       characteristics: {
         Comfort: { value: 1 },
@@ -52,7 +54,8 @@ test('should render AddReview', () => {
 
 test('should handle RatingDisplay click on star', () => {
   render(
-    <RatingReviews metaD={{
+    <RatingReviews trackClick={() => ''}
+     metaD={{
       ratings: { 1: [1], 2: [1], 3: [1], 4: [1], 5: [1] },
       characteristics: {
         Comfort: { value: 1 },
@@ -87,7 +90,8 @@ test('should handle RatingDisplay click on star', () => {
 
 test('should handle RatingDisplay click on star', () => {
   render(
-    <RatingReviews metaD={{
+    <RatingReviews trackClick={() => ''}
+    metaD={{
       ratings: { 1: [1], 2: [1], 3: [1], 4: [1], 5: [1] },
       characteristics: {
         Comfort: { value: 1 },
@@ -122,7 +126,8 @@ test('should handle RatingDisplay click on star', () => {
 
 test('should handle dropdown filter onclick', () => {
   render(
-    <RatingReviews metaD={{
+    <RatingReviews trackClick={() => ''}
+    metaD={{
       ratings: { 1: [1], 2: [1], 3: [1], 4: [1], 5: [1] },
       characteristics: {
         Comfort: { value: 1 },
