@@ -77,9 +77,6 @@ export default function PhotoGallery({ images }) {
                 if (currentPicInd <= sideBarOffset) {
                   setSideBarOffset((prev) => prev - 1);
                 }
-                if (isFullScreen || !zoomed) {
-                  setZoomed(true);
-                }
                 setCurrentPicInd((prev) => prev - 1);
               }}
               left="80px"
@@ -94,9 +91,6 @@ export default function PhotoGallery({ images }) {
               onClick={() => {
                 if (currentPicInd >= sideBarOffset + 6) {
                   setSideBarOffset((prev) => prev + 1);
-                }
-                if (isFullScreen) {
-                  setZoomed(true);
                 }
                 setCurrentPicInd((prev) => prev + 1);
               }}
