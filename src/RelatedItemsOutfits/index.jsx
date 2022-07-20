@@ -121,8 +121,12 @@ export default function RelatedItemsOutfitsModule({ currentProductData }) {
       <RelatedProductCardCarousel
         relatedProductDetails={combinedCardData}
         setShowModal={setShowModal}
+        viewWidth={viewWidth}
       />
-      <OutfitCardCarousel />
+      <OutfitCardCarousel
+        currentProduct={currentProduct}
+        viewWidth={viewWidth}
+      />
     </div>
   );
 }
