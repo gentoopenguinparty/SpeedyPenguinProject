@@ -8,7 +8,7 @@ import OutfitCardCarousel from './OutfitCardCarousel.jsx';
 import ComparisonModal from './ComparisonModal.jsx';
 
 // ------ network request methods -------
-const currentID = '37315';
+// const currentID = '37315';
 
 async function getRelatedIDs(productID) {
   const relatedURL = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${productID}/related`;
@@ -25,10 +25,7 @@ function getProductStyles(productID) {
   return axiosGet(requestURL);
 }
 
-const relatedIDs = getRelatedIDs(currentID)
-  .then((res) => [...new Set(res)]);
-
-function getRelatedProductDetails() {
+function getRelatedProductDetails(relatedIDs) {
   return relatedIDs.then((data) => data.map((id) => getProductDetails(id)))
     .then((detailsPromises) => Promise.all(detailsPromises))
     .then((res) => res.map((dataObj) => {
@@ -45,7 +42,7 @@ function getRelatedProductDetails() {
     .catch((err) => console.log(err));
 }
 
-function getRelatedProductStyles() {
+function getRelatedProductStyles(relatedIDs) {
   return relatedIDs.then((data) => data.map((id) => getProductStyles(id)))
     .then((stylesPromise) => Promise.all(stylesPromise))
     .then((res) => res.map((dataObj) => {
@@ -55,7 +52,7 @@ function getRelatedProductStyles() {
       const defaultStyle = defaultCheck || styles[0];
       // // console.log('defaultStyle:', defaultStyle);
       return {
-        price: defaultStyle.original_price,
+        // price: defaultStyle.original_price,
         salePrice: defaultStyle.sale_price,
         images: defaultStyle.photos,
         defaultThumbnail: defaultStyle.photos[0].thumbnail_url,
@@ -65,27 +62,48 @@ function getRelatedProductStyles() {
     .catch((err) => console.log(err));
 }
 
-export default function RelatedItemsOutfitsModule() {
+// function parseStylesData(stylesData) {
+//   const defaultCheck = stylesData.filter((obj) => obj['default?'] === true).pop();
+//   const defaultStyle = defaultCheck || stylesData[0];
+//   return {
+//     salePrice: defaultStyle.sale_price,
+//     images: defaultStyle.photos,
+//     defaultThumbnail: defaultStyle.photos[0].thumbnail_url,
+//   };
+// }
+
+export default function RelatedItemsOutfitsModule({ currentProductData }) {
   const [showModal, setShowModal] = useState(false);
   const [currentProduct, setcurrentProduct] = useState([]);
+  // contains features
   const [relatedProductDetails, setRelatedProductDetails] = useState([]);
   const [relatedProductStyles, setRelatedProductStyles] = useState([]);
 
+  // const displayedProductStyles = currentProductData[1].results;
+  // const displayedProductMetadata= currentProductData[2];
+  // const displayedProductReviews = currentProductData[3];
+  const displayedProduct = currentProductData[0];
+  const relatedIDs = getRelatedIDs(displayedProduct.id)
+    .then((res) => [...new Set(res)]);
+
   useEffect(() => {
-    getProductDetails(currentID)
-      .then((res) => setcurrentProduct(res.data))
-      .catch((err) => console.log(err));
+    setcurrentProduct(displayedProduct);
+    // getProductDetails(currentID)
+    //   .then((res) => setcurrentProduct(res.data))
+    //   .catch((err) => console.log(err));
     // // console.log('relatedIDs:', relatedIDs);
-    getRelatedProductDetails()
+    getRelatedProductDetails(relatedIDs)
       .then((data) => setRelatedProductDetails(data))
       .catch((err) => console.log(err));
 
-    getRelatedProductStyles()
+    getRelatedProductStyles(relatedIDs)
       .then((data) => setRelatedProductStyles(data))
       .catch((err) => console.log(err));
   }, []);
-  // the empty array tells useEffect it has no dependencies,
-  // therefore preventing infitine rerender loop
+
+  const combinedCardData = relatedProductDetails
+    .map((detailObj, i) => ({ ...detailObj, ...relatedProductStyles[i] }));
+  // console.log('cardData:', combinedCardData);
 
   return (
     <div id="relatedProductsOutfitsModule">
@@ -95,8 +113,7 @@ export default function RelatedItemsOutfitsModule() {
         setShowModal={setShowModal}
       />
       <RelatedProductCardCarousel
-        relatedProductDetails={relatedProductDetails}
-        relatedProductStyles={relatedProductStyles}
+        relatedProductDetails={combinedCardData}
         setShowModal={setShowModal}
       />
       <OutfitCardCarousel />
