@@ -9,7 +9,7 @@ import { ThemeProvider } from 'styled-components'
 import Popup from './Popup.jsx'
 import StarRatings from 'react-star-ratings';
 
-export default function Review({ countReviews, setDataLength, apiData , setCache,
+export default function Review({ countReviews, setDataLength, apiData, setCache,
   setMeta, modData }) {
 
   function handlePut(id) {
@@ -55,11 +55,12 @@ export default function Review({ countReviews, setDataLength, apiData , setCache
   return (
     <div key='reviews'>
 
-      <Grid color={'#FAEBD7'} padding={'5'} height={'1000'} width={'1000'}>
+      <Grid color={'rgb(230,230,230)'} padding={'5'} height={'1000'}
+        width={'1000'} left={'20'} right={'20'}>
         {apiData.slice(0, countReviews).map((review, index) => (
           (review.noReview ?
             <div>no review for this rating</div> :
-            <Grid color={'#FAEBD7'} key={review.review_id} border={'solid'} padding={'10'} bottom={'5'}>
+            <Grid color={'rgb(250,250,250)'} key={review.review_id} border={'solid'} padding={'10'} bottom={'5'}>
               <Row space={'space-between'} padding={10}>
                 <Col >
                   <StarRatings rating={number(review.rating)} starDimension="15px"

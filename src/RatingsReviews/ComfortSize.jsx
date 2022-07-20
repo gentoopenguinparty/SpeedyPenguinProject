@@ -49,8 +49,9 @@ export default function ComfortSize({ meta }) {
     <div>
       <Grid padding={'30'}>
         {size ?
-          <div><h5 style={{ margin: '0px 0px 0px 0px' }}>Size</h5>
-            <TriangleContainer border={'solid'} height={24} color={'rgb(136,136,136)'}>
+          <div>
+            <h5 style={{ margin: '0px 0px 0px 0px' }}>Size</h5>
+            <TriangleContainer height={18} color={'rgb(136,136,136)'}>
               <Triangle margin={calcPercent(size)}></Triangle>
             </TriangleContainer>
             <Row space={'space-between'}>
@@ -62,8 +63,8 @@ export default function ComfortSize({ meta }) {
           : null}
         {comfort ?
           <div>
-            <h5 style={{ margin: '5px 0px 0px 0px' }}>Comfort</h5>
-            <TriangleContainer border={'solid'} height={24} color={'rgb(136,136,136)'}>
+            <h5 style={{ margin: '20px 0px 0px 0px' }}>Comfort</h5>
+            <TriangleContainer height={18} color={'rgb(136,136,136)'}>
               <Triangle margin={calcPercent(comfort)}></Triangle>
             </TriangleContainer>
             <Row space={'space-between'}>
@@ -74,8 +75,8 @@ export default function ComfortSize({ meta }) {
           : null}
         {quality ?
           <div>
-            <h5 style={{ margin: '5px 0px 0px 0px' }}>Quality</h5>
-            <TriangleContainer border={'solid'} height={24} color={'rgb(136,136,136)'}>
+            <h5 style={{ margin: '20px 0px 0px 0px' }}>Quality</h5>
+            <TriangleContainer height={18} color={'rgb(136,136,136)'}>
               <Triangle margin={calcPercent(quality)}></Triangle>
             </TriangleContainer>
             <Row space={'space-between'}>
@@ -86,8 +87,8 @@ export default function ComfortSize({ meta }) {
           : null}
         {fit ?
           <div>
-            <h5 style={{ margin: '5px 0px 0px 0px' }}>Fit</h5>
-            <TriangleContainer border={'solid'} height={24} color={'rgb(136,136,136)'}>
+            <h5 style={{ margin: '20px 0px 0px 0px' }}>Fit</h5>
+            <TriangleContainer height={18} color={'rgb(136,136,136)'}>
               <Triangle margin={calcPercent(fit)}></Triangle>
             </TriangleContainer>
             <Row space={'space-between'}>
@@ -98,8 +99,8 @@ export default function ComfortSize({ meta }) {
           : null}
         {length ?
           <div>
-            <h5 style={{ margin: '5px 0px 0px 0px' }}>Length</h5>
-            <TriangleContainer border={'solid'} height={24} color={'rgb(136,136,136)'}>
+            <h5 style={{ margin: '20px 0px 0px 0px' }}>Length</h5>
+            <TriangleContainer height={18} color={'rgb(136,136,136)'}>
               <Triangle margin={calcPercent(length)}></Triangle>
             </TriangleContainer>
             <Row space={'space-between'}>
@@ -110,8 +111,8 @@ export default function ComfortSize({ meta }) {
           : null}
         {width ?
           <div>
-            <h5 style={{ margin: '5px 0px 0px 0px' }}>Width</h5>
-            <TriangleContainer border={'solid'} height={24} color={'rgb(136,136,136)'}>
+            <h5 style={{ margin: '20px 0px 0px 0px' }}>Width</h5>
+            <TriangleContainer height={18} color={'rgb(136,136,136)'}>
               <Triangle margin={calcPercent(width)}></Triangle>
             </TriangleContainer>
             <Row space={'space-between'}>

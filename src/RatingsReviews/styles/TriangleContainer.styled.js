@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const TriangleContainer = styled.div
 `
+margin-top: ${props => props.top}px;
 display: flex;
 min-width: 150px;
 border-style: ${props => props.border};
