@@ -18,7 +18,7 @@ export default function RelatedProductCardCarousel({
   useLayoutEffect(() => {
     setTimeout(() => {
       setrelatedCarouselWidth(relatedCarouselRef.current.offsetWidth);
-    }, 1000);
+    }, 500);
   }, []);
 
   return (
