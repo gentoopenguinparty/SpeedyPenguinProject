@@ -116,7 +116,7 @@ export default function DropDown({ modData, apiData }) {
       {active ?
         <DropList>
           <div data-testid="relevence" onClick={() => { setFilter('relevence'); sortRelevent(apiData) }}>
-            relevence
+            relevance
           </div>
           <div data-testid="newest" onClick={() => { setFilter('newest'); sortNew(apiData) }}>
             newest
