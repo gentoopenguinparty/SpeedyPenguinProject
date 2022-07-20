@@ -20,14 +20,14 @@ export default function SeeMore({ countReviews, setCountReviews, dataLength, cou
 
   return (
     <div>
-      <Grid color={'#ffffcc'} padding={'30'} left={'20'} right={'20'}>
-        <Row space={'space-between'} padding={10}>
+      <Grid color={'rgb(230, 230, 230)'} padding={'0'} left={'20'} right={'20'}>
+        <Row space={'flex-start'} padding={10}>
           <Col>
             {countReviews >= dataLength ? null :
-              <Button onClick={(event) => { handleClick(); incCount('More Reviews'); }}> MORE REVIEWS </Button>}
+              <Button style = {{color: 'orange'}} onClick={(event) => { handleClick(); incCount('More Reviews'); }}> MORE REVIEWS </Button>}
           </Col>
           <Col>
-            <Button onClick={(event) => { handleClickAdd(); incCount('Add a Review'); }}> ADD A REVIEW </Button>
+            <Button style = {{color: 'orange'}} onClick={(event) => { handleClickAdd(); incCount('Add a Review'); }}> ADD A REVIEW </Button>
           </Col>
         </Row >
       </Grid>
@@ -39,8 +39,6 @@ export default function SeeMore({ countReviews, setCountReviews, dataLength, cou
           </Popup>
         )
       }} />
-
-
     </div>
   )
 }
