@@ -9,7 +9,7 @@ import Moment from 'react-moment';
 export default function Answers(props) {
   const [listLength, setListLength] = useState(2);
   const [noMoreAs, setNoMoreAs] = useState(false);
-  const [photos, setPhotos] = useState([]);
+  //const [photos, setPhotos] = useState([]);
 
 
   const incrementListLength = () => {
@@ -24,7 +24,7 @@ export default function Answers(props) {
      e.target.innerText = 'Reported';
 
 
-    console.log(answerId);
+    //console.log(answerId);
     axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/answers/${answerId}/report`, {reported: true}, {
       headers: {
         Authorization: API_KEY,
@@ -38,12 +38,13 @@ export default function Answers(props) {
   };
 
 
-    const answers = Object.entries(props.answers);
 
     // let photos = answers[1].photos;
     // setPhotos(photos);
-    if (answers.length > 0) {
+    if (props) {
 
+      const displayAnswers = (props) => {
+      const answers = Object.entries(props.answers);
       return (
         answers.slice(0, listLength).sort((a, b) => (a[1].helpfulness > b[1].helpfulness ? -1 : 1)).map((answer, index) => {
           let person = answer[1].answerer_name;
@@ -82,12 +83,13 @@ export default function Answers(props) {
               </small>
               <br />
             </div>
+
           );
         })
       );
 
 
-
+      }
 
 
   return (
@@ -95,12 +97,14 @@ export default function Answers(props) {
       {displayAnswers(props)}
 
       {!noMoreAs && <button onClick={incrementListLength}>See More Answers</button>}
-      {/* <button onClick={() =>{setLoadMoreAs(true)}}>Load More Answers</button> */}
+
     </>
   );
-  } else {
+}
+   else {
     return (
       <p>No Answers Posted At This Time.</p>
     );
-  }
+
+}
 }

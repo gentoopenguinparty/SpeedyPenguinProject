@@ -1,5 +1,5 @@
 import React from 'react';
-import './Modal.css';
+import {Modalpop, ModalOverlay, Button} from './styles/Modal.styled.js'
 import ReactDOM from 'react-dom';
 import { MainContainer } from './styles/Main.styled.js';
 import { API_KEY } from '../../config';
@@ -45,12 +45,12 @@ import { API_KEY } from '../../config';
 //   export default Modal
 
 function AnswerModal({
-  openAnswerModal, setOpenAnswerModal, productData, setAnswerData, answerData, handleAnswerSubmit, data,
+  openAnswerModal, setOpenAnswerModal, productData, setAnswerData, answerData, handleAnswerSubmit, data
 }) {
   return (
     <MainContainer>
       <div className="modal">
-        <div className="modal-pop" role="dialog" aria-modal="true">
+        <Modalpop className="modal-pop" role="dialog" aria-modal="true">
           <header>
             <h1 className="title">Submit Your Answer</h1>
             <h2 className="title">
@@ -95,13 +95,16 @@ function AnswerModal({
             <br />
             <br />
 
+
           </form>
           <br />
-          <button onClick={() => { console.log('add photos here'); }}>Upload Photos</button>
-          <button type="submit" onClick={handleAnswerSubmit}>Submit</button>
-          <button type="button" onClick={() => setOpenAnswerModal(false)}>Cancel</button>
-        </div>
-        <div className="modal-overlay" />
+          <small>Upload Photos</small><br></br>
+          <input type="file" onChange={(e)=> setAnswerData({...answerData, photos: [URL.createObjectURL(e.target.files[0])]})}/>
+
+          <Button type="submit" onClick={handleAnswerSubmit}>Submit</Button>
+          <Button type="button" onClick={() => setOpenAnswerModal(false)}>Cancel</Button>
+        </Modalpop>
+        <ModalOverlay className="modal-overlay" />
       </div>
     </MainContainer>
   );

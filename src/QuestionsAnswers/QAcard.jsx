@@ -31,9 +31,9 @@ export default function QAcard(props) {
       }).catch((error) => { console.log(error); });
     }
 
-    const { qaCards } = props;
-    if (qaCards.length > 0) {
-      // console.log(qaCards)
+    //console.log('props', props)
+    if (props.qaCards) {
+      const { qaCards } = props;
       return (
         qaCards.slice(0, props.qListLength).filter((qaCard) => qaCard.question_body.toLowerCase().includes(props.search.toLowerCase())).sort((a, b) => (a.question_helpfulness > b.question_helpfulness ? -1 : 1)).map((qaCard, index) => (
           //console.log('test')

@@ -1,5 +1,6 @@
 import React from 'react'
-import './Modal.css'
+//import './Modal.css'
+import {Modalpop, ModalOverlay, Button} from './styles/Modal.styled.js';
 import ReactDOM from "react-dom";
 import {MainContainer} from './styles/Main.styled.js'
 import { API_KEY } from '../../config';
@@ -52,7 +53,7 @@ import { API_KEY } from '../../config';
 const Modal = ({ openModal, setOpenModal, productData, setAskQuestionData, askQuestionData, handleSubmit}) =>   (
   <MainContainer>
   <div className="modal">
-    <div className="modal-pop" role="dialog" aria-modal="true">
+    <Modalpop className="modal-pop" role="dialog" aria-modal="true">
     <header>
     <h1 className="title">Ask Your Question</h1>
       <h2 className="title">about the {productData.name}</h2>
@@ -74,10 +75,10 @@ required="required" onChange={(e)=> setAskQuestionData({...askQuestionData, emai
 
        </form><br></br>
 
-      <button type="submit" onClick={handleSubmit}>Submit</button>
-      <button type="button" onClick={() => setOpenModal(false)}>Cancel</button>
-    </div>
-    <div className="modal-overlay"></div>
+      <Button type="submit" onClick={handleSubmit}>Submit</Button>
+      <Button type="button" onClick={() => setOpenModal(false)}>Cancel</Button>
+    </Modalpop>
+    <ModalOverlay className="modal-overlay"></ModalOverlay>
   </div>
   </MainContainer>
 )
