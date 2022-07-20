@@ -10,7 +10,7 @@ export const CardCarousel = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  flex-wrap: wrap;
+  // flex-wrap: wrap;
   overflow: hidden;
 
   height: 420px;
