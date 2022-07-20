@@ -14,7 +14,7 @@ export default function RelatedProductCardCarousel({
     <>
       <Heading>Related Products</Heading>
       <FlexContainer>
-        <CardScrollButton direction="back" />
+        <CardScrollButton id="relatedScrollBack" direction="back" />
         <CardCarousel>
           {relatedProductDetails.map((product) => (
             <RelatedProductCard
@@ -24,7 +24,7 @@ export default function RelatedProductCardCarousel({
             />
           ))}
         </CardCarousel>
-        <CardScrollButton direction="forward" />
+        <CardScrollButton id="relatedScrollBack" direction="forward" />
       </FlexContainer>
     </>
   );

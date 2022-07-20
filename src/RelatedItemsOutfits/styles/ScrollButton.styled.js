@@ -5,6 +5,9 @@ const ScrollButton = styled.div`
   width: 60px;
   flex-shrink: 0;
 
+  z-index: 2;
+  border-radius: 50%;
+  background-color: lightgray;
   background-image: url(../../assets/${(props) => props.direction}-arrow.png);
   background-repeat: no-repeat;
   background-position: left;

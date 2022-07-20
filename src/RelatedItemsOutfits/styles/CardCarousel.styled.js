@@ -4,6 +4,7 @@ export const FlexContainer = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  overflow: hidden;
 `;
 
 export const CardCarousel = styled.div`
@@ -12,11 +13,12 @@ export const CardCarousel = styled.div`
   align-items: center;
   height: 420px;
   padding: 10px;
-  overflow-x: scroll;
+  position: relative;
+  //overflow: hidden;
 
-  ::-webkit-scrollbar {
+  /* ::-webkit-scrollbar {
     display: none;
-  }
+  } */
 
 
 `;

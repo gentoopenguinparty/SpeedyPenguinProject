@@ -14,7 +14,7 @@ export default function OutfitCardCarousel() {
     <>
       <Heading>Your Outfit</Heading>
       <FlexContainer>
-        <CardScrollButton direction="back" />
+        <CardScrollButton id="outfitScrollBack" direction="back" />
         <CardCarousel>
           <AddToOutfitsButton handleClick={addOutfit} />
           {outfits.map((outfitItem) => (
@@ -25,7 +25,7 @@ export default function OutfitCardCarousel() {
             />
           ))}
         </CardCarousel>
-        <CardScrollButton direction="forward" />
+        <CardScrollButton id="outfitScrollForward" className="forward" direction="forward" />
       </FlexContainer>
     </>
   );
