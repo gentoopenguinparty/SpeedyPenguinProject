@@ -8,7 +8,7 @@ export default function OutfitCard({ outfitItem, removeOutfit }) {
   return (
     <ProductCard>
       <RemoveOutfitButton handleClick={removeOutfit} currentID={outfitItem.id} />
-      <ProductCardImage imageURL={outfitItem} />
+      <ProductCardImage imageURL={outfitItem.photos[0].thumbnail_url} />
       <ProductCardDetails productDetails={outfitItem} />
     </ProductCard>
   );

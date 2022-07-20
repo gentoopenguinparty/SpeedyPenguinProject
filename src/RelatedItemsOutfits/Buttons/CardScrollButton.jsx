@@ -1,15 +1,31 @@
 import React from 'react';
 import styled from 'styled-components';
 
-export default function CardScrollButton() {
+import ScrollButton from '../styles/ScrollButton.styled.js';
+
+export default function CardScrollButton({ direction, id, stateHandler }) {
+  const scrollHandler = (dir) => {
+    stateHandler((current) => (dir === 'forward' ? current + 320 : current - 320));
+  };
   return (
-    <ScrollButton>
-      <img alt="back arrow" src="../../assets/back-arrow.png" />
-    </ScrollButton>
+    <ScrollButtonContainer
+      id={id}
+      className={direction}
+      onClick={() => scrollHandler(direction)}
+    >
+      <ScrollButton direction={direction} />
+    </ScrollButtonContainer>
   );
 }
 
-const ScrollButton = styled.div`
-  width: 60px;
-  background-image: url(../../assets/back-arrow.png);
+const ScrollButtonContainer = styled.div`
+  z-index: 2;
+  &.forward {
+    position: absolute;
+    right: 20px;
+  }
+  &.back {
+    margin-left: 16px;
+  }
+
 `;

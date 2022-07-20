@@ -31,6 +31,7 @@ function App() {
   const id = +url.split('/')[1] || 38000;
   const [currentProductData, setCurrentProductData] = useState([]);
   const [loaded, setLoaded] = useState(false);
+
   useEffect(() => {
     getAll(id)
       .then((responses) => setCurrentProductData(responses.map((response) => response.data)))
@@ -51,7 +52,10 @@ function App() {
           )}
           />
           <Tracker render={(trackClick) => (
-            <RelatedItemsOutfitsModule trackClick={trackClick} />
+            <RelatedItemsOutfitsModule
+              trackClick={trackClick}
+              currentProductData={currentProductData}
+            />
           )}
           />
           <Tracker render={(trackClick) => (
@@ -69,7 +73,6 @@ function App() {
             />
           )}
           />
-
         </div>
       ) : <p>Loading</p>}
     </div>

@@ -1,10 +1,22 @@
 import React from 'react';
 import styled from 'styled-components';
 
-export default function AddToOutfitsButton({ handleClick }) {
+export default function AddToOutfitsButton({
+  currentProduct,
+  currentOutfits,
+  addToOutfits,
+}) {
+  const clickHandler = () => {
+    if (currentOutfits.find((outfit) => (outfit.id === currentProduct.id))) {
+      alert('Outfit Already in Collection');
+    } else {
+      addToOutfits(currentProduct);
+    }
+  };
+
   return (
     // TODO need to pass in the pages current outfit to click handler
-    <AddOutFitButton onClick={() => handleClick({ id: 1234, name: 'testAdd', category: 'testAddCategory' })}>
+    <AddOutFitButton onClick={clickHandler}>
       <p className="text">Add To Outfits</p>
       <p className="symbol">+</p>
     </AddOutFitButton>

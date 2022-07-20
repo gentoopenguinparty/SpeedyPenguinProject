@@ -4,14 +4,19 @@ import { ProductCardImage, ProductCardDetails } from './ProductCardComponents/in
 import { CompareProductButton } from './Buttons/index.jsx';
 import ProductCard from './styles/ProductCard.styled.js';
 
-export default function RelatedProductCard({ productID, productDetails, setShowModal }) {
+export default function RelatedProductCard({ productDetails, setShowModal }) {
+  const handleClick = (e) => {
+    e.stopPropagation();
+    setShowModal(true);
+  };
   return (
-    <ProductCard>
+    // eslint-disable-next-line no-restricted-globals
+    <ProductCard onClick={() => location.replace(`http://localhost:3000/${productDetails.id}`)}>
       <CompareProductButton
-        productID={productID}
-        handleClick={setShowModal}
+        productID={productDetails.id}
+        handleClick={handleClick}
       />
-      <ProductCardImage />
+      <ProductCardImage imageURL={productDetails.defaultThumbnail} />
       <ProductCardDetails productDetails={productDetails} />
     </ProductCard>
   );
