@@ -20,7 +20,7 @@ export default function SeeMore({ countReviews, setCountReviews, dataLength, cou
 
   return (
     <div>
-      <Grid color={'#ffffcc'} padding={'30'}>
+      <Grid color={'#ffffcc'} padding={'30'} left={'20'} right={'20'}>
         <Row space={'space-between'} padding={10}>
           <Col>
             {countReviews >= dataLength ? null :

@@ -4,5 +4,5 @@ export const BarGraph = styled.div
 `
 height: 24px;
 width: ${props => props.percent}%;
-background-color: rgb(43,194,83);
+background-color: orange;
 `

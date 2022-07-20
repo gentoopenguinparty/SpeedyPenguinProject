@@ -20,7 +20,7 @@ function avgRating(meta) {
     sum += (key * ratings[key]);
     count += parseInt(ratings[key]);
   }
-  return sum/count;
+  return sum / count;
 }
 
 function displayRating(avgRating) {
@@ -32,13 +32,19 @@ export default function AvgRating({ meta }) {
   return (
 
     <div>
-      <Grid color={'#FF7F50'} padding={'30'}>
-        <Row padding={10}> <Col>
-        <StarRatings rating={quarter(avgRating(meta))} starDimension="25px"
-                    starSpacing="1px" starRatedColor="black"
-                    style={{'border-styles': 'solid'}}/>
-          <div>Average Rating: {displayRating(avgRating(meta))} </div>
-        </Col> </Row>
+      <Grid color={''} padding={'30'}>
+        <Row >
+        <Col  width={'150'}>
+            <div style={{
+              fontSize: '50px', fontWeight: 'bold',
+              color: 'rgb(84, 84, 84)'
+            }}>
+              {displayRating(avgRating(meta))} </div>
+            <StarRatings rating={quarter(avgRating(meta))} starDimension="25px"
+              starSpacing="1px" starRatedColor="orange"
+              style={{ 'border-styles': 'solid' }} />
+          </Col>
+        </Row>
       </Grid>
     </div>
   )
