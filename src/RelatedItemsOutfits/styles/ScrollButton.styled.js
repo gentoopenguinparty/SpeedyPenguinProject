@@ -4,6 +4,7 @@ const ScrollButton = styled.div`
   height: 60px;
   width: 60px;
   z-index: 2;
+
   flex-shrink: 0;
   background-image: url(../../assets/${(props) => props.direction}-arrow.png);
   background-repeat: no-repeat;
@@ -15,7 +16,6 @@ const ScrollButton = styled.div`
   &:hover {
     background-color: mediumorchid;
   }
-
 `;
 
 export default ScrollButton;

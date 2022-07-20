@@ -20,6 +20,7 @@ export default function RelatedProductCardCarousel({
           relatedCarouselPosition !== 0 ? (
             <CardScrollButton
               id="outfitScrollBack"
+              className="scrollBack"
               direction="back"
               stateHandler={setRelatedCarouselPosition}
             />
@@ -36,7 +37,7 @@ export default function RelatedProductCardCarousel({
           ))}
         </CardCarousel>
         <CardScrollButton
-          id="relatedScrollBack"
+          id="relatedScrollForward"
           direction="forward"
           stateHandler={setRelatedCarouselPosition}
         />

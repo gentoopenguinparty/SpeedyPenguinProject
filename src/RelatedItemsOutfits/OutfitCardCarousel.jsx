@@ -19,6 +19,7 @@ export default function OutfitCardCarousel() {
           outfitCarouselPosition !== 0 ? (
             <CardScrollButton
               id="outfitScrollBack"
+              className="scrollBack"
               direction="back"
               stateHandler={setOutfitCarouselPosition}
             />

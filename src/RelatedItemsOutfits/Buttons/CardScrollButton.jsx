@@ -27,4 +27,8 @@ const ScrollButtonContainer = styled.div`
     position: absolute;
     right: 20px;
   }
+  &.back {
+    margin-left: 16px;
+  }
+
 `;
