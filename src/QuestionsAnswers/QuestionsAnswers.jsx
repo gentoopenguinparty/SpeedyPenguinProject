@@ -46,12 +46,12 @@ export default function QuestionsAnswers({ productId }) {
   useEffect(() => {
     getQAs();
     getProductInfo();
-    const interval = setInterval(() => {
-      getQAs();
-      getProductInfo();
-    }, 5000);
+    // const interval = setInterval(() => {
+    //   getQAs();
+    //   getProductInfo();
+    // }, 5000);
 
-    return () => clearInterval(interval);
+    // return () => clearInterval(interval);
   }, []);
 
   const incrementQList = () => {
