@@ -36,6 +36,7 @@ const AddOutFitButton = styled.div`
   margin: 10px;
   &:hover {
     background-color: lightgray;
+    cursor: pointer;
   }
 
   .text {
