@@ -9,7 +9,7 @@ export default function ProductCheckmarks({ features }) {
           <FeatureCard key={feature}>
             <Feature>
               {feature}
-              :
+
             </Feature>
             <Value>{value}</Value>
           </FeatureCard>

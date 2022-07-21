@@ -1,20 +1,30 @@
+/* eslint-disable guard-for-in */
 import React from 'react';
 import styled from 'styled-components';
 import InputGrid from './InputGrid.jsx';
 import PriceBlock from './PriceBlock.jsx';
 import Styles from './Styles.jsx';
 import ShareRow from './ShareRow.jsx';
+import parseStarRating from '../RelatedItemsOutfits/parseStarRating.js';
 
 export default function ProductInterface({
-  data, styles, styleChange, id,
+  data, styles, styleChange, id, meta,
 }) {
-  // // console.log(data)
+  let reviewCt = 0;
+  // eslint-disable-next-line no-restricted-syntax
+  for (const key in meta.ratings) {
+    reviewCt += +meta.ratings[key];
+  }
   return (
     <Main>
-      <span>
-        <Rating rating={2.5} />
-        Read All Reviews
-      </span>
+      <Rating rating={parseStarRating(meta.ratings)} />
+      <a href="#reviews">
+        Read All
+        {' '}
+        {reviewCt}
+        {' '}
+        Reviews
+      </a>
       <Category>{data.category}</Category>
       <Name>{data.name}</Name>
       <ShareRow />
