@@ -27,6 +27,7 @@ export default function AddReview({ changeTrigger, setCache,
   const [width, setWidth] = useState(false)
   const [length, setLength] = useState(false)
 
+  const [characteristics, setCharacteristics] = useState(null);
 
   useEffect(() => {
     let charObj = {};
@@ -60,6 +61,7 @@ export default function AddReview({ changeTrigger, setCache,
       let lengthId = meta.characteristics.Length.id;
       charObj[lengthId] = ratingLength;
     }
+    setCharacteristics(characteristics);
   }, [])
 
 
@@ -84,8 +86,27 @@ export default function AddReview({ changeTrigger, setCache,
   const [emailWarn, setEmailWarn] = useState(false);
 
   function handleSubmit(event) {
+    let charObj = {};
+    if (size) {
+      charObj[meta.characteristics.Size.id] = ratingSize;
+    }
+    if (comfort) {
+      charObj[meta.characteristics.Comfort.id] = ratingComfort;
+    }
+    if (fit) {
+      charObj[meta.characteristics.Fit.id] = ratingFit;
+    }
+    if (quality) {
+      charObj[meta.characteristics.Quality.id] = ratingQuality;
+    }
+    if (width) {
+      charObj[meta.characteristics.Width.id] = ratingWidth
+    }
+    if (length) {
+      charObj[meta.characteristics.Length.id] = ratingLength;
+    }
+
     let err = false;
-    // console.log('ratingSR', ratingSR);
     if (ratingSR === 0) {
       setStarWarn(true);
       err = true;
@@ -119,7 +140,10 @@ export default function AddReview({ changeTrigger, setCache,
     if (!err) {
 
       let id = window.location.href.slice(22, 27) || 38000;
+      console.log('chars', characteristics);
       let state = {
+
+
         "product_id": parseInt(id),
         "rating": ratingSR,
         "summary": wordsRS,
@@ -127,9 +151,11 @@ export default function AddReview({ changeTrigger, setCache,
         "recommend": reco,
         "name": wordsNick,
         "email": wordsEmail,
-        "photos": files || [''],
-        "characteristics": {}
+        "photos": url || [''],
+        "characteristics": charObj
+
       }
+
       // console.log('state', state)
       axiosPost('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/', state)
         .then(() => { console.log('suc') })
@@ -160,7 +186,7 @@ export default function AddReview({ changeTrigger, setCache,
   const [ratingWidth, setRatingWidth] = useState(0);
 
   const [image, setImage] = useState("");
-  const [url, setUrl] = useState("");
+  const [url, setUrl] = useState([]);
   const [wordsRS, setWordsRS] = React.useState('');
   const [wordsRB, setWordsRB] = React.useState('');
   const [files, setFile] = useState([]);
@@ -183,10 +209,7 @@ export default function AddReview({ changeTrigger, setCache,
       {width ? <Width rating={ratingWidth} setRating={setRatingWidth} /> : null}
       <ReviewSummary words={wordsRS} setWords={setWordsRS} />
       <ReviewBody words={wordsRB} setWords={setWordsRB} />
-      {console.log('files',files)}
-      <div>testtest</div>
-      <PhotoCloud image={image} setImage={setImage} url={url} setUrl={setUrl}/>
-      <Photo files={files} setFile={setFile} />
+      <Photo files={files} setFile={setFile} image={image} setImage={setImage} url={url} setUrl={setUrl}/>
       <NickName words={wordsNick} setWords={setWordsNick} />
       <Email words={wordsEmail} setWords={setWordsEmail} />
       <Button onClick={(e) => { handleSubmit(e); }}> submit! </Button>
