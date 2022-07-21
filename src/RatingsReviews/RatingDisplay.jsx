@@ -49,13 +49,13 @@ export default function RatingDisplay({ apiData, modData, cache, meta }) {
 
   return (
     <div>
-      <Grid padding={'30'}>
+      <Grid padding={'0'} left={'30'}>
         <Row align={'center'}>
           <Col>
             <Star data-testid="5" onClick={() => { filterApi(cache, 5) }} >5 Star</Star>
           </Col>
           <Col>
-            <BarContainer border={'solid'} height={24} color={'rgb(136,136,136)'}>
+            <BarContainer height={18} color={'rgb(136,136,136)'}>
               <BarGraph percent={calcPercent(meta.ratings, 5)}></BarGraph>
             </BarContainer>
           </Col>
@@ -65,7 +65,7 @@ export default function RatingDisplay({ apiData, modData, cache, meta }) {
             <Star data-testid="4" onClick={() => { filterApi(cache, 4) }}>4 Star</Star>
           </Col>
           <Col>
-            <BarContainer border={'solid'} height={24} color={'rgb(136,136,136)'}>
+            <BarContainer height={18} color={'rgb(136,136,136)'}>
               <BarGraph percent={calcPercent(meta.ratings, 4)}></BarGraph>
             </BarContainer>
           </Col>
@@ -75,7 +75,7 @@ export default function RatingDisplay({ apiData, modData, cache, meta }) {
             <Star data-testid="3" onClick={() => { filterApi(cache, 3) }}>3 Star</Star>
           </Col>
           <Col>
-            <BarContainer border={'solid'} height={24} color={'rgb(136,136,136)'}>
+            <BarContainer height={18} color={'rgb(136,136,136)'}>
               <BarGraph percent={calcPercent(meta.ratings, 3)}></BarGraph>
             </BarContainer>
           </Col>
@@ -85,7 +85,7 @@ export default function RatingDisplay({ apiData, modData, cache, meta }) {
             <Star data-testid="2" onClick={() => { filterApi(cache, 2) }}>2 Star</Star>
           </Col>
           <Col>
-            <BarContainer border={'solid'} height={24} color={'rgb(136,136,136)'}>
+            <BarContainer height={18} color={'rgb(136,136,136)'}>
               <BarGraph percent={calcPercent(meta.ratings, 2)}></BarGraph>
             </BarContainer>
           </Col>
@@ -95,7 +95,7 @@ export default function RatingDisplay({ apiData, modData, cache, meta }) {
             <Star data-testid="1" onClick={() => { filterApi(cache, 1) }}>1 Star</Star>
           </Col>
           <Col>
-            <BarContainer border={'solid'} height={24} color={'rgb(136,136,136)'}>
+            <BarContainer height={18} color={'rgb(136,136,136)'}>
               <BarGraph percent={calcPercent(meta.ratings, 1)}></BarGraph>
             </BarContainer>
           </Col>
