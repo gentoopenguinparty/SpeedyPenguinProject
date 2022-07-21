@@ -48,6 +48,7 @@ function App() {
               trackClick={trackClick}
               productData={currentProductData[0]}
               styles={currentProductData[1].results}
+              meta={currentProductData[2]}
             />
           )}
           />

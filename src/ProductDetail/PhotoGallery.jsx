@@ -27,12 +27,16 @@ export default function PhotoGallery({ images }) {
         data-testid="current-image"
         pos={imagePos}
         image={images.photos[currentPicInd].url}
-        onClick={isFullScreen ? () => setZoomed((prev) => !prev) : handleFullScreen}
+        onClick={isFullScreen ? (e) => {
+          if (e.target.id === 'current-image') {
+            setZoomed((prev) => !prev);
+          }
+        } : handleFullScreen}
         fullScreen={isFullScreen}
         zoomed={zoomed}
         onMouseMove={zoomed ? handleImageMove : undefined}
       >
-        { !isFullScreen && (
+        { !isFullScreen ? (
           <Side>
             {(sideBarOffset !== 0 && images.photos.length >= 7)
               ? (
@@ -47,7 +51,7 @@ export default function PhotoGallery({ images }) {
                 onClick={() => setCurrentPicInd(i)}
                 key={photo.thumbnail_url}
                 image={photo.thumbnail_url}
-                boxShadow={currentPicInd === i ? '0px 3px 0px red' : ''}
+                boxShadow={currentPicInd === i ? '0px 3px 0px orange' : ''}
               />
             )).slice(sideBarOffset, sideBarOffset + 7)}
             {!(sideBarOffset + 7 === images.photos.length) && images.photos.length >= 7
@@ -59,12 +63,23 @@ export default function PhotoGallery({ images }) {
                 />
               )}
           </Side>
-        )}
+        ) : (images.photos.map((photo, i) => (
+          <Thumbnail
+            onClick={() => {
+              setCurrentPicInd(i);
+              setZoomed(false);
+            }}
+            key={photo.thumbnail_url}
+            image={photo.thumbnail_url}
+            size={1}
+            boxShadow={currentPicInd === i ? '0px 3px 0px orange' : ''}
+          />
+        )).slice(sideBarOffset, sideBarOffset + 7))}
         {isFullScreen ? (
           <FullScreen
             data-testid="fullscreen-btn"
             onClick={() => {
-              setZoomed(true);
+              setZoomed(false);
               setIsFullScreen((prev) => !prev);
             }}
           />
@@ -144,12 +159,13 @@ background-color: rgba(255,255,255,0.5);
 background-repeat: no-repeat;
 background-size: contain ;
 background-position: center;
-height: 50px;
-width: 50px;
-margin:5px;
+height: ${({ size }) => (size ? '20px' : '50px')};
+width: ${({ size }) => (size ? '20px' : '50px')};
+margin:${({ size }) => (size ? '10px' : '5px')};
 border: 0.2px solid rgba(0,0,0,0.5);
 cursor: pointer;
 box-shadow: ${(props) => props.boxShadow};
+
 `;
 const FullScreen = styled.div`
 width: 20px;

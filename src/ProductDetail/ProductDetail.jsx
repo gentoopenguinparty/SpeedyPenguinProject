@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react';
 import styled from 'styled-components';
 import PhotoGallery from './PhotoGallery.jsx';
@@ -5,7 +7,9 @@ import ProductDescription from './ProductDescription.jsx';
 import ProductInterface from './ProductInterface.jsx';
 import ProductCheckmarks from './ProductCheckmarks.jsx';
 
-export default function ProductDetail({ styles, productData,trackClick }) {
+export default function ProductDetail({
+  styles, productData, trackClick, meta,
+}) {
   const [currentStyle, setCurrrentStyle] = React.useState(0);
   const handleStyleChange = (newStyleInd) => {
     setCurrrentStyle(newStyleInd);
@@ -21,6 +25,7 @@ export default function ProductDetail({ styles, productData,trackClick }) {
           data={productData}
           styles={styles}
           id={currentStyle}
+          meta={meta}
         />
       </Grid>
 
