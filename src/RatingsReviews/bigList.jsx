@@ -45,6 +45,8 @@ export default function BigList({ metaD, cacheD }) {
     }
   )
 
+
+
   useEffect(() => {
     let id = window.location.href.slice(22, 27) || 38000;
     if (Object.keys(metaD.ratings).length > 0) {
