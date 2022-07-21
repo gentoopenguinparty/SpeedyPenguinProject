@@ -42,18 +42,33 @@ export default function DropDown({ modData, apiData }) {
   }
 
   var sortRelevent = function (array) {
-    let currentIndex = array.length,  randomIndex;
-
-    while (currentIndex != 0) {
-
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex--;
-
-      [array[currentIndex], array[randomIndex]] = [
-        array[randomIndex], array[currentIndex]];
+    // set a counter = 0
+    var count = 0;
+    // Create a for loop that goes through the entire array
+    for (var i = 0; i < array.length - 1; i++) {
+      // Compare current index value to the neighboring index
+      // if current index is greater than neighboring index
+      console.log('testr', array[i])
+      if (array[i].photos.length < array[i + 1].photos.length) {
+        // swap the values around
+        var currentVal = array[i];
+        array[i] = array[i + 1];
+        array[i + 1] = currentVal;
+        // increment a counter
+        count++;
+      }
     }
-
-    return modData([...array]);
+    // if counter = 0
+    if (count === 0) {
+      // then return the sorted array
+      return array;
+    }
+    // if counter > 0
+    if (count > 0) {
+      // run bubbleSort again with the current array
+      sortRelevent(array);
+    }
+    return array;
   }
 
 
