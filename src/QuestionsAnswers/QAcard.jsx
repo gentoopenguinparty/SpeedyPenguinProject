@@ -4,16 +4,14 @@ import { Container } from './styles/Main.styled.js';
 import AnswerModal from './AnswerModal.jsx';
 import axios from 'axios';
 import {API_KEY} from '../../config.js'
+import {ReportorHelp} from './styles/Report.styled.js'
+
 // import {qListLength, setQListLength} from '../QuestionsAnswers/QuestionsAnswers.jsx'
 
 export default function QAcard(props) {
 
-  // const [reportedQ, setReportedQ] = useState('Report');
 
 
-  // const displayQAcards = (props) => {
-    // console.log('props', props)
-    //const [reportedQ, setReportedQ] = useState(false);
 
     const handleQuestionReport = (e, questionId) => {
        e.target.innerText = 'Reported';
@@ -32,7 +30,7 @@ export default function QAcard(props) {
     }
 
     //console.log('props', props)
-    if (props.qaCards) {
+    if (props.qaCards.length > 0) {
       const { qaCards } = props;
       return (
         qaCards.slice(0, props.qListLength).filter((qaCard) => qaCard.question_body.toLowerCase().includes(props.search.toLowerCase())).sort((a, b) => (a.question_helpfulness > b.question_helpfulness ? -1 : 1)).map((qaCard, index) => (
@@ -47,25 +45,30 @@ export default function QAcard(props) {
               <pre>
                 Helpful?
                 {' '}
-                <span onClick={() => props.handleHelpfulQuestionSubmit(qaCard.question_id, qaCard.question)}>
+                <ReportorHelp onClick={() => props.handleHelpfulQuestionSubmit(qaCard.question_id, qaCard.question)}>
                   Yes(
                   {qaCard.question_helpfulness}
                   ) |
-                </span>
+                </ReportorHelp>
                 {' '}
 
-                <span onClick={() => props.handleQuestionId(qaCard.question_id)}>Add Answer</span> | <span onClick={(e) => handleQuestionReport(e, qaCard.question_id)}>Report</span>
+                <ReportorHelp onClick={() => props.handleQuestionId(qaCard.question_id)}>Add Answer</ReportorHelp> | <ReportorHelp className="Qreport" onClick={(e) => handleQuestionReport(e, qaCard.question_id)}>Report</ReportorHelp>
 
               </pre>
             </small>
             <br />
-            <AnswerCards answers={qaCard.answers} handleHelpfulAnswerSubmit={props.handleHelpfulAnswerSubmit}/>
+            <AnswerCards answers={qaCard.answers} handleHelpfulAnswerSubmit={props.handleHelpfulAnswerSubmit} questId={qaCard.question_id}/>
+
+
+
             <br />
           </div>
         ))
 
       );
-    }
+    } else {
+
+
 
     return (
       <h3>No Questions Asked At This Time</h3>
@@ -80,3 +83,4 @@ export default function QAcard(props) {
   //   </>
   // );
 
+}

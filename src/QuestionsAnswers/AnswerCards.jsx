@@ -4,18 +4,19 @@ import PhotoCard from './PhotoCard.jsx';
 import axios from 'axios';
 import {API_KEY} from '../../config.js';
 import Moment from 'react-moment';
+import {ReportorHelp} from './styles/Report.styled.js';
 
 
 export default function Answers(props) {
   const [listLength, setListLength] = useState(2);
   const [noMoreAs, setNoMoreAs] = useState(false);
-  //const [photos, setPhotos] = useState([]);
 
 
   const incrementListLength = () => {
     console.log(Object.keys(props.answers).length);
     if (listLength >= Object.keys(props.answers).length - 2) {
       setNoMoreAs(true);
+
     }
     setListLength(listLength + 2);
   };
@@ -24,7 +25,6 @@ export default function Answers(props) {
      e.target.innerText = 'Reported';
 
 
-    //console.log(answerId);
     axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/answers/${answerId}/report`, {reported: true}, {
       headers: {
         Authorization: API_KEY,
@@ -39,8 +39,7 @@ export default function Answers(props) {
 
 
 
-    // let photos = answers[1].photos;
-    // setPhotos(photos);
+
     if (props) {
 
       const displayAnswers = (props) => {
@@ -48,6 +47,8 @@ export default function Answers(props) {
       return (
         answers.slice(0, listLength).sort((a, b) => (a[1].helpfulness > b[1].helpfulness ? -1 : 1)).map((answer, index) => {
           let person = answer[1].answerer_name;
+
+
 
 
 
@@ -72,11 +73,11 @@ export default function Answers(props) {
                 <pre> by {person}
                   , <Moment format="MMMM DD, YYYY" date={answer[1].date} /> {' '}
                   | Helpful?
-                  <span onClick={() => props.handleHelpfulAnswerSubmit(answer[0], answer[1].helpfulness)}> Yes(
+                  <ReportorHelp className="helpful" onClick={() => props.handleHelpfulAnswerSubmit(answer[0], answer[1].helpfulness)}> Yes(
                     {answer[1].helpfulness}
                     ) |
-                  </span>
-                  {' '} <span onClick={(e) => handleReportClick(e, answer[0])}>Report</span>
+                  </ReportorHelp>
+                  {' '} <ReportorHelp onClick={(e) => handleReportClick(e, answer[0])}>Report</ReportorHelp>
 
                 </pre>
 

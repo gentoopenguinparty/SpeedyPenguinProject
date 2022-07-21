@@ -62,34 +62,40 @@ function AnswerModal({
           </header>
 
           <form>
-            <label>
+            <label >
               {' '}
-              <strong>Your Answer</strong>
+              <strong>Your Answer*</strong>
             </label>
             <br />
-            <textarea placeholder="Type your question here" required="required" rows="7" cols="50" maxLength="1000" onChange={(e) => setAnswerData({ ...answerData, body: e.target.value })} />
+            <textarea placeholder="Type your question here" required="required" rows="7" cols="50" maxLength="1000" onChange={(e) => setAnswerData({ ...answerData, body: e.target.value })} /><br></br>
+            <small>(1000 Characters Max)</small><br></br>
             <br />
             <br />
-            <label>What is your nickname?</label>
+            <label>What is your nickname?*</label>
             <br />
             <input
               type="text"
-              placeholder="Example: jackson11!"
+              placeholder="Example: jackson11!        "
               required="required"
+              maxLength="60"
               onChange={(e) => setAnswerData({ ...answerData, name: e.target.value })}
             />
             <br />
+            <small>(60 Characters Max)</small><br></br>
             <small>*For privacy reasons, do not use your full name or email address</small>
             <br />
             <br />
-            <label>Your email</label>
+            <label>Your email*</label>
             <br />
+
             <input
               type="text"
               placeholder="Why did you like the product or not?"
               required="required"
+              maxLength="60"
               onChange={(e) => setAnswerData({ ...answerData, email: e.target.value })}
-            />
+            /><br></br>
+             <small>(60 Characters Max)</small>
             <br />
             <small>*For authentication reasons, you will not be emailed</small>
             <br />
