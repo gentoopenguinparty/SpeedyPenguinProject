@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Triangle } from './styles/Triangle.styled.js'
 import { Grid } from './styles/Grid.styled.js'
@@ -106,6 +106,11 @@ export default function DropDown({ modData, apiData }) {
     }
     return;
   }
+
+  useEffect(() => {
+    console.log('sortsort')
+    sortRelevent(apiData)
+  },[])
 
   return (
     <div >
