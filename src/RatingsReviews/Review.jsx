@@ -11,20 +11,36 @@ import StarRatings from 'react-star-ratings';
 
 export default function Review({ countReviews, setDataLength, apiData, setCache,
   setMeta, modData }) {
-  var sortRelevent = function (array) {
-    let currentIndex = array.length, randomIndex;
 
-    while (currentIndex != 0) {
-
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex--;
-
-      [array[currentIndex], array[randomIndex]] = [
-        array[randomIndex], array[currentIndex]];
+    var sortRelevent = function (array) {
+      // set a counter = 0
+      var count = 0;
+      // Create a for loop that goes through the entire array
+      for (var i = 0; i < array.length - 1; i++) {
+        // Compare current index value to the neighboring index
+        // if current index is greater than neighboring index
+        console.log('testr', array[i])
+        if (array[i].photos.length < array[i + 1].photos.length) {
+          // swap the values around
+          var currentVal = array[i];
+          array[i] = array[i + 1];
+          array[i + 1] = currentVal;
+          // increment a counter
+          count++;
+        }
+      }
+      // if counter = 0
+      if (count === 0) {
+        // then return the sorted array
+        return array;
+      }
+      // if counter > 0
+      if (count > 0) {
+        // run bubbleSort again with the current array
+        sortRelevent(array);
+      }
+      return array;
     }
-
-    return array;
-  }
 
   function handlePut(id) {
     // console.log('putID', id)
@@ -34,10 +50,11 @@ export default function Review({ countReviews, setDataLength, apiData, setCache,
 
   function handleRefresh() {
     let id = window.location.href.slice(22, 27) || 38000;
-    axiosGet('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/?product_id=' + id)
+    axiosGet(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/?product_id=${id}&count=1000`)
       .then((data) => {
         setCache(data.data.results);
-        modData(sortRelevent(data.data.results));
+
+        modData([...sortRelevent(data.data.results)]);
         setDataLength(data.data.results.length);
       })
   }
