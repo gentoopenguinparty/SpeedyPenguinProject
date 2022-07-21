@@ -35,7 +35,7 @@ export default function SeeMore({ countReviews, setCountReviews, dataLength, cou
         return (
           <Popup trigger={trigger} changeTrigger={changeTrigger} count={count} incCount={incCount}>
             <AddReview changeTrigger={changeTrigger} setCache={setCache} modData={modData}
-              setDataLength={setDataLength} setMeta={setMeta} cache={cache} meta={meta}/>
+              setDataLength={setDataLength} cache={cache} meta={meta}/>
           </Popup>
         )
       }} />

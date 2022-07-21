@@ -21,16 +21,15 @@ export default function Photo({ files, setFile, image, setImage, url, setUrl }) 
 
     let concatFile = [...files, URL.createObjectURL(event.target.files[0])];
     setFile(concatFile);
-    console.log('file', files);
   }
 
   return (
     <div>
       <h4>Upload up to five photos</h4>
       <input type='file' onChange={(event) => { setImage(event.target.files[0]); handleFile(event, event.target.files[0]); }} />
-      {files.length !== 0 ? (files.map((file) => {
+      {files.length !== 0 ? (files.map((file, i) => {
         return (
-          <img width='100' height='100' src={file} />
+          <img width='100' height='100' src={file} key={i}/>
         )
       })) : null}
     </div>
