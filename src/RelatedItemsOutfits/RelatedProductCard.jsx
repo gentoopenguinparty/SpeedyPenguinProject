@@ -11,11 +11,8 @@ export default function RelatedProductCard({ productDetails, setShowModal }) {
   };
   return (
     // eslint-disable-next-line no-restricted-globals
-    <ProductCard onClick={() => location.replace(`http://localhost:3000/${productDetails.id}`)}>
-      <CompareProductButton
-        productID={productDetails.id}
-        handleClick={handleClick}
-      />
+    <ProductCard onClick={() => location.replace(`${window.location.origin}/${productDetails.id}`)}>
+      <CompareProductButton handleClick={handleClick} productID={productDetails.id} />
       <ProductCardImage imageURL={productDetails.defaultThumbnail} />
       <ProductCardDetails productDetails={productDetails} />
     </ProductCard>
