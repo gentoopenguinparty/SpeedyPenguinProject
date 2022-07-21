@@ -144,7 +144,6 @@ export default function AddReview({ changeTrigger, setCache,
     if (!err) {
 
       let id = window.location.href.slice(22, 27) || 38000;
-      console.log('chars', characteristics);
       let state = {
         "product_id": parseInt(id),
         "rating": ratingSR,
@@ -189,7 +188,6 @@ export default function AddReview({ changeTrigger, setCache,
     let id = window.location.href.slice(22, 27) || 38000;
     axiosGet(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/?product_id=${id}&count=1000`)
       .then((data) => {
-        // console.log(data.data.results);
         setCache(data.data.results);
         modData([...sortRelevent(data.data.results)]);
         setDataLength(data.data.results.length);
