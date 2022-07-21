@@ -7,7 +7,7 @@ export const Modalpop = styled.div
   border-radius: 5px;
   z-index: 999;
   width: 700px;
-  height: 700px;
+  height: 900px;
   margin: auto;
   padding: 1em 2em 2em;
   position: relative;
@@ -25,8 +25,9 @@ export const ModalOverlay = styled.div
   opacity: 0.75;
 `
 
-export const Button = styled.button
+export const ButtonM = styled.button
 `margin: 10px;
+
 `
 
 

@@ -93,6 +93,13 @@ export default function QuestionsAnswers({ productId, trackClick }) {
       },
     }).then((response) => {
       console.log(response);
+      setAnswerData({
+        body: '',
+        name: '',
+        email: '',
+        photos: [],
+
+      })
 
       setOpenAnswerModal(false);
     }).catch((error) => {

@@ -8,6 +8,6 @@ posistion: relative;
 top:0;
 bottom:0
 font-size: 16px;
-margin: 25px
+
 
 `
