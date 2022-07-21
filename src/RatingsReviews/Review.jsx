@@ -24,6 +24,8 @@ export default function Review({ countReviews, setDataLength, apiData, setCache,
       .then((data) => {
         // console.log(data.data.results);
         setCache(data.data.results);
+
+
         modData(data.data.results);
         setDataLength(data.data.results.length);
       })
