@@ -11,6 +11,20 @@ import StarRatings from 'react-star-ratings';
 
 export default function Review({ countReviews, setDataLength, apiData, setCache,
   setMeta, modData }) {
+  var sortRelevent = function (array) {
+    let currentIndex = array.length, randomIndex;
+
+    while (currentIndex != 0) {
+
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+
+      [array[currentIndex], array[randomIndex]] = [
+        array[randomIndex], array[currentIndex]];
+    }
+
+    return array;
+  }
 
   function handlePut(id) {
     // console.log('putID', id)
@@ -22,11 +36,8 @@ export default function Review({ countReviews, setDataLength, apiData, setCache,
     let id = window.location.href.slice(22, 27) || 38000;
     axiosGet('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/?product_id=' + id)
       .then((data) => {
-        // console.log(data.data.results);
         setCache(data.data.results);
-
-
-        modData(data.data.results);
+        modData(sortRelevent(data.data.results));
         setDataLength(data.data.results.length);
       })
   }
@@ -59,11 +70,13 @@ export default function Review({ countReviews, setDataLength, apiData, setCache,
 
       <Grid color={'rgb(230,230,230)'} padding={'5'} height={'1000'}
         width={'1000'} left={'20'} right={'20'}>
+
         {apiData.slice(0, countReviews).map((review, index) => (
           (review.noReview ?
             <div>no review for this rating</div> :
             <Grid color={'rgb(250,250,250)'} key={review.review_id} bColor={'orange'}
               border={'solid'} padding={'10'} bottom={'5'}>
+              {console.log('mapmapmap')}
               <Row space={'space-between'} padding={10}>
                 <Col >
                   <StarRatings rating={number(review.rating)} starDimension="15px"
