@@ -2,12 +2,14 @@ import { createRoot } from 'react-dom/client';
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import create from 'zustand';
+import axios from 'axios';
+// import { getAll } from '../util.js';
+
 import Tracker from './Tracker.jsx';
 import ProductDetail from './ProductDetail/ProductDetail.jsx';
 import QuestionsAnswers from './QuestionsAnswers/QuestionsAnswers.jsx';
 import RatingsReviews from './RatingsReviews/RatingsReviews.jsx';
 import RelatedItemsOutfitsModule from './RelatedItemsOutfits/index.jsx';
-import { getAll } from '../util.js';
 
 const root = createRoot(document.getElementById('root'));
 
@@ -33,9 +35,15 @@ function App() {
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    getAll(id)
-      .then((responses) => setCurrentProductData(responses.map((response) => response.data)))
-      .then(() => setLoaded(true));
+    axios
+      .get('/:productID')
+      .then((res) => setCurrentProductData(res.map((promise) => promise.data)))
+      .then(() => setLoaded(true))
+      .catch((err) => console.log(err));
+
+    // getAll(id)
+    //   .then((responses) => setCurrentProductData(responses.map((response) => response.data)))
+    //   .then(() => setLoaded(true));
   }, []);
 
   return (
