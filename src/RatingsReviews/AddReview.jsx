@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import PhotoCloud from './PhotoCloud.jsx'
 import StarRating from './StarRating.jsx'
 import Size from './Size.jsx'
 import Fit from './Fit.jsx'
@@ -158,7 +159,8 @@ export default function AddReview({ changeTrigger, setCache,
   const [ratingLength, setRatingLength] = useState(0);
   const [ratingWidth, setRatingWidth] = useState(0);
 
-
+  const [image, setImage] = useState("");
+  const [url, setUrl] = useState("");
   const [wordsRS, setWordsRS] = React.useState('');
   const [wordsRB, setWordsRB] = React.useState('');
   const [files, setFile] = useState([]);
@@ -182,6 +184,8 @@ export default function AddReview({ changeTrigger, setCache,
       <ReviewSummary words={wordsRS} setWords={setWordsRS} />
       <ReviewBody words={wordsRB} setWords={setWordsRB} />
       {console.log('files',files)}
+      <div>testtest</div>
+      <PhotoCloud image={image} setImage={setImage} url={url} setUrl={setUrl}/>
       <Photo files={files} setFile={setFile} />
       <NickName words={wordsNick} setWords={setWordsNick} />
       <Email words={wordsEmail} setWords={setWordsEmail} />
