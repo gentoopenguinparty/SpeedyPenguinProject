@@ -4,49 +4,55 @@ import PhotoCard from './PhotoCard.jsx';
 import axios from 'axios';
 import {API_KEY} from '../../config.js';
 import Moment from 'react-moment';
+import {ReportorHelp} from './styles/Report.styled.js';
+
 
 export default function Answers(props) {
   const [listLength, setListLength] = useState(2);
   const [noMoreAs, setNoMoreAs] = useState(false);
-  const [photos, setPhotos] = useState([]);
-  const [reported, setReported] = useState('Report');
+
 
   const incrementListLength = () => {
     console.log(Object.keys(props.answers).length);
     if (listLength >= Object.keys(props.answers).length - 2) {
       setNoMoreAs(true);
+
     }
     setListLength(listLength + 2);
   };
 
-  const handleReportClick = (answerId) => {
+  const handleReportClick = (e, answerId) => {
+     e.target.innerText = 'Reported';
 
-    setReported('Reported')
-    console.log(answerId)
+
     axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/answers/${answerId}/report`, {reported: true}, {
       headers: {
         Authorization: API_KEY,
         'Content-Type': 'application/json',
       },
     }).then((response) => {
-     console.log(response);
+
+
+      console.log(response)
     }).catch((error) => { console.log(error); });
   };
 
-  const displayAnswers = (props) => {
-    const answers = Object.entries(props.answers);
 
-    // let photos = answers[1].photos;
-    // setPhotos(photos);git s
-    if (answers.length > 0) {
+
+
+    if (props) {
+
+      const displayAnswers = (props) => {
+      const answers = Object.entries(props.answers);
       return (
-        answers.slice(0, listLength).sort((a, b) => (a.helpfulness > b.helpfulness ? -1 : 1)).map((answer, index) => {
+        answers.slice(0, listLength).sort((a, b) => (a[1].helpfulness > b[1].helpfulness ? -1 : 1)).map((answer, index) => {
           let person = answer[1].answerer_name;
 
-          // setPhotos(photos);
-          // console.log(photos)
 
-          if (answer[1].answerer_name.toLowerCase() === 'seller') {
+
+
+
+            if (answer[1].answerer_name.toLowerCase() === 'seller') {
             person = <b>{answer[1].answerer_name.charAt(0).toUpperCase() + answer[1].answerer_name.slice(1)}</b>;
             // console.log('this is the', answer[1].answerer_name)
           }
@@ -67,31 +73,39 @@ export default function Answers(props) {
                 <pre> by {person}
                   , <Moment format="MMMM DD, YYYY" date={answer[1].date} /> {' '}
                   | Helpful?
-                  <span onClick={() => props.handleHelpfulAnswerSubmit(answer[0], answer[1].helpfulness)}> Yes(
+                  <ReportorHelp className="helpful" onClick={() => props.handleHelpfulAnswerSubmit(answer[0], answer[1].helpfulness)}> Yes(
                     {answer[1].helpfulness}
                     ) |
-                  </span>
-                  {' '}<span onClick={() => handleReportClick(answer[0])}>{reported}</span>
+                  </ReportorHelp>
+                  {' '} <ReportorHelp onClick={(e) => handleReportClick(e, answer[0])}>Report</ReportorHelp>
+
                 </pre>
 
               </small>
               <br />
             </div>
+
           );
         })
       );
-    }
 
-    return (
-      <p>No Answers Posted At This Time.</p>
-    );
-  };
+
+      }
+
+
   return (
     <>
       {displayAnswers(props)}
 
       {!noMoreAs && <button onClick={incrementListLength}>See More Answers</button>}
-      {/* <button onClick={() =>{setLoadMoreAs(true)}}>Load More Answers</button> */}
+
     </>
   );
+}
+   else {
+    return (
+      <p>No Answers Posted At This Time.</p>
+    );
+
+}
 }
