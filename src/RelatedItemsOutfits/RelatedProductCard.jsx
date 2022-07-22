@@ -4,9 +4,10 @@ import { ProductCardImage, ProductCardDetails } from './ProductCardComponents/in
 import { CompareProductButton } from './Buttons/index.jsx';
 import ProductCard from './styles/ProductCard.styled.js';
 
-export default function RelatedProductCard({ productDetails, setShowModal }) {
+export default function RelatedProductCard({ productDetails, setShowModal, setComparedID }) {
   const handleClick = (e) => {
     e.stopPropagation();
+    setComparedID(productDetails.id);
     setShowModal(true);
   };
   return (

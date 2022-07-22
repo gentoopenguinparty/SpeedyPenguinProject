@@ -68,6 +68,7 @@ export default function RelatedItemsOutfitsModule({ currentProductData, trackCli
   const [relatedProductStyles, setRelatedProductStyles] = useState([]);
   // const [relatedProductInfo, setRelatedProductInfo] = useState([]);
 
+  const [comparedID, setComparedID] = useState(0);
   const [showModal, setShowModal] = useState(false);
   const [viewWidth, setViewWidth] = useState(0);
 
@@ -108,15 +109,19 @@ export default function RelatedItemsOutfitsModule({ currentProductData, trackCli
     .map((detailObj, i) => ({ ...detailObj, ...relatedProductStyles[i] }));
 
   return (
+    // eslint-disable-next-line max-len
+    // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
     <div id="relatedProductsOutfitsModule" onClick={(e) => trackClick(e, 'Related')}>
       <ComparisonModal
         currentProduct={currentProduct}
+        relatedProducts={relatedProductDetails}
         show={showModal}
         setShowModal={setShowModal}
       />
       <RelatedProductCardCarousel
         relatedProductDetails={combinedCardData}
         setShowModal={setShowModal}
+        setComparedID={setComparedID}
         viewWidth={viewWidth}
       />
       <OutfitCardCarousel
