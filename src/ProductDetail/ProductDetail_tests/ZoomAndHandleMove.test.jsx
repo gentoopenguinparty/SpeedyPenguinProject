@@ -10,6 +10,7 @@ test('should render ProductDetail component', () => {
   render(<ProductDetail
     productData={productData}
     styles={styles}
+    trackClick={() => ''}
 
   />);
   const bigPic = screen.getByTestId('current-image');
