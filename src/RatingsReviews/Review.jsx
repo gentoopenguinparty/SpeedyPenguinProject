@@ -80,7 +80,6 @@ export default function Review({ countReviews, setDataLength, apiData, setCache,
             <div>no review for this rating</div> :
             <Grid color={'rgb(250,250,250)'} key={review.review_id} bColor={'orange'}
               border={'solid'} padding={'10'} bottom={'5'}>
-              {console.log('mapmapmap')}
               <Row space={'space-between'} padding={10}>
                 <Col >
                   <StarRatings rating={number(review.rating)} starDimension="15px"

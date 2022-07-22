@@ -144,10 +144,7 @@ export default function AddReview({ changeTrigger, setCache,
     if (!err) {
 
       let id = window.location.href.slice(22, 27) || 38000;
-      console.log('chars', characteristics);
       let state = {
-
-
         "product_id": parseInt(id),
         "rating": ratingSR,
         "summary": wordsRS,

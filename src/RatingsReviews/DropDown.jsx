@@ -121,11 +121,6 @@ export default function DropDown({ modData, apiData }) {
     return;
   }
 
-  useEffect(() => {
-    console.log('sortsort')
-    sortRelevent(apiData)
-  },[])
-
   return (
     <div >
       <Row align={'align-center'} >
