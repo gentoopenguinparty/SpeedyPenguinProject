@@ -13,30 +13,19 @@ export default function Review({ countReviews, setDataLength, apiData, setCache,
   setMeta, modData }) {
 
     var sortRelevent = function (array) {
-      // set a counter = 0
       var count = 0;
-      // Create a for loop that goes through the entire array
       for (var i = 0; i < array.length - 1; i++) {
-        // Compare current index value to the neighboring index
-        // if current index is greater than neighboring index
-        console.log('testr', array[i])
         if (array[i].photos.length < array[i + 1].photos.length) {
-          // swap the values around
           var currentVal = array[i];
           array[i] = array[i + 1];
           array[i + 1] = currentVal;
-          // increment a counter
           count++;
         }
       }
-      // if counter = 0
       if (count === 0) {
-        // then return the sorted array
         return array;
       }
-      // if counter > 0
       if (count > 0) {
-        // run bubbleSort again with the current array
         sortRelevent(array);
       }
       return array;
@@ -60,7 +49,6 @@ export default function Review({ countReviews, setDataLength, apiData, setCache,
   }
 
   function number(rating) {
-    // console.log('numberr', rating);
     return parseInt((Math.round(rating * 4) / 4).toFixed(2));
   }
 
@@ -68,7 +56,6 @@ export default function Review({ countReviews, setDataLength, apiData, setCache,
   const [url, setUrl] = useState('');
 
   function handleClickAdd(event) {
-    // console.log('photosadad', event.target.src)
     setUrl(event.target.src)
     changeTrigger(!trigger)
   }
@@ -93,7 +80,6 @@ export default function Review({ countReviews, setDataLength, apiData, setCache,
             <div>no review for this rating</div> :
             <Grid color={'rgb(250,250,250)'} key={review.review_id} bColor={'orange'}
               border={'solid'} padding={'10'} bottom={'5'}>
-              {console.log('mapmapmap')}
               <Row space={'space-between'} padding={10}>
                 <Col >
                   <StarRatings rating={number(review.rating)} starDimension="15px"

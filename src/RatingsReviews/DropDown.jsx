@@ -48,7 +48,6 @@ export default function DropDown({ modData, apiData }) {
     for (var i = 0; i < array.length - 1; i++) {
       // Compare current index value to the neighboring index
       // if current index is greater than neighboring index
-      console.log('testr', array[i])
       if (array[i].photos.length < array[i + 1].photos.length) {
         // swap the values around
         var currentVal = array[i];
@@ -121,11 +120,6 @@ export default function DropDown({ modData, apiData }) {
     }
     return;
   }
-
-  useEffect(() => {
-    console.log('sortsort')
-    sortRelevent(apiData)
-  },[])
 
   return (
     <div >

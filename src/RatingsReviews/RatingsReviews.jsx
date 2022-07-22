@@ -11,9 +11,6 @@ export default function RatingsReviews({ metaD, cacheD, trackClick }) {
     var count = 0;
     // Create a for loop that goes through the entire array
     for (var i = 0; i < array.length - 1; i++) {
-      // Compare current index value to the neighboring index
-      // if current index is greater than neighboring index
-      console.log('testr', array[i])
       if (array[i].photos.length < array[i + 1].photos.length) {
         // swap the values around
         var currentVal = array[i];
