@@ -10,9 +10,9 @@ export default function ComparisonModal({
 }) {
   const currentComparedProduct = relatedProducts.filter((prod) => prod.id === comparedID)
     || relatedProducts[0];
-  console.log('currComp:', currentComparedProduct);
-  const combinedModalData = { ...currentProduct, ...currentComparedProduct };
-  console.log('combinedModalData:', combinedModalData);
+  // console.log('currComp:', currentComparedProduct);
+  // const combinedModalData = { ...currentProduct, ...currentComparedProduct };
+  // console.log('combinedModalData:', combinedModalData);
   return (
     <Modal className={`${show ? 'show' : ''}`} onClick={() => setShowModal(false)}>
       <ModalContent onClick={(e) => e.stopPropagation()}>
