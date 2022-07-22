@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import PhotoCloud from './PhotoCloud.jsx'
 import StarRating from './StarRating.jsx'
 import Size from './Size.jsx'
 import Fit from './Fit.jsx'
