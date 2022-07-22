@@ -7,7 +7,7 @@ import AddToOutfitsButton from './Buttons/AddToOutfitsButton.jsx';
 import { CardScrollButton } from './Buttons/index.jsx';
 import useOutfitListStore from './stores.js';
 
-export default function OutfitCardCarousel({ currentProduct, viewWidth }) {
+export default function OutfitCardCarousel({ currentProduct, currentProductMeta, viewWidth }) {
   const { outfits, addOutfit, removeOutfit } = useOutfitListStore();
   const [outfitCarouselPosition, setOutfitCarouselPosition] = useState(0);
   const [outfitCarouselWidth, setOutfitCarouselWidth] = useState(0);
@@ -38,6 +38,7 @@ export default function OutfitCardCarousel({ currentProduct, viewWidth }) {
         >
           <AddToOutfitsButton
             currentProduct={currentProduct}
+            currentProductMeta={currentProductMeta}
             currentOutfits={outfits}
             addToOutfits={addOutfit}
           />

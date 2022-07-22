@@ -9,12 +9,13 @@ import {
 } from './index.jsx';
 
 export default function ProductCardDetails({ productDetails }) {
+  // console.log("proDCardRating:", productDetails.ratings);
   return (
     <CardDetails className="cardDetails">
       <ProductCardCategory category={productDetails.category} />
       <ProductCardName name={productDetails.name} />
       <ProductCardPrice price={productDetails.price || productDetails.default_price} />
-      <ProductCardStarRating />
+      <ProductCardStarRating ratingsObj={productDetails.ratings} />
     </CardDetails>
   );
 }
