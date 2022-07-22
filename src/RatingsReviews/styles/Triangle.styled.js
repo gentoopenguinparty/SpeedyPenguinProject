@@ -6,7 +6,7 @@ width: 0;
 height: 0;
 border-left: 6px solid transparent;
 border-right: 6px solid transparent;
-border-top: 12px solid red;
+border-top: 12px solid orange;
 margin-left: ${props => props.margin}%;
 margin-top: ${props => props.marginTop}%;
 `

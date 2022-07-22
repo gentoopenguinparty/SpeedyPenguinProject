@@ -49,74 +49,74 @@ export default function ComfortSize({ meta }) {
     <div>
       <Grid padding={'30'}>
         {size ?
-          <div><h5 style={{ margin: '0px 0px 0px 0px' }}>Size</h5>
-            <TriangleContainer border={'solid'} height={24} color={'rgb(136,136,136)'}>
+          <div>
+            <h5 style={{ margin: '0px 0px 0px 0px' }}>Size</h5>
+            <TriangleContainer height={18} color={'rgb(136,136,136)'}>
               <Triangle margin={calcPercent(size)}></Triangle>
             </TriangleContainer>
             <Row space={'space-between'}>
-              <div>Too small</div>
-              <div>Perfect</div>
-              <div>Too large</div>
+              <div style={{fontSize: '14px'}}>Too small</div>
+              <div style={{fontSize: '14px'}}>Too large</div>
             </Row>
           </div>
           : null}
         {comfort ?
           <div>
-            <h5 style={{ margin: '5px 0px 0px 0px' }}>Comfort</h5>
-            <TriangleContainer border={'solid'} height={24} color={'rgb(136,136,136)'}>
+            <h5 style={{ margin: '20px 0px 0px 0px' }}>Comfort</h5>
+            <TriangleContainer height={18} color={'rgb(136,136,136)'}>
               <Triangle margin={calcPercent(comfort)}></Triangle>
             </TriangleContainer>
             <Row space={'space-between'}>
-              <div>Poor</div>
-              <div>Perfect</div>
+              <div style={{fontSize: '14px'}}>Poor</div>
+              <div style={{fontSize: '14px'}}>Perfect</div>
             </Row>
           </div>
           : null}
         {quality ?
           <div>
-            <h5 style={{ margin: '5px 0px 0px 0px' }}>Quality</h5>
-            <TriangleContainer border={'solid'} height={24} color={'rgb(136,136,136)'}>
+            <h5 style={{ margin: '20px 0px 0px 0px' }}>Quality</h5>
+            <TriangleContainer height={18} color={'rgb(136,136,136)'}>
               <Triangle margin={calcPercent(quality)}></Triangle>
             </TriangleContainer>
             <Row space={'space-between'}>
-              <div>Low</div>
-              <div>High</div>
+              <div style={{fontSize: '14px'}}>Low</div>
+              <div style={{fontSize: '14px'}}>High</div>
             </Row>
           </div>
           : null}
         {fit ?
           <div>
-            <h5 style={{ margin: '5px 0px 0px 0px' }}>Fit</h5>
-            <TriangleContainer border={'solid'} height={24} color={'rgb(136,136,136)'}>
+            <h5 style={{ margin: '20px 0px 0px 0px' }}>Fit</h5>
+            <TriangleContainer height={18} color={'rgb(136,136,136)'}>
               <Triangle margin={calcPercent(fit)}></Triangle>
             </TriangleContainer>
             <Row space={'space-between'}>
-              <div>Poor</div>
-              <div>Perfect</div>
+              <div style={{fontSize: '14px'}}>Poor</div>
+              <div style={{fontSize: '14px'}}>Perfect</div>
             </Row>
           </div>
           : null}
         {length ?
           <div>
-            <h5 style={{ margin: '5px 0px 0px 0px' }}>Length</h5>
-            <TriangleContainer border={'solid'} height={24} color={'rgb(136,136,136)'}>
+            <h5 style={{ margin: '20px 0px 0px 0px' }}>Length</h5>
+            <TriangleContainer height={18} color={'rgb(136,136,136)'}>
               <Triangle margin={calcPercent(length)}></Triangle>
             </TriangleContainer>
             <Row space={'space-between'}>
-              <div>Poor</div>
-              <div>Perfect</div>
+              <div style={{fontSize: '14px'}}>Poor</div>
+              <div style={{fontSize: '14px'}}>Perfect</div>
             </Row>
           </div>
           : null}
         {width ?
           <div>
-            <h5 style={{ margin: '5px 0px 0px 0px' }}>Width</h5>
-            <TriangleContainer border={'solid'} height={24} color={'rgb(136,136,136)'}>
+            <h5 style={{ margin: '20px 0px 0px 0px' }}>Width</h5>
+            <TriangleContainer height={18} color={'rgb(136,136,136)'}>
               <Triangle margin={calcPercent(width)}></Triangle>
             </TriangleContainer>
             <Row space={'space-between'}>
-              <div>Poor</div>
-              <div>Perfect</div>
+              <div style={{fontSize: '14px'}}>Poor</div>
+              <div style={{fontSize: '14px'}}>Perfect</div>
             </Row>
           </div>
           : null}

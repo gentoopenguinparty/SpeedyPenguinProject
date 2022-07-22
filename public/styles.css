@@ -1,5 +1,6 @@
-p {color: darkblue;}
+p {}
 
 #root{
-  font-family: sans-serif
+  font-family: sans-serif;
+  color: black;
 }
