@@ -39,7 +39,6 @@ export default function RatingsReviews({ metaD, cacheD, trackClick }) {
 
   return (
     <div id='reviews' onClick={(e) => trackClick(e, 'Reviews')}>
-      {console.log('cash', cacheD)}
       <BigList
         metaD={metaD}
         cacheD={sortRelevent(cacheD)} />

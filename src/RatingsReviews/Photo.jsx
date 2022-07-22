@@ -3,12 +3,10 @@ import React, { useState } from 'react'
 export default function Photo({ files, setFile, image, setImage, url, setUrl }) {
 
   function handleFile(event, image) {
-    const data = new FormData()
-    console.log('image', image);
+    const data = new FormData();
     data.append("file", image)
     data.append("upload_preset", "ReactStore")
     data.append("cloud_name", "dzqos1yng")
-    console.log('data', data)
     fetch("  https://api.cloudinary.com/v1_1/dzqos1yng/image/upload", {
       method: "post",
       body: data

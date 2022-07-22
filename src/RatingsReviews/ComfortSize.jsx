@@ -14,8 +14,6 @@ export default function ComfortSize({ meta }) {
   let fit = 0;
   let length = 0;
   let width = 0;
-  // console.log('meta', meta);
-  // console.log('metaKeys', Object.keys(meta.characteristics).length)
   if (Object.keys(meta.characteristics).length === 0) {
     return;
   }

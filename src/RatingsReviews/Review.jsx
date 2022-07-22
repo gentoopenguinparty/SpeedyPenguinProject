@@ -109,7 +109,6 @@ export default function Review({ countReviews, setDataLength, apiData, setCache,
                 <Col> {review.body} </Col>
               </Row>
               <Row space={'flex-start'}>
-                {/*console.log('photos', review.photos)*/}
                 {review.photos.length > 0 ?
                   review.photos.map((photo, i) => {
                     return (

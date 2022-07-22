@@ -32,7 +32,7 @@ export default function ProductInterface({
       <p>
         <strong>
           STYLE
-          {' > '}
+          {'>'}
         </strong>
         {styles[id].name}
       </p>
