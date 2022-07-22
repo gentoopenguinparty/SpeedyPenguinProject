@@ -9,6 +9,7 @@ import Heading from './styles/Heading.styled.js';
 export default function RelatedProductCardCarousel({
   relatedProductDetails,
   setShowModal,
+  setComparedID,
   viewWidth,
 }) {
   const [relatedCarouselPosition, setRelatedCarouselPosition] = useState(0);
@@ -18,7 +19,7 @@ export default function RelatedProductCardCarousel({
   useLayoutEffect(() => {
     setTimeout(() => {
       setrelatedCarouselWidth(relatedCarouselRef.current.offsetWidth);
-    }, 500);
+    }, 300);
   }, []);
 
   return (
@@ -42,6 +43,7 @@ export default function RelatedProductCardCarousel({
               key={product.id}
               productDetails={product}
               setShowModal={setShowModal}
+              setComparedID={setComparedID}
             />
           ))}
         </CardCarousel>

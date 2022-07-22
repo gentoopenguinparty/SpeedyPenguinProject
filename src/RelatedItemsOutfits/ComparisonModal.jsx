@@ -1,14 +1,25 @@
 import React from 'react';
 import styled from 'styled-components';
 
-export default function ComparisonModal({ show, setShowModal, currentProduct }) {
-  // console.log('currentProductFeatures:', currentProduct);
+export default function ComparisonModal({
+  show,
+  setShowModal,
+  currentProduct,
+  relatedProducts,
+  comparedID,
+}) {
+  console.log('current:', currentProduct.features);
+  console.log('related:', relatedProducts);
+  const currentComparedProduct = relatedProducts.filter((prod) => prod.id === comparedID).pop()
+    || relatedProducts[0];
+  console.log('currComp:', currentComparedProduct);
+  const combinedModalData = { ...currentProduct, ...currentComparedProduct };
   return (
     <Modal className={`${show ? 'show' : ''}`} onClick={() => setShowModal(false)}>
       <ModalContent onClick={(e) => e.stopPropagation()}>
         <ModalHeader>
           <h4>{currentProduct.name}</h4>
-          <h4>ComparedProductName</h4>
+          {/* <h4>{currentComparedProduct.name}</h4> */}
         </ModalHeader>
         <ModalGrid>
           {currentProduct.features && currentProduct.features.map((item) => (

@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 export default function AddToOutfitsButton({
   currentProduct,
+  currentProductMeta,
   currentOutfits,
   addToOutfits,
 }) {
@@ -10,7 +11,7 @@ export default function AddToOutfitsButton({
     if (currentOutfits.find((outfit) => (outfit.id === currentProduct.id))) {
       alert('Outfit Already in Collection');
     } else {
-      addToOutfits(currentProduct);
+      addToOutfits({ ...currentProduct, ...currentProductMeta });
     }
   };
 

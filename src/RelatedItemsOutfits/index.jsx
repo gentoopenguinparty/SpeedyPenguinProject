@@ -24,6 +24,10 @@ function getProductStyles(productID) {
   const requestURL = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${productID}/styles`;
   return axiosGet(requestURL);
 }
+function getProductMeta(productID) {
+  const requestURL = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/meta?product_id=${productID}`;
+  return axiosGet(requestURL);
+}
 
 function getRelatedProductDetails(relatedIDs) {
   return relatedIDs.then((data) => data.map((id) => getProductDetails(id)))
@@ -62,20 +66,31 @@ function getRelatedProductStyles(relatedIDs) {
     .catch((err) => console.log(err));
 }
 
+function getRelatedProductMeta(relatedIDs) {
+  return relatedIDs.then((data) => data.map((id) => getProductMeta(id)))
+    .then((detailsPromises) => Promise.all(detailsPromises))
+    .then((res) => res.map((dataObj) => {
+      const meta = dataObj.data;
+      console.log('meta', meta);
+      return meta;
+    }))
+    .catch((err) => console.log(err));
+}
+
 export default function RelatedItemsOutfitsModule({ currentProductData, trackClick }) {
   const [currentProduct, setcurrentProduct] = useState([]);
+  const [currentProductMeta, setcurrentProductMeta] = useState([]);
   const [relatedProductDetails, setRelatedProductDetails] = useState([]);
   const [relatedProductStyles, setRelatedProductStyles] = useState([]);
-  // const [relatedProductInfo, setRelatedProductInfo] = useState([]);
+  const [relatedProductMeta, setRelatedProductMeta] = useState([]);
 
+  const [comparedID, setComparedID] = useState(0);
   const [showModal, setShowModal] = useState(false);
   const [viewWidth, setViewWidth] = useState(0);
 
-  // const displayedProductMetadata= currentProductData[2];
-  // const displayedProductReviews = currentProductData[3];
-
   const displayedProductDetails = currentProductData[0];
   const displayedProductStyles = currentProductData[1].results;
+  const displayedProductMeta = currentProductData[2];
   const displayedDefaultStyle = displayedProductStyles.filter((obj) => obj['default?'] === true).pop() || displayedProductStyles[0];
   const displayedProductInfo = { ...displayedProductDetails, ...displayedDefaultStyle };
 
@@ -88,6 +103,7 @@ export default function RelatedItemsOutfitsModule({ currentProductData, trackCli
 
   useEffect(() => {
     setcurrentProduct(displayedProductInfo);
+    setcurrentProductMeta(displayedProductMeta);
 
     getRelatedProductDetails(relatedIDs)
       .then((data) => setRelatedProductDetails(data))
@@ -95,6 +111,10 @@ export default function RelatedItemsOutfitsModule({ currentProductData, trackCli
 
     getRelatedProductStyles(relatedIDs)
       .then((data) => setRelatedProductStyles(data))
+      .catch((err) => console.log(err));
+
+    getRelatedProductMeta(relatedIDs)
+      .then((data) => setRelatedProductMeta(data))
       .catch((err) => console.log(err));
 
     handleWindowResize();
@@ -105,22 +125,35 @@ export default function RelatedItemsOutfitsModule({ currentProductData, trackCli
   }, []);
 
   const combinedCardData = relatedProductDetails
-    .map((detailObj, i) => ({ ...detailObj, ...relatedProductStyles[i] }));
+    .map((detailObj, i) => ({
+      ...detailObj,
+      ...relatedProductStyles[i],
+      ...relatedProductMeta[i],
+    }));
+
+  console.log('relatedProductMeta:', relatedProductMeta);
+  console.log('cardData:', combinedCardData);
 
   return (
+    // eslint-disable-next-line max-len
+    // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
     <div id="relatedProductsOutfitsModule" onClick={(e) => trackClick(e, 'Related')}>
       <ComparisonModal
         currentProduct={currentProduct}
+        relatedProducts={relatedProductDetails}
+        comparedID={comparedID}
         show={showModal}
         setShowModal={setShowModal}
       />
       <RelatedProductCardCarousel
         relatedProductDetails={combinedCardData}
         setShowModal={setShowModal}
+        setComparedID={setComparedID}
         viewWidth={viewWidth}
       />
       <OutfitCardCarousel
         currentProduct={currentProduct}
+        currentProductMeta={currentProductMeta}
         viewWidth={viewWidth}
       />
     </div>
