@@ -48,10 +48,6 @@ export default function DropDown({ modData, apiData }) {
     for (var i = 0; i < array.length - 1; i++) {
       // Compare current index value to the neighboring index
       // if current index is greater than neighboring index
-<<<<<<< HEAD
-=======
-      console.log('testr', array[i])
->>>>>>> a6182c6378ca7c46b595944579d6f66756623dee
       if (array[i].photos.length < array[i + 1].photos.length) {
         // swap the values around
         var currentVal = array[i];
