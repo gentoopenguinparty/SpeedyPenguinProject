@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const ScrollContainer = styled.div
 `height: 440px;
-width: 700px;
+width: 100vw;
 overflow: auto;
 
 position: relative;

@@ -12,6 +12,25 @@ import StarRatings from 'react-star-ratings';
 export default function Review({ countReviews, setDataLength, apiData, setCache,
   setMeta, modData }) {
 
+    var sortRelevent = function (array) {
+      var count = 0;
+      for (var i = 0; i < array.length - 1; i++) {
+        if (array[i].photos.length < array[i + 1].photos.length) {
+          var currentVal = array[i];
+          array[i] = array[i + 1];
+          array[i + 1] = currentVal;
+          count++;
+        }
+      }
+      if (count === 0) {
+        return array;
+      }
+      if (count > 0) {
+        sortRelevent(array);
+      }
+      return array;
+    }
+
   function handlePut(id) {
     // console.log('putID', id)
     axiosPut('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/' + id + '/helpful')
@@ -20,17 +39,16 @@ export default function Review({ countReviews, setDataLength, apiData, setCache,
 
   function handleRefresh() {
     let id = window.location.href.slice(22, 27) || 38000;
-    axiosGet('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/?product_id=' + id)
+    axiosGet(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/?product_id=${id}&count=1000`)
       .then((data) => {
-        // console.log(data.data.results);
         setCache(data.data.results);
-        modData(data.data.results);
+
+        modData([...sortRelevent(data.data.results)]);
         setDataLength(data.data.results.length);
       })
   }
 
   function number(rating) {
-    // console.log('numberr', rating);
     return parseInt((Math.round(rating * 4) / 4).toFixed(2));
   }
 
@@ -38,7 +56,6 @@ export default function Review({ countReviews, setDataLength, apiData, setCache,
   const [url, setUrl] = useState('');
 
   function handleClickAdd(event) {
-    // console.log('photosadad', event.target.src)
     setUrl(event.target.src)
     changeTrigger(!trigger)
   }
@@ -57,6 +74,7 @@ export default function Review({ countReviews, setDataLength, apiData, setCache,
 
       <Grid color={'rgb(230,230,230)'} padding={'5'} height={'1000'}
         width={'1000'} left={'20'} right={'20'}>
+
         {apiData.slice(0, countReviews).map((review, index) => (
           (review.noReview ?
             <div>no review for this rating</div> :
@@ -77,7 +95,6 @@ export default function Review({ countReviews, setDataLength, apiData, setCache,
                 <Col> {review.body} </Col>
               </Row>
               <Row space={'flex-start'}>
-                {/*console.log('photos', review.photos)*/}
                 {review.photos.length > 0 ?
                   review.photos.map((photo, i) => {
                     return (
