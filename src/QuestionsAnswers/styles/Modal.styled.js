@@ -7,7 +7,7 @@ export const Modalpop = styled.div
   border-radius: 5px;
   z-index: 999;
   width: 700px;
-  height: 900px;
+  height: 1100px;
   margin: auto;
   padding: 1em 2em 2em;
   position: relative;
