@@ -7,6 +7,7 @@ const ActionButton = styled.div`
   position: absolute;
   top: 0;
   right: 0;
+  z-index: 3;
 
   font-size: 25px;
   color: darkorange;

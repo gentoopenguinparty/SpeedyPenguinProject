@@ -9,7 +9,7 @@ const ProductCard = styled.div`
   position: relative;
   border: 1px solid black;
   height: 400px;
-  width: 275px;
+  width: 300px;
   margin: 10px;
 
   &:hover {
