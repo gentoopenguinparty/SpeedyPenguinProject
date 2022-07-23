@@ -86,7 +86,7 @@ export default function Review({ countReviews, setDataLength, apiData, setCache,
                     starSpacing="3px" starRatedColor="black"
                     style={{ WebkitTextStroke: '1px black' }} />
                 </Col>
-                <Col > {`✅ ${review.reviewer_name},`} &nbsp; {formatDate(review.date)} </Col>
+                <Col > {`✓ ${review.reviewer_name},`} &nbsp; {formatDate(review.date)} </Col>
               </Row>
               <Row space={'space-between'} padding={10}>
                 <Col weight={'bold'}> {review.summary} </Col>

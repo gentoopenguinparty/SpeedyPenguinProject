@@ -20,7 +20,7 @@ export default function PhotoGallery({ images }) {
   return (
     <Main
       className="test"
-      size={isFullScreen ? '100vw' : 'auto'}
+      size={isFullScreen ? '98vw' : 'auto'}
     >
       <CurrentImage
         id="current-image"

@@ -7,7 +7,7 @@ import { Col } from './styles/Col.styled.js'
 
 export default function DropDown({ modData, apiData }) {
   const [active, setActive] = useState(false);
-  const [filter, setFilter] = useState('relevence')
+  const [filter, setFilter] = useState('relevance')
 
   var sortHelpful = function (array) {
     // set a counter = 0
@@ -147,6 +147,10 @@ export default function DropDown({ modData, apiData }) {
 const DropList = styled.div`
 display: flex;
 flex-direction: column;
-align-items: flex-end;
+align-items: flex-start;
+border: 2px solid black;
+width: 100px;
+float:right;
+padding-left:15px;
 
 `;
