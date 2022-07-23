@@ -8,18 +8,17 @@ export default function ComparisonModal({
   relatedProducts,
   comparedID,
 }) {
-  console.log('current:', currentProduct.features);
-  console.log('related:', relatedProducts);
-  const currentComparedProduct = relatedProducts.filter((prod) => prod.id === comparedID).pop()
+  const currentComparedProduct = relatedProducts.filter((prod) => prod.id === comparedID)
     || relatedProducts[0];
-  console.log('currComp:', currentComparedProduct);
-  const combinedModalData = { ...currentProduct, ...currentComparedProduct };
+  // console.log('currComp:', currentComparedProduct);
+  // const combinedModalData = { ...currentProduct, ...currentComparedProduct };
+  // console.log('combinedModalData:', combinedModalData);
   return (
     <Modal className={`${show ? 'show' : ''}`} onClick={() => setShowModal(false)}>
       <ModalContent onClick={(e) => e.stopPropagation()}>
         <ModalHeader>
           <h4>{currentProduct.name}</h4>
-          {/* <h4>{currentComparedProduct.name}</h4> */}
+          <h4>{currentComparedProduct.name}</h4>
         </ModalHeader>
         <ModalGrid>
           {currentProduct.features && currentProduct.features.map((item) => (
@@ -90,15 +89,15 @@ const ModalGrid = styled.div`
 const CurrentProductValue = styled.div`
   //grid-area: currVal;
   text-align: center;
-  border: red solid 1px;
+  // border: red solid 1px;
 `;
 const Feature = styled.div`
   //grid-area: feature;
   text-align: center;
-  border: blue solid 1px;
+  // border: blue solid 1px;
 `;
 const ComparedProductValue = styled.div`
   //grid-area: compVal;
   text-align: center;
-  border: red solid 1px;
+  border: blue solid 1px;
 `;

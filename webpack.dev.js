@@ -1,3 +1,4 @@
+const CompressionPlugin = require('compression-webpack-plugin');
 const { merge } = require('webpack-merge');
 const path = require('path');
 const common = require('./webpack.common.js');
@@ -6,6 +7,7 @@ module.exports = merge(common, {
   mode: 'development',
   devtool: 'eval-cheap-module-source-map',
   // [devServer] configuration for the live server including port
+  plugins: [new CompressionPlugin()],
   devServer: {
     historyApiFallback: {
       index: '/',
