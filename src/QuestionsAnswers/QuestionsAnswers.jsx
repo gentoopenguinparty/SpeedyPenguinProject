@@ -10,7 +10,6 @@ import { SearchBar } from './styles/SearchBar.styled.js';
 import { SearchIcon } from './styles/SearchIcon.styled.js';
 import { Wrapper } from './styles/Wrapper.styled.js';
 import Modal from './Modal.jsx';
-import { API_KEY } from '../../config.js';
 import AnswerModal from './AnswerModal.jsx';
 
 export default function QuestionsAnswers({ productId, trackClick }) {
@@ -69,7 +68,7 @@ export default function QuestionsAnswers({ productId, trackClick }) {
   const handleSubmit = () => {
     axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions', askQuestionData, {
       headers: {
-        Authorization: API_KEY,
+        Authorization: process.env.REACT_APP_API_KEY,
         'Content-Type': 'application/json',
       },
     }).then((response) => {
@@ -88,7 +87,7 @@ export default function QuestionsAnswers({ productId, trackClick }) {
    // console.log(answerData);
     axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/${questionId}/answers`, answerData, {
       headers: {
-        Authorization: API_KEY,
+        Authorization: process.env.REACT_APP_API_KEY,
         'Content-Type': 'application/json',
       },
     }).then((response) => {
@@ -116,7 +115,7 @@ export default function QuestionsAnswers({ productId, trackClick }) {
   const handleHelpfulQuestionSubmit = (questionId, questionHelpfulness) => {
     axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/${questionId}/helpful`, { question_helpfulness: questionHelpfulness + 1 }, {
       headers: {
-        Authorization: API_KEY,
+        Authorization: process.env.REACT_APP_API_KEY,
         'Content-Type': 'application/json',
       },
     }).then((response) => {
@@ -127,7 +126,7 @@ export default function QuestionsAnswers({ productId, trackClick }) {
   const handleHelpfulAnswerSubmit = (answerId, answerHelpfulness) => {
     axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/answers/${answerId}/helpful`, { helpfulness: answerHelpfulness + 1 }, {
       headers: {
-        Authorization: API_KEY,
+        Authorization: process.env.REACT_APP_API_KEY,
         'Content-Type': 'application/json',
       },
     }).then((response) => {

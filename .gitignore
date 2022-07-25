@@ -2,6 +2,6 @@
 *.DS_Store
 *.map
 public/bundle.js
-config.js
+.env
 node_modules
 coverage

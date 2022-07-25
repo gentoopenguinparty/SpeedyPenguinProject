@@ -2,7 +2,6 @@ import React from 'react';
 import {Modalpop, ModalOverlay, ButtonM} from './styles/Modal.styled.js'
 import ReactDOM from 'react-dom';
 import { MainContainer } from './styles/Main.styled.js';
-import { API_KEY } from '../../config';
 import PhotoCard from './PhotoCard.jsx'
 
 

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { Container } from './styles/Main.styled.js';
 import PhotoCard from './PhotoCard.jsx';
 import axios from 'axios';
-import {API_KEY} from '../../config.js';
 import Moment from 'react-moment';
 import {ReportorHelp} from './styles/Report.styled.js';
 
@@ -27,7 +26,7 @@ export default function Answers(props) {
 
     axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/answers/${answerId}/report`, {reported: true}, {
       headers: {
-        Authorization: API_KEY,
+        Authorization: process.env.REACT_APP_API_KEY,
         'Content-Type': 'application/json',
       },
     }).then((response) => {

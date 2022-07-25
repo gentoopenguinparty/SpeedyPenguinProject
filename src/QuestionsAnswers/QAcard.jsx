@@ -3,7 +3,6 @@ import AnswerCards from './AnswerCards.jsx';
 import { Container } from './styles/Main.styled.js';
 import AnswerModal from './AnswerModal.jsx';
 import axios from 'axios';
-import {API_KEY} from '../../config.js'
 import {ReportorHelp} from './styles/Report.styled.js'
 
 // import {qListLength, setQListLength} from '../QuestionsAnswers/QuestionsAnswers.jsx'
@@ -19,7 +18,7 @@ export default function QAcard(props) {
 
       axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/${questionId}/report`,{reported: true}, {
         headers: {
-          Authorization: API_KEY,
+          Authorization: process.env.REACT_APP_API_KEY,
           'Content-Type': 'application/json',
         },
       }).then((response) => {
